@@ -54,6 +54,49 @@
                 }
             ]
 
+        },
+        {
+            "_comment": "See wireframes shared on gliffy.com",
+            "title": "- KEY FEATURES -",
+            "type": "features",
+            "items": [
+                {
+                    "title": "Real time updates",
+                    "image": "map.png",
+                    "text": "See your trackers move around the map in realtime, no need to refresh the page."
+                },
+                {
+                    "title": "Trip History",
+                    "image": "map2.png",
+                    "text": "Trip history is stored by Ten20. It's up to you how long you keep your trips for."
+                },
+                {
+                    "title": "Set your own virtual fence",
+                    "image": "map3.png",
+                    "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map."
+                }
+            ]
+
+        },
+        {
+            "_comment": "See design https://fd-files-production.s3.amazonaws.com/27875/orJmR0ngObfaREwpUzVVOg?AWSAccessKeyId=AKIAJLUIK775YAQI2POA&Signature=fhzPaivnMcOCqwyq%2FduTeCHKA8Y%3D&Expires=1370893813",
+            "title": "- SUPPORTED TRACKERS -",
+            "type": "slideshow",
+            "items": [
+                {
+                    "title": "GOTOP-206",
+                    "image": "gotop-206.png",
+                    "text": "Portable GPS tracker from GOTOP Limited",
+                    "link": "http://gotop.cc/index.php/product/Personal%20GPS%20tracker%20TL-206.html"
+                },
+                {
+                    "title": "Xenun TK201-2",
+                    "image": "map2.png",
+                    "text": "Portable GPS tracker from Xenun",
+                    "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
+                }
+            ]
+
         }
     ]
 }
