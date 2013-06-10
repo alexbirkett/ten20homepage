@@ -1,46 +1,59 @@
 {
     "page-title": "ten20 GPS tracking platform",
-    "nav-links": [
+
+    "sections": [
         {
-            "text": "Supported hardware",
-            "link": "#hardware"
+            "type": "nav-bar",
+            "logo": "logo.png",
+            "nav-links": [
+                {
+                    "text": "Supported hardware",
+                    "link": "#hardware"
+                },
+                {
+                    "text": "Pricing",
+                    "link": "#pricing"
+                },
+                {
+                    "text": "Partner",
+                    "link": "/partner"
+                }
+            ]
+
         },
         {
-            "text": "Pricing",
-            "link": "#pricing"
+            "type": "call-to-action",
+            "text": ["Monitor all your trackers in one place!", "We support an ever growing list of trackers."],
+            "button": {
+                "text": "GET STARTED",
+                "link": "/register"
+            }
         },
         {
-            "text": "Partner",
-            "link": "/partner"
-        }
-    ],
-    "call-to-action": {
-        "text": ["Monitor all your trackers in one place!", "We support an ever growing list of trackers."],
-        "button": {
-            "text": "GET STARTED",
-            "link": "/register"
-        }
-    },
-    "features": [
-        {
-            "icon": "secure.png",
-            "title": "Secure",
-            "text": "this is some text"
-        },
-        {
-            "icon": "simple.png",
-            "title": "Simple",
-            "text": "this is some text"
-        },
-        {
-            "icon": "universal.png",
-            "title": "Universal",
-            "text": "this is some text"
-        },
-        {
-            "icon": "trusted.png",
-            "title": "Trusted",
-            "text": "this is some text"
+            "type": "benefits",
+            "items": [
+                {
+                    "icon": "secure.png",
+                    "title": "Secure",
+                    "text": "this is some text"
+                },
+                {
+                    "icon": "simple.png",
+                    "title": "Simple",
+                    "text": "this is some text"
+                },
+                {
+                    "icon": "universal.png",
+                    "title": "Universal",
+                    "text": "this is some text"
+                },
+                {
+                    "icon": "trusted.png",
+                    "title": "Trusted",
+                    "text": "this is some text"
+                }
+            ]
+
         }
     ]
 }
