@@ -46,15 +46,20 @@ ul { style: none; }
   background-color: #eee;
 }
 
+.nav > li a.active {
+  color: rgb(255, 100, 0);
+  font-style: bold;
+}
+
+/************************* home page styles *********************************/
 /* benefits styles */
 .benefits {
   color: #333;
   background-color: #eee;
-  padding: 40px 10px;
+  padding: 40px 10px 10px 10px;
   text-align: center;
   position: relative;
 }
-
 
 .benefits hr {
   border-top: 1px rgb(255, 100, 0) solid;
@@ -65,6 +70,7 @@ ul { style: none; }
 .benefits ul {
   position: relative;
   top: -15px;
+  margin-bottom: -10px;
 
 }
 
@@ -86,4 +92,5 @@ ul { style: none; }
 
 /* footer styles */
 
+/************************* login page styles *********************************/
 /* tablet and mobile styles */
