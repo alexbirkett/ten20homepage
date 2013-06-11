@@ -1,11 +1,11 @@
 {
-    "page-title": "ten20 GPS tracking platform",
+    "pageTitle": "ten20 GPS tracking platform",
 
     "sections": [
         {
             "type": "nav-bar",
             "logo": "logo.png",
-            "nav-links": [
+            "navLinks": [
                 {
                     "text": "Supported hardware",
                     "link": "#hardware"
@@ -16,7 +16,8 @@
                 },
                 {
                     "text": "Partner",
-                    "link": "/partner"
+                    "link": "partner",
+                    "status": "active"
                 }
             ]
 
@@ -35,22 +36,22 @@
                 {
                     "icon": "secure.png",
                     "title": "Secure",
-                    "text": "this is some text"
+                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
                 },
                 {
                     "icon": "simple.png",
                     "title": "Simple",
-                    "text": "this is some text"
+                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
                 },
                 {
                     "icon": "universal.png",
                     "title": "Universal",
-                    "text": "this is some text"
+                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
                 },
                 {
                     "icon": "trusted.png",
                     "title": "Trusted",
-                    "text": "this is some text"
+                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
                 }
             ]
 
