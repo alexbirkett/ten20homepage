@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function AppCtrl($scope, $http) {
+function FrontPageCtrl($scope, $http) {
   $http({method: 'GET', url: '/data/model.json'}).
   success(function(data, status, headers, config) {
     $scope.data = data;
