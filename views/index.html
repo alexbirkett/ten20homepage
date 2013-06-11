@@ -14,29 +14,28 @@
   </head>
   <body>
     <div class="container">
+        <span ng-repeat="section in data.sections">
+             <div class="header" ng-show="section.type == 'nav-bar'">
+                 <a href="/" class="logo"><img ng-src="/images/{{ section.logo }}"/></a>
+                 <ul class="nav">
+                     <li ng-repeat="navItem in section.navLinks">
+                         <a href="{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
+                     </li>
+                 </ul>
+                 <div class="clear"></div>
+             </div>
 
-      <div class="row-fluid">
-        <div class="header">
-          <a href="/" class="logo"><img ng-src="/images/{{ data.sections[0].logo }}"/></a>
-          <ul class="nav">
-            <li ng-repeat="navItem in data.sections[0].navLinks">
-            <a href="{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
-            </li>
-          </ul>
-          <div class="clear"></div>
-        </div>
-
-        <div class="benefits">
-          <hr />
-          <ul>
-            <li ng-repeat="item in data.sections[2].items">
-            <img ng-src="/images/{{ item.icon }}" />
-            <h5>{{item.title}}</h5>
-            <p>{{item.text}}</p>
-            </li>
-          </ul>
-        </div>
-
+            <div class="benefits" ng-show="section.type == 'benefits'">
+                <hr />
+                <ul>
+                    <li ng-repeat="item in section.items">
+                        <img ng-src="/images/{{ item.icon }}" />
+                        <h5>{{item.title}}</h5>
+                        <p>{{item.text}}</p>
+                    </li>
+                </ul>
+            </div>
+        </span>
     </div>
     </div>
   </body>
