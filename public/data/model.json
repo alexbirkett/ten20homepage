@@ -28,6 +28,11 @@
             "button": {
                 "text": "GET STARTED",
                 "link": "/register"
+            },
+            "map": {
+                "lat": "51.76",
+                "lng": "-4.55",
+                "zoomLevel": "12"
             }
         },
         {
