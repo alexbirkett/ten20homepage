@@ -20,7 +20,7 @@
           <a href="/" class="logo"><img ng-src="/images/{{ data.sections[0].logo }}"/></a>
           <ul class="nav">
             <li ng-repeat="navItem in data.sections[0].navLinks">
-            <a href="#/{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
+            <a href="{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
             </li>
           </ul>
           <div class="clear"></div>
