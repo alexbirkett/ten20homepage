@@ -12,12 +12,6 @@ function FrontPageCtrl($scope, $http, $window) {
       var map = $scope.window.L.mapbox.map('map', 'alexbirkett.map-t0fodlre', {zoomControl:false});
       map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
 
-      // disable user activities on map
-      map.dragging.disable();
-      map.touchZoom.disable();
-      map.doubleClickZoom.disable();
-      map.scrollWheelZoom.disable();
-
       // add circles
       var circleOption = {
         stroke: true,
