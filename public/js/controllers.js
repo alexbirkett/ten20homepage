@@ -52,7 +52,7 @@ function FrontPageCtrl($scope, $http, $window) {
         var times = 0;
         var intervalId = $scope.window.setInterval(function() {
             (index == (radius.length - 1))?(index = 0, times++):index++;
-            if (times == 2) {
+            if (times == 3) {
               $scope.window.clearInterval(intervalId); 
               drawPolylines();
               return;

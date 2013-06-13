@@ -182,8 +182,9 @@ ul { style: none; }
 .key-features .carousel-indicators {
   position: absolute;
   top: auto;
-  right: auto;
-  left: 47%;
+  left: 50%;
+  width: 53px;
+  margin-left:-26px;
   bottom: -45px;
 }
 
