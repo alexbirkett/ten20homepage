@@ -93,8 +93,9 @@
             "items": [
                 {
                     "title": "Real time updates",
-                    "image": "map.png",
-                    "text": "See your trackers move around the map in realtime, no need to refresh the page."
+                    "image": "map1.png",
+                    "text": "See your trackers move around the map in realtime, no need to refresh the page.",
+                    "status": "active"
                 },
                 {
                     "title": "Trip History",
