@@ -10,6 +10,8 @@
     <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.ie.css' rel='stylesheet' >
     <![endif]-->
     <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/lib/angular/angular.min.js"></script>
     <script src="/js/controllers.js"></script>
     <script src="/js/app.js"></script>
@@ -51,6 +53,37 @@
             <p>{{item.text}}</p>
             </li>
           </ul>
+        </div>
+
+        <div class="key-features">
+          <h5>{{ data.sections[3].title }}</h5>
+          <div id="feature-slide" class="carousel slide">
+            <ol class="carousel-indicators">
+              <li data-target="#feature-slide" data-slide-to="0" class="active"></li>
+              <li data-target="#feature-slide" data-slide-to="1"></li>
+              <li data-target="#feature-slide" data-slide-to="2"></li>
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+              <div ng-class="{active: $index==0}" class="item" ng-repeat="item in data.sections[3].items">
+                <img ng-src="/images/{{ item.image }}" />
+                <h4 class="carousel-caption">{{ item.title }}</h4>
+                <p>{{ item.text }}</p>
+              </div>
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#feature-slide" data-slide="prev">
+              <img src="/images/left-arrow.png" />
+            </a>
+            <a class="carousel-control right" href="#feature-slide" data-slide="next">
+              <img src="/images/right-arrow.png" />
+            </a>
+          </div>
+          <script>
+            $(function(){
+              $('.carousel').carousel();
+            });
+          </script>
         </div>
 
     </div>
