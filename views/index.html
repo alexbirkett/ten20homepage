@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html ng-app="ten20" ng-controller="FrontPageCtrl">
   <head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
     <title ng-bind="data.pageTitle"></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css' rel='stylesheet' />
+    <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.ie.css' rel='stylesheet' >
+    <![endif]-->
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
     <script src="/js/lib/angular/angular.min.js"></script>
     <script src="/js/controllers.js"></script>
     <script src="/js/app.js"></script>
@@ -9,34 +17,42 @@
     <script src="/js/controllers.js"></script>
     <script src="/js/filters.js"></script>
     <script src="/js/directives.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/app.css" />
   </head>
   <body>
     <div class="container">
-        <span ng-repeat="section in data.sections">
-             <div class="header" ng-show="section.type == 'nav-bar'">
-                 <a href="/" class="logo"><img ng-src="/images/{{ section.logo }}"/></a>
-                 <ul class="nav">
-                     <li ng-repeat="navItem in section.navLinks">
-                         <a href="{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
-                     </li>
-                 </ul>
-                 <div class="clear"></div>
-             </div>
+        <div class="header">
+          <a href="/" class="logo"><img ng-src="/images/{{ data.sections[0].logo }}"/></a>
+          <ul class="nav">
+            <li ng-repeat="navItem in data.sections[0].navLinks">
+            <a href="{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
+            </li>
+          </ul>
+          <div class="clear"></div>
+        </div>
 
-            <div class="benefits" ng-show="section.type == 'benefits'">
-                <hr />
-                <ul>
-                    <li ng-repeat="item in section.items">
-                        <img ng-src="/images/{{ item.icon }}" />
-                        <h5>{{item.title}}</h5>
-                        <p>{{item.text}}</p>
-                    </li>
-                </ul>
-            </div>
-        </span>
-    </div>
+        <div class="mapbox">
+          <div id="map"></div>
+
+          <div class="call-to-action">
+            <h1>{{ data.sections[1].text[0] }}</h1>
+            <h5>{{ data.sections[1].text[1] }}</h5><br>
+            <a href="{{ data.sections[1].button.link }}" class="button">{{ data.sections[1].button.text }}</a>
+            <span>{{ data.sections[1].text[2] }}</span>
+          </div>
+          <img ng-src="/images/{{ data.sections[1].banner}}" class="banner" />
+        </div>
+
+        <div class="benefits">
+          <hr />
+          <ul>
+            <li ng-repeat="item in data.sections[2].items">
+            <img ng-src="/images/{{ item.icon }}" />
+            <h5>{{item.title}}</h5>
+            <p>{{item.text}}</p>
+            </li>
+          </ul>
+        </div>
+
     </div>
   </body>
 </html>
