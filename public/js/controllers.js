@@ -89,8 +89,10 @@ function FrontPageCtrl($scope, $http) {
     };
 
     function moveMarker(marker) {
-        var currentLatLng = marker.getLatLng();
-        marker.setLatLng([currentLatLng.lat + getDelta(), currentLatLng.lng + getDelta()]);
+        var latLng = marker.getLatLng();
+        latLng.lat = latLng.lat + getDelta();
+        latLng.lng = latLng.lng + getDelta();
+        marker.setLatLng(latLng);
 
     }
     function updateMarkers() {
