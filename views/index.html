@@ -12,6 +12,7 @@
     <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-responsive.min.js"></script>
     <script src="/js/lib/angular/angular.min.js"></script>
     <script src="/js/controllers.js"></script>
     <script src="/js/app.js"></script>
@@ -21,41 +22,56 @@
     <script src="/js/directives.js"></script>
   </head>
   <body>
-    <div class="container">
-        <div class="header">
-          <a href="/" class="logo"><img ng-src="/images/{{ data.sections[0].logo }}"/></a>
-          <ul class="nav">
-            <li ng-repeat="navItem in data.sections[0].navLinks">
-            <a href="{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
-            </li>
-          </ul>
-          <div class="clear"></div>
-        </div>
-
-        <div class="mapbox">
-          <div id="map"></div>
-
-          <div class="call-to-action">
-            <h1>{{ data.sections[1].text[0] }}</h1>
-            <h5>{{ data.sections[1].text[1] }}</h5><br>
-            <a href="{{ data.sections[1].button.link }}" class="button">{{ data.sections[1].button.text }}</a>
-            <span>{{ data.sections[1].text[2] }}</span>
+    <div class="wrapper">
+      <header>
+        <div class="container">
+          <div class="row-fluid">
+            <div class="span12">
+              <a href="/" class="logo"><img ng-src="/images/{{ data.sections[0].logo }}"/></a>
+              <ul class="nav">
+                <li ng-repeat="navItem in data.sections[0].navLinks">
+                <a href="{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
+                </li>
+              </ul>
+              <div class="clear"></div>
+            </div>
           </div>
-          <img ng-src="/images/{{ data.sections[1].banner}}" class="banner" />
         </div>
+      </header>
 
-        <div class="benefits">
-          <hr />
-          <ul>
-            <li ng-repeat="item in data.sections[2].items">
-            <img ng-src="/images/{{ item.icon }}" />
-            <h5>{{item.title}}</h5>
-            <p>{{item.text}}</p>
-            </li>
-          </ul>
+      <section class="mapbox">
+        <div id="map"></div>
+
+        <div class="call-to-action">
+          <h1>{{ data.sections[1].text[0] }}</h1>
+          <h5>{{ data.sections[1].text[1] }}</h5><br>
+          <a href="{{ data.sections[1].button.link }}" class="button">{{ data.sections[1].button.text }}</a>
+          <span>{{ data.sections[1].text[2] }}</span>
         </div>
+        <img ng-src="/images/{{ data.sections[1].banner}}" class="banner" />
+      </section>
 
-        <div class="key-features">
+      <section class="benefits">
+        <div class="container">
+          <div class="row-fluid">
+            <div class="span12">
+              <hr />
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="items">
+              <div class="span3" ng-repeat="item in data.sections[2].items">
+                  <img ng-src="/images/{{ item.icon }}" />
+                  <h5>{{item.title}}</h5>
+                  <p>{{item.text}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="key-features">
+        <div class="container">
           <h5>{{ data.sections[3].title }}</h5>
           <div id="feature-slide" class="carousel slide">
             <ol class="carousel-indicators">
@@ -85,7 +101,9 @@
             });
           </script>
         </div>
+      </section>
 
     </div>
+    <footer></footer>
   </body>
 </html>
