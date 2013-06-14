@@ -29,7 +29,12 @@ function FrontPageCtrl($scope, $http) {
 
     // add circles to map
 
-    addMarkers();
+    var markers = addMarkers();
+
+
+    setInterval(function() {
+          updateMarkers();
+    }, 1000);
 
     function randomBetween(min, max) {
       return (Math.random()*(max - min))+min;
@@ -48,7 +53,9 @@ function FrontPageCtrl($scope, $http) {
     // begin twinkle the start point of polyline
     //pathEffect();
 
-    function pathEffect() {
+
+
+      function pathEffect() {
       twinkleCircle(startPoint, function() {
         animatePolyline(polyLine, mapParam.polyLine, pathEffect);
       });
@@ -66,11 +73,31 @@ function FrontPageCtrl($scope, $http) {
     }
 
     function addMarkers() {
+      var markers = [];
       for (var i = 0; i < mapParam.numberOfTrackers; i++) {
         var latlng = getRandomVisibleLatLng();
-        var circle= L.circleMarker(latlng, circleMarkerOpt).addTo(map);
-        map.addLayer(circle);
+        var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(map);
+        map.addLayer(marker);
+        markers.push(marker);
       };
+      return markers;
+    }
+
+    function getDelta() {
+          var random = (Math.random() - 0.5) * 2 / 1000;
+          return random;
+    };
+
+    function moveMarker(marker) {
+        var currentLatLng = marker.getLatLng();
+        marker.setLatLng([currentLatLng.lat + getDelta(), currentLatLng.lng + getDelta()]);
+
+    }
+    function updateMarkers() {
+        for (var i = 0; i < markers.length; i++) {
+            var marker = markers[i];
+            moveMarker(marker);
+        }
     }
 
     // twinkling effects func for a circle
