@@ -70,8 +70,8 @@ function FrontPageCtrl($scope, $http) {
         var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(map);
 
         marker.history = addPolyline(latlng);
-
         map.addLayer(marker);
+        twinkleMarker(marker);
         markers.push(marker);
       };
       return markers;
@@ -118,49 +118,23 @@ function FrontPageCtrl($scope, $http) {
     }
 
     // twinkling effects func for a circle
-    function twinkleCircle(circle, callback) {
+    function twinkleMarker(circle) {
       var radius = [
             10, 13, 16, 19,
             22, 21, 20, 19,
             18, 17, 16, 15,
             14, 13, 12, 11];
       var index = 0;
-      var twinkleTimes = 0;
-      var maxTime = 3;
 
       var intervalId = setInterval(function() {
         if (index == (radius.length - 1)) {
           index = 0;
-          twinkleTimes++;
         } else {
           index++;
         }
 
-        // when twinkled max time, stop
-        if (twinkleTimes == maxTime) {
-          clearInterval(intervalId); 
-          callback();
-        } else {
-          circle.setRadius(radius[index]);
-        }
+        circle.setRadius(radius[index]);
       }, 100);
-    }
-
-    // animate polylines func
-    function animatePolyline(polyLine, pointArr, callback) {
-      var index = 0;
-      var intervalId = setInterval(function() {
-        index++;
-
-        if (index == pointArr.length) {
-          polyLine.spliceLatLngs(0, index);
-          index = 0;
-          clearInterval(intervalId);
-          callback();
-        } else {
-          polyLine.addLatLng(pointArr[index]);
-        }
-      }, 700);
     }
 
   }
