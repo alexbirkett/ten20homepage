@@ -83,15 +83,28 @@ function FrontPageCtrl($scope, $http) {
       return markers;
     }
 
-    function getDelta() {
-          var random = (Math.random() - 0.5) * 2 / 1000;
-          return random;
+    function getDelta(delta) {
+        var random;
+        if (delta === undefined) {
+            console.log('no delta');
+            random = (Math.random() - 0.5) * 2 / 1000;
+        } else {
+            console.log('got delta');
+            random = delta;
+        }
+
+        return random;
     };
 
     function moveMarker(marker) {
         var latLng = marker.getLatLng();
-        latLng.lat = latLng.lat + getDelta();
-        latLng.lng = latLng.lng + getDelta();
+
+        marker.latDelta = getDelta(marker.latDelta);
+        marker.lngDelta = getDelta(marker.lngDelta);
+
+        latLng.lat = latLng.lat + marker.latDelta;
+
+        latLng.lng = latLng.lng +  marker.lngDelta;
         marker.setLatLng(latLng);
 
     }
