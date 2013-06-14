@@ -28,13 +28,25 @@ function FrontPageCtrl($scope, $http) {
     map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
 
     // add circles to map
-    addCircleMarkers(mapParam.circles);
+
+    addCircleMarkers();
+
+    function randomBetween(min, max) {
+      return (Math.random()*(max - min))+min;
+    };
+
+    function getRandomVisibleLatLng() {
+        var bounds = map.getBounds();
+        var lat = randomBetween(bounds.getNorth(), bounds.getSouth());
+        var lng = randomBetween(bounds.getWest(), bounds.getEast());
+        return [lat,lng];
+    };
     // add startpoint
     var startPoint = L.circleMarker(mapParam.polyLine[0], circleMarkerOpt).addTo(map);
     // add polyline
     var polyLine = addPolyline([]);
     // begin twinkle the start point of polyline
-    pathEffect();
+    //pathEffect();
 
     function pathEffect() {
       twinkleCircle(startPoint, function() {
@@ -53,9 +65,10 @@ function FrontPageCtrl($scope, $http) {
       return polyLine;
     }
 
-    function addCircleMarkers(points) {
-      for (var i = 0; i < points.length; i++) {
-        var circle= L.circleMarker(points[i], circleMarkerOpt).addTo(map);
+    function addCircleMarkers() {
+      for (var i = 0; i < mapParam.numberOfTrackers; i++) {
+        var latlng = getRandomVisibleLatLng();
+        var circle= L.circleMarker(latlng, circleMarkerOpt).addTo(map);
         map.addLayer(circle);
       };
     }
