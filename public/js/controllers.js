@@ -29,7 +29,7 @@ function FrontPageCtrl($scope, $http) {
 
     // add circles to map
 
-    addCircleMarkers();
+    addMarkers();
 
     function randomBetween(min, max) {
       return (Math.random()*(max - min))+min;
@@ -65,7 +65,7 @@ function FrontPageCtrl($scope, $http) {
       return polyLine;
     }
 
-    function addCircleMarkers() {
+    function addMarkers() {
       for (var i = 0; i < mapParam.numberOfTrackers; i++) {
         var latlng = getRandomVisibleLatLng();
         var circle= L.circleMarker(latlng, circleMarkerOpt).addTo(map);
