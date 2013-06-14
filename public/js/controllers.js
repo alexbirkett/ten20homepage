@@ -47,9 +47,9 @@ function FrontPageCtrl($scope, $http) {
         return [lat,lng];
     };
     // add startpoint
-    var startPoint = L.circleMarker(mapParam.polyLine[0], circleMarkerOpt).addTo(map);
+    //var startPoint = L.circleMarker(mapParam.polyLine[0], circleMarkerOpt).addTo(map);
     // add polyline
-    var polyLine = addPolyline([]);
+    //var polyLine = addPolyline([]);
     // begin twinkle the start point of polyline
     //pathEffect();
 
@@ -86,13 +86,10 @@ function FrontPageCtrl($scope, $http) {
     function getDelta(delta) {
         var random;
         if (delta === undefined) {
-            console.log('no delta');
-            random = (Math.random() - 0.5) * 2 / 1000;
+            random = randomBetween(-0.001, 0.001);// (Math.random() - 0.5) * 2 / 1000;
         } else {
-            console.log('got delta');
-            random = delta;
+            random = delta + randomBetween(-0.0005, 0.0005);
         }
-
         return random;
     };
 
