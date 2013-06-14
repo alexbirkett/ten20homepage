@@ -30,10 +30,8 @@ function FrontPageCtrl($scope, $http) {
     // add circles to map
 
     var markers = addMarkers();
-
-
     setInterval(function() {
-          updateMarkers();
+       updateMarkers();
     }, 1000);
 
     function randomBetween(min, max) {
@@ -46,29 +44,22 @@ function FrontPageCtrl($scope, $http) {
         var lng = randomBetween(bounds.getWest(), bounds.getEast());
         return [lat,lng];
     };
-    // add startpoint
-    //var startPoint = L.circleMarker(mapParam.polyLine[0], circleMarkerOpt).addTo(map);
-    // add polyline
-    //var polyLine = addPolyline([]);
-    // begin twinkle the start point of polyline
-    //pathEffect();
 
-
-
-      function pathEffect() {
+    function pathEffect() {
       twinkleCircle(startPoint, function() {
         animatePolyline(polyLine, mapParam.polyLine, pathEffect);
       });
     }
 
-    function addPolyline(points) {
+    function addPolyline(latlng) {
       var polyOption = {
         stroke: true,
         weight: 2,
         color: '#f60',
-        dashArray: '3,4'
+        dashArray: '3,4',
+          smoothFactor: 0
       };
-      var polyLine = L.polyline(points, polyOption).addTo(map);
+      var polyLine = L.polyline([latlng], polyOption).addTo(map);
       return polyLine;
     }
 
@@ -77,6 +68,9 @@ function FrontPageCtrl($scope, $http) {
       for (var i = 0; i < mapParam.numberOfTrackers; i++) {
         var latlng = getRandomVisibleLatLng();
         var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(map);
+
+        marker.history = addPolyline(latlng);
+
         map.addLayer(marker);
         markers.push(marker);
       };
@@ -99,16 +93,27 @@ function FrontPageCtrl($scope, $http) {
         marker.latDelta = getDelta(marker.latDelta);
         marker.lngDelta = getDelta(marker.lngDelta);
 
-        latLng.lat = latLng.lat + marker.latDelta;
-
-        latLng.lng = latLng.lng +  marker.lngDelta;
-        marker.setLatLng(latLng);
+        marker.setLatLng([latLng.lat + marker.latDelta, latLng.lng +  marker.lngDelta]);
 
     }
+
+    function updateHistory(marker) {
+        var latlngs = marker.history.getLatLngs();
+
+        latlngs.push(marker.getLatLng());
+
+        if (latlngs.length > 100) {
+            latlngs.shift();
+        }
+        marker.history.setLatLngs(latlngs);
+
+    }
+
     function updateMarkers() {
         for (var i = 0; i < markers.length; i++) {
             var marker = markers[i];
             moveMarker(marker);
+            updateHistory(marker);
         }
     }
 
