@@ -2,87 +2,117 @@
 
 /* Controllers */
 
-function FrontPageCtrl($scope, $http, $window) {
+function FrontPageCtrl($scope, $http) {
   $http({method: 'GET', url: '/data/model.json'}).
     success(function(data, status, headers, config) {
       $scope.data = data;
-      $scope.window = $window;
+      createMap(data.sections[1].map);
+      startCarousel();
+    }).
+    error(function(data, status, headers, config) {
+      $scope.data = 'Error!'
+    });
 
-      var mapParam = data.sections[1].map;
-      var map = $scope.window.L.mapbox.map('map', 'alexbirkett.map-t0fodlre', {zoomControl:false});
-      map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
 
-      // add circles
-      var circleOption = {
-        stroke: true,
-        weight: 5,
-        color: '#eee',
-        fillColor: '#f60',
-        fillOpacity: 1
-      };
+  function createMap(mapParam) {
+    // circle options
+    var circleMarkerOpt = {
+      stroke: true,
+      weight: 6,
+      color: '#eee',
+      fillColor: '#f60',
+      fillOpacity: 1
+    };
+    // create map
+    var map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', {zoomControl:false});
+    map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
 
-      for (var i = 0; i < mapParam.circles.length; i++) {
-        var circle= $scope.window.L.circle(mapParam.circles[i], 100, circleOption).addTo(map);
-        map.addLayer(circle); 
-      };
+    // add circles to map
+    addCircleMarkers(mapParam.circles);
+    // add startpoint
+    var startPoint = L.circleMarker(mapParam.polyLine[0], circleMarkerOpt).addTo(map);
+    // add polyline
+    var polyLine = addPolyline([]);
+    // begin twinkle the start point of polyline
+    pathEffect();
 
-      // add polyline
+    function pathEffect() {
+      twinkleCircle(startPoint, function() {
+        animatePolyline(polyLine, mapParam.polyLine, pathEffect);
+      });
+    }
+
+    function addPolyline(points) {
       var polyOption = {
         stroke: true,
         weight: 2,
         color: '#f60',
         dashArray: '3,4'
       };
-      var polyLine = $scope.window.L.polyline([], polyOption).addTo(map);
+      var polyLine = L.polyline(points, polyOption).addTo(map);
+      return polyLine;
+    }
 
-      var point = $scope.window.L.circle(mapParam.polyLine[0], 100, circleOption).addTo(map);
-      twinkleCircle(point);
+    function addCircleMarkers(points) {
+      for (var i = 0; i < points.length; i++) {
+        var circle= L.circleMarker(points[i], circleMarkerOpt).addTo(map);
+        map.addLayer(circle);
+      };
+    }
 
-      // twinkling effects for polyline start point
-      function twinkleCircle(circle) {
-        var radius = [100, 130, 160, 190, 220, 230, 220, 210, 
-                      200,190, 180, 170, 160, 150, 140, 130, 120, 110];
-        var index = 0;
-        var times = 0;
-        var intervalId = $scope.window.setInterval(function() {
-            (index == (radius.length - 1))?(index = 0, times++):index++;
-            if (times == 3) {
-              $scope.window.clearInterval(intervalId); 
-              drawPolylines();
-              return;
-            }
-            circle.setRadius(radius[index]);
-        }, 100);
-      }
+    // twinkling effects func for a circle
+    function twinkleCircle(circle, callback) {
+      var radius = [
+            10, 13, 16, 19,
+            22, 21, 20, 19,
+            18, 17, 16, 15,
+            14, 13, 12, 11];
+      var index = 0;
+      var twinkleTimes = 0;
+      var maxTime = 3;
 
-      // animate polylines
-      function drawPolylines() {
-        var index = 0;
-        var intervalId = $scope.window.setInterval(function() {
+      var intervalId = setInterval(function() {
+        if (index == (radius.length - 1)) {
+          index = 0;
+          twinkleTimes++;
+        } else {
           index++;
-          if (index == mapParam.polyLine.length) {
-            polyLine.spliceLatLngs(0, index);
-            index = 0;
-            $scope.window.clearInterval(intervalId); 
-            twinkleCircle(point);
-            return;
-          }
-          polyLine.addLatLng(mapParam.polyLine[index]);
-        }, 700);
-      }
+        }
 
+        // when twinkled max time, stop
+        if (twinkleTimes == maxTime) {
+          clearInterval(intervalId); 
+          callback();
+        } else {
+          circle.setRadius(radius[index]);
+        }
+      }, 100);
+    }
 
+    // animate polylines func
+    function animatePolyline(polyLine, pointArr, callback) {
+      var index = 0;
+      var intervalId = setInterval(function() {
+        index++;
 
-    }).
-    error(function(data, status, headers, config) {
-      $scope.data = 'Error!'
+        if (index == pointArr.length) {
+          polyLine.spliceLatLngs(0, index);
+          index = 0;
+          clearInterval(intervalId);
+          callback();
+        } else {
+          polyLine.addLatLng(pointArr[index]);
+        }
+      }, 700);
+    }
+
+  }
+
+  function startCarousel() {
+    $(function(){
+      $('.carousel').carousel();
     });
+  }
+
 }
 
-function MyCtrl1() {}
-MyCtrl1.$inject = [];
-
-
-function MyCtrl2() {
-}
-MyCtrl2.$inject = [];
