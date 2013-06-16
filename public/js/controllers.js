@@ -2,40 +2,52 @@
 
 /* Controllers */
 
-function FrontPageCtrl($scope, $http) {
-  $http({method: 'GET', url: '/data/model.json'}).
-    success(function(data, status, headers, config) {
-      $scope.data = data;
-      createMap(data.sections[1].map);
-      startCarousel();
-    }).
-    error(function(data, status, headers, config) {
-      $scope.data = 'Error!'
+function FrontPageCtrl($rootScope, $scope, $http) {
+    $http({method: 'GET', url: '/data/model.json'}).
+        success(function(data, status, headers, config) {
+            $scope.data = data;
+
+            // set root scope param for header and nav menus
+            $rootScope.title = $scope.data.pageTitle;
+            $rootScope.header = $scope.data.sections[0];
+            $rootScope.activePage = 'Partner';
+
+            // notice map ctrl data is ready from server
+            $scope.$broadcast('dataReady', data.sections[1].map);
+            startCarousel();
+        }).
+        error(function(data, status, headers, config) {
+            $scope.data = 'Error!'
+        });
+}
+
+
+function MapCtrl($scope) {
+
+    var markerOpt = {
+        stroke: true,
+        weight: 6,
+        color: '#eee',
+        fillColor: '#f60',
+        fillOpacity: 1
+    };
+    var map, markers, mapParam;
+    // create map
+    $scope.$on('dataReady', function(event, arg) {
+        mapParam = arg;
+        map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', {zoomControl:false});
+        map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
+
+        // add markers to map
+        markers = addMarkers();
+        setInterval(function() {
+            updateMarkers();
+        }, 1000);
+
     });
 
-
-  function createMap(mapParam) {
-    // circle options
-    var circleMarkerOpt = {
-      stroke: true,
-      weight: 6,
-      color: '#eee',
-      fillColor: '#f60',
-      fillOpacity: 1
-    };
-    // create map
-    var map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', {zoomControl:false});
-    map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
-
-    // add circles to map
-
-    var markers = addMarkers();
-    setInterval(function() {
-       updateMarkers();
-    }, 1000);
-
     function randomBetween(min, max) {
-      return (Math.random()*(max - min))+min;
+        return (Math.random()*(max - min))+min;
     };
 
     function getRandomVisibleLatLng() {
@@ -46,35 +58,35 @@ function FrontPageCtrl($scope, $http) {
     };
 
     function pathEffect() {
-      twinkleCircle(startPoint, function() {
-        animatePolyline(polyLine, mapParam.polyLine, pathEffect);
-      });
+        twinkleCircle(startPoint, function() {
+            animatePolyline(polyLine, mapParam.polyLine, pathEffect);
+        });
     }
 
     function addPolyline(latlng) {
-      var polyOption = {
-        stroke: true,
-        weight: 2,
-        color: '#f60',
-        dashArray: '3,4',
-          smoothFactor: 0
-      };
-      var polyLine = L.polyline([latlng], polyOption).addTo(map);
-      return polyLine;
+        var polyOption = {
+            stroke: true,
+            weight: 2,
+            color: '#f60',
+            dashArray: '3,4',
+            smoothFactor: 0
+        };
+        var polyLine = L.polyline([latlng], polyOption).addTo(map);
+        return polyLine;
     }
 
     function addMarkers() {
-      var markers = [];
-      for (var i = 0; i < mapParam.numberOfTrackers; i++) {
-        var latlng = getRandomVisibleLatLng();
-        var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(map);
+        var markers = [];
+        for (var i = 0; i < mapParam.numberOfTrackers; i++) {
+            var latlng = getRandomVisibleLatLng();
+            var marker = L.circleMarker(latlng, markerOpt).addTo(map);
 
-        marker.history = addPolyline(latlng);
-        map.addLayer(marker);
-        twinkleMarker(marker);
-        markers.push(marker);
-      };
-      return markers;
+            marker.history = addPolyline(latlng);
+            map.addLayer(marker);
+            twinkleMarker(marker);
+            markers.push(marker);
+        };
+        return markers;
     }
 
     function getDelta(delta) {
@@ -119,31 +131,28 @@ function FrontPageCtrl($scope, $http) {
 
     // twinkling effects func for a circle
     function twinkleMarker(circle) {
-      var radius = [
+        var radius = [
             10, 13, 16, 19,
-            22, 21, 20, 19,
-            18, 17, 16, 15,
-            14, 13, 12, 11];
-      var index = 0;
+        22, 21, 20, 19,
+        18, 17, 16, 15,
+        14, 13, 12, 11];
+        var index = 0;
 
-      var intervalId = setInterval(function() {
-        if (index == (radius.length - 1)) {
-          index = 0;
-        } else {
-          index++;
-        }
+        var intervalId = setInterval(function() {
+            if (index == (radius.length - 1)) {
+                index = 0;
+            } else {
+                index++;
+            }
 
-        circle.setRadius(radius[index]);
-      }, 100);
+            circle.setRadius(radius[index]);
+        }, 100);
     }
-
-  }
-
-  function startCarousel() {
-    $(function(){
-      $('.carousel').carousel();
-    });
-  }
 
 }
 
+function startCarousel() {
+    $(function(){
+        $('.carousel').carousel();
+    });
+}
