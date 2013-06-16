@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html ng-app="ten20" ng-controller="FrontPageCtrl">
+<html ng-app="ten20">
   <head>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-    <title ng-bind="data.pageTitle"></title>
+    <title ng-bind="title"></title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="/css/app.css" />
     <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css' rel='stylesheet' />
     <!--[if lte IE 8]>
@@ -12,7 +13,6 @@
     <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/bootstrap-responsive.min.js"></script>
     <script src="/js/lib/angular/angular.min.js"></script>
     <script src="/js/controllers.js"></script>
     <script src="/js/app.js"></script>
@@ -22,15 +22,15 @@
     <script src="/js/directives.js"></script>
   </head>
   <body>
-    <div class="wrapper">
+    <div class="wrapper" >
       <header>
         <div class="container">
           <div class="row-fluid">
             <div class="span12">
-              <a href="/" class="logo"><img ng-src="/images/{{ data.sections[0].logo }}"/></a>
+              <a href="/" class="logo"><img ng-src="/images/{{ header.logo }}"/></a>
               <ul class="nav">
-                <li ng-repeat="navItem in data.sections[0].navLinks">
-                <a href="{{ navItem.link }}" class="menu {{ navItem.status }}">{{ navItem.text }}</a>
+                <li ng-repeat="navItem in header.navLinks">
+                <a ng-href="{{ navItem.link }}" class="menu" ng-class="{active: activePage == navItem.text}">{{ navItem.text }}</a>
                 </li>
               </ul>
               <div class="clear"></div>
@@ -39,19 +39,20 @@
         </div>
       </header>
 
-      <section class="mapbox">
-        <div id="map"></div>
+      <div ng-controller="FrontPageCtrl">
+        <section class="mapbox">
+        <div id="map" ng-controller="MapCtrl"></div>
 
         <div class="call-to-action">
           <h1>{{ data.sections[1].text[0] }}</h1>
           <h5>{{ data.sections[1].text[1] }}</h5><br>
-          <a href="{{ data.sections[1].button.link }}" class="button">{{ data.sections[1].button.text }}</a>
+          <a ng-href="{{ data.sections[1].button.link }}" class="button">{{ data.sections[1].button.text }}</a>
           <span>{{ data.sections[1].text[2] }}</span>
         </div>
         <img ng-src="/images/{{ data.sections[1].banner}}" class="banner" />
-      </section>
+        </section>
 
-      <section class="benefits">
+        <section class="benefits">
         <div class="container">
           <div class="row-fluid">
             <div class="span12">
@@ -61,16 +62,16 @@
           <div class="row-fluid">
             <div class="items">
               <div class="span3" ng-repeat="item in data.sections[2].items">
-                  <img ng-src="/images/{{ item.icon }}" />
-                  <h5>{{item.title}}</h5>
-                  <p>{{item.text}}</p>
+                <img ng-src="/images/{{ item.icon }}" />
+                <h5>{{item.title}}</h5>
+                <p>{{item.text}}</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+        </section>
 
-      <section class="key-features">
+        <section class="key-features">
         <div class="container">
           <h5>{{ data.sections[3].title }}</h5>
           <div id="feature-slide" class="carousel slide">
@@ -96,8 +97,9 @@
             </a>
           </div>
         </div>
-      </section>
+        </section>
 
+      </div>
     </div>
     <footer></footer>
   </body>
