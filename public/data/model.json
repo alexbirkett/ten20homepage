@@ -159,6 +159,42 @@
                 }
             ]
 
+        },
+        {
+            "type": "about-us",
+            "title": "About us",
+            "description": "ten20 is being built by a distributed team of talented people from around the world ",
+
+            "items": [
+                {
+                    "name": "Alex Birkett",
+                    "title": "Technical founder",
+                    "description": "Alex has had a 12 year career writing computer software. Alex is handling the business side of things and helping XiaoLei with the code.",
+                    "location": "Norway / UK",
+                    "image": "alex.jpeg"
+                },
+                {
+                    "type": "Daniel Butler",
+                    "title": "Lead Designer",
+                    "label": "Daniel created ten20's awesome visual style",
+                    "location": "Germany / United States",
+                    "image": "daniel.jpeg"
+                },
+                {
+                    "type": "Liu XiaoLei",
+                    "title": "XiaoLei is a a software engineer contracted to work on ten20. We love XiaoLei's talent, attitude and work ethic. XiaoLei is a fan of unix philosophy of simplicity. He is experienced on front-end technologies and node.js framework. Besides work, he loves ice skating, swimming and latin dances.",
+                    "location": "Najing, China",
+                    "image": "xiaolei.jpeg"
+                },
+                {
+                    "type": "Lyn Braas",
+                    "title": "Lyn is studying Graphic Design at Mediacollege Amsterdam worked on ten20 while interned at Komodo in the summer of 2013. Lyn designed Ten20's location history feature.",
+                    "location": "Amsterdam, the Netherlands",
+                    "image": "lyn.jpeg"
+                }
+
+            ]
+
         }
     ]
 }
