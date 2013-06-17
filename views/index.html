@@ -88,7 +88,13 @@
                 <% for(i in section.items) { %>
                 <% var item = section.items[i];  %>
                   <div class="feature-item">
-                      <h5><%= item.title %></h5>
+                    <% if (i == section.items.length -1) {%>
+                    <h3><%=: item.title | replace: /virtual fence/i, '' %>
+                      <span><%=: item.title | replace: /Set your own/i, '' %></span>
+                    </h3>
+                    <% } else { %>
+                    <h3><%= item.title %></h3>
+                    <% } %>
                       <img src="/images/<%= item.image %>" />
                       <p><%= item.text %></p>
                   </div>

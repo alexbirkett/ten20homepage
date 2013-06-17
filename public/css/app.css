@@ -167,8 +167,17 @@ header {
   color: #f60;
 }
 
+.key-features .span8 h3 span {
+  color: #f60;
+}
+
 .key-features .span8 img {
   padding-bottom: 10px;
+}
+
+.key-features .span8 p {
+  max-width: 300px; 
+  margin: 0 auto;
 }
 
 /* trackers section styles */
