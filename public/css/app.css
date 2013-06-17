@@ -149,12 +149,34 @@ header {
   padding: 0 40px;
 }
 
-/* benefits section styles */
+/* key features section styles */
+.key-features .row-fluid .span8 {
+  margin: 30px auto;
+  float: none;
+  text-align: center;
+  font-weight: normal;
+}
+
+.key-features .feature-item {
+  padding-bottom: 20px;
+}
+
+.key-features .span8 h4 {
+  font-weight: normal;
+  padding-bottom: 20px;
+  color: #f60;
+}
+
+.key-features .span8 img {
+  padding-bottom: 10px;
+}
+
+/* trackers section styles */
 .trackers {
   padding: 60px 0;
 }
 
-.trackers h5 {
+.trackers h4 {
   text-align: center;
   font-weight: normal;
   padding-bottom: 20px;

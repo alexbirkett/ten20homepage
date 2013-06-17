@@ -69,18 +69,18 @@
             "items": [
                 {
                     "title": "Real time updates",
-                    "image": "map1.png",
+                    "image": "map-track.jpg",
                     "text": "See your trackers move around the map in realtime, no need to refresh the page.",
                     "status": "active"
                 },
                 {
                     "title": "Trip History",
-                    "image": "map2.jpg",
+                    "image": "map-path.jpg",
                     "text": "Trip history is stored by Ten20. It's up to you how long you keep your trips for."
                 },
                 {
                     "title": "Set your own virtual fence",
-                    "image": "map3.png",
+                    "image": "map-fence.jpg",
                     "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map."
                 }
             ]
@@ -103,10 +103,10 @@
                     "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
                 },
                 {
-                    "title": "Xenun TK201-2",
-                    "image": "tk201-2.jpg",
-                    "text": "Portable GPS tracker from Xenun",
-                    "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
+                    "title": "Garmin GTU 10 GPS Tracking Unit",
+                    "image": "garmin-gtu-10.jpg",
+                    "text": "Garmin's GTU 10 is a handy GPS locator that combines a web-based tracking service with GPS technology",
+                    "link": "http://www8.garmin.com/followme/"
                 }
             ]
         },
