@@ -1,30 +1,6 @@
-'use strict';
-
-/* Controllers */
-
-function FrontPageCtrl($rootScope, $scope, $http) {
-    $http({method: 'GET', url: '/data/model.json'}).
-        success(function(data, status, headers, config) {
-            $scope.data = data;
-
-            // set root scope param for header and nav menus
-            $rootScope.title = $scope.data.pageTitle;
-            $rootScope.header = $scope.data.sections[0];
-            $rootScope.activePage = 'Partner';
-
-            // notice map ctrl data is ready from server
-            $scope.$broadcast('dataReady', data.sections[1].map);
-            startCarousel();
-        }).
-        error(function(data, status, headers, config) {
-            $scope.data = 'Error!'
-        });
-}
-
-
-function MapCtrl($scope) {
-
-    var markerOpt = {
+function createMap(mapParam) {
+    // circle options
+    var circleMarkerOpt = {
         stroke: true,
         weight: 6,
         color: '#eee',
@@ -44,7 +20,10 @@ function MapCtrl($scope) {
             updateMarkers();
         }, 1000);
 
-    });
+    var markers = addMarkers();
+    setInterval(function() {
+        updateMarkers();
+    }, 1000);
 
     function randomBetween(min, max) {
         return (Math.random()*(max - min))+min;
@@ -79,7 +58,7 @@ function MapCtrl($scope) {
         var markers = [];
         for (var i = 0; i < mapParam.numberOfTrackers; i++) {
             var latlng = getRandomVisibleLatLng();
-            var marker = L.circleMarker(latlng, markerOpt).addTo(map);
+            var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(map);
 
             marker.history = addPolyline(latlng);
             map.addLayer(marker);
@@ -133,9 +112,9 @@ function MapCtrl($scope) {
     function twinkleMarker(circle) {
         var radius = [
             10, 13, 16, 19,
-        22, 21, 20, 19,
-        18, 17, 16, 15,
-        14, 13, 12, 11];
+            22, 21, 20, 19,
+            18, 17, 16, 15,
+            14, 13, 12, 11];
         var index = 0;
 
         var intervalId = setInterval(function() {
@@ -151,8 +130,11 @@ function MapCtrl($scope) {
 
 }
 
-function startCarousel() {
-    $(function(){
-        $('.carousel').carousel();
+$(function(){
+    createMap({
+        "lat": "51.74",
+        "lng": "-4.55",
+        "zoomLevel": "12",
+        "numberOfTrackers": 5
     });
-}
+});
