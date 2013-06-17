@@ -91,12 +91,17 @@ header {
 }
 
 .mapbox .call-to-action a.button {
+  display: inline-block;
   padding: 20px 20px;
+  width: 140px;
   color: #eee;
   font-weight: bold;
   text-decoration: none;
-  background: url('/images/round-rect.png') center no-repeat ;
+  background: url('/images/round-rect.png') no-repeat center center; 
   background-size: 90%;
+  /* fix ie8 support for background-size */
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='/images/round-rect.png', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='/images/round-rect.png', sizingMethod='scale')";
   text-transform: uppercase;
 }
 
@@ -210,6 +215,11 @@ footer {
     margin-right: 3%;
     width: auto;
   }
+
+  .mapbox .call-to-action {
+    position: absolute;
+    top: 200px;
+  }
 }
 
 
@@ -217,7 +227,11 @@ footer {
 
   .mapbox .call-to-action {
     position: absolute;
-    top: 200px;
+    top: 150px;
+  }
+
+  .mapbox .call-to-action span {
+    display: block;
   }
 
   .benefits hr {
