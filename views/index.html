@@ -80,14 +80,28 @@
         </section>
 
         <section class="key-features">
+        <% var section = sections[3]; %>
         <div class="container">
+          <div class="row-fluid">
+            <div class="span8">
+              <h4><%= section.title %></h4>
+                <% for(i in section.items) { %>
+                <% var item = section.items[i];  %>
+                  <div class="feature-item">
+                      <h5><%= item.title %></h5>
+                      <img src="/images/<%= item.image %>" />
+                      <p><%= item.text %></p>
+                  </div>
+                <% } %>
+            </div>
+          </div>
         </div>
         </section>
 
         <section class="trackers">
         <div class="container">
           <% var section = sections[4]; %>
-          <h5><%= section.title %></h5>
+          <h4><%= section.title %></h4>
           <div id="feature-slide" class="carousel slide">
             <ol class="carousel-indicators">
               <li data-target="#feature-slide" data-slide-to="0" class="active"></li>
@@ -103,7 +117,7 @@
                   <div class="item">
                 <% } %>
                 <img src="/images/<%= item.image %>" />
-                <h4 class="carousel-caption"><%= item.title %></h4>
+                <h5 class="carousel-caption"><%= item.title %></h5>
                 <p><%= item.text %></p>
               </div>
                 <% })%>
