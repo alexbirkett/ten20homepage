@@ -9,8 +9,10 @@ function createMap(mapParam) {
     };
     var map, markers;
     // create map
-    map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', {zoomControl:false});
+    map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', { zoomControl:true });
     map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
+
+    map.scrollWheelZoom.disable();
 
     // add markers to map
     markers = addMarkers();
