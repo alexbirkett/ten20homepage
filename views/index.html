@@ -9,15 +9,18 @@
     <!--[if lte IE 8]>
     <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.ie.css' rel='stylesheet' >
     <![endif]-->
-    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
+    <script src="/js/css3-mediaqueries.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/bootstrap-responsive.min.js"></script>
     <script src="/js/map.js"></script>
     <script src="/js/carousel.js"></script>
   </head>
   <body>
-    <div class="wrapper">
+    <div class="wrapper" >
       <header>
         <% var section = sections[0]; %>
         <div class="container">
@@ -41,6 +44,8 @@
       <section class="mapbox">
         <% var section = sections[1]; %>
         <div id="map"></div>
+        <script type="text/javascript">
+        </script>
 
         <div class="call-to-action">
           <h1><%= section.text[0] %></h1>
@@ -72,12 +77,37 @@
             </div>
           </div>
         </div>
-      </section>
+        </section>
 
-      <section class="key-features">
+        <section class="key-features">
         <% var section = sections[3]; %>
         <div class="container">
-          <h5><%= section.title %></h5>
+          <div class="row-fluid">
+            <div class="span8">
+              <h4><%= section.title %></h4>
+                <% for(i in section.items) { %>
+                <% var item = section.items[i];  %>
+                  <div class="feature-item">
+                    <% if (i == section.items.length -1) {%>
+                    <h3><%=: item.title | replace: /virtual fence/i, '' %>
+                      <span><%=: item.title | replace: /Set your own/i, '' %></span>
+                    </h3>
+                    <% } else { %>
+                    <h3><%= item.title %></h3>
+                    <% } %>
+                      <img src="/images/<%= item.image %>" />
+                      <p><%= item.text %></p>
+                  </div>
+                <% } %>
+            </div>
+          </div>
+        </div>
+        </section>
+
+        <section class="trackers">
+        <div class="container">
+          <% var section = sections[4]; %>
+          <h4><%= section.title %></h4>
           <div id="feature-slide" class="carousel slide">
             <ol class="carousel-indicators">
               <li data-target="#feature-slide" data-slide-to="0" class="active"></li>
@@ -86,14 +116,17 @@
             </ol>
             <!-- Carousel items -->
             <div class="carousel-inner">
-                <% for(i in section.items) { %>
-                <% var item = section.items[i];  %>
-              <div class="item">
-                <img src="/images/<%= item.image %>" />
-                <h4 class="carousel-caption"><%= item.title %></h4>
-                <p>{{ item.text }}</p>
-              </div>
+                <% section.items.forEach(function(item) { %>
+                <% if (section.items[0] == item) { %>
+                  <div class="item active">
+                <% } else { %>
+                  <div class="item">
                 <% } %>
+                <img src="/images/<%= item.image %>" />
+                <h5 class="carousel-caption"><%= item.title %></h5>
+                <p><%= item.text %></p>
+              </div>
+                <% })%>
             </div>
             <!-- Carousel nav -->
             <a class="carousel-control left" href="#feature-slide" data-slide="prev">
@@ -104,7 +137,7 @@
             </a>
           </div>
         </div>
-      </section>
+        </section>
 
     </div>
     <footer></footer>
