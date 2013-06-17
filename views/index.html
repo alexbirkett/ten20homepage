@@ -9,12 +9,12 @@
     <!--[if lte IE 8]>
     <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.ie.css' rel='stylesheet' >
     <![endif]-->
+    <script src="/js/css3-mediaqueries.js"></script>
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
-    <script src="/js/css3-mediaqueries.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/map.js"></script>
     <script src="/js/carousel.js"></script>
@@ -81,7 +81,12 @@
 
         <section class="key-features">
         <div class="container">
-          <% var section = sections[3]; %>
+        </div>
+        </section>
+
+        <section class="trackers">
+        <div class="container">
+          <% var section = sections[4]; %>
           <h5><%= section.title %></h5>
           <div id="feature-slide" class="carousel slide">
             <ol class="carousel-indicators">
@@ -114,7 +119,6 @@
         </div>
         </section>
 
-      </div>
     </div>
     <footer></footer>
   </body>

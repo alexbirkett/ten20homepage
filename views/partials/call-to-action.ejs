@@ -1,0 +1,14 @@
+<section class="mapbox">
+  <% var section = sections[1]; %>
+  <div id="map"></div>
+  <script type="text/javascript">
+  </script>
+
+  <div class="call-to-action">
+    <h1><%= section.text[0] %></h1>
+    <h5><%= section.text[1] %></h5><br>
+    <a href="<%= section.button.link %>" class="button"><%= section.button.text %></a>
+    <span><%= section.text[2] %></span>
+  </div>
+  <img src="/images/<%= section.banner %>" class="banner" />
+</section>

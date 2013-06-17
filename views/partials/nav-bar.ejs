@@ -1,0 +1,19 @@
+<header>
+  <% var section = sections[0]; %>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <a href="/" class="logo"><img src="/images/<%= sections[0].logo %>"/></a>
+        <ul class="nav">
+          <% for(i in section.navLinks) { %>
+          <% var navItem = section.navLinks[i];  %>
+          <li>
+          <a href="<%= navItem.link %>" class="menu <%= navItem.status %>"><%= navItem.text %></a>
+          </li>
+          <% } %>
+        </ul>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</header>
