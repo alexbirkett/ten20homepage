@@ -34,7 +34,6 @@
                 "lng": "-4.55",
                 "zoomLevel": "12",
                 "numberOfTrackers": 5
-
             }
         },
         {
@@ -64,7 +63,6 @@
 
         },
         {
-            "_comment": "See wireframes shared on gliffy.com",
             "title": "- KEY FEATURES -",
             "type": "features",
             "items": [
@@ -88,9 +86,8 @@
 
         },
         {
-            "_comment": "See design https://fd-files-production.s3.amazonaws.com/27875/orJmR0ngObfaREwpUzVVOg?AWSAccessKeyId=AKIAJLUIK775YAQI2POA&Signature=fhzPaivnMcOCqwyq%2FduTeCHKA8Y%3D&Expires=1370893813",
             "title": "- SUPPORTED TRACKERS -",
-            "type": "slideshow",
+            "type": "supported-trackers",
             "items": [
                 {
                     "title": "GOTOP-206",
@@ -103,6 +100,61 @@
                     "image": "map2.png",
                     "text": "Portable GPS tracker from Xenun",
                     "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
+                }
+            ]
+        },
+        {
+            "type": "contact-form",
+            "logo": "image/logo.png",
+            "description": "Thank you for your interest, please enter your details below",
+
+            "items": [
+                {
+                    "type": "text",
+                    "name": "first-name",
+                    "label": "First name",
+                    "optional": "false"
+                },
+                {
+                    "type": "text",
+                    "name": "last-name",
+                    "label": "Last name",
+                    "optional": "false"
+                },
+                {
+                    "type": "text",
+                    "name": "email",
+                    "label": "Email",
+                    "optional": "false"
+                },
+                {
+                    "type": "text",
+                    "name": "phone",
+                    "label": "Phone",
+                    "optional": "true"
+                },
+                {
+                    "type": "text",
+                    "name": "company-name",
+                    "label": "Company Name",
+                    "optional": "true"
+                },
+                {
+                    "type": "text",
+                    "name": "company-website-url",
+                    "label": "Company Website URL",
+                    "optional": "true"
+                },
+                {
+                    "type": "checkbox",
+                    "name": "call-me",
+                    "label": "Company Website URL"
+                },
+                {
+                    "type": "checkbox",
+                    "name": "news-letter",
+                    "label": "Subscribe to partner newsletter",
+                    "optional": "true"
                 }
             ]
 
