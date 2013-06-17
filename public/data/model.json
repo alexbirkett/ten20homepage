@@ -174,29 +174,29 @@
             "items": [
                 {
                     "name": "Alex Birkett",
-                    "title": "Technical founder",
-                    "description": "Alex has had a 12 year career writing computer software. Alex is handling the business side of things and helping XiaoLei with the code.",
-                    "location": "Norway / UK",
-                    "image": "alex.jpeg"
+                    "title": "Founder",
+                    "description": "Alex is a software engineer turned entrepreneur. Alex founded ten20 and is assisting XiaoLei with the code.",
+                    "location": "UK / Norway",
+                    "image": "http://s.gravatar.com/avatar/541e744d6552b91e24db6691f33b62ed?s=150"
                 },
                 {
                     "type": "Daniel Butler",
-                    "title": "Lead Designer",
-                    "label": "Daniel created ten20's awesome visual style",
+                    "title": "Creative advisor",
+                    "label": "Daniel was contracted to provide the ten20 brand and visual direction",
                     "location": "Germany / United States",
-                    "image": "daniel.jpeg"
+                    "image": "http://s.gravatar.com/avatar/e71d14aaaf14db810d21f13713f623b3?s=150"
                 },
                 {
                     "type": "Liu XiaoLei",
-                    "title": "XiaoLei is a a software engineer contracted to work on ten20. We love XiaoLei's talent, attitude and work ethic. XiaoLei is a fan of unix philosophy of simplicity. He is experienced on front-end technologies and node.js framework. Besides work, he loves ice skating, swimming and latin dances.",
+                    "title": "XiaoLei is a a software engineer contracted to work on ten20. We love XiaoLei's talent, attitude and work ethic. XiaoLei is a fan of unix philosophy of simplicity. He is experienced on front-end technologies and the node.js framework. Besides work, he loves ice skating, swimming and latin dances.",
                     "location": "Najing, China",
-                    "image": "xiaolei.jpeg"
+                    "image": "http://s.gravatar.com/avatar/034820503911819b94f9e3e96a6ef8bd?s=150"
                 },
                 {
                     "type": "Lyn Braas",
                     "title": "Lyn is studying Graphic Design at Mediacollege Amsterdam worked on ten20 while interned at Komodo in the summer of 2013. Lyn designed Ten20's location history feature.",
                     "location": "Amsterdam, the Netherlands",
-                    "image": "lyn.jpeg"
+                    "image": "images/people/LynBraas"
                 }
 
             ]
