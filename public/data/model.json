@@ -92,13 +92,19 @@
             "items": [
                 {
                     "title": "GOTOP-206",
-                    "image": "gotop-206.png",
+                    "image": "gotop-206.jpg",
                     "text": "Portable GPS tracker from GOTOP Limited",
                     "link": "http://gotop.cc/index.php/product/Personal%20GPS%20tracker%20TL-206.html"
                 },
                 {
                     "title": "Xenun TK201-2",
-                    "image": "map2.png",
+                    "image": "tk201-2.jpg",
+                    "text": "Portable GPS tracker from Xenun",
+                    "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
+                },
+                {
+                    "title": "Xenun TK201-2",
+                    "image": "tk201-2.jpg",
                     "text": "Portable GPS tracker from Xenun",
                     "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
                 }

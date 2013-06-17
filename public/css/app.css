@@ -150,39 +150,39 @@ header {
 }
 
 /* benefits section styles */
-.key-features {
+.trackers {
   padding: 60px 0;
 }
 
-.key-features h5 {
+.trackers h5 {
   text-align: center;
   font-weight: normal;
   padding-bottom: 20px;
   color: #f60;
 }
 
-.key-features .carousel-inner {
+.trackers .carousel-inner {
   text-align: center;
 }
 
-.key-features .carousel-inner img {
+.trackers .carousel-inner img {
   max-width: 70%;
   margin: auto;
   padding-top: 50px;
 }
 
-.key-features .carousel-inner p {
+.trackers .carousel-inner p {
   padding-top: 20px;
 }
 
-.key-features .carousel-inner .carousel-caption {
+.trackers .carousel-inner .carousel-caption {
   bottom: auto;
   top: 0;
   padding-top: 0;
   background: none;
 }
 
-.key-features .carousel-indicators {
+.trackers .carousel-indicators {
   position: absolute;
   top: auto;
   left: 50%;
@@ -191,11 +191,11 @@ header {
   bottom: -45px;
 }
 
-.key-features .carousel-indicators .active {
+.trackers .carousel-indicators .active {
   background-color: #f60;
 }
 
-.key-features .carousel-control {
+.trackers .carousel-control {
   border: none;
   background: none;
 }
@@ -247,7 +247,7 @@ footer {
     text-align: center;
   }
 
-  .key-features .carousel-inner img {
+  .trackers .carousel-inner img {
     max-width: 100%;
   }
 }

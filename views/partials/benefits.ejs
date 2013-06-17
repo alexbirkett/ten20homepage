@@ -1,0 +1,22 @@
+<section class="benefits">
+<% var section = sections[2]; %>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span12">
+      <hr />
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="items">
+        <% for(i in section.items) { %>
+        <% var item = section.items[i];  %>
+          <div class="span3">
+              <img src="/images/<%= item.icon %>" />
+              <h5><%= item.title %></h5>
+              <p><%= item.text %></p>
+          </div>
+        <% } %>
+    </div>
+  </div>
+</div>
+</section>
