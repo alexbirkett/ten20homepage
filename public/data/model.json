@@ -16,7 +16,8 @@
                 },
                 {
                     "text": "Partner",
-                    "link": "http://partner.com"
+                    "link": "http://partner.com",
+                    "status": "active"
                 }
             ]
 

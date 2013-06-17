@@ -7,27 +7,21 @@ function createMap(mapParam) {
         fillColor: '#f60',
         fillOpacity: 1
     };
-    var map, markers, mapParam;
+    var map, markers;
     // create map
-    $scope.$on('dataReady', function(event, arg) {
-        mapParam = arg;
-        map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', {zoomControl:false});
-        map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
+    map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', {zoomControl:false});
+    map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
 
-        // add markers to map
-        markers = addMarkers();
-        setInterval(function() {
-            updateMarkers();
-        }, 1000);
-
-    var markers = addMarkers();
+    // add markers to map
+    markers = addMarkers();
     setInterval(function() {
-        updateMarkers();
+      updateMarkers();
     }, 1000);
+
 
     function randomBetween(min, max) {
         return (Math.random()*(max - min))+min;
-    };
+    }
 
     function getRandomVisibleLatLng() {
         var bounds = map.getBounds();
@@ -76,7 +70,7 @@ function createMap(mapParam) {
             random = delta + randomBetween(-0.0005, 0.0005);
         }
         return random;
-    };
+    }
 
     function moveMarker(marker) {
         var latLng = marker.getLatLng();
@@ -130,11 +124,11 @@ function createMap(mapParam) {
 
 }
 
-$(function(){
+$(function() {
     createMap({
-        "lat": "51.74",
-        "lng": "-4.55",
-        "zoomLevel": "12",
-        "numberOfTrackers": 5
+      lat: 51.74,
+      lng: -4.55,
+      zoomLevel: 12,
+      numberOfTrackers: 5
     });
 });
