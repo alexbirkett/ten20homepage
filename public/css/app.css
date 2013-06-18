@@ -318,6 +318,27 @@ footer p {
 }
 
 /************************* login page styles *********************************/
+
+/************************* 404 page styles *********************************/
+.page-not-found {
+  margin: 100px auto;
+  text-align: center;
+  font-size: 30px;
+}
+
+.page-not-found h2 {
+  margin-top: 20px;
+}
+
+.page-not-found p {
+  color: #f60;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 30px;
+  max-width: 350px;
+  margin: 20px auto;
+}
+
 /* tablet and mobile styles */
 @media only screen and (max-width: 940px) {
 
