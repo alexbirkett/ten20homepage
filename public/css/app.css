@@ -1,10 +1,33 @@
 /* general styles */
 body {
   color: #eee;
-  background-color: #333;
+  background-color: #272727;
   padding: 0;
   margin: 0;
-  font: ;
+  font: 400 12px/18px 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial, sans-serif;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .wrapper {
@@ -38,10 +61,11 @@ header {
 
 .nav > li {
   display: inline;
-  font-size: 16px;
 }
 
 .nav > li a {
+  font-weight: 400;
+  font-size: 12px;
   color: #eee;
   padding: 5px 5px;
   display: inline;
@@ -90,12 +114,17 @@ header {
   z-index: 100;
 }
 
+.mapbox .call-to-action h2 {
+  margin-bottom: 0;
+}
+
 .mapbox .call-to-action a.button {
   display: inline-block;
   padding: 20px 20px;
   width: 140px;
   color: #eee;
   font-weight: bold;
+  font-size: 14px;
   text-decoration: none;
   background: url('/images/round-rect.png') no-repeat center center; 
   background-size: 90%;
@@ -107,7 +136,8 @@ header {
 
 .mapbox .call-to-action span {
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: normal;
+  font-size: 12px;
 }
 
 .mapbox .banner {
@@ -161,8 +191,7 @@ header {
   padding-bottom: 20px;
 }
 
-.key-features .span8 h4 {
-  font-weight: normal;
+.key-features .span8 h2 {
   padding-bottom: 20px;
   color: #f60;
 }
@@ -185,9 +214,8 @@ header {
   padding: 60px 0;
 }
 
-.trackers h4 {
+.trackers h2 {
   text-align: center;
-  font-weight: normal;
   padding-bottom: 20px;
   color: #f60;
 }
