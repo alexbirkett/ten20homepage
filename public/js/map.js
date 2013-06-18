@@ -1,4 +1,6 @@
-function createMap(mapParam) {
+window.ten20 = window.ten20 || {};
+
+window.ten20.MapRender = (function () {
     // circle options
     var circleMarkerOpt = {
         stroke: true,
@@ -7,38 +9,42 @@ function createMap(mapParam) {
         fillColor: '#f60',
         fillOpacity: 1
     };
-    var map, markers;
-    // create map
-    map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', { zoomControl:true });
-    map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
-
-    map.scrollWheelZoom.disable();
-
-    // add markers to map
-    markers = addMarkers();
-    setInterval(function() {
-      updateMarkers();
-    }, 1000);
-
-
-    function randomBetween(min, max) {
-        return (Math.random()*(max - min))+min;
+    
+    function MapRender(mapDiv, param) {
+      this.mapDiv = mapDiv;
+      this.tile = param.tile || 'alexbirkett.map-t0fodlre';
+      this.zoomControl = param.zoomControl || true;
+      this.lat = param.lat;
+      this.lng = param.lng;
+      this.zoomLevel = param.zoomLevel;
+      this.numberOfTrackers = param.numberOfTrackers;
+      this.markers = [];
+      this.polylines = [];
+      this.init();
     }
 
-    function getRandomVisibleLatLng() {
-        var bounds = map.getBounds();
+    MapRender.prototype.init = function () {
+      // create map
+      var self = this;
+      this.map = L.mapbox.map(this.mapDiv, this.tile, { zoomControl: this.zoomControl});
+      this.map.setView([this.lat, this.lng], this.zoomLevel);
+      this.map.scrollWheelZoom.disable();
+
+      this.addMarkers();
+      setInterval(function() {
+        self.updateMarkers();
+      }, 1000);
+    }
+
+    MapRender.prototype._getRandomVisibleLatLng = function() {
+        var bounds = this.map.getBounds();
         var lat = randomBetween(bounds.getNorth(), bounds.getSouth());
         var lng = randomBetween(bounds.getWest(), bounds.getEast());
         return [lat,lng];
     };
 
-    function pathEffect() {
-        twinkleCircle(startPoint, function() {
-            animatePolyline(polyLine, mapParam.polyLine, pathEffect);
-        });
-    }
 
-    function addPolyline(latlng) {
+    MapRender.prototype.addPolyline = function(latlng) {
         var polyOption = {
             stroke: true,
             weight: 2,
@@ -46,22 +52,53 @@ function createMap(mapParam) {
             dashArray: '3,4',
             smoothFactor: 0
         };
-        var polyLine = L.polyline([latlng], polyOption).addTo(map);
+        var polyLine = L.polyline([latlng], polyOption).addTo(this.map);
         return polyLine;
     }
 
-    function addMarkers() {
-        var markers = [];
-        for (var i = 0; i < mapParam.numberOfTrackers; i++) {
-            var latlng = getRandomVisibleLatLng();
-            var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(map);
+    MapRender.prototype.addMarkers = function() {
+        for (var i = 0; i < this.numberOfTrackers; i++) {
+            var latlng = this._getRandomVisibleLatLng();
+            var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(this.map);
 
-            marker.history = addPolyline(latlng);
-            map.addLayer(marker);
-            twinkleMarker(marker);
-            markers.push(marker);
+            marker.history = this.addPolyline(latlng);
+            this.map.addLayer(marker);
+            this.twinkleMarker(marker);
+            this.markers.push(marker);
         };
-        return markers;
+    }
+
+
+    MapRender.prototype.updateMarkers = function() {
+        for (var i = 0; i < this.markers.length; i++) {
+            var marker = this.markers[i];
+            moveMarker(marker);
+            updateHistory(marker);
+        }
+    }
+
+    // twinkling effects func for a circle
+    MapRender.prototype.twinkleMarker = function(marker) {
+        var radius = [
+            10, 13, 16, 19,
+            22, 21, 20, 19,
+            18, 17, 16, 15,
+            14, 13, 12, 11];
+        var index = 0;
+
+        var intervalId = setInterval(function() {
+            if (index == (radius.length - 1)) {
+                index = 0;
+            } else {
+                index++;
+            }
+            marker.setRadius(radius[index]);
+        }, 100);
+    }
+
+    // tool functions
+    function randomBetween(min, max) {
+        return (Math.random()*(max - min))+min;
     }
 
     function getDelta(delta) {
@@ -74,7 +111,7 @@ function createMap(mapParam) {
         return random;
     }
 
-    function moveMarker(marker) {
+    function moveMarker (marker) {
         var latLng = marker.getLatLng();
 
         marker.latDelta = getDelta(marker.latDelta);
@@ -96,41 +133,6 @@ function createMap(mapParam) {
 
     }
 
-    function updateMarkers() {
-        for (var i = 0; i < markers.length; i++) {
-            var marker = markers[i];
-            moveMarker(marker);
-            updateHistory(marker);
-        }
-    }
+    return MapRender;
 
-    // twinkling effects func for a circle
-    function twinkleMarker(circle) {
-        var radius = [
-            10, 13, 16, 19,
-            22, 21, 20, 19,
-            18, 17, 16, 15,
-            14, 13, 12, 11];
-        var index = 0;
-
-        var intervalId = setInterval(function() {
-            if (index == (radius.length - 1)) {
-                index = 0;
-            } else {
-                index++;
-            }
-
-            circle.setRadius(radius[index]);
-        }, 100);
-    }
-
-}
-
-$(function() {
-    createMap({
-      lat: 51.74,
-      lng: -4.55,
-      zoomLevel: 12,
-      numberOfTrackers: 5
-    });
-});
+})()

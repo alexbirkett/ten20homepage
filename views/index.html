@@ -46,6 +46,14 @@
         <% var section = sections[1]; %>
         <div id="map"></div>
         <script type="text/javascript">
+          $(function() {
+          new ten20.MapRender('map', {
+              lat: 51.74,
+              lng: -4.55,
+              zoomLevel: 12,
+              numberOfTrackers: 5
+              });
+          });
         </script>
 
         <div class="call-to-action">
