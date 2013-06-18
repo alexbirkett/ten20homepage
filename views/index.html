@@ -19,6 +19,16 @@
     <script src="/js/map.js"></script>
     <script src="/js/carousel.js"></script>
     <script type="text/javascript" src="http://fast.fonts.com/jsapi/4e9d8d48-80ae-404c-98ef-b169fe3b02f6.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41815798-1', 'ten20live.com');
+      ga('send', 'pageview');
+
+    </script>
   </head>
   <body>
     <div class="wrapper" >
@@ -51,7 +61,11 @@
               lat: 51.74,
               lng: -4.55,
               zoomLevel: 12,
-              numberOfTrackers: 5
+              numberOfTrackers: 5,
+              zoomControl: true,
+              showHistory: true,
+              tile: 'alexbirkett.map-t0fodlre',
+              layers: [{ label: 'Satellite',  tileLayer: 'alexbirkett.map-t0fodlre'}, { label: 'Map', tileLayer: 'alexbirkett.map-bugector'}]
               });
           });
         </script>
@@ -104,7 +118,24 @@
                     <% } else { %>
                     <h3><%= item.title %></h3>
                     <% } %>
-                      <img src="/images/<%= item.image %>" />
+
+
+                    <div class="featuremap" id="featuremap<%=i%>"></div>
+                    <script type="text/javascript">
+                          $(function() {
+                              new ten20.MapRender('featuremap<%=i%>', {
+                                  lat: 51.74,
+                                  lng: -4.55,
+                                  zoomLevel: 12,
+                                  numberOfTrackers: 1,
+                                  showHistory: true,
+                                  followFirstTracker:true,
+                                  addVirtualFence:true,
+                                  tile: 'alexbirkett.map-bugector'
+                              });
+                          });
+                    </script>
+
                       <p><%= item.text %></p>
                   </div>
                 <% } %>
