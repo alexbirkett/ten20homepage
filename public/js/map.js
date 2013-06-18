@@ -89,7 +89,7 @@ window.ten20.MapRender = (function () {
                 updateHistory(marker);
             }
         }
-        if (this.followFirstTracker) {
+        if (this.followFirstTracker && this.markers.length > 0) {
             this.map.panTo(this.markers[0].getLatLng());
         }
     }
