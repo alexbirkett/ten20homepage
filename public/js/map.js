@@ -13,7 +13,7 @@ window.ten20.MapRender = (function () {
     function MapRender(mapDiv, param) {
       this.mapDiv = mapDiv;
       this.tile = param.tile || 'alexbirkett.map-t0fodlre';
-      this.zoomControl = param.zoomControl || true;
+      this.zoomControl = param.zoomControl || false;
       this.lat = param.lat;
       this.lng = param.lng;
       this.zoomLevel = param.zoomLevel;
