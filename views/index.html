@@ -140,7 +140,39 @@
         </div>
         </section>
 
+        <section class="pricing">
+        <% var section = sections[7]; %>
+        <div class="container">
+          <div class="row-fluid">
+            <h2><%= section.title %></h2>
+          <div class="row-fluid">
+              <% for(i in section.items) { %>
+              <% var item = section.items[i];  %>
+                <div class="span4">
+                  <% if (item.highlighted) { %>
+                  <div class="head highlight">
+                  <% } else { %>
+                  <div class="head">
+                  <% } %>
+                    <h3><%= item.name %></h3>
+                  <% if (item.price.length == 1) { %>
+                  <h5><%= item.price[0] %></h5>
+                  <% } else { %>
+                  <h5><%= item.price[0] %><span><%= item.price[1] %></span></h5>
+                  <% } %>
+                  </div>
+                  <% for(i in item.features) { %>
+                    <p><%= item.features[i] %></p>
+                  <% } %>
+                </div>
+              <% } %>
+          </div>
+          </div>
+        </div>
+        </section>
     </div>
-    <footer></footer>
+    <footer>
+      <p>Copyright © 2012-2013 ten20</p>
+    </footer>
   </body>
 </html>

@@ -209,19 +209,19 @@
             "items": [
                 {
                     "name": "ENTRY",
-                    "price": "FREE",
+                    "price": ["FREE"],
                     "highlighted": true,
                     "features": ["Lorom ipsum dolor sit adipiscing elit.", "Aliquan tincidunt", "Res iaculis uricies" ]
                 },
                 {
                     "name": "STANDARD",
-                    "price": "$20 Month",
+                    "price": ["$20", "Month"],
                     "highlighted": false,
                     "features": ["Ut alieuen solicutuin", "Cras iaculis utricious nulla", "Res iaculis uricies" ]
                 },
                 {
                     "name": "ENTERPRISE",
-                    "price": "$50 Month",
+                    "price": ["$50", "Month"],
                     "highlighted": false,
                     "features": ["Ut alieuen solicutuin", "Cras iaculis utricious nulla", "Res iaculis uricies" ]
                 }

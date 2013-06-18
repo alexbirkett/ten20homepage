@@ -34,7 +34,7 @@ h4 {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -50px;
+  margin: 0 auto -100px;
 }
 
 ul { list-style: none; }
@@ -259,10 +259,62 @@ header {
   background: none;
 }
 
+/* pricing section styles */
+.pricing {
+  text-align: center;
+  overflow:auto;
+  padding-bottom: 100px;
+}
+
+.pricing .head {
+  background-color: #444;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  max-width: 200px;
+  margin: 0 auto;
+  margin: 20px auto;
+  padding: 20px 0;
+}
+
+.pricing .head.highlight {
+  background-color: #d60;
+}
+
+.pricing .head h3 {
+  color: #f60;
+}
+
+.pricing .head.highlight h3 {
+  color: #272727;
+  font-weight: bold;
+}
+
+.pricing .head h5 span{
+  font-style: italic;
+  margin-left: 5px;
+  font-weight: light;
+}
+
+.pricing .span4 p {
+  margin-bottom: 30px;
+}
+
 /* footer styles */
 footer {
   width: 100%;
   color: #eee;
+  height: 100px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+footer p {
+  margin-top: 100px;
+  padding-top: 50px;
+  color: #f60;
+  border-top: 1px solid #eee;
+  font-size: 16px;
 }
 
 /************************* login page styles *********************************/
