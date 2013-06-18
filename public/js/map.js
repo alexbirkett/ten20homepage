@@ -12,13 +12,12 @@ window.ten20.MapRender = (function () {
     
     function MapRender(mapDiv, param) {
       this.mapDiv = mapDiv;
-      this.tile = param.tile || 'alexbirkett.map-t0fodlre';
-      this.zoomControl = param.zoomControl || false;
-      this.lat = param.lat;
-      this.lng = param.lng;
-      this.zoomLevel = param.zoomLevel;
-      this.numberOfTrackers = param.numberOfTrackers;
-      this.layers = param.layers;
+
+      // copy parameters to this object
+      for(var k in param) {
+          this[k]=param[k];
+      }
+
       this.markers = [];
       this.polylines = [];
       this.init();
@@ -72,7 +71,9 @@ window.ten20.MapRender = (function () {
             var latlng = this._getRandomVisibleLatLng();
             var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(this.map);
 
-            marker.history = this.addPolyline(latlng);
+            if (this.showHistory) {
+                marker.history = this.addPolyline(latlng);
+            }
             this.map.addLayer(marker);
             this.twinkleMarker(marker);
             this.markers.push(marker);
@@ -84,7 +85,12 @@ window.ten20.MapRender = (function () {
         for (var i = 0; i < this.markers.length; i++) {
             var marker = this.markers[i];
             moveMarker(marker);
-            updateHistory(marker);
+            if (this.showHistory) {
+                updateHistory(marker);
+            }
+        }
+        if (this.followFirstTracker) {
+            this.map.panTo(this.markers[0].getLatLng());
         }
     }
 
