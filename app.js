@@ -14,8 +14,11 @@ var app = module.exports = express();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.engine('html', require('ejs').renderFile);
+  app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(express.cookieParser('your secret here'));
+  app.use(express.session());
   app.use(express.static(__dirname + '/public'));
   app.use(express.favicon(__dirname + '/public/favicon.ico'));
   app.use(app.router);
@@ -31,11 +34,10 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', routes.index);
+app.get(/\/\w?/, routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
-
 app.get('/api/name', api.name);
 
 // redirect all others to the index (HTML5 history)
