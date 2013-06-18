@@ -79,7 +79,7 @@
                     "text": "Trip history is stored by Ten20. It's up to you how long you keep your trips for."
                 },
                 {
-                    "title": "Set your own virtual fence",
+                    "title": ["Set your own ", "virtual fence"],
                     "image": "map-fence.jpg",
                     "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map."
                 }

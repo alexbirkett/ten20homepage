@@ -50,7 +50,7 @@
 
         <div class="call-to-action">
           <h1><%= section.text[0] %></h1>
-          <h5><%= section.text[1] %></h5><br>
+          <h2><%= section.text[1] %></h2><br>
           <a href="<%= section.button.link %>" class="button"><%= section.button.text %></a>
           <span><%= section.text[2] %></span>
         </div>
@@ -85,13 +85,13 @@
         <div class="container">
           <div class="row-fluid">
             <div class="span8">
-              <h4><%= section.title %></h4>
+              <h2><%= section.title %></h2>
                 <% for(i in section.items) { %>
                 <% var item = section.items[i];  %>
                   <div class="feature-item">
                     <% if (i == section.items.length -1) {%>
-                    <h3><%=: item.title | replace: /virtual fence/i, '' %>
-                      <span><%=: item.title | replace: /Set your own/i, '' %></span>
+                    <h3><%= item.title[0] %>
+                      <span><%= item.title[1] %></span>
                     </h3>
                     <% } else { %>
                     <h3><%= item.title %></h3>
@@ -108,7 +108,7 @@
         <section class="trackers">
         <div class="container">
           <% var section = sections[4]; %>
-          <h4><%= section.title %></h4>
+          <h2><%= section.title %></h2>
           <div id="feature-slide" class="carousel slide">
             <ol class="carousel-indicators">
               <li data-target="#feature-slide" data-slide-to="0" class="active"></li>
@@ -124,7 +124,7 @@
                   <div class="item">
                 <% } %>
                 <img src="/images/<%= item.image %>" />
-                <h5 class="carousel-caption"><%= item.title %></h5>
+                <h3 class="carousel-caption"><%= item.title %></h3>
                 <p><%= item.text %></p>
               </div>
                 <% })%>
