@@ -8,13 +8,16 @@ function createMap(mapParam) {
         fillOpacity: 1
     };
     var map, markers;
-    // create map
-    map = L.mapbox.map('map', 'alexbirkett.map-t0fodlre', { zoomControl:true });
+    map = L.mapbox.map('map');
     map.setView([mapParam.lat, mapParam.lng], mapParam.zoomLevel);
 
     map.scrollWheelZoom.disable();
 
-    // add markers to map
+    L.control.layers({
+        'Satellite': L.mapbox.tileLayer('alexbirkett.map-t0fodlre').addTo(map),
+        'Map': L.mapbox.tileLayer('alexbirkett.map-bugector')
+    }).addTo(map);
+
     markers = addMarkers();
     setInterval(function() {
       updateMarkers();
