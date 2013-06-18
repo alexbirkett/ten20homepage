@@ -18,6 +18,10 @@
                     "text": "Partner",
                     "link": "http://partner.com",
                     "status": "active"
+                },
+                {
+                    "text": "Contact Us",
+                    "link": "#contact"
                 }
             ]
 
@@ -112,7 +116,7 @@
         },
         {
             "type": "contact-form",
-            "logo": "image/logo.png",
+            "logo": "logo.png",
             "description": "Thank you for your interest, please enter your details below",
 
             "items": [
@@ -120,48 +124,49 @@
                     "type": "text",
                     "name": "first-name",
                     "label": "First name",
-                    "optional": "false"
+                    "optional": false
                 },
                 {
                     "type": "text",
                     "name": "last-name",
                     "label": "Last name",
-                    "optional": "false"
+                    "optional": false
                 },
                 {
                     "type": "text",
                     "name": "email",
                     "label": "Email",
-                    "optional": "false"
+                    "optional": false
                 },
                 {
                     "type": "text",
                     "name": "phone",
                     "label": "Phone",
-                    "optional": "true"
+                    "optional": true
                 },
                 {
                     "type": "text",
                     "name": "company-name",
                     "label": "Company Name",
-                    "optional": "true"
+                    "optional": true
                 },
                 {
                     "type": "text",
                     "name": "company-website-url",
-                    "label": "Company Website URL",
-                    "optional": "true"
+                    "label": "Your website",
+                    "optional": true
                 },
                 {
                     "type": "checkbox",
                     "name": "call-me",
-                    "label": "Company Website URL"
+                    "label": "Please call me about ten20",
+                    "optional": true
                 },
                 {
                     "type": "checkbox",
                     "name": "news-letter",
                     "label": "Subscribe to partner newsletter",
-                    "optional": "true"
+                    "optional": true
                 }
             ]
 

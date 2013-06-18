@@ -32,7 +32,7 @@
                 <% for(i in section.navLinks) { %>
                 <% var navItem = section.navLinks[i];  %>
                 <li>
-                <a href="<%= navItem.link %>" class="menu <%= navItem.status %>"><%= navItem.text %></a>
+                <a href="/<%= navItem.link %>" class="menu <%= navItem.status %>"><%= navItem.text %></a>
                 </li>
                 <% } %>
               </ul>
@@ -59,7 +59,7 @@
         <div class="call-to-action">
           <h1><%= section.text[0] %></h1>
           <h2><%= section.text[1] %></h2><br>
-          <a href="<%= section.button.link %>" class="button"><%= section.button.text %></a>
+          <a href="/<%= section.button.link %>" class="button"><%= section.button.text %></a>
           <span><%= section.text[2] %></span>
         </div>
         <img src="/images/<%= section.banner %>" class="banner" />
@@ -176,6 +176,27 @@
               <% } %>
           </div>
           </div>
+        </div>
+        </section>
+
+        <section class="contact">
+        <% var section = sections[5]; %>
+        <div class="form">
+          <img src="/images/<%= section.logo %>"/>
+          <h3><%= section.description %></h3>
+          <form>
+              <ul>
+              <% for(i in section.items) { %>
+              <% var item = section.items[i];  %>
+              <li class="list-<%= item.type %>">
+              <label for="<%= item.name %>"><%= item.label %><%= item.optional?'':'*' %></label>
+                <input type="<%= item.type %>" id="<%= item.name %>">
+               <% } %>
+               </li>
+             </ul>
+               <button type="submit">send</button>
+               <p>*Required</p>
+          </form>
         </div>
         </section>
     </div>
