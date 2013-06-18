@@ -9,15 +9,33 @@ window.ten20.MapRender = (function () {
         fillColor: '#f60',
         fillOpacity: 1
     };
+
+    var virtualVenceMarkerOuterOpt = {
+        stroke: true,
+        weight: 1,
+        color: '#f60',
+        fillColor: '#f60',
+        fillOpacity: 1,
+        radius:100,
+        fillOpacity:0.2
+    };
+
+    var virtualVenceMarkerInnerOpt = {
+        stroke: false,
+        weight: 1,
+        fillColor: '#f60',
+        fillOpacity: 1,
+        radius:2
+    };
     
     function MapRender(mapDiv, param) {
       this.mapDiv = mapDiv;
-      this.tile = param.tile || 'alexbirkett.map-t0fodlre';
-      this.zoomControl = param.zoomControl || true;
-      this.lat = param.lat;
-      this.lng = param.lng;
-      this.zoomLevel = param.zoomLevel;
-      this.numberOfTrackers = param.numberOfTrackers;
+
+      // copy parameters to this object
+      for(var k in param) {
+          this[k]=param[k];
+      }
+
       this.markers = [];
       this.polylines = [];
       this.init();
@@ -27,9 +45,19 @@ window.ten20.MapRender = (function () {
       // create map
       var self = this;
       this.map = L.mapbox.map(this.mapDiv, this.tile, { zoomControl: this.zoomControl});
+
+      if(this.layers) {
+         var layers = {};
+         for (var i = 0; i < this.layers.length; i++) {
+             var layer = this.layers[i];
+             layers[layer.label] = L.mapbox.tileLayer(layer.tileLayer);
+         }
+         L.control.layers(layers).addTo(this.map);
+      }
+
       this.map.setView([this.lat, this.lng], this.zoomLevel);
       this.map.scrollWheelZoom.disable();
-
+      this.setupVirtualFence();
       this.addMarkers();
       setInterval(function() {
         self.updateMarkers();
@@ -61,7 +89,9 @@ window.ten20.MapRender = (function () {
             var latlng = this._getRandomVisibleLatLng();
             var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(this.map);
 
-            marker.history = this.addPolyline(latlng);
+            if (this.showHistory) {
+                marker.history = this.addPolyline(latlng);
+            }
             this.map.addLayer(marker);
             this.twinkleMarker(marker);
             this.markers.push(marker);
@@ -73,9 +103,23 @@ window.ten20.MapRender = (function () {
         for (var i = 0; i < this.markers.length; i++) {
             var marker = this.markers[i];
             moveMarker(marker);
-            updateHistory(marker);
+            if (this.showHistory) {
+                updateHistory(marker);
+            }
+        }
+        if (this.followFirstTracker && this.markers.length > 0) {
+            this.map.panTo(this.markers[0].getLatLng());
         }
     }
+
+
+    MapRender.prototype.setupVirtualFence = function() {
+        if (this.addVirtualFence) {
+            var markerPosition = this.map.getCenter();
+            L.circleMarker(markerPosition, virtualVenceMarkerOuterOpt).addTo(this.map);
+            L.circleMarker(markerPosition, virtualVenceMarkerInnerOpt).addTo(this.map);
+        }
+    };
 
     // twinkling effects func for a circle
     MapRender.prototype.twinkleMarker = function(marker) {

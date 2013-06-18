@@ -98,6 +98,12 @@ header {
   width: inherit;
 }
 
+.featuremap {
+  width:320px;
+  height:320px;
+  display:inline-block;
+}
+
 /* hide legends and attribution */
 .mapbox #map .map-legends.leaflet-control,
 .mapbox #map .leaflet-control-attribution {

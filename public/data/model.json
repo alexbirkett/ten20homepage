@@ -47,22 +47,22 @@
                 {
                     "icon": "secure.png",
                     "title": "Secure",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+                    "text": "Uses industry standard encryption techniques. Hosted in United Kingdom. Subject to strict UK data protection laws."
                 },
                 {
                     "icon": "simple.png",
                     "title": "Simple",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+                    "text": "Configuring your GPS tracker can be challenging, we provide simple instructions in plain English. Support available."
                 },
                 {
                     "icon": "universal.png",
                     "title": "Universal",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+                    "text": "Track people and things with inexpensive GPS tracking devices or mobile phones. Support for handheld and vehicle trackers."
                 },
                 {
                     "icon": "trusted.png",
                     "title": "Trusted",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+                    "text": "ten20 (Birkett Enterprise Ltd) has 6 years experience running GPS tracking service with 400,000 registered users."
                 }
             ]
 
