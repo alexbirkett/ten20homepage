@@ -9,6 +9,24 @@ window.ten20.MapRender = (function () {
         fillColor: '#f60',
         fillOpacity: 1
     };
+
+    var virtualVenceMarkerOuterOpt = {
+        stroke: true,
+        weight: 1,
+        color: '#f60',
+        fillColor: '#f60',
+        fillOpacity: 1,
+        radius:100,
+        fillOpacity:0.2
+    };
+
+    var virtualVenceMarkerInnerOpt = {
+        stroke: false,
+        weight: 1,
+        fillColor: '#f60',
+        fillOpacity: 1,
+        radius:2
+    };
     
     function MapRender(mapDiv, param) {
       this.mapDiv = mapDiv;
@@ -39,7 +57,7 @@ window.ten20.MapRender = (function () {
 
       this.map.setView([this.lat, this.lng], this.zoomLevel);
       this.map.scrollWheelZoom.disable();
-
+      this.setupVirtualFence();
       this.addMarkers();
       setInterval(function() {
         self.updateMarkers();
@@ -93,6 +111,15 @@ window.ten20.MapRender = (function () {
             this.map.panTo(this.markers[0].getLatLng());
         }
     }
+
+
+    MapRender.prototype.setupVirtualFence = function() {
+        if (this.addVirtualFence) {
+            var markerPosition = this.map.getCenter();
+            L.circleMarker(markerPosition, virtualVenceMarkerOuterOpt).addTo(this.map);
+            L.circleMarker(markerPosition, virtualVenceMarkerInnerOpt).addTo(this.map);
+        }
+    };
 
     // twinkling effects func for a circle
     MapRender.prototype.twinkleMarker = function(marker) {
