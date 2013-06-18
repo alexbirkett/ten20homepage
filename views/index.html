@@ -56,11 +56,21 @@
         <% var section = sections[1]; %>
         <div id="map"></div>
         <script type="text/javascript">
+          $(function() {
+          new ten20.MapRender('map', {
+              lat: 51.74,
+              lng: -4.55,
+              zoomLevel: 12,
+              numberOfTrackers: 5,
+              tile: 'alexbirkett.map-t0fodlre',
+              layers: [{ label: 'Satellite',  tileLayer: 'alexbirkett.map-t0fodlre'}, { label: 'Map', tileLayer: 'alexbirkett.map-bugector'}]
+              });
+          });
         </script>
 
         <div class="call-to-action">
           <h1><%= section.text[0] %></h1>
-          <h5><%= section.text[1] %></h5><br>
+          <h2><%= section.text[1] %></h2><br>
           <a href="<%= section.button.link %>" class="button"><%= section.button.text %></a>
           <span><%= section.text[2] %></span>
         </div>
@@ -95,13 +105,13 @@
         <div class="container">
           <div class="row-fluid">
             <div class="span8">
-              <h4><%= section.title %></h4>
+              <h2><%= section.title %></h2>
                 <% for(i in section.items) { %>
                 <% var item = section.items[i];  %>
                   <div class="feature-item">
                     <% if (i == section.items.length -1) {%>
-                    <h3><%=: item.title | replace: /virtual fence/i, '' %>
-                      <span><%=: item.title | replace: /Set your own/i, '' %></span>
+                    <h3><%= item.title[0] %>
+                      <span><%= item.title[1] %></span>
                     </h3>
                     <% } else { %>
                     <h3><%= item.title %></h3>
@@ -118,7 +128,7 @@
         <section class="trackers">
         <div class="container">
           <% var section = sections[4]; %>
-          <h4><%= section.title %></h4>
+          <h2><%= section.title %></h2>
           <div id="feature-slide" class="carousel slide">
             <ol class="carousel-indicators">
               <li data-target="#feature-slide" data-slide-to="0" class="active"></li>
@@ -134,7 +144,7 @@
                   <div class="item">
                 <% } %>
                 <img src="/images/<%= item.image %>" />
-                <h5 class="carousel-caption"><%= item.title %></h5>
+                <h3 class="carousel-caption"><%= item.title %></h3>
                 <p><%= item.text %></p>
               </div>
                 <% })%>
@@ -150,7 +160,39 @@
         </div>
         </section>
 
+        <section class="pricing">
+        <% var section = sections[7]; %>
+        <div class="container">
+          <div class="row-fluid">
+            <h2><%= section.title %></h2>
+          <div class="row-fluid">
+              <% for(i in section.items) { %>
+              <% var item = section.items[i];  %>
+                <div class="span4">
+                  <% if (item.highlighted) { %>
+                  <div class="head highlight">
+                  <% } else { %>
+                  <div class="head">
+                  <% } %>
+                    <h3><%= item.name %></h3>
+                  <% if (item.price.length == 1) { %>
+                  <h5><%= item.price[0] %></h5>
+                  <% } else { %>
+                  <h5><%= item.price[0] %><span><%= item.price[1] %></span></h5>
+                  <% } %>
+                  </div>
+                  <% for(i in item.features) { %>
+                    <p><%= item.features[i] %></p>
+                  <% } %>
+                </div>
+              <% } %>
+          </div>
+          </div>
+        </div>
+        </section>
     </div>
-    <footer></footer>
+    <footer>
+      <p>Copyright © 2012-2013 ten20</p>
+    </footer>
   </body>
 </html>
