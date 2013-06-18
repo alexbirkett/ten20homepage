@@ -116,7 +116,21 @@
                     <% } else { %>
                     <h3><%= item.title %></h3>
                     <% } %>
-                      <img src="/images/<%= item.image %>" />
+
+
+                    <div class="featuremap" id="featuremap<%=i%>"></div>
+                    <script type="text/javascript">
+                          $(function() {
+                              new ten20.MapRender('featuremap<%=i%>', {
+                                  lat: 51.74,
+                                  lng: -4.55,
+                                  zoomLevel: 12,
+                                  numberOfTrackers: 1,
+                                  tile: 'alexbirkett.map-bugector'
+                              });
+                          });
+                    </script>
+
                       <p><%= item.text %></p>
                   </div>
                 <% } %>
