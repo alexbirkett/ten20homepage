@@ -187,41 +187,6 @@
 
         },
         {
-            "logo": "logo.png",
-            "name": "simple-form",
-            "items": [
-                {
-                    "type": "text",
-                    "name": "name",
-                    "label": "Name",
-                    "optional": false
-                },
-                {
-                    "type": "text",
-                    "name": "email",
-                    "label": "Email",
-                    "optional": false
-                }]
-        },
-        {
-            "type": "contact-form",
-            "extends": "simple-form",
-            "description": "Alex and XiaoLei are working hard on the free plan! Please enter your details below to be notified when it's ready.",
-            "url": "#free"
-        },
-        {
-            "type": "contact-form",
-            "extends": "simple-form",
-            "description": "Alex and XiaoLei are working hard on the family plan! Please enter your details below to be notified when it's ready.",
-            "url": "#family"
-        },
-        {
-            "type": "contact-form",
-            "extends": "simple-form",
-            "description": "Alex and XiaoLei are working hard on the enterprise plan! Please enter your details below to be notified when it's ready.",
-            "url": "#enterprise"
-        },
-        {
             "type": "about-us",
             "title": "About us",
             "description": "ten20 is being built by a distributed team of talented people from around the world ",
