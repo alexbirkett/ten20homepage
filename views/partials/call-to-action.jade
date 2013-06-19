@@ -1,18 +1,8 @@
 section.mapbox
   #map
-    script(type='text/javascript')
-      $(function() {
-        new ten20.MapRender('map', {
-          lat: 51.74,
-            lng: -4.55,
-              zoomLevel: 12,
-              numberOfTrackers: 5,
-              zoomControl: true,
-              showHistory: true,
-              tile: 'alexbirkett.map-t0fodlre',
-              layers: [{ label: 'Satellite',  tileLayer: 'alexbirkett.map-t0fodlre'}, { label: 'Map', tileLayer: 'alexbirkett.map-bugector'}]
-              });
-          });
+    script.
+      var map = !{JSON.stringify(section.map)};
+      $(function() { new ten20.MapRender('map', map); });
 
     .call-to-action
       h1= section.text[0]
