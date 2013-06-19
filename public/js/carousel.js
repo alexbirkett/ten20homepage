@@ -4,7 +4,7 @@ $(function(){
 
     // show contact form when url == '/#contact'
     if (location.hash == "#contact") {
-      $('.contact').show(reSizeInput);
+      $('.contact').fadeIn(reSizeInput);
     }
 
     // fake checkbox
@@ -20,7 +20,7 @@ $(function(){
 
     // bind contact us nav
     $('a[href="#contact"]').on('click', function(e) {
-      $('.contact').show(reSizeInput);
+      $('.contact').fadeIn(reSizeInput);
     });
 
     $('.form .cancel').on('click', function(e) {
@@ -33,7 +33,8 @@ $(function(){
     });
 
     function restorePage() {
-      $('.contact').hide();
+      $('.contact').fadeOut();
+      location.hash = "";
       $("body").css('overflow', 'scroll');
     }
 
@@ -51,4 +52,5 @@ $(function(){
         $(this).children('input[type="text"]').width(totalWidth - labelWidth - marginRight);
       });
     }
+
 });
