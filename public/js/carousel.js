@@ -3,15 +3,17 @@ $(function(){
     $('.carousel').carousel();
 
     // dynamically set input width
-    var contactItems = $('.form li');
-    var totalWidth = $('.form ul').innerWidth();
+    function reSizeInput() {
+      var contactItems = $('.contact .form .list-text');
+      var totalWidth = $('.contact .form ul').innerWidth();
 
-    contactItems.each(function(index){
-      var elemLabel = $(this).children('label');
-      var labelWidth = elemLabel.outerWidth(true);
-      var marginRight = parseInt(elemLabel.css('marginRight'));
-      $(this).children('input[type="text"]').width(totalWidth - labelWidth - marginRight);
-    });
+      contactItems.each(function(index){
+        var elemLabel = $(this).children('label');
+        var labelWidth = elemLabel.outerWidth(true);
+        var marginRight = parseInt(elemLabel.css('marginRight'));
+        $(this).children('input[type="text"]').width(totalWidth - labelWidth - marginRight);
+      });
+    }
 
 
     // fake checkbox
@@ -28,7 +30,7 @@ $(function(){
     // bind contact us nav
     $('a[href="/#contact"]').on('click', function(e) {
       e.preventDefault();
-      $('.contact').show();
+      $('.contact').show(reSizeInput);
     });
 
     $('.form button').on('click', function(e) {
