@@ -7,5 +7,5 @@ header
         ul.nav
           each nav in section.navLinks
             li
-              a(href="/" + nav.link, class="menu " + nav.status)= nav.text
+              a(href=nav.link, class="menu " + nav.status)= nav.text
         .clear
