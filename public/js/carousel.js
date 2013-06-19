@@ -10,6 +10,13 @@ $(function(){
     // fake checkbox
     $('.form input[type="checkbox"]').addClass('regular-checkbox').after('<label class="fakeCheckBox"></label>');
 
+    var tabindex = 1;
+    $('.form input[type="text"], .form input + label').each(function() {
+        var $input = $(this);
+        $input.attr("tabindex", tabindex);
+        tabindex++;
+    });
+
     $('.fakeCheckBox').on('click', function() {
       if ($(this).prev('input').prop("checked")) {
         $(this).prev('input').prop('checked', false);
