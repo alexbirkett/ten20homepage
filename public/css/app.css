@@ -1,3 +1,15 @@
+@import url("http://fast.fonts.com/t/1.css?apiType=css&projectid=4e9d8d48-80ae-404c-98ef-b169fe3b02f6");
+@font-face{
+font-family:"AvenirNextLTW01-Regular";
+src:url("Fonts/e9167238-3b3f-4813-a04a-a384394eed42.eot?#iefix");
+src:url("Fonts/e9167238-3b3f-4813-a04a-a384394eed42.eot?#iefix") format("eot"),url("Fonts/1e9892c0-6927-4412-9874-1b82801ba47a.woff") format("woff"),url("Fonts/46cf1067-688d-4aab-b0f7-bd942af6efd8.ttf") format("truetype"),url("Fonts/52a192b1-bea5-4b48-879f-107f009b666f.svg#52a192b1-bea5-4b48-879f-107f009b666f") format("svg");
+}
+@font-face{
+font-family:"Avenir Next LT W01 Demi";
+src:url("Fonts/12d643f2-3899-49d5-a85b-ff430f5fad15.eot?#iefix");
+src:url("Fonts/12d643f2-3899-49d5-a85b-ff430f5fad15.eot?#iefix") format("eot"),url("Fonts/91b50bbb-9aa1-4d54-9159-ec6f19d14a7c.woff") format("woff"),url("Fonts/a0f4c2f9-8a42-4786-ad00-fce42b57b148.ttf") format("truetype"),url("Fonts/99affa9a-a5e9-4559-bd07-20cf0071852d.svg#99affa9a-a5e9-4559-bd07-20cf0071852d") format("svg");
+}
+
 /* general styles */
 body {
   color: #eee;
@@ -35,7 +47,11 @@ h4 {
   height: auto !important;
   height: 100%;
   position: relative;
-  margin: 0 auto -100px;
+  margin: 0 auto -50px;
+}
+
+.push {
+  padding-bottom: 50px;
 }
 
 ul { list-style: none; }
@@ -89,7 +105,7 @@ header {
   position: relative;
   height: 501px;
   width: 100%;
-  background-color: #eee;
+  background-color: #272727;
 }
 
 .mapbox #map {
@@ -149,7 +165,7 @@ header {
 
 .mapbox .banner {
   position: absolute;
-  top: 40px;
+  top: 70px;
   right: 0;
   z-index: 100;
 }
@@ -270,7 +286,6 @@ header {
 .pricing {
   text-align: center;
   overflow:auto;
-  padding-bottom: 100px;
 }
 
 .pricing .head {
@@ -323,6 +338,21 @@ header {
   max-width: 300px;
   margin: 100px auto;
   text-align: center;
+  position: relative;
+}
+
+.contact .form .cancel {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  font-size: 20px;
+  background-color: #999;
+  padding: 2px 5px;
+}
+
+.contact .form .cancel:hover {
+  background-color: #d60;
+  cursor: pointer;
 }
 
 .contact .form h3 {
@@ -437,17 +467,15 @@ header {
 footer {
   width: 100%;
   color: #eee;
-  height: 100px;
+  height: 50px;
   text-align: center;
-  text-transform: uppercase;
 }
 
 footer p {
   margin-top: 100px;
-  padding-top: 50px;
-  color: #f60;
-  border-top: 1px solid #eee;
-  font-size: 16px;
+  padding-top: 20px;
+  border-top: 1px solid #aaa;
+  font-size: 12px;
 }
 
 /************************* login page styles *********************************/
@@ -470,6 +498,10 @@ footer p {
   line-height: 30px;
   max-width: 350px;
   margin: 20px auto;
+}
+
+.page-not-found p a {
+  color: #eee;
 }
 
 /* tablet and mobile styles */
