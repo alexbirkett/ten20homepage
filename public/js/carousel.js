@@ -7,6 +7,8 @@ $(function(){
       var contactItems = $('.contact .form .list-text');
       var totalWidth = $('.contact .form ul').innerWidth();
 
+      $("body").css('overflow', 'hidden');
+
       contactItems.each(function(index){
         var elemLabel = $(this).children('label');
         var labelWidth = elemLabel.outerWidth(true);
@@ -15,6 +17,10 @@ $(function(){
       });
     }
 
+
+    if (location.hash == "#contact") {
+      $('.contact').show(reSizeInput);
+    }
 
     // fake checkbox
     $('.form input[type="checkbox"]').addClass('regular-checkbox').after('<label class="fakeCheckBox"></label>');
@@ -29,12 +35,12 @@ $(function(){
 
     // bind contact us nav
     $('a[href="/#contact"]').on('click', function(e) {
-      e.preventDefault();
       $('.contact').show(reSizeInput);
     });
 
     $('.form button').on('click', function(e) {
       e.preventDefault();
       $('.contact').hide();
+      $("body").css('overflow', 'scroll');
     });
 });
