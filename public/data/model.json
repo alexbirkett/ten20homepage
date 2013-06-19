@@ -79,29 +79,49 @@
                     "title": "Real time updates",
                     "image": "map-track.jpg",
                     "text": "See your trackers move around the map in realtime, no need to refresh the page.",
-                    "status": "active"
+                    "status": "active",
+                    "map": {
+                      "lat": 51.74,
+                      "lng": -4.55,
+                      "zoomLevel": 12,
+                      "numberOfTrackers": 1,
+                      "showHistory": false,
+                      "followFirstTracker": false,
+                      "addVirtualFence": false,
+                      "tile": "alexbirkett.map-bugector"
+                    }
                 },
                 {
                     "title": "Trip History",
                     "image": "map-path.jpg",
-                    "text": "Trip history is stored by Ten20. It's up to you how long you keep your trips for."
+                    "text": "Trip history is stored by Ten20. It's up to you how long you keep your trips for.",
+                    "map": {
+                      "lat": 51.74,
+                      "lng": -4.55,
+                      "zoomLevel": 12,
+                      "numberOfTrackers": 1,
+                      "showHistory": true,
+                      "followFirstTracker":true,
+                      "addVirtualFence": false,
+                      "tile": "alexbirkett.map-bugector"
+                    }
                 },
                 {
                     "title": ["Set your own ", "virtual fence"],
                     "image": "map-fence.jpg",
-                    "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map."
+                    "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map.",
+                    "map": {
+                      "lat": 51.74,
+                      "lng": -4.55,
+                      "zoomLevel": 12,
+                      "numberOfTrackers": 0,
+                      "showHistory": false,
+                      "followFirstTracker": false,
+                      "addVirtualFence":true,
+                      "tile": "alexbirkett.map-bugector"
+                    }
                 }
-            ],
-            "map": {
-              "lat": 51.74,
-              "lng": -4.55,
-              "zoomLevel": 12,
-              "numberOfTrackers": 1,
-              "showHistory": true,
-              "followFirstTracker":true,
-              "addVirtualFence":true,
-              "tile": "alexbirkett.map-bugector"
-            }
+            ]
 
         },
         {

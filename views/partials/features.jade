@@ -14,7 +14,6 @@ section.key-features
 
               .featuremap(id='featuremap' + index)
                 script.
-                  var map = !{JSON.stringify(section.map)};
-                  $(function() { new ten20.MapRender('featuremap' + '#{index}', map); });
+                  $(function() { new ten20.MapRender('featuremap' + '#{index}', !{JSON.stringify(item.map)}); });
 
               p= item.text
