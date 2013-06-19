@@ -47,7 +47,11 @@ h4 {
   height: auto !important;
   height: 100%;
   position: relative;
-  margin: 0 auto -100px;
+  margin: 0 auto -50px;
+}
+
+.push {
+  padding-bottom: 50px;
 }
 
 ul { list-style: none; }
@@ -282,7 +286,6 @@ header {
 .pricing {
   text-align: center;
   overflow:auto;
-  padding-bottom: 100px;
 }
 
 .pricing .head {
@@ -449,17 +452,15 @@ header {
 footer {
   width: 100%;
   color: #eee;
-  height: 100px;
+  height: 50px;
   text-align: center;
-  text-transform: uppercase;
 }
 
 footer p {
   margin-top: 100px;
-  padding-top: 50px;
-  color: #f60;
-  border-top: 1px solid #eee;
-  font-size: 16px;
+  padding-top: 20px;
+  border-top: 1px solid #aaa;
+  font-size: 12px;
 }
 
 /************************* login page styles *********************************/
@@ -482,6 +483,10 @@ footer p {
   line-height: 30px;
   max-width: 350px;
   margin: 20px auto;
+}
+
+.page-not-found p a {
+  color: #eee;
 }
 
 /* tablet and mobile styles */
