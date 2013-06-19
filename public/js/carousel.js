@@ -19,7 +19,7 @@ $(function(){
     });
 
     // bind contact us nav
-    $('a[href="/#contact"]').on('click', function(e) {
+    $('a[href="#contact"]').on('click', function(e) {
       $('.contact').show(reSizeInput);
     });
 

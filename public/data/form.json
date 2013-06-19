@@ -1,0 +1,85 @@
+{
+  "base-form": {
+    "type": "base-form",
+    "logo": "logo.png",
+    "name": "simple-form",
+    "items": [
+    {
+      "type": "text",
+      "name": "first-name",
+      "label": "First name",
+      "optional": false
+    },
+    {
+      "type": "text",
+      "name": "last-name",
+      "label": "Last name",
+      "optional": false
+    },
+    {
+      "type": "text",
+      "name": "email",
+      "label": "Email",
+      "optional": false
+    }]
+  },
+  "contact-form": {
+    "type": "contact-form",
+    "description": "Thank you for your interest, please enter your details below",
+
+    "items": [
+    {
+      "type": "text",
+      "name": "phone",
+      "label": "Phone",
+      "optional": true
+    },
+    {
+      "type": "text",
+      "name": "company-name",
+      "label": "Company Name",
+      "optional": true
+    },
+    {
+      "type": "text",
+      "name": "company-website-url",
+      "label": "Your website",
+      "optional": true
+    },
+    {
+      "type": "checkbox",
+      "name": "call-me",
+      "label": "Please call me about ten20",
+      "optional": true
+    },
+    {
+      "type": "checkbox",
+      "name": "news-letter",
+      "label": "Subscribe to partner newsletter",
+      "optional": true
+    }
+    ]
+
+  },
+  "free-form": {
+    "type": "free-form",
+    "extends": "simple-form",
+    "description": "Alex and XiaoLei are working hard on the free plan! Please enter your details below to be notified when it's ready.",
+    "url": "#free",
+    "items": []
+  },
+  "family-form": {
+    "type": "family-form",
+    "extends": "simple-form",
+    "description": "Alex and XiaoLei are working hard on the family plan! Please enter your details below to be notified when it's ready.",
+    "url": "#family",
+    "items": []
+  },
+  "enterprise-form": {
+    "type": "enterprise-form",
+    "extends": "simple-form",
+    "description": "Alex and XiaoLei are working hard on the enterprise plan! Please enter your details below to be notified when it's ready.",
+    "url": "#enterprise",
+    "items": []
+  }
+}
