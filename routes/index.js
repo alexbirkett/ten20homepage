@@ -8,11 +8,11 @@ var partner = require('../public/data/partner.json');
 
 exports.index = function(req, res){
   if (req.path == '/') {
-    res.render('index.html', model);
+    res.render('index', model);
   } else if (req.path == '/partner') {
-    res.render('index.html', partner);
+    res.render('index', partner);
   } else {
-    res.render('404.html');
+    res.render('404', {pageTitle: 'Page Not Found'});
   }
 };
 

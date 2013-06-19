@@ -1,0 +1,15 @@
+section.contact
+  .form
+    img(src="/images/" + section.logo)
+    h3= section.description
+    form
+      ul
+        each item in section.items
+          li(class="list-" + item.type)
+            if item.optional
+              label(for=item.name)  #{item.label}
+            else 
+              label(for=item.name)  #{item.label}*
+            input(type=item.type, id=item.name)
+      button(type="submit") send
+      p *Required
