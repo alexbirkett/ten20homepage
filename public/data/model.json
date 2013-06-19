@@ -35,10 +35,15 @@
             },
             "banner": "banner.png",
             "map": {
-                "lat": "51.74",
-                "lng": "-4.55",
-                "zoomLevel": "12",
-                "numberOfTrackers": 5
+              "lat": 51.74,
+              "lng": -4.55,
+              "zoomLevel": 12,
+              "numberOfTrackers": 5,
+              "zoomControl": true,
+              "showHistory": true,
+              "tile": "alexbirkett.map-t0fodlre",
+              "layers": [ {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"}, 
+                          { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}]
             }
         },
         {
@@ -87,7 +92,17 @@
                     "image": "map-fence.jpg",
                     "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map."
                 }
-            ]
+            ],
+            "map": {
+              "lat": 51.74,
+              "lng": -4.55,
+              "zoomLevel": 12,
+              "numberOfTrackers": 1,
+              "showHistory": true,
+              "followFirstTracker":true,
+              "addVirtualFence":true,
+              "tile": "alexbirkett.map-bugector"
+            }
 
         },
         {
