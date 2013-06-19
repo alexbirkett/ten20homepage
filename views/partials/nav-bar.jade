@@ -1,0 +1,11 @@
+header
+  .container
+    .row-fluid
+      .span12
+        a.logo(href="/")
+          img(src="/images/" + section.logo)
+        ul.nav
+          each nav in section.navLinks
+            li
+              a(href="/" + nav.link, class="menu " + nav.status)= nav.text
+        .clear
