@@ -13,5 +13,6 @@ section.contact
             else 
               label(for=item.name)  #{item.label}*
             input(type=item.type, id=item.name)
-      button(type="submit") send
-      p *Required
+        li.btn-wrap
+          button(type="submit") send
+          p *Required
