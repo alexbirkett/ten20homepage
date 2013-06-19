@@ -1,0 +1,25 @@
+mixin itemInfo(item)
+  h3= item.name
+  - if (item.price.length == 1) {
+    h5= item.price[0]
+  - } else {
+    h5= item.price[0]
+      span= item.price[1]
+  - }
+
+section.pricing
+  .container
+    .row-fluid
+      h2= section.title
+    .row-fluid
+      each item in section.items
+        .span4
+          if (item.highlighted)
+            .head.highlight
+              mixin itemInfo(item)
+          else
+            .head
+              mixin itemInfo(item)
+
+          each feature in item.features
+            p= feature
