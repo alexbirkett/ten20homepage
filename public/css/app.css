@@ -1,3 +1,15 @@
+@import url("http://fast.fonts.com/t/1.css?apiType=css&projectid=4e9d8d48-80ae-404c-98ef-b169fe3b02f6");
+@font-face{
+font-family:"AvenirNextLTW01-Regular";
+src:url("Fonts/e9167238-3b3f-4813-a04a-a384394eed42.eot?#iefix");
+src:url("Fonts/e9167238-3b3f-4813-a04a-a384394eed42.eot?#iefix") format("eot"),url("Fonts/1e9892c0-6927-4412-9874-1b82801ba47a.woff") format("woff"),url("Fonts/46cf1067-688d-4aab-b0f7-bd942af6efd8.ttf") format("truetype"),url("Fonts/52a192b1-bea5-4b48-879f-107f009b666f.svg#52a192b1-bea5-4b48-879f-107f009b666f") format("svg");
+}
+@font-face{
+font-family:"Avenir Next LT W01 Demi";
+src:url("Fonts/12d643f2-3899-49d5-a85b-ff430f5fad15.eot?#iefix");
+src:url("Fonts/12d643f2-3899-49d5-a85b-ff430f5fad15.eot?#iefix") format("eot"),url("Fonts/91b50bbb-9aa1-4d54-9159-ec6f19d14a7c.woff") format("woff"),url("Fonts/a0f4c2f9-8a42-4786-ad00-fce42b57b148.ttf") format("truetype"),url("Fonts/99affa9a-a5e9-4559-bd07-20cf0071852d.svg#99affa9a-a5e9-4559-bd07-20cf0071852d") format("svg");
+}
+
 /* general styles */
 body {
   color: #eee;
