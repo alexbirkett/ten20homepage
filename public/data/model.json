@@ -133,7 +133,7 @@
             "type": "contact-form",
             "logo": "logo.png",
             "description": "Thank you for your interest, please enter your details below",
-
+            "url": "#contact",
             "items": [
                 {
                     "type": "text",
@@ -228,22 +228,22 @@
 
             "items": [
                 {
-                    "name": "ENTRY",
+                    "name": "FREE",
                     "price": ["FREE"],
-                    "highlighted": true,
-                    "features": ["Lorom ipsum dolor sit adipiscing elit.", "Aliquan tincidunt", "Res iaculis uricies" ]
+                    "highlighted": false,
+                    "features": ["Track one tracking device or phone for free", "Real time location", "Trip history" ]
                 },
                 {
-                    "name": "STANDARD",
+                    "name": "FAMILY",
                     "price": ["$20", "Month"],
-                    "highlighted": false,
-                    "features": ["Ut alieuen solicutuin", "Cras iaculis utricious nulla", "Res iaculis uricies" ]
+                    "highlighted": true,
+                    "features": ["Our most popular plan", "Real time location", "Trip history", "Virtual fence", "Up to five trackers and phones on the map simultaneously", "Login for each family member", "Warm feeling that you're supporting ten20"]
                 },
                 {
                     "name": "ENTERPRISE",
                     "price": ["$50", "Month"],
                     "highlighted": false,
-                    "features": ["Ut alieuen solicutuin", "Cras iaculis utricious nulla", "Res iaculis uricies" ]
+                    "features": ["Great for tracking you fleet", "Telephone support", "Real time location", "Trip history", "Virtual fence", "Unlimied number of trackers", "10 logins", "Warm feeling that you're supporting ten20"]
                 }
             ]
 
