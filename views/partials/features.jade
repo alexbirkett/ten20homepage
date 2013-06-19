@@ -13,18 +13,8 @@ section.key-features
             - }
 
               .featuremap(id='featuremap' + index)
-                script(type="text/javascript")
-                  $(function() {
-                    new ten20.MapRender('featuremap' + '#{index}', {
-                      lat: 51.74,
-                        lng: -4.55,
-                          zoomLevel: 12,
-                            numberOfTrackers: 1,
-                            showHistory: true,
-                            followFirstTracker:true,
-                            addVirtualFence:true,
-                            tile: 'alexbirkett.map-bugector'
-                        });
-                    });
+                script.
+                  var map = !{JSON.stringify(section.map)};
+                  $(function() { new ten20.MapRender('featuremap' + '#{index}', map); });
 
               p= item.text
