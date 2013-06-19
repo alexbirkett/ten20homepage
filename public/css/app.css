@@ -398,9 +398,13 @@ header {
   background: none;
 }
 
+.form input[type="text"] {
+  color: #aaa;
+}
+
 .form input[type="text"]:focus {
-  color: #eee;
-  border-color: #d60;
+  color: orange;
+  border-color: #00d;
   outline: 0;
   outline: thin dotted 9;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(221,102,0,0.6);
