@@ -8,7 +8,7 @@
             "navLinks": [
                 {
                     "text": "Supported hardware",
-                    "link": "#hardware"
+                    "link": "/supported_hardware"
                 },
                 {
                     "text": "Pricing",
@@ -16,8 +16,7 @@
                 },
                 {
                     "text": "Partner",
-                    "link": "http://partner.com",
-                    "status": "active"
+                    "link": "/partner"
                 },
                 {
                     "text": "Contact Us",
@@ -106,45 +105,14 @@
 
         },
         {
-            "title": "- SUPPORTED TRACKERS -",
-            "type": "supported-trackers",
-            "items": [
-                {
-                    "title": "GOTOP-206",
-                    "image": "gotop-206.jpg",
-                    "text": "Portable GPS tracker from GOTOP Limited",
-                    "link": "http://gotop.cc/index.php/product/Personal%20GPS%20tracker%20TL-206.html"
-                },
-                {
-                    "title": "Xenun TK201-2",
-                    "image": "tk201-2.jpg",
-                    "text": "Portable GPS tracker from Xenun",
-                    "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
-                },
-                {
-                    "title": "Garmin GTU 10 GPS Tracking Unit",
-                    "image": "garmin-gtu-10.jpg",
-                    "text": "Garmin's GTU 10 is a handy GPS locator that combines a web-based tracking service with GPS technology",
-                    "link": "http://www8.garmin.com/followme/"
-                }
-            ]
-        },
-        {
             "type": "contact-form",
             "logo": "logo.png",
-            "description": "Thank you for your interest, please enter your details below",
-            "url": "#contact",
+            "name": "simple-form",
             "items": [
                 {
                     "type": "text",
-                    "name": "first-name",
-                    "label": "First name",
-                    "optional": false
-                },
-                {
-                    "type": "text",
-                    "name": "last-name",
-                    "label": "Last name",
+                    "name": "name",
+                    "label": "Name",
                     "optional": false
                 },
                 {
@@ -152,39 +120,28 @@
                     "name": "email",
                     "label": "Email",
                     "optional": false
-                },
-                {
-                    "type": "text",
-                    "name": "phone",
-                    "label": "Phone",
-                    "optional": true
-                },
-                {
-                    "type": "text",
-                    "name": "company-name",
-                    "label": "Company Name",
-                    "optional": true
-                },
-                {
-                    "type": "text",
-                    "name": "company-website-url",
-                    "label": "Your website",
-                    "optional": true
-                },
-                {
-                    "type": "checkbox",
-                    "name": "call-me",
-                    "label": "Please call me about ten20",
-                    "optional": true
-                },
-                {
-                    "type": "checkbox",
-                    "name": "news-letter",
-                    "label": "Subscribe to partner newsletter",
-                    "optional": true
-                }
-            ]
-
+                }]
+        },
+        {
+            "type": "contact-form",
+            "extends": "simple-form",
+            "description": "Alex and XiaoLei are working hard on the free plan! Please enter your details below to be notified when it's ready.",
+            "url": "#free",
+            "items": []
+        },
+        {
+            "type": "contact-form",
+            "extends": "simple-form",
+            "description": "Alex and XiaoLei are working hard on the family plan! Please enter your details below to be notified when it's ready.",
+            "url": "#family",
+            "items": []
+        },
+        {
+            "type": "contact-form",
+            "extends": "simple-form",
+            "description": "Alex and XiaoLei are working hard on the enterprise plan! Please enter your details below to be notified when it's ready.",
+            "url": "#enterprise",
+            "items": []
         },
         {
             "type": "about-us",
