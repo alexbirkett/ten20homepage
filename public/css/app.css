@@ -338,6 +338,21 @@ header {
   max-width: 300px;
   margin: 100px auto;
   text-align: center;
+  position: relative;
+}
+
+.contact .form .cancel {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  font-size: 20px;
+  background-color: #999;
+  padding: 2px 5px;
+}
+
+.contact .form .cancel:hover {
+  background-color: #d60;
+  cursor: pointer;
 }
 
 .contact .form h3 {
