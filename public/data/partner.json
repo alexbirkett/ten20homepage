@@ -18,6 +18,10 @@
                     "text": "Partner",
                     "link": "http://partner.com",
                     "status": "active"
+                },
+                {
+                    "text": "Contact Us",
+                    "link": "#contact"
                 }
             ]
 
@@ -31,37 +35,16 @@
             },
             "banner": "banner.png",
             "map": {
-                "lat": "51.74",
-                "lng": "-4.55",
-                "zoomLevel": "12",
-                "numberOfTrackers": 5
+              "lat": 51.74,
+              "lng": -4.55,
+              "zoomLevel": 12,
+              "numberOfTrackers": 5,
+              "zoomControl": true,
+              "showHistory": true,
+              "tile": "alexbirkett.map-t0fodlre",
+              "layers": [ {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"}, 
+                          { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}]
             }
-        },
-        {
-            "type": "benefits",
-            "items": [
-                {
-                    "icon": "secure.png",
-                    "title": "Secure",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
-                },
-                {
-                    "icon": "simple.png",
-                    "title": "Simple",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
-                },
-                {
-                    "icon": "universal.png",
-                    "title": "Universal",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
-                },
-                {
-                    "icon": "trusted.png",
-                    "title": "Trusted",
-                    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
-                }
-            ]
-
         },
         {
             "title": "- KEY FEATURES -",
@@ -82,6 +65,42 @@
                     "title": ["Set your own ", "virtual fence"],
                     "image": "map-fence.jpg",
                     "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map."
+                }
+            ],
+            "map": {
+              "lat": 51.74,
+              "lng": -4.55,
+              "zoomLevel": 12,
+              "numberOfTrackers": 1,
+              "showHistory": true,
+              "followFirstTracker":true,
+              "addVirtualFence":true,
+              "tile": "alexbirkett.map-bugector"
+            }
+
+        },
+        {
+            "type": "benefits",
+            "items": [
+                {
+                    "icon": "secure.png",
+                    "title": "Secure",
+                    "text": "Uses industry standard encryption techniques. Hosted in United Kingdom. Subject to strict UK data protection laws."
+                },
+                {
+                    "icon": "simple.png",
+                    "title": "Simple",
+                    "text": "Configuring your GPS tracker can be challenging, we provide simple instructions in plain English. Support available."
+                },
+                {
+                    "icon": "universal.png",
+                    "title": "Universal",
+                    "text": "Track people and things with inexpensive GPS tracking devices or mobile phones. Support for handheld and vehicle trackers."
+                },
+                {
+                    "icon": "trusted.png",
+                    "title": "Trusted",
+                    "text": "ten20 (Birkett Enterprise Ltd) has 6 years experience running GPS tracking service with 400,000 registered users."
                 }
             ]
 
@@ -112,7 +131,7 @@
         },
         {
             "type": "contact-form",
-            "logo": "image/logo.png",
+            "logo": "logo.png",
             "description": "Thank you for your interest, please enter your details below",
 
             "items": [
@@ -120,48 +139,49 @@
                     "type": "text",
                     "name": "first-name",
                     "label": "First name",
-                    "optional": "false"
+                    "optional": false
                 },
                 {
                     "type": "text",
                     "name": "last-name",
                     "label": "Last name",
-                    "optional": "false"
+                    "optional": false
                 },
                 {
                     "type": "text",
                     "name": "email",
                     "label": "Email",
-                    "optional": "false"
+                    "optional": false
                 },
                 {
                     "type": "text",
                     "name": "phone",
                     "label": "Phone",
-                    "optional": "true"
+                    "optional": true
                 },
                 {
                     "type": "text",
                     "name": "company-name",
                     "label": "Company Name",
-                    "optional": "true"
+                    "optional": true
                 },
                 {
                     "type": "text",
                     "name": "company-website-url",
-                    "label": "Company Website URL",
-                    "optional": "true"
+                    "label": "Your website",
+                    "optional": true
                 },
                 {
                     "type": "checkbox",
                     "name": "call-me",
-                    "label": "Company Website URL"
+                    "label": "Please call me about ten20",
+                    "optional": true
                 },
                 {
                     "type": "checkbox",
                     "name": "news-letter",
                     "label": "Subscribe to partner newsletter",
-                    "optional": "true"
+                    "optional": true
                 }
             ]
 
