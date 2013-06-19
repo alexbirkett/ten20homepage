@@ -2,6 +2,10 @@
 /**
  * Module dependencies.
  */
+require('nodetime').profile({
+    accountKey: 'e471874f4f721e3103e7d6a420f27dedebf70f14',
+    appName: 'ten20 homepage'
+});
 
 var express = require('express'),
   routes = require('./routes'),
