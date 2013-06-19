@@ -118,7 +118,7 @@
             "type": "contact-form",
             "logo": "logo.png",
             "description": "Thank you for your interest, please enter your details below",
-
+            "url": "#contact",
             "items": [
                 {
                     "type": "text",
