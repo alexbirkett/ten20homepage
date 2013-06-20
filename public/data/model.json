@@ -73,7 +73,8 @@
         },
         {
             "title": "- KEY FEATURES -",
-            "type": "list",
+            "type": "carousel",
+            "media": "map",
             "items": [
                 {
                     "title": "Real time updates",

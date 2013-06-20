@@ -115,11 +115,6 @@ header {
   width: inherit;
 }
 
-.featuremap {
-  width:320px;
-  height:320px;
-  display:inline-block;
-}
 
 /* hide legends and attribution */
 .mapbox #map .map-legends.leaflet-control,
@@ -232,6 +227,13 @@ header {
   margin: 0 auto;
 }
 
+.list-view .list-content {
+  max-width: 320px;
+  width: 90%;
+  height: 300px;
+  display: inline-block;
+
+}
 /* carousel-view section styles */
 .carousel-view {
   padding: 60px 0;
@@ -247,10 +249,25 @@ header {
   text-align: center;
 }
 
+.carousel-view .carousel-inner > .item {
+  display: block;
+  visible: 0;
+}
+
 .carousel-view .carousel-inner img {
   max-width: 70%;
   margin: auto;
   padding-top: 50px;
+}
+
+.carousel-view .carousel-inner .item {
+  padding-top: 50px;
+}
+
+.carousel-view .carousel-inner .carousel-map {
+  max-width: 70%;
+  margin:auto;
+  height: 300px;
 }
 
 .carousel-view .carousel-inner p {

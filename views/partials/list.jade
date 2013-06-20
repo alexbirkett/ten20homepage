@@ -1,0 +1,24 @@
+section.list-view
+  .container
+    .row-fluid
+      .span8
+        h2= section.title
+        each item, index in section.items
+          .feature-item
+            - if (item.title.length == 2) {
+              h3= item.title[0]
+                span= item.title[1]
+            - } else {
+              h3= item.title
+            - }
+
+            - if (section.media == "map") {
+              .list-content(id='list-map' + index)
+                script.
+                  $(function() { new ten20.MapRender('list-map' + '#{index}', !{JSON.stringify(item.map)}); });
+            - } else {
+              .list-content
+                img(src='/images/' + item.image)
+            - }
+
+              p= item.text
