@@ -73,7 +73,7 @@
         },
         {
             "title": "- KEY FEATURES -",
-            "type": "carousel",
+            "type": "list",
             "media": "map",
             "items": [
                 {

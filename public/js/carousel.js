@@ -1,6 +1,37 @@
+window.ten20 = window.ten20 || {};
+
+window.ten20.carouselMaps = (function() {
+  var mapsArray = [];
+  var renderComplete = 0;
+
+  return function(map) {
+    var $map = $(map.getContainer());
+    mapsArray.push($map);
+
+    map.whenReady(function() {
+      var parentCarousel = $map.parent('.carousel');
+      $map.parent('.item').removeClass('show');
+      renderComplete++;
+      console.log(renderComplete);
+      if (mapsArray.length == 3) {
+        parentCarousel.css("visibility", "visible");
+        parentCarousel.carousel(7000);
+        console.log('hi');
+      }
+    }); 
+  }
+
+})();
 
 $(function(){
-    //$('.carousel').carousel();
+    // only start non-map carousel
+    $('.carousel').each(function() {
+      if ($(this).children('.carousel-map')) {
+        return;
+      } else {
+        $(this).carousel();
+      }
+    });
 
     // show contact form when url == '/#contact'
     if (location.hash == "#contact") {
@@ -9,13 +40,6 @@ $(function(){
 
     // fake checkbox
     $('.form input[type="checkbox"]').addClass('regular-checkbox').after('<label class="fakeCheckBox"></label>');
-
-    var tabindex = 1;
-    $('.form input[type="text"], .form input + label').each(function() {
-        var $input = $(this);
-        $input.attr("tabindex", tabindex);
-        tabindex++;
-    });
 
     $('.fakeCheckBox').on('click', function() {
       if ($(this).prev('input').prop("checked")) {
@@ -58,6 +82,8 @@ $(function(){
         var marginRight = parseInt(elemLabel.css('marginRight'));
         $(this).children('input[type="text"]').width(totalWidth - labelWidth - marginRight);
       });
+
+      $('.contact form li:first-child input').focus();
     }
 
 });
