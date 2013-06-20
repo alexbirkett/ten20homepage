@@ -1,6 +1,6 @@
 
 $(function(){
-    $('.carousel').carousel();
+    //$('.carousel').carousel();
 
     // show contact form when url == '/#contact'
     if (location.hash == "#contact") {

@@ -49,6 +49,7 @@
         {
             "title": "- KEY FEATURES -",
             "type": "list",
+            "media": "map",
             "items": [
                 {
                     "title": "Real time updates",
@@ -128,6 +129,7 @@
         {
             "title": "- SUPPORTED TRACKERS -",
             "type": "carousel",
+            "media": "image",
             "items": [
                 {
                     "title": "GOTOP-206",
