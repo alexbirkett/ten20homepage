@@ -73,7 +73,7 @@
         },
         {
             "title": "- KEY FEATURES -",
-            "type": "features",
+            "type": "list",
             "items": [
                 {
                     "title": "Real time updates",
