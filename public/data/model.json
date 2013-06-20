@@ -86,7 +86,7 @@
                       "zoomLevel": 12,
                       "numberOfTrackers": 1,
                       "showHistory": false,
-                      "followFirstTracker": false,
+                      "followFirstTracker": true,
                       "addVirtualFence": false,
                       "tile": "alexbirkett.map-bugector"
                     }
