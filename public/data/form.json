@@ -26,6 +26,7 @@
   "contact-form": {
     "type": "contact-form",
     "description": "Thank you for your interest, please enter your details below",
+    "name": "contact",
 
     "items": [
     {
@@ -65,21 +66,21 @@
     "type": "free-form",
     "extends": "simple-form",
     "description": "Alex and XiaoLei are working hard on the free plan! Please enter your details below to be notified when it's ready.",
-    "url": "#free",
+    "name": "free",
     "items": []
   },
   "family-form": {
     "type": "family-form",
     "extends": "simple-form",
     "description": "Alex and XiaoLei are working hard on the family plan! Please enter your details below to be notified when it's ready.",
-    "url": "#family",
+    "name": "family",
     "items": []
   },
   "enterprise-form": {
     "type": "enterprise-form",
     "extends": "simple-form",
     "description": "Alex and XiaoLei are working hard on the enterprise plan! Please enter your details below to be notified when it's ready.",
-    "url": "#enterprise",
+    "name": "enterprise",
     "items": []
   }
 }
