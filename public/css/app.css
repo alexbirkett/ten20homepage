@@ -16,30 +16,29 @@ body {
   background-color: #272727;
   padding: 0;
   margin: 0;
-  font: 400 12px/18px 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial, sans-serif;
+  font: 400 12px/18px 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
 }
 
 h1 {
-  font-size: 36px;
-  font-weight: 400;
+  font: 400 36px/54px 'AvenirNextLTW01-Regular';
 }
 
 h2 {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 20px;
+  font: 400  14px/21px 'Avenir Next LT W01 Demi';
 }
 
 h3 {
-  font-size: 13px;
-  font-weight: 400;
+  font: 400 11px/18px 'AvenirNextLTW01-Regular';
   text-transform: uppercase;
 }
 
 h4 {
-  font-size: 12px;
-  font-weight: 600;
+  font: 400 11px/18px 'Avenir Next LT W01 Demi';
   text-transform: uppercase;
+}
+
+h5 {
+  font: 400 11px/18px  Arial, 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi';
 }
 
 .wrapper {
@@ -78,13 +77,13 @@ header {
 
 .nav > li {
   display: inline;
+  margin-left: 20px;
 }
 
 .nav > li a {
   font-weight: 400;
-  font-size: 12px;
   color: #eee;
-  padding: 5px 5px;
+  padding: 5px 8px;
   display: inline;
   text-transform: uppercase;
 }
@@ -92,6 +91,10 @@ header {
 .nav > li a:hover {
   color: #f60;
   background-color: #eee;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
 }
 
 .nav > li a.active {
@@ -124,7 +127,7 @@ header {
 
 .mapbox .call-to-action {
   position: absolute;
-  top: 300px;
+  top: 270px;
   left: 0;
   right: 0;
   color: #eee;
@@ -132,29 +135,29 @@ header {
   z-index: 100;
 }
 
-.mapbox .call-to-action h2 {
-  margin-bottom: 0;
+.mapbox .call-to-action h3 {
+  font-size: 18px;
+  text-transform: none;
 }
 
 .mapbox .call-to-action a.button {
   display: inline-block;
   padding: 20px 20px;
-  width: 140px;
+  margin: 10px;
   color: #eee;
   font-weight: bold;
   font-size: 14px;
   text-decoration: none;
-  background: url('/images/round-rect.png') no-repeat center center; 
-  background-size: 90%;
-  /* fix ie8 support for background-size */
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='/images/round-rect.png', sizingMethod='scale');
-  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='/images/round-rect.png', sizingMethod='scale')";
+  border: none;
+  background-color: #f60;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
   text-transform: uppercase;
 }
 
 .mapbox .call-to-action span {
   text-transform: uppercase;
-  font-weight: normal;
   font-size: 12px;
 }
 
@@ -209,9 +212,14 @@ header {
   padding-bottom: 20px;
 }
 
-.list-view .span8 h2 {
+.list-view .span8 h4 {
   padding-bottom: 20px;
-  color: #f60;
+}
+
+.list-view .span8 h3 {
+  font-size: 18px;
+  text-transform: none;
+  letter-spacing: 0.3em;
 }
 
 .list-view .span8 h3 span {
@@ -239,7 +247,7 @@ header {
   padding: 60px 0;
 }
 
-.carousel-view h2 {
+.carousel-view h4 {
   text-align: center;
   padding-bottom: 20px;
   color: #f60;
@@ -321,6 +329,11 @@ header {
 
 .pricing .head h3 {
   color: #f60;
+  font-size: 14px;
+}
+
+.pricing .head h5 {
+  font-size: 15px;
 }
 
 .pricing .head.highlight h3 {
