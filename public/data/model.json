@@ -11,11 +11,11 @@
                     "link": "/supported_hardware"
                 },
                 {
-                    "text": "Pricing",
-                    "link": "#pricing"
+                    "text": "Plans",
+                    "link": "/#plans"
                 },
                 {
-                    "text": "Partner",
+                    "text": "Partner program",
                     "link": "/partner"
                 },
                 {
@@ -27,10 +27,10 @@
         },
         {
             "type": "call-to-action",
-            "text": ["Monitor all your trackers in one place!", "We support an ever growing list of trackers.", "1st tracker free"],
+            "text": ["Beautiful GPS tracking solution", "Supports GPS trackers and smartphones", "1st tracker free"],
             "button": {
                 "text": "GET STARTED NOW",
-                "link": "/register"
+                "link": "#contact"
             },
             "banner": "banner.png",
             "map": {
@@ -170,6 +170,7 @@
                     "price": ["FREE"],
                     "highlighted": false,
                     "features": ["Track one tracking device or phone for free", "Real time location", "Trip history" ]
+
                 },
                 {
                     "name": "FAMILY",

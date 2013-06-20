@@ -1,5 +1,5 @@
 {
-    "pageTitle": "ten20 GPS tracking platform",
+    "pageTitle": "ten20 affiliate program",
 
     "sections": [
         {
@@ -8,16 +8,15 @@
             "navLinks": [
                 {
                     "text": "Supported hardware",
-                    "link": "#hardware"
+                    "link": "/supported_hardware"
                 },
                 {
-                    "text": "Pricing",
-                    "link": "#pricing"
+                    "text": "Plans",
+                    "link": "/#plans"
                 },
                 {
-                    "text": "Partner",
-                    "link": "http://partner.com",
-                    "status": "active"
+                    "text": "Partner program",
+                    "link": "/partner"
                 },
                 {
                     "text": "Contact Us",
@@ -28,225 +27,48 @@
         },
         {
             "type": "call-to-action",
-            "text": ["Monitor all your trackers in one place!", "We support an ever growing list of trackers.", "1st tracker free"],
+            "text": ["Get 30% commission for referring customers", "You get paid when we get paid", "Receive monthly payment"],
             "button": {
-                "text": "GET STARTED NOW",
-                "link": "/register"
+                "text": "ENROLL NOW",
+                "link": "#contact"
             },
             "banner": "banner.png",
             "map": {
-              "lat": 51.74,
-              "lng": -4.55,
-              "zoomLevel": 12,
-              "numberOfTrackers": 5,
-              "zoomControl": true,
-              "showHistory": true,
-              "tile": "alexbirkett.map-t0fodlre",
-              "layers": [ {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"}, 
-                          { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}]
+                "zoomLevel": 6,
+                "lat": -24.73685,
+                "lng":130.18799,
+                "numberOfTrackers": 5,
+                "zoomControl": true,
+                "showHistory": true,
+                "tile": "alexbirkett.map-t0fodlre",
+                "layers": [ {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"},
+                    { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}]
             }
-        },
-        {
-            "title": "- KEY FEATURES -",
-            "type": "features",
-            "items": [
-                {
-                    "title": "Real time updates",
-                    "image": "map-track.jpg",
-                    "text": "See your trackers move around the map in realtime, no need to refresh the page.",
-                    "status": "active"
-                },
-                {
-                    "title": "Trip History",
-                    "image": "map-path.jpg",
-                    "text": "Trip history is stored by Ten20. It's up to you how long you keep your trips for."
-                },
-                {
-                    "title": ["Set your own ", "virtual fence"],
-                    "image": "map-fence.jpg",
-                    "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map."
-                }
-            ],
-            "map": {
-              "lat": 51.74,
-              "lng": -4.55,
-              "zoomLevel": 12,
-              "numberOfTrackers": 1,
-              "showHistory": true,
-              "followFirstTracker":true,
-              "addVirtualFence":true,
-              "tile": "alexbirkett.map-bugector"
-            }
-
         },
         {
             "type": "benefits",
             "items": [
                 {
-                    "icon": "secure.png",
-                    "title": "Secure",
-                    "text": "Uses industry standard encryption techniques. Hosted in United Kingdom. Subject to strict UK data protection laws."
+                    "icon": "simple.png",
+                    "title": "Über geeks",
+                    "text": "Supply and support GPS tracking devices for your friends and neighbours"
                 },
                 {
-                    "icon": "simple.png",
-                    "title": "Simple",
-                    "text": "Configuring your GPS tracker can be challenging, we provide simple instructions in plain English. Support available."
+                    "icon": "secure.png",
+                    "title": "Security companies",
+                    "text": "Sell trackers provisioned for ten20. Keep earning even after you've made the sale."
                 },
                 {
                     "icon": "universal.png",
-                    "title": "Universal",
-                    "text": "Track people and things with inexpensive GPS tracking devices or mobile phones. Support for handheld and vehicle trackers."
+                    "title": "Hardware vendors",
+                    "text": "Give customers the option of a premium tracking solution owned and hosted in the west"
                 },
                 {
                     "icon": "trusted.png",
-                    "title": "Trusted",
-                    "text": "ten20 (Birkett Enterprise Ltd) has 6 years experience running GPS tracking service with 400,000 registered users."
+                    "title": "Mechanics",
+                    "text": "Provide extra value to your customers and earn additional income by installing GPS tracking devices in their vehicles"
                 }
             ]
 
-        },
-        {
-            "title": "- SUPPORTED TRACKERS -",
-            "type": "supported-trackers",
-            "items": [
-                {
-                    "title": "GOTOP-206",
-                    "image": "gotop-206.jpg",
-                    "text": "Portable GPS tracker from GOTOP Limited",
-                    "link": "http://gotop.cc/index.php/product/Personal%20GPS%20tracker%20TL-206.html"
-                },
-                {
-                    "title": "Xenun TK201-2",
-                    "image": "tk201-2.jpg",
-                    "text": "Portable GPS tracker from Xenun",
-                    "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
-                },
-                {
-                    "title": "Garmin GTU 10 GPS Tracking Unit",
-                    "image": "garmin-gtu-10.jpg",
-                    "text": "Garmin's GTU 10 is a handy GPS locator that combines a web-based tracking service with GPS technology",
-                    "link": "http://www8.garmin.com/followme/"
-                }
-            ]
-        },
-        {
-            "type": "contact-form",
-            "logo": "logo.png",
-            "description": "Thank you for your interest, please enter your details below",
-
-            "items": [
-                {
-                    "type": "text",
-                    "name": "first-name",
-                    "label": "First name",
-                    "optional": false
-                },
-                {
-                    "type": "text",
-                    "name": "last-name",
-                    "label": "Last name",
-                    "optional": false
-                },
-                {
-                    "type": "text",
-                    "name": "email",
-                    "label": "Email",
-                    "optional": false
-                },
-                {
-                    "type": "text",
-                    "name": "phone",
-                    "label": "Phone",
-                    "optional": true
-                },
-                {
-                    "type": "text",
-                    "name": "company-name",
-                    "label": "Company Name",
-                    "optional": true
-                },
-                {
-                    "type": "text",
-                    "name": "company-website-url",
-                    "label": "Your website",
-                    "optional": true
-                },
-                {
-                    "type": "checkbox",
-                    "name": "call-me",
-                    "label": "Please call me about ten20",
-                    "optional": true
-                },
-                {
-                    "type": "checkbox",
-                    "name": "news-letter",
-                    "label": "Subscribe to partner newsletter",
-                    "optional": true
-                }
-            ]
-
-        },
-        {
-            "type": "about-us",
-            "title": "About us",
-            "description": "ten20 is being built by a distributed team of talented people from around the world ",
-
-            "items": [
-                {
-                    "name": "Alex Birkett",
-                    "title": "Founder",
-                    "description": "Alex is a software engineer turned entrepreneur. Alex founded ten20 and is assisting XiaoLei with the code.",
-                    "location": "UK / Norway",
-                    "image": "http://s.gravatar.com/avatar/541e744d6552b91e24db6691f33b62ed?s=150"
-                },
-                {
-                    "type": "Daniel Butler",
-                    "title": "Creative advisor",
-                    "label": "Daniel was contracted to provide the ten20 brand and visual direction",
-                    "location": "Germany / United States",
-                    "image": "http://s.gravatar.com/avatar/e71d14aaaf14db810d21f13713f623b3?s=150"
-                },
-                {
-                    "type": "Liu XiaoLei",
-                    "title": "XiaoLei is a a software engineer contracted to work on ten20. We love XiaoLei's talent, attitude and work ethic. XiaoLei is a fan of unix philosophy of simplicity. He is experienced on front-end technologies and the node.js framework. Besides work, he loves ice skating, swimming and latin dances.",
-                    "location": "Najing, China",
-                    "image": "http://s.gravatar.com/avatar/034820503911819b94f9e3e96a6ef8bd?s=150"
-                },
-                {
-                    "type": "Lyn Braas",
-                    "title": "Lyn is studying Graphic Design at Mediacollege Amsterdam worked on ten20 while interned at Komodo in the summer of 2013. Lyn designed Ten20's location history feature.",
-                    "location": "Amsterdam, the Netherlands",
-                    "image": "images/people/LynBraas"
-                }
-
-            ]
-
-        },
-        {
-            "type": "pricing",
-            "title": "- PLANS -",
-
-            "items": [
-                {
-                    "name": "ENTRY",
-                    "price": ["FREE"],
-                    "highlighted": true,
-                    "features": ["Lorom ipsum dolor sit adipiscing elit.", "Aliquan tincidunt", "Res iaculis uricies" ]
-                },
-                {
-                    "name": "STANDARD",
-                    "price": ["$20", "Month"],
-                    "highlighted": false,
-                    "features": ["Ut alieuen solicutuin", "Cras iaculis utricious nulla", "Res iaculis uricies" ]
-                },
-                {
-                    "name": "ENTERPRISE",
-                    "price": ["$50", "Month"],
-                    "highlighted": false,
-                    "features": ["Ut alieuen solicutuin", "Cras iaculis utricious nulla", "Res iaculis uricies" ]
-                }
-            ]
-
-        }
-    ]
+        } ]
 }
