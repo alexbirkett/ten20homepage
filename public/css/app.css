@@ -202,69 +202,69 @@ header {
   padding: 0 40px;
 }
 
-/* key features section styles */
-.key-features .row-fluid .span8 {
+/* list view section styles */
+.list-view .row-fluid .span8 {
   margin: 30px auto;
   float: none;
   text-align: center;
   font-weight: normal;
 }
 
-.key-features .feature-item {
+.list-view .feature-item {
   padding-bottom: 20px;
 }
 
-.key-features .span8 h2 {
+.list-view .span8 h2 {
   padding-bottom: 20px;
   color: #f60;
 }
 
-.key-features .span8 h3 span {
+.list-view .span8 h3 span {
   color: #f60;
 }
 
-.key-features .span8 img {
+.list-view .span8 img {
   padding-bottom: 10px;
 }
 
-.key-features .span8 p {
+.list-view .span8 p {
   max-width: 300px; 
   margin: 0 auto;
 }
 
-/* trackers section styles */
-.trackers {
+/* carousel-view section styles */
+.carousel-view {
   padding: 60px 0;
 }
 
-.trackers h2 {
+.carousel-view h2 {
   text-align: center;
   padding-bottom: 20px;
   color: #f60;
 }
 
-.trackers .carousel-inner {
+.carousel-view .carousel-inner {
   text-align: center;
 }
 
-.trackers .carousel-inner img {
+.carousel-view .carousel-inner img {
   max-width: 70%;
   margin: auto;
   padding-top: 50px;
 }
 
-.trackers .carousel-inner p {
+.carousel-view .carousel-inner p {
   padding-top: 20px;
 }
 
-.trackers .carousel-inner .carousel-caption {
+.carousel-view .carousel-inner .carousel-caption {
   bottom: auto;
   top: 0;
   padding-top: 0;
   background: none;
 }
 
-.trackers .carousel-indicators {
+.carousel-view .carousel-indicators {
   position: absolute;
   top: auto;
   left: 50%;
@@ -273,11 +273,11 @@ header {
   bottom: -45px;
 }
 
-.trackers .carousel-indicators .active {
+.carousel-view .carousel-indicators .active {
   background-color: #f60;
 }
 
-.trackers .carousel-control {
+.carousel-view .carousel-control {
   border: none;
   background: none;
 }
@@ -556,7 +556,7 @@ footer p {
     text-align: center;
   }
 
-  .trackers .carousel-inner img {
+  .carousel-view .carousel-inner img {
     max-width: 100%;
   }
 
