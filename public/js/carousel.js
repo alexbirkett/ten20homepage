@@ -12,11 +12,9 @@ window.ten20.carouselMaps = (function() {
       var parentCarousel = $map.parent('.carousel');
       $map.parent('.item').removeClass('show');
       renderComplete++;
-      console.log(renderComplete);
       if (mapsArray.length == 3) {
         parentCarousel.css("visibility", "visible");
         parentCarousel.carousel(7000);
-        console.log('hi');
       }
     }); 
   }

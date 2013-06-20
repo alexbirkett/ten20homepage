@@ -7,7 +7,8 @@ mixin mediaSelect(item, index)
       $(function() { 
         var $map = $('#carousel-map' + '#{index}');
         $map.parent('.carousel').css('visibility', 'hidden');
-        $map.parent('.item').addClass('show');
+        // currently disable for later debug
+        //$map.parent('.item').addClass('show');
         var mapObject = (new ten20.MapRender('carousel-map' + '#{index}', !{JSON.stringify(item.map)})).getMapObject();
         ten20.carouselMaps(mapObject);
       });
