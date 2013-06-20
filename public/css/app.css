@@ -249,11 +249,6 @@ header {
   text-align: center;
 }
 
-.carousel-view .carousel-inner > .item {
-  display: block;
-  visible: 0;
-}
-
 .carousel-view .carousel-inner img {
   max-width: 70%;
   margin: auto;
@@ -262,6 +257,10 @@ header {
 
 .carousel-view .carousel-inner .item {
   padding-top: 50px;
+}
+
+.carousel-view .carousel-inner .item.show {
+  display: block;
 }
 
 .carousel-view .carousel-inner .carousel-map {
@@ -417,6 +416,7 @@ header {
 
 .form input[type="text"] {
   color: #aaa;
+  cursor: text;
 }
 
 .form input[type="text"]:focus {
