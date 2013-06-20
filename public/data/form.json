@@ -24,9 +24,9 @@
     }]
   },
   "contact-form": {
-    "type": "contact-form",
+    "type": "form",
     "description": "Thank you for your interest, please enter your details below",
-    "name": "contact",
+    "name": "contact-us",
 
     "items": [
     {
@@ -63,24 +63,24 @@
 
   },
   "free-form": {
-    "type": "free-form",
+    "type": "form",
     "extends": "simple-form",
     "description": "Alex and XiaoLei are working hard on the free plan! Please enter your details below to be notified when it's ready.",
-    "name": "free",
+    "name": "free-plan",
     "items": []
   },
   "family-form": {
-    "type": "family-form",
+    "type": "form",
     "extends": "simple-form",
     "description": "Alex and XiaoLei are working hard on the family plan! Please enter your details below to be notified when it's ready.",
-    "name": "family",
+    "name": "family-plan",
     "items": []
   },
   "enterprise-form": {
-    "type": "enterprise-form",
+    "type": "form",
     "extends": "simple-form",
     "description": "Alex and XiaoLei are working hard on the enterprise plan! Please enter your details below to be notified when it's ready.",
-    "name": "enterprise",
+    "name": "enterprise-plan",
     "items": []
   }
 }

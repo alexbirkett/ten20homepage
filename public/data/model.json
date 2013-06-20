@@ -20,7 +20,7 @@
                 },
                 {
                     "text": "Contact Us",
-                    "link": "#contact"
+                    "link": "#contact-us"
                 }
             ]
 
@@ -31,7 +31,7 @@
             "text": ["Beautiful GPS tracking solution", "Supports GPS trackers and smartphones", "1st tracker free"],
             "button": {
                 "text": "GET STARTED NOW",
-                "link": "#contact"
+                "link": "#contact-us"
             },
             "banner": "banner.png",
             "map": {
@@ -167,12 +167,12 @@
         {
             "type": "pricing",
             "title": "- PLANS -",
-            "name": "pricing",
+            "name": "plans",
 
             "items": [
                 {
                     "name": "FREE",
-                    "url": "#free",
+                    "url": "#free-plan",
                     "price": ["FREE"],
                     "highlighted": false,
                     "features": ["Track one tracking device or phone for free", "Real time location", "Trip history" ]
@@ -180,14 +180,14 @@
                 },
                 {
                     "name": "FAMILY",
-                    "url": "#family",
+                    "url": "#family-plan",
                     "price": ["$20", "Month"],
                     "highlighted": true,
                     "features": ["Our most popular plan", "Real time location", "Trip history", "Virtual fence", "Up to five trackers and phones on the map simultaneously", "Login for each family member", "Warm feeling that you're supporting ten20"]
                 },
                 {
                     "name": "ENTERPRISE",
-                    "url": "#enterprise",
+                    "url": "#enterprise-plan",
                     "price": ["$50", "Month"],
                     "highlighted": false,
                     "features": ["Great for tracking you fleet", "Telephone support", "Real time location", "Trip history", "Virtual fence", "Unlimied number of trackers", "10 logins", "Warm feeling that you're supporting ten20"]
