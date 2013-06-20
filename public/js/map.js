@@ -60,8 +60,8 @@ window.ten20.MapRender = (function () {
       this.setupVirtualFence();
       this.addMarkers();
       setInterval(function() {
-        self.updateMarkers();
-      }, 1000);
+        self.updateNextMarker();
+      }, 2000);
     }
 
     MapRender.prototype._getRandomVisibleLatLng = function() {
@@ -93,23 +93,27 @@ window.ten20.MapRender = (function () {
                 marker.history = this.addPolyline(latlng);
             }
             this.map.addLayer(marker);
-            this.twinkleMarker(marker);
             this.markers.push(marker);
         };
     }
 
 
-    MapRender.prototype.updateMarkers = function() {
-        for (var i = 0; i < this.markers.length; i++) {
-            var marker = this.markers[i];
-            moveMarker(marker);
-            if (this.showHistory) {
-                updateHistory(marker);
-            }
+    MapRender.prototype.updateNextMarker = function() {
+        if (this.currentMarkerIndex === undefined || this.currentMarkerIndex === this.markers.length) {
+            this.currentMarkerIndex = 0;
         }
+
+        var marker = this.markers[this.currentMarkerIndex];
+        moveMarker(marker);
+        this.twinkleMarker(marker);
+        if (this.showHistory) {
+            updateHistory(marker);
+        }
+
         if (this.followFirstTracker && this.markers.length > 0) {
             this.map.panTo(this.markers[0].getLatLng());
         }
+        this.currentMarkerIndex++;
     }
 
 
@@ -132,7 +136,7 @@ window.ten20.MapRender = (function () {
 
         var intervalId = setInterval(function() {
             if (index == (radius.length - 1)) {
-                index = 0;
+                clearInterval(intervalId);
             } else {
                 index++;
             }
