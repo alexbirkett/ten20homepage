@@ -1,5 +1,6 @@
 mixin itemInfo(item)
-  h3= item.name
+  h3
+    a(href=item.url)= item.name
   - if (item.price.length == 1) {
     h5= item.price[0]
   - } else {

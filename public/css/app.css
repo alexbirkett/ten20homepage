@@ -327,16 +327,17 @@ header {
   background-color: #d60;
 }
 
-.pricing .head h3 {
+.pricing .head h3 a {
   color: #f60;
   font-size: 14px;
+  text-decoration: underline;
 }
 
 .pricing .head h5 {
   font-size: 15px;
 }
 
-.pricing .head.highlight h3 {
+.pricing .head.highlight h3 a {
   color: #272727;
   font-weight: bold;
 }
