@@ -463,7 +463,8 @@ header {
  
 .regular-checkbox + label {
     background: none;
-    border: 1px solid #eee;
+    border: 1px solid #aaa;
+    color: #aaa;
     padding: 15px;
     margin: 0;
     -webkit-border-radius: 3px;
@@ -477,10 +478,13 @@ header {
 }
  
  
+.regular-checkbox + label:hover {
+  color: #f60;
+  border: 1px solid #f60;
+}
+
 .regular-checkbox:checked + label {
     background: none;
-    border: 1px solid #f60;
-    color: #f60;
 }
  
 .regular-checkbox:checked + label:after {
@@ -489,7 +493,6 @@ header {
     position: absolute;
     top: 5px;
     left: 5px;
-    color: #f60;
 }
 
 /* footer styles */
