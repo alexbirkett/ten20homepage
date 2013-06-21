@@ -21,7 +21,7 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
+  app.use(express.cookieParser('&*(j#$84nui$%'));
   app.use(express.session());
   app.use(express.static(__dirname + '/public'));
   app.use(express.favicon(__dirname + '/public/favicon.ico'));

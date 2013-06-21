@@ -6,6 +6,7 @@ html
       each section in sections
         if section.type == 'nav-bar'
           include partials/nav-bar
+          include partials/nav-bar-mobile
         if section.type == 'call-to-action'
           include partials/call-to-action
         if section.type == 'benefits'
