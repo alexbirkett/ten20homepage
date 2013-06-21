@@ -40,6 +40,7 @@ app.configure('production', function(){
 
 app.get(/\/\w?/, routes.index);
 app.get('/partials/:name', routes.partials);
+app.post('/contact', routes.form);
 
 // JSON API
 app.get('/api/name', api.name);

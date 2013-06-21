@@ -27,7 +27,8 @@
         },
         {
             "title": "- SUPPORTED HARDWARE / SOFTWARE -",
-            "type": "supported-trackers",
+            "type": "carousel",
+            "media": "image",
             "items": [
                 {
                     "title": "GOTOP-206",

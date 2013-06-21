@@ -1,5 +1,6 @@
 mixin itemInfo(item)
-  h3= item.name
+  h3
+    a(href=item.url)= item.name
   - if (item.price.length == 1) {
     h5= item.price[0]
   - } else {
@@ -7,10 +8,10 @@ mixin itemInfo(item)
       span= item.price[1]
   - }
 
-section.pricing
+section.pricing(id=section.name)
   .container
     .row-fluid
-      h2= section.title
+      h4= section.title
     .row-fluid
       each item in section.items
         .span4

@@ -10,14 +10,14 @@ html
           include partials/call-to-action
         if section.type == 'benefits'
           include partials/benefits
-        if section.type == 'features'
-          include partials/features
-        if section.type == 'supported-trackers'
-          include partials/supported-trackers
+        if section.type == 'list'
+          include partials/list
+        if section.type == 'carousel'
+          include partials/carousel
         if section.type == 'pricing'
           include partials/pricing
-        if section.type == 'contact-form'
-          include partials/contact-form
+        if section.type == 'form'
+          include partials/form
       .push
     footer
       p Copyright (c) 2013 Birkett Enterprise Ltd
