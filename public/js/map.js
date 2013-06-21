@@ -104,6 +104,11 @@ window.ten20.MapRender = (function () {
 
 
     MapRender.prototype.updateNextMarker = function() {
+
+        if (this.markers.length == 0) {
+          return;
+        }
+        
         if (this.currentMarkerIndex === undefined || this.currentMarkerIndex === this.markers.length) {
             this.currentMarkerIndex = 0;
         }
