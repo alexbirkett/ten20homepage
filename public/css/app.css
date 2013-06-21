@@ -355,11 +355,13 @@ header {
 /* contact section styles */
 .contact {
   position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   display: none;
 }
@@ -458,6 +460,8 @@ header {
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   border-radius: 30px;
+  background: rgb(255, 102, 0);
+  opacity: 1;
   background:rgba(255, 102, 0, 1);
   color: #eee;
   font-weight: bold;
