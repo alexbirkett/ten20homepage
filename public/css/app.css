@@ -555,11 +555,11 @@ footer p {
 }
 
 /* tablet and mobile styles */
-@media only screen and (max-width: 940px) {
+@media only screen and (max-width: 979px) {
 
   .wrapper .container {
-    margin-left: 3%;
-    margin-right: 3%;
+    margin-left: 10px;
+    margin-right: 10px;
     width: auto;
   }
 
@@ -570,7 +570,32 @@ footer p {
 }
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 767px) {
+
+  .nav-collapse .nav { margin-top: 20px; }
+
+  .navbar { margin-bottom: 0 }
+
+  .navbar .btn-navbar .icon-bar {
+    background-color: #f60;
+  }
+
+  .nav > li {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .nav > li a {
+    width: 90%;
+    display: inline-block;
+    text-shadow: none !important;
+    color: #eee !important;
+  }
+
+  .nav > li a:hover {
+    color: #f60 !important;
+  }
 
   .mapbox .call-to-action {
     position: absolute;

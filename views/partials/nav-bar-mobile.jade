@@ -1,0 +1,17 @@
+header.visible-phone
+  .container
+    .navbar
+      .row-fluid
+        .span12
+          button.btn.btn-navbar(type="button", data-toggle="collapse", data-target=".nav-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.logo(href="/")
+            img(src="/images/" + section.logo)
+          .nav-collapse.collapse
+            ul.nav.menu
+              each nav in section.navLinks
+                li
+                  a(href=nav.link, class="menu " + nav.status)= nav.text
+          .clear
