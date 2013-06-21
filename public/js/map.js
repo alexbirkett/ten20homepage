@@ -44,7 +44,14 @@ window.ten20.MapRender = (function () {
     MapRender.prototype.init = function () {
       // create map
       var self = this;
+
+      L.mapbox.config.HTTPS_URLS = [
+           'https://dnv9my2eseobd.cloudfront.net/v3/'
+      ];
+      L.mapbox.config.FORCE_HTTPS = true;
+
       this.map = L.mapbox.map(this.mapDiv, this.tile, { zoomControl: this.zoomControl});
+
 
       if(this.layers) {
          var layers = {};
