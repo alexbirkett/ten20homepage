@@ -1,4 +1,4 @@
-section.contact
+section.contact(id=section.name)
   .form
     div.cancel
       span X
@@ -16,3 +16,5 @@ section.contact
         li.btn-wrap
           button(type="submit") send
           p *Required
+    script.
+      $(function() { new ten20.ContactForm(!{JSON.stringify(section.name)}); });

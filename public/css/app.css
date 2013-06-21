@@ -16,30 +16,29 @@ body {
   background-color: #272727;
   padding: 0;
   margin: 0;
-  font: 400 12px/18px 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial, sans-serif;
+  font: 400 12px/18px 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
 }
 
 h1 {
-  font-size: 36px;
-  font-weight: 400;
+  font: 400 36px/54px 'AvenirNextLTW01-Regular';
 }
 
 h2 {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 20px;
+  font: 400  14px/21px 'Avenir Next LT W01 Demi';
 }
 
 h3 {
-  font-size: 13px;
-  font-weight: 400;
+  font: 400 11px/18px 'AvenirNextLTW01-Regular';
   text-transform: uppercase;
 }
 
 h4 {
-  font-size: 12px;
-  font-weight: 600;
+  font: 400 11px/18px 'Avenir Next LT W01 Demi';
   text-transform: uppercase;
+}
+
+h5 {
+  font: 400 11px/18px  Arial, 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi';
 }
 
 .wrapper {
@@ -78,13 +77,13 @@ header {
 
 .nav > li {
   display: inline;
+  margin-left: 20px;
 }
 
 .nav > li a {
   font-weight: 400;
-  font-size: 12px;
   color: #eee;
-  padding: 5px 5px;
+  padding: 5px 8px;
   display: inline;
   text-transform: uppercase;
 }
@@ -92,6 +91,10 @@ header {
 .nav > li a:hover {
   color: #f60;
   background-color: #eee;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
 }
 
 .nav > li a.active {
@@ -115,11 +118,6 @@ header {
   width: inherit;
 }
 
-.featuremap {
-  width:320px;
-  height:320px;
-  display:inline-block;
-}
 
 /* hide legends and attribution */
 .mapbox #map .map-legends.leaflet-control,
@@ -129,7 +127,7 @@ header {
 
 .mapbox .call-to-action {
   position: absolute;
-  top: 300px;
+  top: 270px;
   left: 0;
   right: 0;
   color: #eee;
@@ -137,29 +135,29 @@ header {
   z-index: 100;
 }
 
-.mapbox .call-to-action h2 {
-  margin-bottom: 0;
+.mapbox .call-to-action h3 {
+  font-size: 18px;
+  text-transform: none;
 }
 
 .mapbox .call-to-action a.button {
   display: inline-block;
   padding: 20px 20px;
-  width: 140px;
+  margin: 10px;
   color: #eee;
   font-weight: bold;
   font-size: 14px;
   text-decoration: none;
-  background: url('/images/round-rect.png') no-repeat center center; 
-  background-size: 90%;
-  /* fix ie8 support for background-size */
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='/images/round-rect.png', sizingMethod='scale');
-  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='/images/round-rect.png', sizingMethod='scale')";
+  border: none;
+  background-color: #f60;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
   text-transform: uppercase;
 }
 
 .mapbox .call-to-action span {
   text-transform: uppercase;
-  font-weight: normal;
   font-size: 12px;
 }
 
@@ -202,69 +200,95 @@ header {
   padding: 0 40px;
 }
 
-/* key features section styles */
-.key-features .row-fluid .span8 {
+/* list view section styles */
+.list-view .row-fluid .span8 {
   margin: 30px auto;
   float: none;
   text-align: center;
   font-weight: normal;
 }
 
-.key-features .feature-item {
+.list-view .feature-item {
   padding-bottom: 20px;
 }
 
-.key-features .span8 h2 {
+.list-view .span8 h4 {
   padding-bottom: 20px;
+}
+
+.list-view .span8 h3 {
+  font-size: 18px;
+  text-transform: none;
+  letter-spacing: 0.3em;
+}
+
+.list-view .span8 h3 span {
   color: #f60;
 }
 
-.key-features .span8 h3 span {
-  color: #f60;
-}
-
-.key-features .span8 img {
+.list-view .span8 img {
   padding-bottom: 10px;
 }
 
-.key-features .span8 p {
+.list-view .span8 p {
   max-width: 300px; 
   margin: 0 auto;
 }
 
-/* trackers section styles */
-.trackers {
+.list-view .list-content {
+  max-width: 320px;
+  width: 90%;
+  height: 300px;
+  display: inline-block;
+
+}
+/* carousel-view section styles */
+.carousel-view {
   padding: 60px 0;
 }
 
-.trackers h2 {
+.carousel-view h4 {
   text-align: center;
   padding-bottom: 20px;
   color: #f60;
 }
 
-.trackers .carousel-inner {
+.carousel-view .carousel-inner {
   text-align: center;
 }
 
-.trackers .carousel-inner img {
+.carousel-view .carousel-inner img {
   max-width: 70%;
   margin: auto;
   padding-top: 50px;
 }
 
-.trackers .carousel-inner p {
+.carousel-view .carousel-inner .item {
+  padding-top: 50px;
+}
+
+.carousel-view .carousel-inner .item.show {
+  display: block;
+}
+
+.carousel-view .carousel-inner .carousel-map {
+  max-width: 70%;
+  margin:auto;
+  height: 300px;
+}
+
+.carousel-view .carousel-inner p {
   padding-top: 20px;
 }
 
-.trackers .carousel-inner .carousel-caption {
+.carousel-view .carousel-inner .carousel-caption {
   bottom: auto;
   top: 0;
   padding-top: 0;
   background: none;
 }
 
-.trackers .carousel-indicators {
+.carousel-view .carousel-indicators {
   position: absolute;
   top: auto;
   left: 50%;
@@ -273,11 +297,11 @@ header {
   bottom: -45px;
 }
 
-.trackers .carousel-indicators .active {
+.carousel-view .carousel-indicators .active {
   background-color: #f60;
 }
 
-.trackers .carousel-control {
+.carousel-view .carousel-control {
   border: none;
   background: none;
 }
@@ -303,11 +327,17 @@ header {
   background-color: #d60;
 }
 
-.pricing .head h3 {
+.pricing .head h3 a {
   color: #f60;
+  font-size: 14px;
+  text-decoration: underline;
 }
 
-.pricing .head.highlight h3 {
+.pricing .head h5 {
+  font-size: 15px;
+}
+
+.pricing .head.highlight h3 a {
   color: #272727;
   font-weight: bold;
 }
@@ -325,11 +355,13 @@ header {
 /* contact section styles */
 .contact {
   position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   display: none;
 }
@@ -400,6 +432,7 @@ header {
 
 .form input[type="text"] {
   color: #aaa;
+  cursor: text;
 }
 
 .form input[type="text"]:focus {
@@ -427,6 +460,8 @@ header {
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   border-radius: 30px;
+  background: rgb(255, 102, 0);
+  opacity: 1;
   background:rgba(255, 102, 0, 1);
   color: #eee;
   font-weight: bold;
@@ -446,7 +481,8 @@ header {
  
 .regular-checkbox + label {
     background: none;
-    border: 1px solid #eee;
+    border: 1px solid #aaa;
+    color: #aaa;
     padding: 15px;
     margin: 0;
     -webkit-border-radius: 3px;
@@ -460,10 +496,13 @@ header {
 }
  
  
+.regular-checkbox + label:hover {
+  color: #f60;
+  border: 1px solid #f60;
+}
+
 .regular-checkbox:checked + label {
     background: none;
-    border: 1px solid #f60;
-    color: #f60;
 }
  
 .regular-checkbox:checked + label:after {
@@ -472,7 +511,6 @@ header {
     position: absolute;
     top: 5px;
     left: 5px;
-    color: #f60;
 }
 
 /* footer styles */
@@ -556,7 +594,7 @@ footer p {
     text-align: center;
   }
 
-  .trackers .carousel-inner img {
+  .carousel-view .carousel-inner img {
     max-width: 100%;
   }
 

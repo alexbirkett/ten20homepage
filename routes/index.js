@@ -7,6 +7,7 @@ var extend = require('extend');
 var model = require('../public/data/model.json');
 var partner = require('../public/data/partner.json');
 var form = require('../public/data/form.json');
+var db = require('../app/db.js')();
 
 // extend forms
 var tmp = {};
@@ -56,6 +57,14 @@ exports.index = function(req, res){
           res.render('404', {pageTitle: 'Page Not Found'});
       }
 };
+
+exports.form = function(req, res){
+    var  data = req.param('data');
+    db.contact.create(data, function(error, form) {
+      console.log(form.first_name + ' inserted.');
+      res.json({error: !!error});
+    });
+}
 
 exports.partials = function (req, res) {
   var name = req.params.name;

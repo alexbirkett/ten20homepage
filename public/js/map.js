@@ -59,6 +59,7 @@ window.ten20.MapRender = (function () {
       this.map.scrollWheelZoom.disable();
       this.setupVirtualFence();
       this.addMarkers();
+
       setInterval(function() {
         self.updateNextMarker();
       }, 2000);
@@ -71,6 +72,10 @@ window.ten20.MapRender = (function () {
         return [lat,lng];
     };
 
+
+    MapRender.prototype.getMapObject= function() {
+      return this.map;
+    }
 
     MapRender.prototype.addPolyline = function(latlng) {
         var polyOption = {
@@ -99,6 +104,11 @@ window.ten20.MapRender = (function () {
 
 
     MapRender.prototype.updateNextMarker = function() {
+
+        if (this.markers.length == 0) {
+          return;
+        }
+        
         if (this.currentMarkerIndex === undefined || this.currentMarkerIndex === this.markers.length) {
             this.currentMarkerIndex = 0;
         }
