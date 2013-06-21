@@ -30,9 +30,11 @@ window.ten20.ContactForm = (function() {
   }
 
   ContactForm.prototype.init = function () {
+    this.form_data = {};
     this.$self = $('#' + this.id); 
     this.fakeCheckBox();
     this.bindEvent();
+    this.bindInput();
   };
 
   ContactForm.prototype.bindEvent = function () {
@@ -44,7 +46,7 @@ window.ten20.ContactForm = (function() {
     }
 
     // bind nav links
-    $('a[href="#' + this.id + '"]').on('click', function(e) {
+    $('a[href="#' + this.id + '"]').on('click', function() {
       self.$self.fadeIn();
       self.resizeInput();
     });
@@ -55,10 +57,61 @@ window.ten20.ContactForm = (function() {
 
     this.$self.find('button').on('click', function(e) {
       e.preventDefault();
-      //TODO: check required input 
-      //TODO: send post to server
-      self.restorePage();
+      if (self.checkFields()) {
+        self.send();
+        self.restorePage();
+      } 
     });
+  }
+
+  // send post to server
+  ContactForm.prototype.send = function () {
+    var data = {};
+
+    data.submitted_form = this.$self.attr('id');
+    data.first_name = this.form_data['first-name'];
+    data.last_name = this.form_data['last-name'];
+    data.mail = this.form_data['email'] || '';
+    data.phone = this.form_data['phone'] || '';
+    data.company_name = this.form_data['company-name'] || '';
+    data.website = this.form_data['company-website-url'] || '';
+    data.call_me = this.form_data['call-me'] || false;
+    data.news_letter = this.form_data['news-letter'] || false;
+    
+    $.ajaxSetup({timeout: 2000});
+
+    console.log(data);
+
+    $.post('/contact', {data: data}, 'json').
+      done(function(res) {
+        if (!res.error) {
+          alert('send successful!');
+        } else {
+          alert('server process error!');
+        }
+      }).
+      fail(function(jhr, text, thrown) {
+        // body...
+        alert(text);
+      });
+  }
+
+  // dynamically save input fields to form object
+  ContactForm.prototype.bindInput = function() {
+    var self = this;
+
+    // checkbox already bind state in fakeCheckbox
+    this.$self.find('input[type="text"]').each(function () {
+      $(this).blur(function() {
+        self.form_data[$(this).attr('id')] = $(this).val();
+      })
+    });
+
+  }
+
+  ContactForm.prototype.checkFields = function() {
+
+    return true;
   }
 
   ContactForm.prototype.restorePage = function () {
@@ -67,21 +120,29 @@ window.ten20.ContactForm = (function() {
       $("body").css('overflow', 'scroll');
   };
 
+  // need fakecheckbox to show distinguished design
   ContactForm.prototype.fakeCheckBox = function () {
 
-      if (this.$self.find('input[type="checkbox"]').length != 0) {
+    var self = this;
 
-        this.$self.find('input[type="checkbox"]').addClass('regular-checkbox').after('<label class="fakeCheckBox"></label>');
+    this.$self.find('input[type="checkbox"]').each(function() {
+      $(this).addClass('regular-checkbox').after('<label class="fakeCheckBox"></label>');
+      self.form_data[$(this).attr('id')] = false;
+    })
 
-        this.$self.find('.fakeCheckBox').on('click', function() {
+    // dynamic bind check behavior to real checkbox
+    this.$self.find('.fakeCheckBox').on('click', function() {
+      var checkbox = $(this).prev('input');
 
-          if ($(this).prev('input').prop("checked")) {
-            $(this).prev('input').prop('checked', false);
-          } else {
-            $(this).prev('input').prop('checked', true);
-          }
-        });
+      if (checkbox.prop("checked")) {
+        checkbox.prop('checked', false);
+      } else {
+        checkbox.prop('checked', true);
       }
+
+      // save checkbox state to form object
+      self.form_data[checkbox.attr('id')] = checkbox.prop('checked');
+    });
   };
 
   // dynamically set input width of contact forms
