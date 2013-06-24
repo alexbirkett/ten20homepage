@@ -37,15 +37,6 @@ exports.index = function(req, res){
 
       var model;
 
-      // set session cookie
-      if (req.session.views) {
-        req.session.views++;
-      } else {
-        req.session.ip = req.ip;
-        req.session.user_agent = req.get('user-agent');
-        req.session.views = 1;
-      }
-
       if (req.path == '/') {
           model =  require('../public/data/model.json');
       } else {
@@ -61,10 +52,14 @@ exports.index = function(req, res){
       }
 
       if (model) {
-        /*
-        if (!req.cookies.views)
+        if (req.cookies.views) {
+          model.cookies.display = 'hide';
+        } else {
+          // set cookie
+          model.cookies.display = 'show';
           res.cookie('views', '1', { maxAge: 90000000});
-          */
+        }
+
         res.render('index', model);
       } else {
           res.render('404', {pageTitle: 'Page Not Found'});
