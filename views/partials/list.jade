@@ -6,10 +6,10 @@ section.list-view
         each item, index in section.items
           .feature-item
             - if (item.title.length == 2) {
-              h3= item.title[0]
+              h1= item.title[0]
                 span= item.title[1]
             - } else {
-              h3= item.title
+              h1= item.title
             - }
 
             - if (section.media == "map") {
