@@ -105,6 +105,25 @@ header {
   font-style: bold;
 }
 
+.wrapper .alert {
+  color: rgb(224, 161, 51);
+  margin-top: 20px;
+  margin-bottom: 0;
+  background-color: #666;
+  text-shadow: none;
+  border: none;
+}
+
+.wrapper .alert .close {
+  color: #bbb;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.wrapper .alert .close:hover {
+  color: #f60;
+}
+
 /************************* home page styles *********************************/
 /* map section styles */
 .mapbox {
