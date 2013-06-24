@@ -16,11 +16,13 @@ body {
   background-color: #272727;
   padding: 0;
   margin: 0;
-  font: 400 12px/18px 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
+  font: 400 11px/18px 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
+  letter-spacing: 1px;
 }
 
 h1 {
   font: 400 36px/54px 'AvenirNextLTW01-Regular';
+  letter-spacing: 3px;
 }
 
 h2 {
@@ -81,6 +83,7 @@ header {
 }
 
 .nav > li a {
+  font-size: 11px;
   font-weight: 400;
   color: #eee;
   padding: 5px 8px;
@@ -100,6 +103,25 @@ header {
 .nav > li a.active {
   color: #f60;
   font-style: bold;
+}
+
+.wrapper .alert {
+  color: rgb(224, 161, 51);
+  margin-top: 20px;
+  margin-bottom: 0;
+  background-color: #666;
+  text-shadow: none;
+  border: none;
+}
+
+.wrapper .alert .close {
+  color: #bbb;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.wrapper .alert .close:hover {
+  color: #f60;
 }
 
 /************************* home page styles *********************************/
@@ -137,6 +159,7 @@ header {
 
 .mapbox .call-to-action h3 {
   font-size: 18px;
+  letter-spacing: 2px;
   text-transform: none;
 }
 
@@ -154,11 +177,6 @@ header {
   -moz-border-radius: 30px;
   border-radius: 30px;
   text-transform: uppercase;
-}
-
-.mapbox .call-to-action span {
-  text-transform: uppercase;
-  font-size: 12px;
 }
 
 .mapbox .banner {
@@ -216,13 +234,11 @@ header {
   padding-bottom: 20px;
 }
 
-.list-view .span8 h3 {
-  font-size: 18px;
+.list-view .span8 h1 {
   text-transform: none;
-  letter-spacing: 0.3em;
 }
 
-.list-view .span8 h3 span {
+.list-view .span8 h1 span {
   color: #f60;
 }
 
@@ -312,14 +328,33 @@ header {
   overflow:auto;
 }
 
+.pricing h4 {
+  padding: 50px;
+}
+
+.pricing .span4 {
+  margin: 0;
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
+}
+
+.pricing .span4:first-child {
+  margin-left: 2.5%;
+  border-left: none;
+}
+
+.pricing .span4:last-child {
+  border-right: none;
+}
+
 .pricing .head {
   background-color: #444;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   max-width: 200px;
+  height: 100px;
   margin: 0 auto;
-  margin: 20px auto;
   padding: 20px 0;
 }
 
@@ -327,10 +362,14 @@ header {
   background-color: #d60;
 }
 
+.pricing .head h3 {
+  padding-top: 20px;
+}
+
 .pricing .head h3 a {
   color: #f60;
   font-size: 14px;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .pricing .head h5 {
@@ -349,7 +388,9 @@ header {
 }
 
 .pricing .span4 p {
-  margin-bottom: 30px;
+  margin: 30px auto;
+  max-width: 200px;
+  text-align: left;
 }
 
 /* contact section styles */
@@ -360,60 +401,68 @@ header {
   width: 100%;
   height: 100%;
   background: rgb(0, 0, 0);
-  opacity: 0.8;
   background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   display: none;
 }
 
 .contact .form {
-  max-width: 300px;
+  max-width: 320px;
   margin: 100px auto;
   text-align: center;
   position: relative;
-}
-
-.contact .form .cancel {
-  position: absolute;
-  top: -10px;
-  right: 0;
-  font-size: 20px;
-  background-color: #666;
-  padding: 2px 5px;
+  background-color: black;
+  padding: 40px 40px 80px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
 
+.contact .form .cancel {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 16px;
+  padding: 2px 5px;
+}
+
 .contact .form .cancel:hover {
-  background-color: #d60;
+  color: #d60;
   cursor: pointer;
 }
 
 .contact .form h3 {
+  margin: 20px 0;
   text-transform: none;
-  font-size: 16px;
+  font-size: 14px;
+  letter-spacing: 1px;
   line-height: 22px;
 }
 
 .contact .form ul {
   margin: 0;
   padding: 0;
+  color: #ccc;
 }
 
 .contact .form li {
   display: block;
   text-align: left;
-  height: 30px;
+  height: 35px;
   padding-top: 12px;
 }
 
 .contact .form li.list-text {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #444;
+}
+
+.contact .form li.list-checkbox {
+  margin: 25px 0 -30px;
 }
 
 .contact .form li.btn-wrap {
   text-align: center;
+  margin-top: 20px;
 }
 
 .form label {
@@ -432,7 +481,6 @@ header {
 
 .form input[type="text"] {
   color: #aaa;
-  cursor: text;
 }
 
 .form input[type="text"]:focus {
@@ -466,6 +514,7 @@ header {
   color: #eee;
   font-weight: bold;
   font-size: 20px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 
 }
@@ -481,17 +530,16 @@ header {
  
 .regular-checkbox + label {
     background: none;
-    border: 1px solid #aaa;
-    color: #aaa;
-    padding: 15px;
+    border: 1px solid #eee;
+    color: white;
+    padding: 12px;
     margin: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    opacity: 0.85;
     display: inline-block;
     position: relative;
-    top: -7px;
+    top: -5px;
     float: right;
 }
  
@@ -507,7 +555,7 @@ header {
  
 .regular-checkbox:checked + label:after {
     content: '\2714';
-    font-size: 20px;
+    font-size: 16px;
     position: absolute;
     top: 5px;
     left: 5px;
@@ -535,6 +583,7 @@ footer p {
   margin: 100px auto;
   text-align: center;
   font-size: 30px;
+  letter-spacing: 3px;
 }
 
 .page-not-found h2 {
@@ -544,6 +593,7 @@ footer p {
 .page-not-found p {
   color: #f60;
   font-size: 20px;
+  letter-spacing: 2px;
   font-weight: normal;
   line-height: 30px;
   max-width: 350px;
@@ -558,8 +608,8 @@ footer p {
 @media only screen and (max-width: 979px) {
 
   .wrapper .container {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     width: auto;
   }
 
@@ -613,6 +663,7 @@ footer p {
   .benefits .items .span3 {
     width: 100%;
     margin: 0;
+    padding: 15px;
   }
 
   .benefits .items .span3 p {
@@ -623,6 +674,13 @@ footer p {
     max-width: 100%;
   }
 
+  .pricing .span4 {
+    border: none;
+  }
+
+  .pricing .span4:first-child {
+    margin-left: 0;
+  }
 
   .contact {
     position: absolute;
@@ -632,8 +690,8 @@ footer p {
   }
 
   .contact .form {
-    max-width: 300px;
     margin: 50px auto;
+    padding: 40px 20px 80px;
   }
 }
 

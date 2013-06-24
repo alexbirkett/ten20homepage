@@ -110,13 +110,12 @@ window.ten20.ContactForm = (function() {
   }
 
   ContactForm.prototype.checkFields = function() {
-
     return true;
   }
 
   ContactForm.prototype.restorePage = function () {
       this.$self.fadeOut();
-      window.location.hash = "";
+      window.history.back();
       $("body").css('overflow', 'scroll');
   };
 
@@ -159,7 +158,6 @@ window.ten20.ContactForm = (function() {
         $(this).children('input[type="text"]').width(totalWidth - labelWidth - marginRight);
       });
 
-      this.$self.find('li:first-child input').focus();
   };
 
   return ContactForm;
