@@ -1,6 +1,10 @@
 {
     "pageTitle": "ten20 GPS tracking platform",
 
+    "cookies": {
+      "text": "We use cookies on our website in order to personalise our service to you. If you do not want cookies to be used, you can set your internet browser to deny them."
+    },
+
     "sections": [
         {
             "type": "nav-bar",
