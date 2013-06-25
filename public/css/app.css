@@ -106,22 +106,24 @@ header {
 }
 
 .wrapper .alert {
-  color: rgb(224, 161, 51);
-  margin-top: 20px;
-  margin-bottom: 0;
-  background-color: #666;
+  color: black;
+  margin-bottom: 20px;
+  background-color: #ccc;
   text-shadow: none;
   border: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
 }
 
 .wrapper .alert .close {
-  color: #bbb;
+  color: black;
   text-shadow: none;
   opacity: 1;
 }
 
 .wrapper .alert .close:hover {
-  color: #f60;
+  color: #d60;
 }
 
 /************************* home page styles *********************************/
