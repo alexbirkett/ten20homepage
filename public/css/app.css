@@ -108,6 +108,7 @@ header {
 .wrapper .alert {
   color: black;
   margin-bottom: 20px;
+  margin-top: -20px;
   background-color: #ccc;
   text-shadow: none;
   border: none;
