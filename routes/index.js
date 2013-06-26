@@ -4,8 +4,7 @@
  */
 
 var extend = require('extend');
-var model = require('../public/data/model.json');
-var partner = require('../public/data/partner.json');
+var indexModel = require('../public/data/index.json');
 var form = require('../public/data/form.json');
 var db = {};
 
@@ -14,7 +13,7 @@ var tmp = {};
 for (key in form) {
   tmp = extend(true, {}, form["base-form"]);
   if (key != "base-form") {
-    model.sections.push(extendForm(tmp, form[key]));
+    indexModel.sections.push(extendForm(tmp, form[key]));
   }
 };
 
@@ -42,7 +41,7 @@ exports.index = function(req, res){
       var model;
 
       if (req.path == '/') {
-          model =  require('../public/data/model.json');
+          model =  indexModel;
       } else {
            // strip out any nasties like ..
            var pattern =/([a-z_-]+)/i;
@@ -56,6 +55,11 @@ exports.index = function(req, res){
       }
 
       if (model) {
+
+        if (!model.cookies) {
+          model.cookies = indexModel.cookies;
+        }
+
         if (req.cookies.views) {
           model.cookies.display = 'hide';
         } else {
