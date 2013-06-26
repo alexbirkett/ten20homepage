@@ -8,8 +8,9 @@ require('nodetime').profile({
 });
 
 var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api');
+    routes = require('./routes'),
+    api = require('./routes/api'),
+    dbs = require('./app/db');
 
 var app = module.exports = express();
 
@@ -49,6 +50,9 @@ app.get('/api/name', api.name);
 
 // Start server
 
-app.listen(3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+dbs(function(db) {
+    routes.setDb(db);
+    app.listen(3000, function(){
+      console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+    });
 });
