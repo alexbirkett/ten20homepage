@@ -7,7 +7,7 @@ var extend = require('extend');
 var model = require('../public/data/model.json');
 var partner = require('../public/data/partner.json');
 var form = require('../public/data/form.json');
-var db = require('../app/db.js')();
+var db = {};
 
 // extend forms
 var tmp = {};
@@ -32,6 +32,10 @@ function extendForm(target, source) {
   }
   return target;
 }
+
+exports.setDb = function(dbs) {
+    db = dbs;
+};
 
 exports.index = function(req, res){
 
@@ -68,8 +72,8 @@ exports.index = function(req, res){
 
 exports.form = function(req, res){
     var  data = req.param('data');
-    db.contact.create(data, function(error, form) {
-      console.log(form.first_name + ' inserted.');
+    db.contact.insert(data, function(error, docs) {
+      console.log(docs[0].first_name + ' inserted.');
       res.json({error: !!error});
     });
 }
