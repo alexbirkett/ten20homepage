@@ -1,29 +1,20 @@
-var mongoose = require('mongoose');
-mongoose.set('debug', true);
+var MongoClient = require('mongodb').MongoClient;
 
+var dbs = {};
 
-module.exports = function(url) {
-  var model = {};
+module.exports = function(callback) {
 
-  var db = mongoose.connect(url || 'mongodb://localhost/contact_info');
-  console.log('mongodb connected...');
-  mongoose.connection.on('error', function() {
-    console.log('connection error...');
-  });
+    MongoClient.connect('mongodb://localhost/ten20home', function(err, db) {
 
-  // setup model
-  model.contact = mongoose.model('Contact',{
-    first_name: {type: String, index: true},
-    last_name: {type: String, index: true},
-    email: {type: String, index: true},
-    phone: String,
-    company_name: String,
-    website: String,
-    call_me: Boolean,
-    news_letter: Boolean,
-    submitted_form: String // the form from which user submit: 
-                           // 'contact-us', 'free-plan', 'family-plan', 'enterprise-plan'
-  });
+        if(err) {
+          console.error('connect to mongodb failed, app exits!');
+          process.exit(0);
+        }
 
-  return model;
-}
+        console.log('mongodb connected...');
+
+        dbs['contact'] = db.collection('contact');
+
+        callback(dbs);
+        })
+};

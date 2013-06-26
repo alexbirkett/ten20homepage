@@ -106,22 +106,24 @@ header {
 }
 
 .wrapper .alert {
-  color: rgb(224, 161, 51);
-  margin-top: 20px;
-  margin-bottom: 0;
-  background-color: #666;
+  color: black;
+  margin-bottom: 20px;
+  background-color: #ccc;
   text-shadow: none;
   border: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
 }
 
 .wrapper .alert .close {
-  color: #bbb;
+  color: black;
   text-shadow: none;
   opacity: 1;
 }
 
 .wrapper .alert .close:hover {
-  color: #f60;
+  color: #d60;
 }
 
 /************************* home page styles *********************************/
@@ -236,6 +238,7 @@ header {
 
 .list-view .span8 h1 {
   text-transform: none;
+  margin: 50px 0;
 }
 
 .list-view .span8 h1 span {
@@ -246,15 +249,15 @@ header {
   padding-bottom: 10px;
 }
 
-.list-view .span8 p {
-  max-width: 300px; 
-  margin: 0 auto;
+.list-view .span8 h2 {
+  max-width: 600px; 
+  margin: 20px auto;
 }
 
 .list-view .list-content {
-  max-width: 320px;
+  max-width: 600px;
   width: 90%;
-  height: 300px;
+  padding-bottom: 60%;
   display: inline-block;
 
 }
