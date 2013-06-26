@@ -6,7 +6,10 @@ module.exports = function(callback) {
 
     MongoClient.connect('mongodb://localhost/ten20home', function(err, db) {
 
-        if(err) throw err;
+        if(err) {
+          console.error('connect to mongodb failed, app exits!');
+          process.exit(0);
+        }
 
         console.log('mongodb connected...');
 
