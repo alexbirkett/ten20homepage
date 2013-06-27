@@ -38,9 +38,8 @@ window.ten20.ContactForm = (function() {
   };
 
   ContactForm.prototype.bindEvent = function () {
-    // show form when url == '/:id'
     var self = this;
-    if (location.hash == "#contact-us") {
+    if (location.hash === '#' + this.id) {
       this.$self.fadeIn();
       this.resizeInput();
     }
