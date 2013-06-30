@@ -32,7 +32,7 @@
         {
             "type": "call-to-action",
             "name": "call-to-action",
-            "text": ["Beautiful GPS tracking solution", "Supports GPS trackers and smartphones", "1st tracker free"],
+            "text": ["Friction free, real-time location tracking", "Supports GPS trackers and mobile apps" ],
             "button": {
                 "text": "GET STARTED NOW",
                 "link": "#contact-us"
