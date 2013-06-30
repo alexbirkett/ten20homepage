@@ -3,6 +3,7 @@
     "type": "base-form",
     "logo": "logo.png",
     "name": "simple-form",
+    "success-message": "We'll be in touch soon!",
     "items": [
     {
       "type": "text",
