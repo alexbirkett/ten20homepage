@@ -11,14 +11,30 @@ var express = require('express'),
     routes = require('./routes'),
     api = require('./routes/api'),
     dbs = require('./app/db');
+    http = require('http'),
+    https = require('https'),
+    options = require('./http-options');
+
+
 
 var app = module.exports = express();
 
 // Configuration
 
+function requireHTTPS(req, res, next) {
+    if (!req.secure) {
+        //FYI this should work for local development as well
+        return res.redirect('https://' + req.get('host') + req.url);
+    }
+    next();
+}
+
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  if (options) {
+      app.use(requireHTTPS);
+  }
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -46,13 +62,10 @@ app.post('/contact', routes.form);
 // JSON API
 app.get('/api/name', api.name);
 
-// redirect all others to the index (HTML5 history)
-
-// Start server
-
 dbs(function(db) {
     routes.setDb(db);
-    app.listen(3000, function(){
-      console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-    });
+    if (options) {
+        https.createServer(options, app).listen(4433);
+    }
+    http.createServer(app).listen(3000);
 });
