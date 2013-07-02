@@ -69,5 +69,3 @@ dbs(function(db) {
     }
     http.createServer(app).listen(process.env.HTTP_PORT || 3000);
 });
-
-console.log(process.env.HTTP_PORT);
