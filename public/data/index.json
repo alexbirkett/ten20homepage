@@ -32,7 +32,7 @@
         {
             "type": "call-to-action",
             "name": "call-to-action",
-            "text": ["Friction free, real-time location tracking", "Supports GPS trackers and mobile apps" ],
+            "text": ["Track the location of people and things", "Supports GPS trackers and mobile apps" ],
             "button": {
                 "text": "GET STARTED NOW",
                 "link": "#contact-us"
