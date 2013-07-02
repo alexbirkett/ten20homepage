@@ -65,7 +65,9 @@ app.get('/api/name', api.name);
 dbs(function(db) {
     routes.setDb(db);
     if (options) {
-        https.createServer(options, app).listen(4433);
+        https.createServer(options, app).listen(process.env.HTTPS_PORT || 4433);
     }
-    http.createServer(app).listen(3000);
+    http.createServer(app).listen(process.env.HTTP_PORT || 3000);
 });
+
+console.log(process.env.HTTP_PORT);
