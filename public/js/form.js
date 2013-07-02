@@ -30,7 +30,7 @@ window.ten20.ContactForm = (function() {
   }
 
   ContactForm.prototype.init = function () {
-    this.form_data = {};
+    this.formData = {};
     this.$self = $('#' + this.id); 
     this.fakeCheckBox();
     this.bindEvent();
@@ -58,7 +58,6 @@ window.ten20.ContactForm = (function() {
       e.preventDefault();
       if (self.checkFields()) {
         self.send();
-        self.restorePage();
       } 
     });
   }
@@ -67,31 +66,28 @@ window.ten20.ContactForm = (function() {
   ContactForm.prototype.send = function () {
     var data = {};
 
-    data.submitted_form = this.$self.attr('id');
-    data.first_name = this.form_data['first-name'];
-    data.last_name = this.form_data['last-name'];
-    data.mail = this.form_data['email'] || '';
-    data.phone = this.form_data['phone'] || '';
-    data.company_name = this.form_data['company-name'] || '';
-    data.website = this.form_data['company-website-url'] || '';
-    data.call_me = this.form_data['call-me'] || false;
-    data.news_letter = this.form_data['news-letter'] || false;
-    
-    $.ajaxSetup({timeout: 2000});
+    var self = this.$self;
 
-    console.log(data);
+    data.formType = self.attr('id');
+
+    for (key in this.formData) {
+      if (typeof this.formData[key].value === 'boolean') {
+        data[key] = this.formData[key].value;
+      } else {
+        data[key] = this.formData[key].value || '';
+      }
+    }
+
+    $.ajaxSetup({timeout: 2000});
 
     $.post('/contact', {data: data}, 'json').
       done(function(res) {
-        if (!res.error) {
-          alert('send successful!');
-        } else {
-          alert('server process error!');
-        }
+        self.find('.active').removeClass('active');
+        self.find('.success').addClass('active');
       }).
       fail(function(jhr, text, thrown) {
-        // body...
-        alert(text);
+        self.find('.active').removeClass('active');
+        self.find('.error').addClass('active');
       });
   }
 
@@ -101,15 +97,45 @@ window.ten20.ContactForm = (function() {
 
     // checkbox already bind state in fakeCheckbox
     this.$self.find('input[type="text"]').each(function () {
-      $(this).blur(function() {
-        self.form_data[$(this).attr('id')] = $(this).val();
-      })
+      self.formData[$(this).attr('id')] = {
+        optional: $(this).attr('optional'),
+        value: ''
+      };
+
+      $(this).keyup(function() {
+        self.formData[$(this).attr('id')].value = $(this).val();
+
+        if ($(this).val()) {
+          $(this).removeClass('required');
+        } 
+
+        if (self.$self.find('.required').length === 0) {
+          self.$self.find('.active').removeClass('active');
+          self.$self.find('.description').addClass('active');
+        } 
+       
+      });
+
     });
 
   }
 
   ContactForm.prototype.checkFields = function() {
-    return true;
+    var check = true;
+
+    for (key in this.formData) {
+      if (this.formData[key].optional === 'false' && this.formData[key].value === '') {
+        this.$self.find('#' + key).addClass('required');
+        check = false;
+      }
+    }
+
+    if (!check) {
+      this.$self.find('.active').removeClass('active');
+      this.$self.find('.require').addClass('active');
+    }
+
+    return check;
   }
 
   ContactForm.prototype.restorePage = function () {
@@ -125,7 +151,7 @@ window.ten20.ContactForm = (function() {
 
     this.$self.find('input[type="checkbox"]').each(function() {
       $(this).addClass('regular-checkbox').after('<label class="fakeCheckBox"></label>');
-      self.form_data[$(this).attr('id')] = false;
+      self.formData[$(this).attr('id')] = {optional: 'true', value: false};
     })
 
     // dynamic bind check behavior to real checkbox
@@ -139,7 +165,7 @@ window.ten20.ContactForm = (function() {
       }
 
       // save checkbox state to form object
-      self.form_data[checkbox.attr('id')] = checkbox.prop('checked');
+      self.formData[checkbox.attr('id')].value = checkbox.prop('checked');
     });
   };
 

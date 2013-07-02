@@ -270,7 +270,7 @@ header {
 .carousel-view h4 {
   text-align: center;
   padding-bottom: 20px;
-  color: #f60;
+  color: #eee;
 }
 
 .carousel-view .carousel-inner {
@@ -441,6 +441,24 @@ header {
   font-size: 14px;
   letter-spacing: 1px;
   line-height: 22px;
+  display: none;
+}
+
+.contact .form .success {
+  display: none;
+  color: rgb(86, 235, 86);
+  font-size: 20px;
+}
+
+.contact .form .require,
+.contact .form .error {
+  display: none;
+  color: red;
+  font-size: 20px;
+}
+
+.contact .form .active {
+  display: block;
 }
 
 .contact .form ul {
@@ -483,18 +501,19 @@ header {
   background: none;
 }
 
+.form input.required {
+  border: 1px solid red;
+}
+
 .form input[type="text"] {
   color: #aaa;
 }
 
 .form input[type="text"]:focus {
-  color: orange;
-  border-color: #00d;
-  outline: 0;
-  outline: thin dotted 9;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(221,102,0,0.6);
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(221,102,0,0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(221,102,0,0.6);
+  color: white;
+  border: none;
+  border-color: none;
+  box-shadow: none;
 }
 
 .form input[type="checkbox"] {
@@ -699,3 +718,14 @@ footer p {
   }
 }
 
+
+@media only screen and (max-height: 800px) {
+  .contact .form {
+    margin: 0px auto;
+    padding: 10px 20px 80px;
+  }
+
+  .contact .form li {
+    height: 25px;
+  }
+}

@@ -77,7 +77,7 @@ exports.index = function(req, res){
 exports.form = function(req, res){
     var  data = req.param('data');
     db.contact.insert(data, function(error, docs) {
-      console.log(docs[0].first_name + ' inserted.');
+      console.log(docs[0]['first-name'] + ' inserted.');
       res.json({error: !!error});
     });
 }
