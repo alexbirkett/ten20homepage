@@ -79,18 +79,12 @@ window.ten20.ContactForm = (function() {
     
     $.ajaxSetup({timeout: 2000});
 
-    console.log(data);
-
     $.post('/contact', {data: data}, 'json').
       done(function(res) {
-        if (!res.error) {
-          alert('send successful!');
-        } else {
-          alert('server process error!');
-        }
+        // TODO
       }).
       fail(function(jhr, text, thrown) {
-        // body...
+        // TODO
         alert(text);
       });
   }
