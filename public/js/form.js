@@ -103,7 +103,7 @@ window.ten20.ContactForm = (function() {
     this.$self.find('input[type="text"]').each(function () {
       $(this).blur(function() {
         self.form_data[$(this).attr('id')] = $(this).val();
-      })
+      });
     });
 
   }
