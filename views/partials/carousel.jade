@@ -13,10 +13,10 @@ mixin mediaSelect(item, index)
         ten20.carouselMaps(mapObject);
       });
   - }
-    h3.carousel-caption= item.title
+    h1.carousel-caption= item.title
     p= item.text
 
-section.carousel-view
+section.carousel-view(id=section.name)
   .container
     h4= section.title
     #feature-slide.carousel.slide
