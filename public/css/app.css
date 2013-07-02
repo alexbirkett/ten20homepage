@@ -699,3 +699,14 @@ footer p {
   }
 }
 
+
+@media only screen and (max-height: 1000px) {
+  .contact .form {
+    margin: 0px auto;
+    padding: 10px 20px 80px;
+  }
+
+  .contact .form li {
+    height: 25px;
+  }
+}
