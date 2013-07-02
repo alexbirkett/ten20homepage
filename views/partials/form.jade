@@ -3,7 +3,11 @@ section.contact(id=section.name)
     div.cancel
       span X
     img(src="/images/" + section.logo)
-    h3= section.description
+    h3.description.active= section.description
+    h3.success= section['success-message']
+    h3.require= section['require-message']
+    h3.error= section['error-message']
+
     form
       ul
         each item in section.items
@@ -12,7 +16,7 @@ section.contact(id=section.name)
               label(for=item.name)  #{item.label}
             else 
               label(for=item.name)  #{item.label}*
-            input(type=item.type, id=item.name)
+            input(type=item.type, id=item.name, optional="" + item.optional)
         li.btn-wrap
           button(type="submit") send
           p *Required
