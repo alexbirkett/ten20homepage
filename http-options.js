@@ -1,7 +1,7 @@
 var fs = require('fs');
+var optimist = require('optimist');
 
-var argv = require('optimist').
-  usage('Usage: $0 -p [num] -ps [num] -c [string] -k [strig] [http-only]').
+var argv = optimist.usage('Usage: $0 -p [num] -s [num] -c [string] -k [string] -O').
   options('p', {
     alias : 'http-port',
     default : 3000,
@@ -25,10 +25,19 @@ var argv = require('optimist').
   options('O', {
     alias : 'only-http',
     describe: 'only serve http'
+  }).
+  options('h', {
+    alias : 'help',
+    describe: 'show help'
   }).argv;
 
 
 var options = { http: {}, https: {}};
+
+if (argv.h) {
+  optimist.showHelp();
+  process.exit(0);
+}
 
 options.http.port = argv.p;
 options.http.only = !!argv.O;
