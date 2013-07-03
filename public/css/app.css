@@ -446,7 +446,7 @@ header {
 
 .contact .form .success {
   display: none;
-  color: rgb(86, 235, 86);
+  color: #eee;
   font-size: 20px;
 }
 
