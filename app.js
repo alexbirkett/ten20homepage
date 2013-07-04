@@ -32,7 +32,7 @@ function requireHTTPS(req, res, next) {
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  if (options) {
+  if (options.https) {
       app.use(requireHTTPS);
   }
   app.use(express.logger('dev'));
@@ -64,8 +64,10 @@ app.get('/api/name', api.name);
 
 dbs(function(db) {
     routes.setDb(db);
-    if (options) {
-        https.createServer(options, app).listen(process.env.HTTPS_PORT || 4433);
+    if (options.https) {
+        https.createServer(options.https, app).listen(options.https.port);
+        console.log('https listening on ' + options.https.port);
     }
-    http.createServer(app).listen(process.env.HTTP_PORT || 3000);
+    http.createServer(app).listen(options.http.port);
+    console.log('http listening on ' + options.http.port);
 });
