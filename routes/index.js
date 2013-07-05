@@ -7,13 +7,14 @@ var extend = require('extend');
 var indexModel = require('../public/data/index.json');
 var form = require('../public/data/form.json');
 var db = {};
+var forms = [];
 
 // extend forms
 var tmp = {};
 for (key in form) {
   tmp = extend(true, {}, form["base-form"]);
   if (key != "base-form") {
-    indexModel.sections.push(extendForm(tmp, form[key]));
+    forms.push(extendForm(tmp, form[key]));
   }
 };
 
@@ -55,6 +56,8 @@ exports.index = function(req, res){
       }
 
       if (model) {
+        // add forms to model
+        model.sections = model.sections.concat(forms);
 
         if (!model.cookies) {
           model.cookies = indexModel.cookies;
