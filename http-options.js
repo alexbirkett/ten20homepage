@@ -50,6 +50,7 @@ if (!options.http.only) {
   } catch (e) {
     console.log("can't find key and or cert");
     options.https = undefined;
+    process.exit(1);
   }
 } else {
     options.https = undefined;
