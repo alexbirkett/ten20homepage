@@ -65,7 +65,11 @@ exports.index = function(req, res){
         } else {
           // set cookie
           model.cookies.display = 'show';
-          res.cookie('views', '1', { maxAge: 90000000});
+          if (req.secure) {
+            res.cookie('views', '1', { maxAge: 90000000, secure: true});
+          } else {
+            res.cookie('views', '1', { maxAge: 90000000});
+          }
         }
 
         res.render('index', model);
