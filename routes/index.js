@@ -59,6 +59,14 @@ exports.index = function(req, res){
         // add forms to model
         model.sections = model.sections.concat(forms);
 
+        // include file sections
+        for (var i = 0; i < model.sections.length; i++) {
+          var file = model.sections[i].file;
+          if (file) {
+            model.sections[i] = require('../public/data/' + file);
+          }
+        };
+
         if (!model.cookies) {
           model.cookies = indexModel.cookies;
         }
