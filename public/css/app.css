@@ -501,12 +501,21 @@ header {
   margin-bottom: 50px;
 }
 
-.about .head h2 {
-  color: #f60;
-}
-
 .about li {
   margin-bottom: 30px;
+}
+
+.about li .media>.pull-left {
+  margin-right: 25px;
+}
+
+.about li .media h4 {
+  color: #f60;
+  font-size: 20px;
+}
+
+.about li .media h5 {
+  font: italic 16px/20px ari;
 }
 
 .form label {
