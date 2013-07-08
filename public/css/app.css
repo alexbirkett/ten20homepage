@@ -487,6 +487,28 @@ header {
   margin-top: 20px;
 }
 
+.about {
+  margin: 80px auto;
+}
+
+.about .row-fluid .span8 {
+  margin: auto;
+  float: none;
+}
+
+.about .head {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.about .head h2 {
+  color: #f60;
+}
+
+.about li {
+  margin-bottom: 30px;
+}
+
 .form label {
   text-align: left;
   display: inline-block;

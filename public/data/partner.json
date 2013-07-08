@@ -27,6 +27,9 @@
         },
         {
           "file": "benefits.json"
+        },
+        {
+          "file": "about.json"
         }
     ]
 }
