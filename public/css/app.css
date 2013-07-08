@@ -501,6 +501,11 @@ header {
   margin-bottom: 50px;
 }
 
+.about ul {
+  margin: 0;
+  padding: 0;
+}
+
 .about li {
   margin-bottom: 30px;
 }
@@ -515,7 +520,7 @@ header {
 }
 
 .about li .media h5 {
-  font: italic 16px/20px ari;
+  font: italic 16px/20px arial;
 }
 
 .form label {
@@ -728,6 +733,10 @@ footer p {
     max-width: 100%;
   }
 
+  .carousel-view .carousel-caption {
+    position: absolute;
+  }
+
   .pricing .span4 {
     border: none;
   }
@@ -749,7 +758,7 @@ footer p {
   }
 }
 
-
+/* screen of tablet height style */
 @media only screen and (max-height: 800px) {
   .contact .form {
     margin: 0px auto;
@@ -758,5 +767,38 @@ footer p {
 
   .contact .form li {
     height: 25px;
+  }
+}
+
+/* mobile styles */
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  .call-to-action h1 {
+    font-size: 36px;
+    line-height: 54px;
+  }
+
+  .about li {
+    text-align: center;
+  }
+
+  .about li .media>.pull-left {
+    margin: auto;
+  }
+}
+
+/* iphone width mobile styles */
+@media only screen and (max-width: 355px) {
+
+  .mapbox .call-to-action {
+    top: 100px;
+  }
+
+  .carousel-view .carousel-caption {
+    font-size: 18px;
   }
 }
