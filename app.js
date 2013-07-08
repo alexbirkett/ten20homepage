@@ -10,10 +10,11 @@ require('nodetime').profile({
 var express = require('express'),
     routes = require('./routes'),
     api = require('./routes/api'),
-    dbs = require('./app/db');
+    dbs = require('./app/db'),
     http = require('http'),
     https = require('https'),
-    options = require('./http-options');
+    options = require('./http-options'),
+    RedisStore = require('connect-redis')(express);
 
 
 
@@ -39,7 +40,10 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser('&*(j#$84nui$%'));
-  app.use(express.session());
+  app.use(express.session({
+    store: new RedisStore(),
+    secret: '1234567890QWERTY'
+  }));
   app.use(express.static(__dirname + '/public'));
   app.use(express.favicon(__dirname + '/public/favicon.ico'));
   app.use(app.router);
