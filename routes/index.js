@@ -57,7 +57,10 @@ exports.index = function(req, res){
 
       if (model) {
         // add forms to model
-        model.sections = model.sections.concat(forms);
+        if (!model.includeForm) {
+          model.sections = model.sections.concat(forms);
+          model.includeForm = true;
+        }
 
         // include file sections
         for (var i = 0; i < model.sections.length; i++) {
