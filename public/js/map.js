@@ -90,7 +90,7 @@ window.ten20.MapRender = (function () {
             weight: 2,
             color: '#f60',
             dashArray: '3,4',
-            smoothFactor: 0
+            smoothFactor: 1
         };
         var polyLine = L.polyline(latlng, polyOption).addTo(this.map);
         return polyLine;
@@ -193,12 +193,12 @@ window.ten20.MapRender = (function () {
       var latlngTail = [];
       var tmpPos = [marker.getLatLng().lat, marker.getLatLng().lng];
 
-      for (var i = 0; i < 40; i++) {
-        latlngTail.unshift(tmpPos);
+      for (var i = 0; i < 20; i++) {
+        latlngTail.unshift([tmpPos[0], tmpPos[1]]);
         marker.latDelta = getDelta(marker.latDelta);
         marker.lngDelta = getDelta(marker.lngDelta);
-        tmpPos[0] = tmpPos[0] + marker.latDelta;
-        tmpPos[1] = tmpPos[1] + marker.lngDelta;
+        tmpPos[0] += marker.latDelta;
+        tmpPos[1] += marker.lngDelta;
       };
 
       return latlngTail;
