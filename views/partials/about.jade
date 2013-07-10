@@ -1,0 +1,21 @@
+section.about(id=section.type)
+  .container
+    .row-fluid
+      .span12
+        .head
+          h4= section.title
+          h1= section.description
+    .row-fluid
+      .span8
+        ul.persons
+          each item in section.items
+            li
+              .media
+                image.pull-left.img-rounded(src=item.image)
+                .media-body
+                  h4= item.name
+                  h5= item.title
+                  h6= item.location
+                  p= item.description
+
+        

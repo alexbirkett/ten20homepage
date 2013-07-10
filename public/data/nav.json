@@ -1,0 +1,27 @@
+{
+  "type": "nav-bar",
+  "logo": "logo.png",
+  "navLinks": [
+    {
+      "text": "Supported hardware",
+      "link": "/#supported"
+    },
+    {
+      "text": "Plans",
+      "link": "/#plans"
+    },
+    {
+      "text": "Partner program",
+      "link": "/partner"
+    },
+    {
+      "text": "Contact Us",
+      "link": "#contact-us"
+    },
+    {
+      "text": "About Us",
+      "link": "#about-us"
+    }
+  ]
+
+}

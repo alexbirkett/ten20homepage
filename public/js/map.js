@@ -90,9 +90,9 @@ window.ten20.MapRender = (function () {
             weight: 2,
             color: '#f60',
             dashArray: '3,4',
-            smoothFactor: 0
+            smoothFactor: 1
         };
-        var polyLine = L.polyline([latlng], polyOption).addTo(this.map);
+        var polyLine = L.polyline(latlng, polyOption).addTo(this.map);
         return polyLine;
     }
 
@@ -102,8 +102,10 @@ window.ten20.MapRender = (function () {
             var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(this.map);
 
             if (this.showHistory) {
-                marker.history = this.addPolyline(latlng);
+              var tailer = preTailer(marker);
+              marker.history = this.addPolyline(tailer);
             }
+
             this.map.addLayer(marker);
             this.markers.push(marker);
         };
@@ -184,6 +186,22 @@ window.ten20.MapRender = (function () {
 
         marker.setLatLng([latLng.lat + marker.latDelta, latLng.lng +  marker.lngDelta]);
 
+    }
+
+    function preTailer(marker) {
+      // body...
+      var latlngTail = [];
+      var tmpPos = [marker.getLatLng().lat, marker.getLatLng().lng];
+
+      for (var i = 0; i < 20; i++) {
+        latlngTail.unshift([tmpPos[0], tmpPos[1]]);
+        marker.latDelta = getDelta(marker.latDelta);
+        marker.lngDelta = getDelta(marker.lngDelta);
+        tmpPos[0] += marker.latDelta;
+        tmpPos[1] += marker.lngDelta;
+      };
+
+      return latlngTail;
     }
 
     function updateHistory(marker) {

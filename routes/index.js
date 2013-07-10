@@ -7,13 +7,14 @@ var extend = require('extend');
 var indexModel = require('../public/data/index.json');
 var form = require('../public/data/form.json');
 var db = {};
+var forms = [];
 
 // extend forms
 var tmp = {};
 for (key in form) {
   tmp = extend(true, {}, form["base-form"]);
   if (key != "base-form") {
-    indexModel.sections.push(extendForm(tmp, form[key]));
+    forms.push(extendForm(tmp, form[key]));
   }
 };
 
@@ -55,6 +56,19 @@ exports.index = function(req, res){
       }
 
       if (model) {
+        // add forms to model
+        if (!model.includeForm) {
+          model.sections = model.sections.concat(forms);
+          model.includeForm = true;
+        }
+
+        // include file sections
+        for (var i = 0; i < model.sections.length; i++) {
+          var file = model.sections[i].file;
+          if (file) {
+            model.sections[i] = require('../public/data/' + file);
+          }
+        };
 
         if (!model.cookies) {
           model.cookies = indexModel.cookies;
@@ -65,7 +79,11 @@ exports.index = function(req, res){
         } else {
           // set cookie
           model.cookies.display = 'show';
-          res.cookie('views', '1', { maxAge: 90000000});
+          if (req.secure) {
+            res.cookie('views', '1', { maxAge: 90000000, secure: true});
+          } else {
+            res.cookie('views', '1', { maxAge: 90000000});
+          }
         }
 
         res.render('index', model);
