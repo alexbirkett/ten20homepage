@@ -3,27 +3,7 @@
 
     "sections": [
         {
-            "type": "nav-bar",
-            "logo": "logo.png",
-            "navLinks": [
-                {
-                    "text": "Supported hardware",
-                    "link": "/supported_hardware"
-                },
-                {
-                    "text": "Plans",
-                    "link": "/#plans"
-                },
-                {
-                    "text": "Partner program",
-                    "link": "/partner"
-                },
-                {
-                    "text": "Contact Us",
-                    "link": "#contact"
-                }
-            ]
-
+          "file": "nav.json"
         },
         {
             "type": "call-to-action",
@@ -46,29 +26,10 @@
             }
         },
         {
-            "type": "benefits",
-            "items": [
-                {
-                    "icon": "simple.png",
-                    "title": "Über geeks",
-                    "text": "Supply and support GPS tracking devices for your friends and neighbours"
-                },
-                {
-                    "icon": "secure.png",
-                    "title": "Security companies",
-                    "text": "Sell trackers provisioned for ten20. Keep earning even after you've made the sale."
-                },
-                {
-                    "icon": "universal.png",
-                    "title": "Hardware vendors",
-                    "text": "Give customers the option of a premium tracking solution owned and hosted in the west"
-                },
-                {
-                    "icon": "trusted.png",
-                    "title": "Mechanics",
-                    "text": "Provide extra value to your customers and earn additional income by installing GPS tracking devices in their vehicles"
-                }
-            ]
-
-        } ]
+          "file": "benefits.json"
+        },
+        {
+          "file": "about.json"
+        }
+    ]
 }
