@@ -134,6 +134,7 @@ header {
   height: 501px;
   width: 100%;
   background-color: #272727;
+  border-top: 1px solid #aaa;
 }
 
 .mapbox #map {
@@ -158,6 +159,10 @@ header {
   color: #eee;
   text-align: center;
   z-index: 100;
+}
+
+.mapbox .call-to-action h1 {
+  text-shadow: 1px 1px 2px white;
 }
 
 .mapbox .call-to-action h3 {
@@ -213,6 +218,7 @@ header {
 
 .benefits .items p {
   text-align: left;
+  font: 11px/15px 'arial regular';
 }
 
 .benefits .items img {
@@ -312,13 +318,82 @@ header {
   position: absolute;
   top: auto;
   left: 50%;
-  width: 53px;
-  margin-left:-26px;
+  width: 100px;
+  margin-left:-50px;
   bottom: -45px;
 }
 
+/* BEGIN: styles for fade in caption and slide images */
+.carousel .item img {
+  position: relative;
+  -webkit-transition: left .4s ease-in-out;
+  -moz-transition: left .4s ease-in-out;
+  -ms-transition: left .4s ease-in-out;
+  -o-transition: left .4s ease-in-out;
+  transition: left .4s ease-in-out;
+}
+
+.carousel .item h1,
+.carousel .item p {
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel .item.active h1,
+.carousel .item.active p {
+  opacity: 1;
+}
+
+.carousel .next,
+.carousel .prev,
+.carousel .active.left ,
+.carousel .active.right {
+  left: 0;
+}
+
+.carousel .active.left h1,
+.carousel .active.left p,
+.carousel .active.right p,
+.carousel .active.right h1 {
+  z-index: 1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.carousel .next h1,
+.carousel .next p,
+.carousel .prev h1,
+.carousel .prev p {
+  z-index: 2;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.carousel .item.next img,
+.carousel .active.right img {
+  left: 100%;
+}
+
+.carousel .prev img,
+.carousel .active.left img {
+  left: -100%;
+}
+
+/* END: styles for fade in caption and slide images */
+
 .carousel-view .carousel-indicators .active {
   background-color: #f60;
+}
+
+.carousel-view .carousel-indicators li {
+  width: 4px;
+  height: 4px;
+  margin-left: 20px;
+  border-radius: 5px;
+  background-color: #ddd;
 }
 
 .carousel-view .carousel-control {
@@ -333,22 +408,31 @@ header {
 }
 
 .pricing h4 {
-  padding: 50px;
+  padding-top: 50px;
+  padding-bottom: 10px;
 }
 
 .pricing .span4 {
   margin: 0;
-  border-right: 1px solid #333;
-  border-left: 1px solid #333;
+  padding-top: 40px;
+}
+
+.pricing .highlight {
+  position: relative;
+  border: 3px solid #f60;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.pricing .highlight > h3 {
+  text-transform: uppercase;
+  margin-top: -30px;
+  font-size: 16px;
 }
 
 .pricing .span4:first-child {
   margin-left: 2.5%;
-  border-left: none;
-}
-
-.pricing .span4:last-child {
-  border-right: none;
 }
 
 .pricing .head {
@@ -356,13 +440,14 @@ header {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  max-width: 200px;
-  height: 100px;
+  max-width: 300px;
+  width: 70%;
+  height: auto;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 10px;
 }
 
-.pricing .head.highlight {
+.pricing .highlight .head {
   background-color: #d60;
 }
 
@@ -371,13 +456,24 @@ header {
 }
 
 .pricing .head h3 a {
-  color: #f60;
+  color: #eee;
   font-size: 14px;
   text-decoration: none;
 }
 
+.pricing .span4:last-child .head h3 a {
+  color: #f60;
+}
+
 .pricing .head h5 {
-  font-size: 15px;
+  padding-bottom: 30px;
+}
+
+.pricing .head h5 .dollar {
+  font-size: 20px;
+  line-height: 40px;
+  vertical-align: top;
+  font-family: arial;
 }
 
 .pricing .head.highlight h3 a {
@@ -385,16 +481,35 @@ header {
   font-weight: bold;
 }
 
-.pricing .head h5 span{
-  font-style: italic;
+.pricing .head h5 .price {
   margin-left: 5px;
-  font-weight: light;
+  font-size: 60px;
+  line-height: 45px;
+  letter-spacing: 5px;
+}
+
+.pricing .head h5 .postfix {
+  font-size: 20px;
+  font-style: italic;
+}
+
+.pricing .span4 ul {
+  margin: 20px 0;
+}
+
+.pricing .span4 li {
+  margin: 2px auto;
+  padding: 10px 0 10px 20px;
+  width: 70%;
+  max-width: 300px;
+  background-color: #666;
 }
 
 .pricing .span4 p {
-  margin: 30px auto;
-  max-width: 200px;
   text-align: left;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
 }
 
 /* contact section styles */

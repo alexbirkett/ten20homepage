@@ -1,12 +1,19 @@
 mixin itemInfo(item)
-  h3
-    a(href=item.url)= item.name
-  - if (item.price.length == 1) {
-    h5= item.price[0]
-  - } else {
-    h5= item.price[0]
-      span= item.price[1]
-  - }
+  .head
+    h3
+      a(href=item.url)= item.name
+      h5
+        span.dollar $
+        if item.price == '0'
+          span.price= item.price
+        else
+          span.price= item.price
+          span.postfix /mo
+  ul
+    each feature in item.features
+      li
+        p= feature
+
 
 section.pricing(id=section.name)
   .container
@@ -14,13 +21,12 @@ section.pricing(id=section.name)
       h4= section.title
     .row-fluid
       each item in section.items
-        .span4
-          if (item.highlighted)
-            .head.highlight
-              mixin itemInfo(item)
-          else
-            .head
-              mixin itemInfo(item)
+        - if (item.highlighted) {
+          .span4.highlight
+            h3 most popular
+            mixin itemInfo(item)
+        - } else {
+          .span4
+            mixin itemInfo(item)
+        - }
 
-          each feature in item.features
-            p= feature
