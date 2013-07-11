@@ -161,6 +161,10 @@ header {
   z-index: 100;
 }
 
+.mapbox .call-to-action h1 {
+  text-shadow: 1px 1px 2px white;
+}
+
 .mapbox .call-to-action h3 {
   font-size: 18px;
   letter-spacing: 2px;
