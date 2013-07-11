@@ -122,9 +122,9 @@
 
             "items": [
                 {
-                    "name": "FREE",
+                    "name": "FIRST TRACKER",
                     "url": "#free-plan",
-                    "price": ["FREE"],
+                    "price": "0",
                     "highlighted": false,
                     "features": ["Track one tracking device or phone for free", "Real time location", "Trip history" ]
 
@@ -132,14 +132,14 @@
                 {
                     "name": "FAMILY",
                     "url": "#family-plan",
-                    "price": ["$20", "Month"],
+                    "price": "20",
                     "highlighted": true,
                     "features": ["Our most popular plan", "Real time location", "Trip history", "Virtual fence", "Up to five trackers and phones on the map simultaneously", "Login for each family member", "Warm feeling that you're supporting ten20"]
                 },
                 {
                     "name": "ENTERPRISE",
                     "url": "#enterprise-plan",
-                    "price": ["$50", "Month"],
+                    "price": "50",
                     "highlighted": false,
                     "features": ["Great for tracking you fleet", "Telephone support", "Real time location", "Trip history", "Virtual fence", "Unlimied number of trackers", "10 logins", "Warm feeling that you're supporting ten20"]
                 }
