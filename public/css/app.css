@@ -323,6 +323,67 @@ header {
   bottom: -45px;
 }
 
+/* BEGIN: styles for fade in caption and slide images */
+.carousel .item img {
+  position: relative;
+  -webkit-transition: left .4s ease-in-out;
+  -moz-transition: left .4s ease-in-out;
+  -ms-transition: left .4s ease-in-out;
+  -o-transition: left .4s ease-in-out;
+  transition: left .4s ease-in-out;
+}
+
+.carousel .item h1,
+.carousel .item p {
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel .item.active h1,
+.carousel .item.active p {
+  opacity: 1;
+}
+
+.carousel .next,
+.carousel .prev,
+.carousel .active.left ,
+.carousel .active.right {
+  left: 0;
+}
+
+.carousel .active.left h1,
+.carousel .active.left p,
+.carousel .active.right p,
+.carousel .active.right h1 {
+  z-index: 1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.carousel .next h1,
+.carousel .next p,
+.carousel .prev h1,
+.carousel .prev p {
+  z-index: 2;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.carousel .item.next img,
+.carousel .active.right img {
+  left: 100%;
+}
+
+.carousel .prev img,
+.carousel .active.left img {
+  left: -100%;
+}
+
+/* END: styles for fade in caption and slide images */
+
 .carousel-view .carousel-indicators .active {
   background-color: #f60;
 }
