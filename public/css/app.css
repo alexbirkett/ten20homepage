@@ -408,22 +408,31 @@ header {
 }
 
 .pricing h4 {
-  padding: 50px;
+  padding-top: 50px;
+  padding-bottom: 10px;
 }
 
 .pricing .span4 {
   margin: 0;
-  border-right: 1px solid #333;
-  border-left: 1px solid #333;
+  padding-top: 40px;
+}
+
+.pricing .highlight {
+  position: relative;
+  border: 3px solid #f60;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.pricing .highlight > h3 {
+  text-transform: uppercase;
+  margin-top: -30px;
+  font-size: 16px;
 }
 
 .pricing .span4:first-child {
   margin-left: 2.5%;
-  border-left: none;
-}
-
-.pricing .span4:last-child {
-  border-right: none;
 }
 
 .pricing .head {
@@ -431,13 +440,14 @@ header {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  max-width: 200px;
-  height: 100px;
+  max-width: 300px;
+  width: 70%;
+  height: auto;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 10px;
 }
 
-.pricing .head.highlight {
+.pricing .highlight .head {
   background-color: #d60;
 }
 
@@ -446,13 +456,24 @@ header {
 }
 
 .pricing .head h3 a {
-  color: #f60;
+  color: #eee;
   font-size: 14px;
   text-decoration: none;
 }
 
+.pricing .span4:last-child .head h3 a {
+  color: #f60;
+}
+
 .pricing .head h5 {
-  font-size: 15px;
+  padding-bottom: 30px;
+}
+
+.pricing .head h5 .dollar {
+  font-size: 20px;
+  line-height: 40px;
+  vertical-align: top;
+  font-family: arial;
 }
 
 .pricing .head.highlight h3 a {
@@ -460,16 +481,35 @@ header {
   font-weight: bold;
 }
 
-.pricing .head h5 span{
-  font-style: italic;
+.pricing .head h5 .price {
   margin-left: 5px;
-  font-weight: light;
+  font-size: 60px;
+  line-height: 45px;
+  letter-spacing: 5px;
+}
+
+.pricing .head h5 .postfix {
+  font-size: 20px;
+  font-style: italic;
+}
+
+.pricing .span4 ul {
+  margin: 20px 0;
+}
+
+.pricing .span4 li {
+  margin: 2px auto;
+  padding: 10px 0 10px 20px;
+  width: 70%;
+  max-width: 300px;
+  background-color: #666;
 }
 
 .pricing .span4 p {
-  margin: 30px auto;
-  max-width: 200px;
   text-align: left;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
 }
 
 /* contact section styles */
