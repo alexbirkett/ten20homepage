@@ -318,13 +318,21 @@ header {
   position: absolute;
   top: auto;
   left: 50%;
-  width: 53px;
-  margin-left:-26px;
+  width: 100px;
+  margin-left:-50px;
   bottom: -45px;
 }
 
 .carousel-view .carousel-indicators .active {
   background-color: #f60;
+}
+
+.carousel-view .carousel-indicators li {
+  width: 4px;
+  height: 4px;
+  margin-left: 20px;
+  border-radius: 5px;
+  background-color: #ddd;
 }
 
 .carousel-view .carousel-control {
