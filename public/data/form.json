@@ -4,7 +4,7 @@
     "logo": "logo.png",
     "name": "simple-form",
     "success-message": "We'll be in touch soon!",
-    "require-message": "Please fill in the required field!",
+    "require-message": "Please fill in the required fields!",
     "error-message": "Oops! Network connection failed, please try again later!",
     "items": [
     {
