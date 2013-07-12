@@ -218,6 +218,8 @@ header {
 
 .benefits .items p {
   text-align: left;
+  font: 11px/15px Arial;
+  font-weight: normal;
 }
 
 .benefits .items img {
