@@ -13,6 +13,7 @@ var express = require('express'),
     dbs = require('./app/db'),
     http = require('http'),
     https = require('https'),
+    connect = require('connect')
     options = require('./http-options'),
     RedisStore = require('connect-redis')(express);
 
@@ -36,6 +37,7 @@ app.configure(function(){
   if (options.https) {
       app.use(requireHTTPS);
   }
+  app.use(connect.compress());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
