@@ -1,14 +1,15 @@
 mixin itemInfo(item)
   .head
-    h3
-      a(href=item.url)= item.name
-      h5
-        span.dollar $
-        if item.price == '0'
-          span.price= item.price
-        else
-          span.price= item.price
-          span.postfix /mo
+    h3= item.name
+    h5
+      span.dollar $
+      if item.price == '0'
+        span.price= item.price
+      else
+        span.price= item.price
+        span.postfix /mo
+    a(href=item.url) sign up
+
   ul
     each feature in item.features
       li
