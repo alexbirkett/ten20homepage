@@ -207,7 +207,7 @@ header {
 }
 
 .leaflet-control-layers-base label.active {
-  border-bottom: 2px solid red;
+  border-bottom: 3px solid #f60;
 }
 
 .leaflet-control-layers label {
