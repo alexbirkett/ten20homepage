@@ -453,21 +453,32 @@ header {
 }
 
 .pricing .head h3 {
-  padding-top: 20px;
-}
-
-.pricing .head h3 a {
   color: #eee;
+  padding-top: 20px;
+  padding-bottom: 10px;
   font-size: 14px;
-  text-decoration: none;
 }
 
-.pricing .span4:last-child .head h3 a {
+.pricing .head > a {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 25px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #eee;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #f60;
+  font-size: 16px;
+}
+
+.pricing .span4:last-child .head h3 {
   color: #f60;
 }
 
 .pricing .head h5 {
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .pricing .head h5 .dollar {
@@ -477,7 +488,7 @@ header {
   font-family: arial;
 }
 
-.pricing .head.highlight h3 a {
+.pricing .head.highlight h3 {
   color: #272727;
   font-weight: bold;
 }
