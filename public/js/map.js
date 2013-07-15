@@ -70,6 +70,25 @@ window.ten20.MapRender = (function () {
       setInterval(function() {
         self.updateNextMarker();
       }, 2000);
+
+
+      // tweak map control styles
+      var layerLabel = $('.leaflet-control-layers-base label')
+
+
+      // bind click
+      layerLabel.on('click', function (e) {
+        $(this).parent().children().removeClass('active');
+        $(this).addClass('active');
+
+        if ($(this).is(':last-child')) {
+          $('.leaflet-control-layers-list').addClass('darker');
+        } else {
+          $('.leaflet-control-layers-list').removeClass('darker');
+        }
+      });
+
+      layerLabel.first().click();
     }
 
     MapRender.prototype._getRandomVisibleLatLng = function() {

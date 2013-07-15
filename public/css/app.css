@@ -102,7 +102,6 @@ header {
 
 .nav > li a.active {
   color: #f60;
-  font-style: bold;
 }
 
 .wrapper .alert {
@@ -144,6 +143,84 @@ header {
   width: inherit;
 }
 
+
+/* map controls */
+.leaflet-bar a:first-child {
+  -webkit-border-top-left-radius: 15px;
+  border-top-left-radius: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.leaflet-bar a:last-child {
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom: none;
+}
+
+.leaflet-bar a {
+  background-color: #333;
+  color: #CCC;
+  border-bottom: 1px solid #aaa;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+}
+
+.leaflet-bar a:hover {
+  background-color: #333;
+  color: #f60;
+}
+
+.leaflet-bar, .leaflet-touch .leaflet-bar {
+  border: none;
+}
+
+.leaflet-control-layers,
+.leaflet-control-layers-expanded {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.leaflet-control-layers-toggle {
+  display: none;
+}
+
+.leaflet-control-layers .leaflet-control-layers-list {
+  display: block;
+  color: #eee;
+}
+
+.leaflet-control-layers .leaflet-control-layers-list.darker {
+  color: #333;
+}
+
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+  position: static;
+}
+
+.leaflet-control-layers-base label .leaflet-control-layers-selector {
+  display: none;
+}
+
+.leaflet-control-layers-base label.active {
+  border-bottom: 2px solid red;
+}
+
+.leaflet-control-layers label {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.leaflet-control-layers {
+  box-shadow: none;
+  background: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
 
 /* hide legends and attribution */
 .mapbox #map .map-legends.leaflet-control,
@@ -675,7 +752,6 @@ header {
 .form input[type="text"]:focus {
   color: white;
   border: none;
-  border-color: none;
   box-shadow: none;
 }
 
