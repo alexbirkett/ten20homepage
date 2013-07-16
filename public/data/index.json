@@ -1,5 +1,6 @@
 {
     "pageTitle": "ten20 - Track the location of people and things",
+    "pageContent": "Ten20 provides tracking services for mobiles phones or gps trackers. We support features such as real time updates, trip history, set your own fence etc. Sign up is free, join now and start your own tracker.",
 
     "cookies": {
       "text": "Like most websites Ten20 uses cookies in order to deliver a personalised, responsive service and to improve the site. This is done using simple text files called cookies which sit on your computer. These cookies are completely safe and secure and will never contain any sensitive information."
@@ -123,7 +124,7 @@
             "items": [
                 {
                     "name": "FIRST TRACKER",
-                    "url": "#free-plan",
+                    "url": "/#free-plan",
                     "price": "0",
                     "highlighted": false,
                     "features": ["Track one tracking device or phone for free", "Real time location", "Trip history" ]
@@ -131,14 +132,14 @@
                 },
                 {
                     "name": "FAMILY",
-                    "url": "#family-plan",
+                    "url": "/#family-plan",
                     "price": "20",
                     "highlighted": true,
                     "features": ["Our most popular plan", "Real time location", "Trip history", "Virtual fence", "Up to five trackers and phones on the map simultaneously", "Login for each family member", "Warm feeling that you're supporting ten20"]
                 },
                 {
                     "name": "ENTERPRISE",
-                    "url": "#enterprise-plan",
+                    "url": "/#enterprise-plan",
                     "price": "50",
                     "highlighted": false,
                     "features": ["Great for fleet tracking", "Telephone support", "Real time location", "Trip history", "Virtual fence", "Unlimited number of trackers", "10 logins", "Warm feeling that you're supporting ten20"]

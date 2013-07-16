@@ -8,5 +8,5 @@ header.hidden-phone
         ul.nav
           each nav in section.navLinks
             li
-              a(href=nav.link, class="menu")= nav.text
+              a(href=nav.link, class="menu", scroll=nav.scroll)= nav.text
         .clear
