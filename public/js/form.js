@@ -45,7 +45,7 @@ window.ten20.ContactForm = (function() {
     }
 
     // bind nav links
-    $('a[href="#' + this.id + '"]').on('click', function() {
+    $('a[href="/#' + this.id + '"]').on('click', function() {
       self.$self.fadeIn();
       self.resizeInput();
     });
@@ -206,5 +206,19 @@ $(function(){
         }
       });
     }
+
+    // scroll effects
+    $('.nav li a').each(function() {
+      var id = $(this).attr('href').slice(1);
+      var scroll = $(this).attr('scroll');
+
+      if (scroll === 'true') {
+        var offset = $(id).offset().top;
+
+        $(this).on('click', function (e) {
+          $('body').animate({scrollTop: offset}, 800);
+        });
+      }
+    });
 
 });
