@@ -14,5 +14,5 @@ header.visible-phone
             ul.nav.menu
               each nav in section.navLinks
                 li
-                  a(href=nav.link, class="menu " + nav.status)= nav.text
+                  a(href=nav.link, class="menu ", scroll=nav.scroll)= nav.text
           .clear
