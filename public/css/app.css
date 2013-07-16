@@ -167,6 +167,7 @@ header {
   width: 36px;
   height: 36px;
   line-height: 36px;
+  text-indent: 2px;
 }
 
 .leaflet-bar a:hover {
