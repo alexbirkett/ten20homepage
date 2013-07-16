@@ -711,6 +711,10 @@ header {
   margin-bottom: 50px;
 }
 
+.about .head h4 {
+  padding-bottom: 20px;
+}
+
 .about ul {
   margin: 0;
   padding: 0;
