@@ -44,6 +44,7 @@ window.ten20.MapRender = (function () {
     MapRender.prototype.init = function () {
       // create map
       var self = this;
+      var tileLayers = {};
 
       L.mapbox.config.HTTPS_URLS = [
            'https://dnv9my2eseobd.cloudfront.net/v3/'
@@ -52,14 +53,12 @@ window.ten20.MapRender = (function () {
 
       this.map = L.mapbox.map(this.mapDiv, this.tile, { zoomControl: this.zoomControl});
 
-
       if(this.layers) {
-         var layers = {};
          for (var i = 0; i < this.layers.length; i++) {
              var layer = this.layers[i];
-             layers[layer.label] = L.mapbox.tileLayer(layer.tileLayer);
+             tileLayers[layer.label] = L.mapbox.tileLayer(layer.tileLayer);
          }
-         L.control.layers(layers).addTo(this.map);
+         L.control.layers(tileLayers).addTo(this.map);
       }
 
       this.map.setView([this.lat, this.lng], this.zoomLevel);
@@ -67,17 +66,17 @@ window.ten20.MapRender = (function () {
       this.setupVirtualFence();
       this.addMarkers();
 
+
       setInterval(function() {
         self.updateNextMarker();
       }, 2000);
 
-
       // tweak map control styles
-      var layerLabel = $('.leaflet-control-layers-base label')
-
+      var layerLabel = $('.leaflet-control-layers-base label');
 
       // bind click
       layerLabel.on('click', function (e) {
+
         $(this).parent().children().removeClass('active');
         $(this).addClass('active');
 
