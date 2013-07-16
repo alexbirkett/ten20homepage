@@ -179,11 +179,12 @@ header {
   border: none;
 }
 
-.leaflet-control-layers,
+.leaflet-control-container .leaflet-control-layers,
 .leaflet-control-layers-expanded {
   padding: 0;
   border: none;
   background: none;
+  box-shadow: none;
 }
 
 .leaflet-control-layers-toggle {
@@ -193,6 +194,7 @@ header {
 .leaflet-control-layers .leaflet-control-layers-list {
   display: block;
   color: #eee;
+  border: none;
 }
 
 .leaflet-control-layers .leaflet-control-layers-list.darker {
