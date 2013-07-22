@@ -8,13 +8,13 @@ require('nodetime').profile({
 });
 
 var express = require('express'),
-    routes = require('./routes'),
-    api = require('./routes/api'),
-    dbs = require('./app/db'),
     http = require('http'),
     https = require('https'),
     connect = require('connect')
-    options = require('./http-options'),
+    routes = require('./app/routes'),
+    api = require('./app/routes/api'),
+    dbs = require('./app/db'),
+    options = require('./app/http-options'),
     RedisStore = require('connect-redis')(express);
 
 
@@ -32,7 +32,7 @@ function requireHTTPS(req, res, next) {
 }
 
 app.configure(function(){
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/app/views');
   app.set('view engine', 'jade');
   if (options.https) {
       app.use(requireHTTPS);
@@ -60,13 +60,8 @@ app.configure('production', function(){
 });
 
 // Routes
-
 app.get(/\/\w?/, routes.index);
-app.get('/partials/:name', routes.partials);
 app.post('/contact', routes.form);
-
-// JSON API
-app.get('/api/name', api.name);
 
 dbs(function(db) {
     routes.setDb(db);
