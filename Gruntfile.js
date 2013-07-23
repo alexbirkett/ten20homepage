@@ -57,6 +57,7 @@ module.exports = function (grunt) {
       },
     },
 
+    clean: ["public/build"],
     // start node app
     express: {
         dev: {
@@ -102,12 +103,14 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', [
+      'clean',
       'concat',
       'uglify',
       'cssmin'
       ]);
 
   grunt.registerTask('product', [
+      'clean',
       'concat',
       'uglify',
       'cssmin',
@@ -121,9 +124,6 @@ module.exports = function (grunt) {
       ]);
 
   grunt.registerTask('test', [
-      'concat',
-      'uglify',
-      'cssmin',
       'express:test'
       ]);
 };
