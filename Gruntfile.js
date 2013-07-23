@@ -41,7 +41,7 @@ module.exports = function (grunt) {
         expand: true,
         src: ['*.css', '!*.min.css'],
         dest: 'public/build',
-        cwd: '<%= pkg.src.css %>/src',
+        cwd: '<%= pkg.src.css %>',
         ext: '.min.css'
       }
     },
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
         separator: ';',
       },
       dist: {
-        src: ['<%= pkg.src.script %>/src/*.js'],
+        src: ['<%= pkg.src.script %>/*.js'],
         dest: 'public/build/.temp/homepage.js'
       },
     },
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
         },
         prod: {
           options: {
-            args: ['-p 80', '-s 443'],
+            args: ['-O'/*'-p 80', '-s 443'*/],
             script: 'app.js',
             node_env: 'production'
           }
