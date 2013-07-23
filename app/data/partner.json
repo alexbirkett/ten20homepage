@@ -3,14 +3,14 @@
 
     "sections": [
         {
-          "file": "nav.json"
+          "file": "partner-nav.json"
         },
         {
             "type": "call-to-action",
             "text": ["Get 30% commission for referring customers", "You get paid when we get paid", "Receive monthly payment"],
             "button": {
                 "text": "ENROLL NOW",
-                "link": "#contact"
+                "link": "#contact-us"
             },
             "banner": "banner.png",
             "map": {
