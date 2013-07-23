@@ -7,7 +7,8 @@
     "components"
   ],
   "dependencies": {
-    "jquery": "~2.0.2",
-    "modernizr": "~2.6.1"
+    "jquery": "http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js",
+    "bootstrap": "http://twitter.github.com/bootstrap/assets/bootstrap.zip",
+    "html5": "http://html5shiv.googlecode.com/svn/trunk/html5.js"
   }
 }
