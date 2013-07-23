@@ -69,7 +69,7 @@ module.exports = function (grunt) {
         },
         prod: {
           options: {
-            args: ['-O'/*'-p 80', '-s 443'*/],
+            args: [/*'-O'*/'-p 80', '-s 443'],
             script: 'app.js',
             node_env: 'production'
           }

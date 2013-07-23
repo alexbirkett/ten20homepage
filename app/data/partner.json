@@ -3,7 +3,7 @@
 
     "sections": [
         {
-          "file": "nav.json"
+          "file": "partner-nav.json"
         },
         {
             "type": "call-to-action",

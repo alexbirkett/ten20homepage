@@ -45,7 +45,7 @@ window.ten20.ContactForm = (function() {
     }
 
     // bind nav links
-    $('a[href="/#' + this.id + '"]').on('click', function() {
+    $('a[href="#' + this.id + '"]').on('click', function() {
       self.$self.fadeIn();
       self.resizeInput();
     });
@@ -209,7 +209,7 @@ $(function(){
 
     // scroll effects
     $('.nav li a').each(function() {
-      var id = $(this).attr('href').slice(1);
+      var id = $(this).attr('href');
       var scroll = $(this).attr('scroll');
 
       if (scroll === 'true') {
