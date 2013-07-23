@@ -9,6 +9,7 @@
   "dependencies": {
     "jquery": "http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js",
     "bootstrap": "http://twitter.github.com/bootstrap/assets/bootstrap.zip",
-    "html5": "http://html5shiv.googlecode.com/svn/trunk/html5.js"
+    "html5": "http://html5shiv.googlecode.com/svn/trunk/html5.js",
+    "angular": "git@github.com:angular/bower-angular.git"
   }
 }
