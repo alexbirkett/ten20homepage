@@ -14,10 +14,9 @@ module.exports = function (grunt) {
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  // configurable paths
-
   grunt.initConfig({
 
+    // configurable paths
     pkg: grunt.file.readJSON('package.json'),
 
     // compress js files
@@ -40,30 +39,77 @@ module.exports = function (grunt) {
     cssmin: {
       minify: {
         expand: true,
-        cwd: 'release/css/',
         src: ['*.css', '!*.min.css'],
-        dest: 'release/css/',
+        dest: '<%= pkg.src.css %>',
+        cwd: '<%= pkg.src.css %>/src',
         ext: '.min.css'
-      },
-      combine: {
-        files: {
-          'path/to/output.css': ['path/to/input_one.css', 'path/to/input_two.css']
+      }
+    },
+
+    // start node app
+    express: {
+        dev: {
+          options: {
+            args: ['-O'],
+            script: 'app.js',
+            node_env: 'development'
+          }
+        },
+        prod: {
+          options: {
+            args: ['-p 80', '-s 443'],
+            script: 'app.js',
+            node_env: 'production'
+          }
+        },
+        test: {
+          options: {
+            script: 'test/server.js'
+          }
+        }
+    },
+
+   // watch node process
+    watch: {
+      dev: {
+        files:  [ 'app/data/*.json', 'app/*/*.js' ],
+        tasks:  [ 'express:dev' ],
+        options: {
+          nospawn: true //Without this option specified express won't be reloaded
         }
       },
-      add_banner: {
+      prod: {
+        files:  [ 'app/data/*.json', 'app/*/*.js' ],
+        tasks:  [ 'express:prod' ],
         options: {
-          banner: '/* My minified css file */'
-        },
-        files: {
-          'path/to/output.css': ['path/to/**/*.css']
+          nospawn: true //Without this option specified express won't be reloaded
         }
       }
-    }
+    },
+
 
   });
 
   grunt.registerTask('default', [
-      'uglify'
+      'uglify',
+      'cssmin'
       ]);
 
+  grunt.registerTask('product', [
+      'uglify',
+      'cssmin',
+      'express:prod',
+      'watch:prod'
+      ]);
+
+  grunt.registerTask('develop', [
+      'express:dev',
+      'watch:dev'
+      ]);
+
+  grunt.registerTask('test', [
+      'uglify',
+      'cssmin',
+      'express:test'
+      ]);
 };
