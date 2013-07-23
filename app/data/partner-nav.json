@@ -8,6 +8,11 @@
       "scroll": "false"
     },
     {
+      "text": "Contact Us",
+      "link": "#contact-us",
+      "scroll": "false"
+    },
+    {
       "text": "About Us",
       "link": "#about-us",
       "scroll": "true"
