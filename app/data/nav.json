@@ -4,12 +4,12 @@
   "navLinks": [
     {
       "text": "Supported hardware",
-      "link": "/#supported",
+      "link": "#supported",
       "scroll": "true"
     },
     {
       "text": "Plans",
-      "link": "/#plans",
+      "link": "#plans",
       "scroll": "true"
     },
     {
@@ -19,12 +19,12 @@
     },
     {
       "text": "Contact Us",
-      "link": "/#contact-us",
+      "link": "#contact-us",
       "scroll": "false"
     },
     {
       "text": "About Us",
-      "link": "/#about-us",
+      "link": "#about-us",
       "scroll": "true"
     }
   ]
