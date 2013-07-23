@@ -80,10 +80,11 @@ exports.index = function(req, res){
         } else {
           // set cookie
           model.cookies.display = 'show';
+          // IE8 doesn't support max-age, so have to fallback to expires, though a bit older 
           if (req.secure) {
-            res.cookie('views', '1', { maxAge: 90000000, secure: true});
+            res.cookie('views', '1', { expires: new Date(2030, 1, 1), secure: true});
           } else {
-            res.cookie('views', '1', { maxAge: 90000000});
+            res.cookie('views', '1', { expires: new Date(2030, 1, 1)});
           }
         }
 
