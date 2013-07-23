@@ -27,9 +27,9 @@ module.exports = function (grunt) {
       build: {
         files: [{
           expand: true,
-          src: ['*.js', '!*.min.js'],
-          dest: '<%= pkg.src.script %>',
-          cwd: '<%= pkg.src.script %>/src',
+          src: ['homepage.js'],
+          dest: 'public/build/',
+          cwd: 'public/build/.temp',
           ext: '.min.js'
         }]
       }
@@ -40,10 +40,21 @@ module.exports = function (grunt) {
       minify: {
         expand: true,
         src: ['*.css', '!*.min.css'],
-        dest: '<%= pkg.src.css %>',
+        dest: 'public/build',
         cwd: '<%= pkg.src.css %>/src',
         ext: '.min.css'
       }
+    },
+
+    // concat js files
+    concat: {
+      options: {
+        separator: ';',
+      },
+      dist: {
+        src: ['<%= pkg.src.script %>/src/*.js'],
+        dest: 'public/build/.temp/homepage.js'
+      },
     },
 
     // start node app
@@ -91,11 +102,13 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', [
+      'concat',
       'uglify',
       'cssmin'
       ]);
 
   grunt.registerTask('product', [
+      'concat',
       'uglify',
       'cssmin',
       'express:prod',
@@ -108,6 +121,7 @@ module.exports = function (grunt) {
       ]);
 
   grunt.registerTask('test', [
+      'concat',
       'uglify',
       'cssmin',
       'express:test'
