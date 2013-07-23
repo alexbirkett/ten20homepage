@@ -8,6 +8,7 @@ var indexModel = require('../data/index.json');
 var form = require('../data/form.json');
 var db = {};
 var forms = [];
+var NODE_ENV =  process.env.NODE_ENV;
 
 // extend forms
 var tmp = {};
@@ -86,6 +87,8 @@ exports.index = function(req, res){
           }
         }
 
+        // set environment variable
+        model.node_env = NODE_ENV;
         res.render('index', model);
       } else {
           res.render('404', {pageTitle: 'Page Not Found'});
