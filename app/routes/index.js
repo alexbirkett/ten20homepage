@@ -8,6 +8,7 @@ var indexModel = require('../data/index.json');
 var form = require('../data/form.json');
 var db = {};
 var forms = [];
+var NODE_ENV =  process.env.NODE_ENV;
 
 // extend forms
 var tmp = {};
@@ -79,13 +80,16 @@ exports.index = function(req, res){
         } else {
           // set cookie
           model.cookies.display = 'show';
+          // IE8 doesn't support max-age, so have to fallback to expires, though a bit older 
           if (req.secure) {
-            res.cookie('views', '1', { maxAge: 90000000, secure: true});
+            res.cookie('views', '1', { expires: new Date(2030, 1, 1), secure: true});
           } else {
-            res.cookie('views', '1', { maxAge: 90000000});
+            res.cookie('views', '1', { expires: new Date(2030, 1, 1)});
           }
         }
 
+        // set environment variable
+        model.node_env = NODE_ENV;
         res.render('index', model);
       } else {
           res.render('404', {pageTitle: 'Page Not Found'});

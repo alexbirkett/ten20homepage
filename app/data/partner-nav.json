@@ -3,16 +3,6 @@
   "logo": "logo.png",
   "navLinks": [
     {
-      "text": "Supported hardware",
-      "link": "#supported",
-      "scroll": "true"
-    },
-    {
-      "text": "Plans",
-      "link": "#plans",
-      "scroll": "true"
-    },
-    {
       "text": "Partner program",
       "link": "/partner",
       "scroll": "false"
