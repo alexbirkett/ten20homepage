@@ -110,10 +110,7 @@ module.exports = function (grunt) {
       ]);
 
   grunt.registerTask('product', [
-      'clean',
-      'concat',
-      'uglify',
-      'cssmin',
+      'default',
       'express:prod',
       'watch:prod'
       ]);
@@ -123,6 +120,7 @@ module.exports = function (grunt) {
       'watch:dev'
       ]);
 
+  //TODO
   grunt.registerTask('test', [
       'express:test'
       ]);
