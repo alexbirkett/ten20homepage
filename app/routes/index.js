@@ -92,7 +92,7 @@ exports.index = function(req, res){
         model.node_env = NODE_ENV;
         res.render('index', model);
       } else {
-          res.render('404', {pageTitle: 'Page Not Found'});
+          res.render('404', {pageTitle: 'Page Not Found', node_env: NODE_ENV});
       }
 };
 
