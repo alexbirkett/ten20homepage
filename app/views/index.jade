@@ -1,26 +1,21 @@
-doctype 5
-html
-  include partials/head
-  body
-    .wrapper
-      each section in sections
-        if section.type == 'nav-bar'
-          include partials/nav-bar
-          include partials/nav-bar-mobile
-        if section.type == 'call-to-action'
-          include partials/call-to-action
-        if section.type == 'benefits'
-          include partials/benefits
-        if section.type == 'list'
-          include partials/list
-        if section.type == 'carousel'
-          include partials/carousel
-        if section.type == 'pricing'
-          include partials/pricing
-        if section.type == 'form'
-          include partials/form
-        if section.type == 'about-us'
-          include partials/about
-      .push
-    footer
-      p Copyright (c) 2013 Birkett Enterprise Ltd
+extends layout
+
+block content
+  each section in sections
+    if section.type == 'nav-bar'
+      include partials/nav-bar
+      include partials/nav-bar-mobile
+    if section.type == 'call-to-action'
+      include partials/call-to-action
+    if section.type == 'benefits'
+      include partials/benefits
+    if section.type == 'list'
+      include partials/list
+    if section.type == 'carousel'
+      include partials/carousel
+    if section.type == 'pricing'
+      include partials/pricing
+    if section.type == 'form'
+      include partials/form
+    if section.type == 'about-us'
+      include partials/about

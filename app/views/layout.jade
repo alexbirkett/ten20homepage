@@ -1,12 +1,9 @@
 doctype 5
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width')
-    title= title
-    block css
-      link(rel='stylesheet', href='/css/style.css')
-    block js
-      script(src='http://localhost:35729/livereload.js')
+html
+  include partials/head
   body
-    block content
+    .wrapper
+      block content
+      .push
+    footer
+      p Copyright (c) 2013 Birkett Enterprise Ltd
