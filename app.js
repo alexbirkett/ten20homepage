@@ -60,6 +60,9 @@ app.configure('production', function(){
 });
 
 // Routes
+app.get('/admin/login', routes.admin.login);
+app.post('/admin/login', routes.admin.signin);
+app.get('/admin', routes.admin.console);
 app.get(/\/\w?/, routes.index);
 app.post('/contact', routes.form);
 

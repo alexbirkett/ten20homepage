@@ -190,6 +190,26 @@ window.ten20.ContactForm = (function() {
 })();
 
 
+window.ten20.login = function () {
+  $('form .btn').on('click', function(e) {
+    e.preventDefault();
+    var name = $('form #username').val();
+    var password = $('form #password').val();
+    $.post('/admin/login', {username: name, password: password}, function(res) {
+      if (res.status) {
+        document.location.href = '/admin';
+      } else {
+        $('form .alerter').show();
+        $('form #username').val('');
+        $('form #password').val('');
+
+        setTimeout(function () {
+          $('form .alerter').fadeOut(2000);
+        }, 1000);
+      }
+    });
+  });
+}
 
 // carousel start function
 $(function(){

@@ -840,6 +840,30 @@ header {
     left: 5px;
 }
 
+/* login page styles */
+.login-form {
+  width: 80%;
+  padding: 5px;
+  max-width: 450px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.login-form a.controls {
+  color: #eee;
+  font-size: 16px;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.login-form .alerter{
+  display: none;
+  color: red;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 0;
+}
+
 /* footer styles */
 footer {
   width: 100%;
@@ -858,7 +882,7 @@ footer p {
 
 /************************* 404 page styles *********************************/
 .page-not-found {
-  margin: 100px auto;
+  margin: 100px auto 10px;
   text-align: center;
   font-size: 30px;
   letter-spacing: 3px;

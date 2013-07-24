@@ -6,6 +6,7 @@
 var extend = require('extend');
 var indexModel = require('../data/index.json');
 var form = require('../data/form.json');
+var config = require('../config.js');
 var db = {};
 var forms = [];
 var NODE_ENV =  process.env.NODE_ENV;
@@ -98,9 +99,46 @@ exports.index = function(req, res){
 
 exports.form = function(req, res){
     var  data = req.param('data');
+
     db.contact.insert(data, function(error, docs) {
       console.log(docs[0]['first-name'] + ' inserted.');
       res.json({error: !!error});
     });
 }
 
+exports.admin =  {
+
+  login: function (req, res) {
+    res.render('login', {pageTitle: 'Login | ten20live'});
+  },
+
+  signin: function(req, res) {
+    var username = req.param('username');
+    var password = req.param('password');
+
+    if (username === config.username &&
+        password === config.password) {
+      res.cookie('authorized', '1', { maxAge: 14*24*60*60*1000, signed: true });
+      res.json({status: true});
+    } else {
+      res.json({status: false});
+    }
+  },
+
+  console: function(req, res) {
+
+    if (req.signedCookies.authorized) {
+
+      db.contact.find(function(error, users) {
+        if (error) {
+          console.error(error.message);
+          res.redirect('404');
+        } else {
+          res.render('console', { users: users, pageTitle: 'Admin | ten20live'});
+        }
+      });
+    } else {
+      res.redirect('/admin/login');
+    }
+  },
+}
