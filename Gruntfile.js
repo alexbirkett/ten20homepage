@@ -99,6 +99,30 @@ module.exports = function (grunt) {
       }
     },
 
+    preprocess : {
+      dev: {
+        files: {
+          'app/views/partials/head.jade':'app/views/partials/src/head.jade',
+          'app/views/partials/head-admin.jade':'app/views/partials/src/head-admin.jade'
+        },
+        options: {
+          context : {
+            production: false
+          }
+        }
+      },
+      prod: {
+        files: {
+          'app/views/partials/head.jade':'app/views/partials/src/head.jade',
+          'app/views/partials/head-admin.jade':'app/views/partials/src/head-admin.jade'
+        },
+        options: {
+          context : {
+            production: true
+          }
+        }
+      }
+    }
 
   });
 
@@ -106,7 +130,8 @@ module.exports = function (grunt) {
       'clean',
       'concat',
       'uglify',
-      'cssmin'
+      'cssmin',
+      'preprocess:prod'
       ]);
 
   grunt.registerTask('product', [
@@ -116,6 +141,7 @@ module.exports = function (grunt) {
       ]);
 
   grunt.registerTask('develop', [
+      'preprocess:dev',
       'express:dev',
       'watch:dev'
       ]);

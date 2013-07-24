@@ -37,7 +37,8 @@
     "grunt-concurrent": "~0.1.0",
     "matchdep": "~0.1.1",
     "connect-livereload": "~0.2.0",
-    "grunt-express-server": "~0.4.1"
+    "grunt-express-server": "~0.4.1",
+    "grunt-preprocess": "~2.3.0"
   },
   "engines": {
     "node": ">=0.8.0"

@@ -861,7 +861,7 @@ header {
   color: red;
   font-size: 14px;
   text-align: left;
-  margin-bottom: 0;
+  margin-bottom: -10px;
 }
 
 /* footer styles */
