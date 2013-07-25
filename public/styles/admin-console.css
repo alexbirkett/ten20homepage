@@ -1,0 +1,27 @@
+.ngViewport {
+  height: auto !important;
+}
+
+.ngRow.even {
+  background-color: #666;
+}
+
+.ngRow.odd {
+  background-color: #999;
+}
+
+.ngTopPanel {
+  background-color: #333;
+}
+
+.ngFooterPanel {
+  background-color: #333;
+  border-top: 1px solid #d4d4d4;
+}
+
+.grid-header {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 14px;
+  margin-bottom: 40px;
+}

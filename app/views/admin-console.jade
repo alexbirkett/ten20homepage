@@ -1,0 +1,10 @@
+extends layout-admin
+
+block content
+  script(src='/components/angular/angular.min.js')
+  script(src='/components/ng-grid/ng-grid-2.0.7.min.js')
+  script(src="/scripts/console/app.js")
+
+  h1.grid-header contact user information
+  div.grid(ng-controller="ContactUserCtrl")
+     div.gridStyle(ng-grid="gridOptions")

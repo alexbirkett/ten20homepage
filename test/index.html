@@ -14,10 +14,27 @@
     <script>var expect = chai.expect</script>
 
     <!-- include source files here... -->
+    <!-- angular itself -->
+    <script src="/public/components/jquery/index.js"></script>
+    <script src="/public/components/angular/angular.js"></script>
+    <script src="/public/components/ng-grid/ng-grid-2.0.7.debug.js"></script>
+    
+    <!-- angular's testing helpers -->
+    <script src="lib/angular-mocks.js"></script>
 
+    <!-- your angular app code -->
+    <script src="/public/scripts/console/app.js"></script>
+    
     <!-- include spec files here... -->
     <script src="spec/test.js"></script>
 
-    <script>mocha.run()</script>
+
+    <script>
+      if (window.mochaPhantomJS) { 
+        mochaPhantomJS.run();
+      } else {
+        mocha.run();
+      }
+     </script>
 </body>
 </html>
