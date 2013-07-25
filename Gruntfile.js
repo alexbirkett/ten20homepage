@@ -122,9 +122,28 @@ module.exports = function (grunt) {
           }
         }
       }
+    },
+
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          base: '.',
+        }
+      }
+    },
+
+
+    mocha_phantomjs: {
+      all: {
+        options: {
+          urls: [ 'http://localhost:8000/test/index.html' ]
+        }
+      }
     }
 
   });
+
 
   grunt.registerTask('default', [
       'clean',
@@ -146,8 +165,8 @@ module.exports = function (grunt) {
       'watch:dev'
       ]);
 
-  //TODO
   grunt.registerTask('test', [
-      'express:test'
+      'connect:server',
+      'mocha_phantomjs'
       ]);
 };
