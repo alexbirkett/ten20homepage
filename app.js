@@ -59,10 +59,13 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Routes
+// admin console
 app.get('/admin/login', routes.admin.login);
 app.post('/admin/login', routes.admin.signin);
+app.get('/admin/data', routes.admin.data);
 app.get('/admin', routes.admin.console);
+
+// home page
 app.get(/\/\w?/, routes.index);
 app.post('/contact', routes.form);
 
