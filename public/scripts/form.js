@@ -196,9 +196,7 @@ window.ten20.login = function () {
     var name = $('form #username').val();
     var password = $('form #password').val();
     $.post('/admin/login', {username: name, password: password}, function(res) {
-      if (res.status) {
-        document.location.href = '/admin';
-      } else {
+      if (!res.status) {
         $('form .alerter').show();
         $('form #username').val('');
         $('form #password').val('');
