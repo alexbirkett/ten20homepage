@@ -7,6 +7,7 @@ var extend = require('extend');
 var indexModel = require('../data/index.json');
 var form = require('../data/form.json');
 var config = require('../config.js');
+var testData = require('../../test/contact-user.json');
 var db = {};
 var forms = [];
 
@@ -99,7 +100,7 @@ exports.form = function(req, res){
     var  data = req.param('data');
 
     db.contact.insert(data, function(error, docs) {
-      console.log(docs[0]['first-name'] + ' inserted.');
+      console.log(docs[0]);
       res.json({error: !!error});
     });
 }
@@ -126,17 +127,20 @@ exports.admin =  {
   console: function(req, res) {
 
     if (req.signedCookies.authorized) {
-
-      db.contact.find(function(error, users) {
-        if (error) {
-          console.error(error.message);
-          res.redirect('404');
-        } else {
-          res.render('console', { users: users, pageTitle: 'Admin | ten20live'});
-        }
-      });
+      res.render('admin-console', { pageTitle: 'Admin | ten20live' });
     } else {
       res.redirect('/admin/login');
     }
   },
+
+  data: function(req, res) {
+    db.contact.find().toArray(function(error, users) {
+      if (error || users.length === 0) {
+        res.json(testData);
+      } else {
+        res.json(users);
+      }
+    });
+
+  }
 }
