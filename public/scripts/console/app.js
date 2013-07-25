@@ -22,7 +22,6 @@ app.controller('ContactUserCtrl', function($scope, $http) {
     var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
     $scope.userData = pagedData;
     $scope.totalServerItems = data.length;
-    console.log(pagedData);
     if (!$scope.$$phase) {
       $scope.$apply();
     }
