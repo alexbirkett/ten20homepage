@@ -99,14 +99,58 @@ module.exports = function (grunt) {
       }
     },
 
+    preprocess : {
+      dev: {
+        files: {
+          'app/views/partials/head.jade':'app/views/partials/src/head.jade',
+          'app/views/partials/head-admin.jade':'app/views/partials/src/head-admin.jade'
+        },
+        options: {
+          context : {
+            production: false
+          }
+        }
+      },
+      prod: {
+        files: {
+          'app/views/partials/head.jade':'app/views/partials/src/head.jade',
+          'app/views/partials/head-admin.jade':'app/views/partials/src/head-admin.jade'
+        },
+        options: {
+          context : {
+            production: true
+          }
+        }
+      }
+    },
+
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          base: '.',
+        }
+      }
+    },
+
+
+    mocha_phantomjs: {
+      all: {
+        options: {
+          urls: [ 'http://localhost:8000/test/index.html' ]
+        }
+      }
+    }
 
   });
+
 
   grunt.registerTask('default', [
       'clean',
       'concat',
       'uglify',
-      'cssmin'
+      'cssmin',
+      'preprocess:prod'
       ]);
 
   grunt.registerTask('product', [
@@ -116,12 +160,13 @@ module.exports = function (grunt) {
       ]);
 
   grunt.registerTask('develop', [
+      'preprocess:dev',
       'express:dev',
       'watch:dev'
       ]);
 
-  //TODO
   grunt.registerTask('test', [
-      'express:test'
+      'connect:server',
+      'mocha_phantomjs'
       ]);
 };

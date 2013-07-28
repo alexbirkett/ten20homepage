@@ -9,13 +9,13 @@
     "items": [
     {
       "type": "text",
-      "name": "first-name",
+      "name": "first_name",
       "label": "First name",
       "optional": false
     },
     {
       "type": "text",
-      "name": "last-name",
+      "name": "last_name",
       "label": "Last name",
       "optional": false
     },
@@ -40,25 +40,25 @@
     },
     {
       "type": "text",
-      "name": "company-name",
+      "name": "company_name",
       "label": "Company Name",
       "optional": true
     },
     {
       "type": "text",
-      "name": "company-website-url",
+      "name": "company_website_url",
       "label": "Your website",
       "optional": true
     },
     {
       "type": "checkbox",
-      "name": "call-me",
+      "name": "call_me",
       "label": "Please call me about ten20",
       "optional": true
     },
     {
       "type": "checkbox",
-      "name": "news-letter",
+      "name": "news_letter",
       "label": "Subscribe to partner newsletter",
       "optional": true
     }
