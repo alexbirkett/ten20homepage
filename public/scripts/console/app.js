@@ -1,26 +1,86 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
+var app = angular.module('adminConsole', ['ngGrid']);
 
-angular.module('myApp', [
-  'myApp.controllers',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives'
-]).
-config(function ($routeProvider, $locationProvider) {
-  $routeProvider.
-    when('/view1', {
-      templateUrl: 'partials/partial1',
-      controller: 'MyCtrl1'
-    }).
-    when('/view2', {
-      templateUrl: 'partials/partial2',
-      controller: 'MyCtrl2'
-    }).
-    otherwise({
-      redirectTo: '/view1'
-    });
+app.controller('ContactUserCtrl', function($scope, $http) {
 
-  $locationProvider.html5Mode(true);
+  $scope.filterOptions = {
+    filterText: "",
+    useExternalFilter: true
+  }; 
+
+  $scope.totalServerItems = 0;
+
+  $scope.pagingOptions = {
+    pageSizes: [10, 20, 50],
+    pageSize: 10,
+    currentPage: 1
+  };	
+
+  $scope.setPagingData = function(data, page, pageSize){	
+
+    var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+    $scope.userData = pagedData;
+    $scope.totalServerItems = data.length;
+    if (!$scope.$$phase) {
+      $scope.$apply();
+    }
+  };
+
+  $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+    setTimeout(function () {
+      var data;
+
+      if (searchText) {
+        var ft = searchText.toLowerCase();
+        $http.get('/admin/data').success(function (rsp) {		
+          data = rsp.filter(function(item) {
+            return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+          });
+          $scope.setPagingData(data, page, pageSize);
+        });            
+
+      } else {
+        $http.get('/admin/data').success(function (rsp) {
+          $scope.setPagingData(rsp, page, pageSize);
+        });
+      }
+
+    }, 100);
+  };
+
+  $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+
+  $scope.$watch('pagingOptions', function (newVal, oldVal) {
+    if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+      $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+    }
+  }, true);
+
+  $scope.$watch('filterOptions', function (newVal, oldVal) {
+    if (newVal !== oldVal) {
+      $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+    }
+  }, true);
+
+  $scope.gridOptions = {
+    data: 'userData',
+    enablePaging: true,
+    showFooter: true,
+    multiSelect: false,
+    totalServerItems: 'totalServerItems',
+    pagingOptions: $scope.pagingOptions,
+    filterOptions: $scope.filterOptions,
+    columnDefs: [
+      { field: 'first_name + last_name', displayName: 'Name' },
+      { field: 'formType', displayName: 'Form' },
+      { field: 'email', displayName: 'Email' },
+      { field: 'phone', displayName: 'Phone' },
+      { field: 'call_me', displayName: 'CallBack' },
+      { field: 'news_letter', displayName: 'NewsLetter' },
+      { field: 'company_name', displayName: 'Company' },
+      { field: 'company_website_url', displayName: 'URL'}
+    ]
+  };
+
 });

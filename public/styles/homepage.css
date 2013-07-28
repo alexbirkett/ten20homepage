@@ -11,6 +11,10 @@ src:url("/styles/fonts/12d643f2-3899-49d5-a85b-ff430f5fad15.eot?#iefix") format(
 }
 
 /* general styles */
+html {
+  height: 100%;
+}
+
 body {
   color: #eee;
   background-color: #272727;
@@ -18,6 +22,7 @@ body {
   margin: 0;
   font: 400 11px/18px 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
   letter-spacing: 1px;
+  height: 100%;
 }
 
 h1 {
@@ -52,7 +57,7 @@ h5 {
 }
 
 .push {
-  padding-bottom: 50px;
+  height: 50px;
 }
 
 ul { list-style: none; }
@@ -835,6 +840,30 @@ header {
     left: 5px;
 }
 
+/* login page styles */
+.login-form {
+  width: 80%;
+  padding: 5px;
+  max-width: 450px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.login-form a.controls {
+  color: #eee;
+  font-size: 16px;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.login-form .alerter{
+  display: none;
+  color: red;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: -10px;
+}
+
 /* footer styles */
 footer {
   width: 100%;
@@ -844,8 +873,7 @@ footer {
 }
 
 footer p {
-  margin-top: 100px;
-  padding-top: 20px;
+  padding-top: 15px;
   border-top: 1px solid #aaa;
   font-size: 12px;
 }
@@ -854,7 +882,7 @@ footer p {
 
 /************************* 404 page styles *********************************/
 .page-not-found {
-  margin: 100px auto;
+  margin: 100px auto 10px;
   text-align: center;
   font-size: 30px;
   letter-spacing: 3px;

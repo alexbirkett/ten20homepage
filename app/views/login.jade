@@ -1,0 +1,28 @@
+extends layout-admin
+
+block content
+  .login-form
+    .row-fluid 
+      .span12
+        form.form-horizontal
+          .control-group
+            a.controls(href='/')
+              img(src='/images/logo.png')
+              | admin
+
+            h5.controls.alerter login failed!
+
+          .control-group
+            label.control-label(for="username") Username
+            .controls
+              input(type="text",id="username",placeholder="user name")
+
+          .control-group
+            label.control-label(for="password") Password
+            .controls
+              input(type="password",id="password", placeholder="Password")
+              br
+              br
+              button.btn(type="submit") Sign in
+      script
+        $(ten20.login)
