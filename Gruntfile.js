@@ -22,12 +22,13 @@ module.exports = function (grunt) {
     // compress js files
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        banner: '/*! <%= pkg.name %> minified scripts <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+        mangle: false //{ except: ['jQuery', 'angular'] }
       },
       build: {
         files: [{
           expand: true,
-          src: ['homepage.js'],
+          src: ['*.js'],
           dest: 'public/build/',
           cwd: 'public/build/.temp',
           ext: '.min.js'
@@ -38,23 +39,31 @@ module.exports = function (grunt) {
     // compress css files
     cssmin: {
       minify: {
-        expand: true,
-        src: ['*.css', '!*.min.css'],
-        dest: 'public/build',
-        cwd: '<%= pkg.src.css %>',
-        ext: '.min.css'
+        options: {
+          banner: '/*! <%= pkg.name %> minified css <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        },
+        files: {
+           'public/build/all.min.css': [ '<%= pkg.src.css %>/*.css']
+        }
       }
     },
 
     // concat js files
     concat: {
-      options: {
-        separator: ';',
-      },
-      dist: {
+      home: {
+        options: {
+          separator: ';',
+        },
         src: ['<%= pkg.src.script %>/*.js'],
-        dest: 'public/build/.temp/homepage.js'
+        dest: 'public/build/.temp/home.js'
       },
+      angular: {
+        options: {
+          separator: ';',
+        },
+        src: ['<%= pkg.src.script %>/angular/*.js'],
+        dest: 'public/build/.temp/angular-all.js'
+      }
     },
 
     clean: ["public/build"],
@@ -103,7 +112,7 @@ module.exports = function (grunt) {
       dev: {
         files: {
           'app/views/partials/head.jade':'app/views/partials/src/head.jade',
-          'app/views/partials/head-admin.jade':'app/views/partials/src/head-admin.jade'
+          'app/views/partials/angular.jade':'app/views/partials/src/angular.jade'
         },
         options: {
           context : {
@@ -114,7 +123,7 @@ module.exports = function (grunt) {
       prod: {
         files: {
           'app/views/partials/head.jade':'app/views/partials/src/head.jade',
-          'app/views/partials/head-admin.jade':'app/views/partials/src/head-admin.jade'
+          'app/views/partials/angular.jade':'app/views/partials/src/angular.jade'
         },
         options: {
           context : {
