@@ -1,0 +1,13 @@
+extends layout-angular
+
+block content
+
+  section.admin
+    div.header-bar
+      a.logo(href="/")
+        img(src="/images/logo.png")
+      a.exit(href="/admin/login") logout
+
+    h1.grid-header contact user information
+    div.grid(ng-controller="ContactUserCtrl")
+       div.gridStyle(ng-grid="gridOptions")

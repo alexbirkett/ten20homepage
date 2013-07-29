@@ -204,6 +204,8 @@ window.ten20.login = function () {
         setTimeout(function () {
           $('form .alerter').fadeOut(2000);
         }, 1000);
+      } else {
+        window.location = '/admin';
       }
     });
   });

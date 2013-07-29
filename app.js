@@ -12,7 +12,8 @@ var express = require('express'),
 
 
 var app = module.exports = express();
-
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
 // Configuration
 
 function requireHTTPS(req, res, next) {
@@ -60,6 +61,9 @@ app.get('/admin', routes.admin.console);
 // home page
 app.get(/\/\w?/, routes.index);
 app.post('/contact', routes.form);
+
+// Socket.io Communication
+io.sockets.on('connection', require('./app/routes/socket'));
 
 dbs(function(db) {
     routes.setDb(db);
