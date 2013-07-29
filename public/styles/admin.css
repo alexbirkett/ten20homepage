@@ -1,5 +1,5 @@
 /* admin console page styles */
-.admin-console {
+.admin {
   margin: 0 auto;
   width: 90%;
   max-width: 1200px;
@@ -34,7 +34,7 @@
 }
 
 /* tweak grid styles */
-.grid-header {
+.admin .grid-header {
   text-align: center;
   text-transform: capitalize;
   font-size: 14px;
@@ -42,24 +42,24 @@
   clear: both;
 }
 
-.ngViewport {
+.admin .ngViewport {
   height: auto !important;
   font-size: 13px;
 } 
 
-.ngRow.even {
+.admin .ngRow.even {
   background-color: #666;
 }
 
-.ngRow.odd {
+.admin .ngRow.odd {
   background-color: #999;
 }
 
-.ngTopPanel {
+.admin .ngTopPanel {
   background-color: #333;
 }
 
-.ngFooterPanel {
+.admin .ngFooterPanel {
   background-color: #333;
   border-top: 1px solid #d4d4d4;
 }

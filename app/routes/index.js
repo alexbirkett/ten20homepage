@@ -127,7 +127,7 @@ exports.admin =  {
   console: function(req, res) {
 
     if (req.signedCookies.authorized) {
-      res.render('admin-console', { pageTitle: 'Admin | ten20live' });
+      res.render('admin', { pageTitle: 'Admin | ten20live' });
     } else {
       res.redirect('/admin/login');
     }
