@@ -1,31 +1,15 @@
 window.ten20 = window.ten20 || {};
 
-//TODO: to debug later
-window.ten20.carouselMaps = (function() {
-  var mapsArray = [];
-  var renderComplete = 0;
-
-  return function(map) {
-    var $map = $(map.getContainer());
-    mapsArray.push($map);
-
-    map.whenReady(function() {
-      var parentCarousel = $map.parent('.carousel');
-      $map.parent('.item').removeClass('show');
-      renderComplete++;
-      if (mapsArray.length == 3) {
-        parentCarousel.css("visibility", "visible");
-        parentCarousel.carousel(7000);
-      }
-    }); 
-  }
-
-})();
-
 window.ten20.ContactForm = (function() {
 
-  function ContactForm (id) {
-    this.id = id;
+  function ContactForm (option) {
+    /*
+     * id, ajaxUrl, redirectUrl
+     */
+
+    for (var key in option) {
+      this[key] = option[key];
+    };
     this.init();
   }
 
@@ -66,9 +50,9 @@ window.ten20.ContactForm = (function() {
   ContactForm.prototype.send = function () {
     var data = {};
 
-    var self = this.$self;
+    var self = this;
 
-    data.formType = self.attr('id');
+    data.formType = self.$self.attr('id');
 
     for (key in this.formData) {
       if (typeof this.formData[key].value === 'boolean') {
@@ -80,14 +64,17 @@ window.ten20.ContactForm = (function() {
 
     $.ajaxSetup({timeout: 2000});
 
-    $.post('/contact', {data: data}, 'json').
+    $.post(this.ajaxUrl, {data: data}, 'json').
       done(function(res) {
-        self.find('.active').removeClass('active');
-        self.find('.success').addClass('active');
+        self.$self.find('.active').removeClass('active');
+        self.$self.find('.success').addClass('active');
+        if (self.redirectUrl !== '') {
+          window.location = self.redirectUrl;
+        }
       }).
       fail(function(jhr, text, thrown) {
-        self.find('.active').removeClass('active');
-        self.find('.error').addClass('active');
+        self.$self.find('.active').removeClass('active');
+        self.$self.find('.error').addClass('active');
       });
   }
 

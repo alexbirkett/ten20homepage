@@ -68,7 +68,9 @@ app.get('/admin', routes.admin.console);
 
 // home page
 app.get(/\/\w?/, routes.index);
-app.post('/contact', routes.form);
+app.post('/contact', routes.contact);
+app.post('/signup', routes.user.signup);
+app.post('/signin', routes.user.signin);
 
 // Socket.io Communication
 io.sockets.on('connection', require('./app/routes/socket'));

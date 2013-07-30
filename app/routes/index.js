@@ -15,8 +15,12 @@ var forms = [];
 var tmp = {};
 for (key in form) {
   tmp = extend(true, {}, form["base-form"]);
-  if (key != "base-form") {
-    forms.push(extendForm(tmp, form[key]));
+  if (key != "base-form" ) {
+    if (form[key].hasOwnProperty('extends')) {
+      forms.push(extendForm(tmp, form[key]));
+    } else {
+      forms.push(form[key]);
+    }
   }
 };
 
@@ -96,14 +100,14 @@ exports.index = function(req, res){
       }
 };
 
-exports.form = function(req, res){
+exports.contact = function(req, res){
     var  data = req.param('data');
 
     db.contact.insert(data, function(error, docs) {
       console.log(docs[0]);
       res.json({error: !!error});
     });
-}
+};
 
 exports.admin =  {
 
@@ -143,4 +147,12 @@ exports.admin =  {
     });
 
   }
-}
+};
+
+exports.user = {
+  signin: function(req, res) {
+  },
+
+  signup: function(req, res) {
+  }
+};
