@@ -18,7 +18,12 @@ section.contact(id=section.name)
               label(for=item.name)  #{item.label}*
             input(type=item.type, id=item.name, optional="" + item.optional)
         li.btn-wrap
-          button(type="submit") send
+          button(type="submit") #{section.button_text || 'send'} 
           p *Required
     script.
-      $(function() { new ten20.ContactForm(!{JSON.stringify(section.name)}); });
+      $(function() { new ten20.ContactForm({
+          id: !{JSON.stringify(section.name)},
+          ajaxUrl: !{JSON.stringify(section.ajaxUrl)},
+          redirectUrl: !{JSON.stringify(section.redirect || '')} 
+        });
+      });
