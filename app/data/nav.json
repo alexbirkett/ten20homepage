@@ -18,6 +18,11 @@
       "scroll": "false"
     },
     {
+      "text": "sign in",
+      "link": "#signin",
+      "scroll": "false"
+    },
+    {
       "text": "Contact Us",
       "link": "#contact-us",
       "scroll": "false"
