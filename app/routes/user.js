@@ -9,16 +9,22 @@ module.exports = {
   },
 
   signin: function(req, res, next) {
-    console.log('get signin');
+    var userInfo = req.body;
+
+    if ( userInfo.remember ) {
+      req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
+    } else {
+      req.session.cookie.expires = false;
+    }
+
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err) }
       if (!user) {
-        console.log(info);
         return res.json(info);
       }
-      req.login(user, function(err) {
+      req.logIn(user, function(err) {
         if (err) { return next(err); }
-        return res.json({message: ''});
+        res.json({message: ''});
       });
     })(req, res, next);
   },
@@ -31,11 +37,6 @@ module.exports = {
   signup: function(req, res) {
     var userInfo = req.body;
 
-    if ( userInfo.remember ) {
-      req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
-    } else {
-      req.session.cookie.expires = false;
-    }
 
     db.user.findOne({email: userInfo.email}, function(error, user) {
       if (!error) {
