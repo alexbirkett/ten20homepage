@@ -23,12 +23,12 @@ generateRandomToken = function () {
 passport.serializeUser(function(user, done) {
   var createAccessToken = function () {
     var token = generateRandomToken();
-    db.user.findOne( { accessToken: token }, function (err, existingUser) {
-      if (err) { return done( err ); }
+    db.user.findOne( { acessToken: token }, function (err, existingUser) {
+      if (err) { return done(err); }
       if (existingUser) {
         createAccessToken(); // Run the function again - the token has to be unique!
       } else {
-        db.user.update({name: user.name}, {$set: {acessToken: token}}, function (err) {
+        db.user.update({email: user.email}, {$set: {acessToken: token}}, function (err) {
           if (err) return done(err);
           return done(null, token);
         });
@@ -42,7 +42,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(token, done) {
-  db.user.findOne( {accessToken: token } , function (err, user) {
+  db.user.findOne( {acessToken: token }, function(err, user) {
     done(err, user);
   });
 });
@@ -59,7 +59,6 @@ passport.use(new LocalStrategy({
         if(isMatch) {
           return done(null, user);
         } else {
-          console.log('password wrong.');
           return done(null, false, { message: 'Invalid password' });
         }
       });
@@ -68,8 +67,11 @@ passport.use(new LocalStrategy({
 
 // Simple route middleware to ensure user is authenticated.  Otherwise send to login page.
 exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/#signin');
+  if (req.isAuthenticated()) { 
+    next();
+  } else {
+    res.redirect('/#signin');
+  }
 };
 
 exports.setDb = function(dbs) {
