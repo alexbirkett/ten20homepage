@@ -1,31 +1,15 @@
 window.ten20 = window.ten20 || {};
 
-//TODO: to debug later
-window.ten20.carouselMaps = (function() {
-  var mapsArray = [];
-  var renderComplete = 0;
-
-  return function(map) {
-    var $map = $(map.getContainer());
-    mapsArray.push($map);
-
-    map.whenReady(function() {
-      var parentCarousel = $map.parent('.carousel');
-      $map.parent('.item').removeClass('show');
-      renderComplete++;
-      if (mapsArray.length == 3) {
-        parentCarousel.css("visibility", "visible");
-        parentCarousel.carousel(7000);
-      }
-    }); 
-  }
-
-})();
-
 window.ten20.ContactForm = (function() {
 
-  function ContactForm (id) {
-    this.id = id;
+  function ContactForm (option) {
+    /*
+     * id, ajaxUrl, redirectUrl
+     */
+
+    for (var key in option) {
+      this[key] = option[key];
+    };
     this.init();
   }
 
@@ -66,9 +50,9 @@ window.ten20.ContactForm = (function() {
   ContactForm.prototype.send = function () {
     var data = {};
 
-    var self = this.$self;
+    var self = this;
 
-    data.formType = self.attr('id');
+    data.formType = self.$self.attr('id');
 
     for (key in this.formData) {
       if (typeof this.formData[key].value === 'boolean') {
@@ -80,14 +64,23 @@ window.ten20.ContactForm = (function() {
 
     $.ajaxSetup({timeout: 2000});
 
-    $.post('/contact', {data: data}, 'json').
+    $.post(this.ajaxUrl,  data, 'json').
       done(function(res) {
-        self.find('.active').removeClass('active');
-        self.find('.success').addClass('active');
+        if (res.message != '') {
+          self.$self.find('.success').text(res.message);
+        } else {
+          if (self.redirectUrl !== '') {
+            window.location = self.redirectUrl;
+          }
+        }
+
+        self.$self.find('.active').removeClass('active');
+        self.$self.find('.success').addClass('active');
+
       }).
       fail(function(jhr, text, thrown) {
-        self.find('.active').removeClass('active');
-        self.find('.error').addClass('active');
+        self.$self.find('.active').removeClass('active');
+        self.$self.find('.error').addClass('active');
       });
   }
 
@@ -96,13 +89,13 @@ window.ten20.ContactForm = (function() {
     var self = this;
 
     // checkbox already bind state in fakeCheckbox
-    this.$self.find('input[type="text"]').each(function () {
+    this.$self.find('input[type="text"]').add('input[type="password"]').each(function () {
       self.formData[$(this).attr('id')] = {
         optional: $(this).attr('optional'),
         value: ''
       };
 
-      $(this).keyup(function() {
+      $(this).on('keyup blur',function() {
         self.formData[$(this).attr('id')].value = $(this).val();
 
         if ($(this).val()) {
@@ -171,7 +164,7 @@ window.ten20.ContactForm = (function() {
 
   // dynamically set input width of contact forms
   ContactForm.prototype.resizeInput = function () {
-      var inputItems = this.$self.find('.list-text');
+      var inputItems = this.$self.find('list-text').add('list-password');
       var totalWidth = this.$self.find('.form ul').innerWidth();
 
       $("body").css('overflow', 'hidden');
@@ -180,7 +173,7 @@ window.ten20.ContactForm = (function() {
         var elemLabel = $(this).children('label');
         var labelWidth = elemLabel.outerWidth(true);
         var marginRight = parseInt(elemLabel.css('marginRight'));
-        $(this).children('input[type="text"]').width(totalWidth - labelWidth - marginRight);
+        $(this).children('input').width(totalWidth - labelWidth - marginRight);
       });
 
   };
