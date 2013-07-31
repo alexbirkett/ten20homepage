@@ -14,7 +14,8 @@ module.exports = function(callback) {
         console.log('mongodb connected...');
 
         dbs['contact'] = db.collection('contact');
+        dbs['user'] = db.collection('user');
 
         callback(dbs);
-        })
+   });
 };

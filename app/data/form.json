@@ -70,7 +70,7 @@
   "free-form": {
     "type": "form",
     "extends": "simple-form",
-    "description": "Alex and XiaoLei are working hard on the free plan! Please enter your details below to be notified when it's ready.",
+    "description": "Sign up a free ten20 account.",
     "name": "free-plan",
     "ajaxUrl": "/signup",
     "redirect": "/user",
@@ -78,14 +78,26 @@
   },
   "family-form": {
     "type": "form",
-    "extends": "simple-form",
     "ajaxUrl": "/signup",
     "description": "Alex and XiaoLei are working hard on the family plan! Please enter your details below to be notified when it's ready.",
     "name": "family-plan",
     "ajaxUrl": "/signup",
     "redirect": "/user",
     "redirect": "/user",
-    "items": []
+    "items": [
+      {
+        "type": "text",
+        "name": "email",
+        "label": "Email",
+        "optional": false
+      },
+      {
+        "type": "password",
+        "name": "password",
+        "label": "Password",
+        "optional": false
+      }
+    ]
   },
   "enterprise-form": {
     "type": "form",
@@ -112,7 +124,7 @@
         "optional": false
       },
       {
-        "type": "text",
+        "type": "password",
         "name": "password",
         "label": "Password",
         "optional": false

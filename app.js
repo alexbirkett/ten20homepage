@@ -12,8 +12,11 @@ var express = require('express'),
     https = require('https'),
     connect = require('connect')
     routes = require('./app/routes'),
+    user = require('./app/routes/user'),
     api = require('./app/routes/api'),
     dbs = require('./app/db'),
+    pass = require('./app/pass'),
+    passport = require('passport'),
     options = require('./app/http-options'),
     RedisStore = require('connect-redis')(express);
 
@@ -47,6 +50,8 @@ app.configure(function(){
     store: new RedisStore(),
     secret: '1234567890QWERTY'
   }));
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(express.static(__dirname + '/public'));
   app.use(express.favicon(__dirname + '/public/favicon.ico'));
   app.use(app.router);
@@ -66,17 +71,25 @@ app.post('/admin/login', routes.admin.signin);
 app.get('/admin/data', routes.admin.data);
 app.get('/admin', routes.admin.console);
 
+// user console
+app.post('/signup', user.signup);
+app.get('/user', pass.ensureAuthenticated, user.dashboard);
+app.post('/signin', user.signin);
+app.get('/signout', user.signout);
+
 // home page
-app.get(/\/\w?/, routes.index);
 app.post('/contact', routes.contact);
-app.post('/signup', routes.user.signup);
-app.post('/signin', routes.user.signin);
+app.get(/\/\w?/, routes.index);
+
 
 // Socket.io Communication
 io.sockets.on('connection', require('./app/routes/socket'));
 
 dbs(function(db) {
     routes.setDb(db);
+    user.setDb(db);
+    pass.setDb(db);
+
     if (options.https) {
         https.createServer(options.https, app).listen(options.https.port);
         console.log('https listening on ' + options.https.port);

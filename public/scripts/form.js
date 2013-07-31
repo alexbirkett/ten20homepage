@@ -64,13 +64,19 @@ window.ten20.ContactForm = (function() {
 
     $.ajaxSetup({timeout: 2000});
 
-    $.post(this.ajaxUrl, {data: data}, 'json').
+    $.post(this.ajaxUrl,  data, 'json').
       done(function(res) {
+        if (res.message != '') {
+          self.$self.find('.success').text(res.message);
+        } else {
+          if (self.redirectUrl !== '') {
+            window.location = self.redirectUrl;
+          }
+        }
+
         self.$self.find('.active').removeClass('active');
         self.$self.find('.success').addClass('active');
-        if (self.redirectUrl !== '') {
-          window.location = self.redirectUrl;
-        }
+
       }).
       fail(function(jhr, text, thrown) {
         self.$self.find('.active').removeClass('active');
@@ -83,13 +89,13 @@ window.ten20.ContactForm = (function() {
     var self = this;
 
     // checkbox already bind state in fakeCheckbox
-    this.$self.find('input[type="text"]').each(function () {
+    this.$self.find('input[type="text"]').add('input[type="password"]').each(function () {
       self.formData[$(this).attr('id')] = {
         optional: $(this).attr('optional'),
         value: ''
       };
 
-      $(this).keyup(function() {
+      $(this).on('keyup blur',function() {
         self.formData[$(this).attr('id')].value = $(this).val();
 
         if ($(this).val()) {
@@ -158,7 +164,7 @@ window.ten20.ContactForm = (function() {
 
   // dynamically set input width of contact forms
   ContactForm.prototype.resizeInput = function () {
-      var inputItems = this.$self.find('.list-text');
+      var inputItems = this.$self.find('list-text').add('list-password');
       var totalWidth = this.$self.find('.form ul').innerWidth();
 
       $("body").css('overflow', 'hidden');
@@ -167,7 +173,7 @@ window.ten20.ContactForm = (function() {
         var elemLabel = $(this).children('label');
         var labelWidth = elemLabel.outerWidth(true);
         var marginRight = parseInt(elemLabel.css('marginRight'));
-        $(this).children('input[type="text"]').width(totalWidth - labelWidth - marginRight);
+        $(this).children('input').width(totalWidth - labelWidth - marginRight);
       });
 
   };

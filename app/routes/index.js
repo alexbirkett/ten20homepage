@@ -101,10 +101,9 @@ exports.index = function(req, res){
 };
 
 exports.contact = function(req, res){
-    var  data = req.param('data');
+    var  data = req.body;
 
     db.contact.insert(data, function(error, docs) {
-      console.log(docs[0]);
       res.json({error: !!error});
     });
 };
@@ -149,10 +148,3 @@ exports.admin =  {
   }
 };
 
-exports.user = {
-  signin: function(req, res) {
-  },
-
-  signup: function(req, res) {
-  }
-};
