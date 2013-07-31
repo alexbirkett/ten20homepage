@@ -691,7 +691,8 @@ header {
   padding-top: 12px;
 }
 
-.contact .form li.list-text {
+.contact .form li.list-text,
+.contact .form li.list-password {
   border-bottom: 1px solid #444;
 }
 
@@ -762,11 +763,13 @@ header {
   border: 1px solid red;
 }
 
-.form input[type="text"] {
+.form input[type="text"],
+.form input[type="password"] {
   color: #aaa;
 }
 
-.form input[type="text"]:focus {
+.form input[type="text"]:focus,
+.form input[type="password"]:focus {
   color: white;
   border: none;
   box-shadow: none;
