@@ -1,4 +1,17 @@
 extends layout-angular
 
 block content
-  h1 hi, you are logged in! #{email}
+  section.map-canvas
+    #map
+      script.
+        var map = !{JSON.stringify(map)};
+        $(function() { new ten20.MapRender('map', map); });
+
+      .info-tool
+
+      ul.bottom-nav
+        each item in page.navs
+          li(class=item.status)
+            span +
+            a(href=item.link)= item.name
+

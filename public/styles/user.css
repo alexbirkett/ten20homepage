@@ -1,1 +1,60 @@
 /* user dashbord page styles */
+body { margin:0; padding:0; }
+
+.map-canvas {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.map-canvas #map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: inherit;
+}
+
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  width: inherit;
+  background-color: #333;
+  list-style: none;
+  z-index: 2000;
+}
+
+
+.bottom-nav li {
+  display: inline-block;
+  margin: 5px 10px 0 25px;
+  float: right;
+}
+
+
+.bottom-nav li span {
+  display: none;
+  width: 22px;
+  height: 22px;
+  background-image: url(/images/user/menu.png);
+  margin-right: 5px;
+  text-align: center;
+}
+
+.bottom-nav li.active span {
+  display: inline-block;
+  color: #eee;
+}
+
+.bottom-nav li a {
+  color: #aaa;
+  text-transform: capitalize;
+}
+
+.bottom-nav li.active a {
+  color: #eee;
+}
