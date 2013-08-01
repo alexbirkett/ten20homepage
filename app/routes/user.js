@@ -1,5 +1,6 @@
 var scrypt = require("scrypt");
 var passport = require('passport');
+var userdata = require('../data/user.json');
 var maxtime = 0.1;
 var db;
 
@@ -69,6 +70,18 @@ module.exports = {
   },
 
   dashboard: function(req, res) {
-    res.render('user', req.user);
+    res.render('user', {
+      map: {
+        "lat": 52.80113,
+        "lng": -1.63130,
+        "zoomLevel": 16,
+        "numberOfTrackers": 0,
+        "showHistory": false,
+        "followFirstTracker": true,
+        "addVirtualFence": false,
+        "tile": "alexbirkett.map-bugector"
+      },
+      page: userdata
+    });
   }
 };

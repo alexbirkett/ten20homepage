@@ -1,0 +1,21 @@
+{
+  "navs": [
+    {
+      "name": "logout",
+      "link": "/"
+    },
+    {
+      "name": "tracker",
+      "link": "#tracker",
+      "status": "active"
+    },
+    {
+      "name": "settings",
+      "link": "#setting"
+    },
+    {
+      "name": "help",
+      "link": "#help"
+    }
+  ]
+}
