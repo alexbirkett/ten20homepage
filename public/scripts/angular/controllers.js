@@ -106,8 +106,8 @@ angular.module('ten20Angular.controllers', []).
 
 
   }).
-  controller('MyCtrl2', function ($scope) {
-    // write Ctrl here
+  controller('UserCtrl', function ($scope) {
+    $scope.user = user;
 
   });
 
@@ -124,33 +124,6 @@ function SocketCtrl($scope, socket) {
     $scope.messages.push(message);
   });
 
-  socket.on('change:name', function (data) {
-    changeName(data.oldName, data.newName);
-  });
-
-  socket.on('user:join', function (data) {
-    $scope.messages.push({
-      user: 'chatroom',
-      text: 'User ' + data.name + ' has joined.'
-    });
-    $scope.users.push(data.name);
-  });
-
-  // add a message to the conversation when a user disconnects or leaves the room
-  socket.on('user:left', function (data) {
-    $scope.messages.push({
-      user: 'chatroom',
-      text: 'User ' + data.name + ' has left.'
-    });
-    var i, user;
-    for (i = 0; i < $scope.users.length; i++) {
-      user = $scope.users[i];
-      if (user === data.name) {
-        $scope.users.splice(i, 1);
-        break;
-      }
-    }
-  });
 
   // Private helpers
   // ===============
