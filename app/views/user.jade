@@ -7,7 +7,68 @@ block content
         var map = !{JSON.stringify(map)};
         $(function() { new ten20.MapRender('map', map); });
 
-      .info-tool
+      .tool-box(ng-controller='UserCtrl', ng-init='user= #{JSON.stringify(user)}')
+        .time-weather
+          span(ng-model='timeWeather')
+          a.info
+            img(src=page.images.info)
+
+        .welcome
+          img.logo(src=page.images.logo)
+          span welcome {{user.first_name}}
+
+        .calendar(ui-calendar="calendarOptions", ng-model="eventSources", calendar="myCalendar")
+
+        .trip-info.current-info
+          each item in page.currentInfo
+            h6 #{item.name} {{#{item.propName}}}
+
+        .status-bar
+          img(src=page.images.marker)
+          span.elevation e {{ elevation }}
+          span.speed s {{ speed }}
+
+        ul.tracker-list()
+          li(ng-repeat='tracker in user.trackers', ng-controller='TrackerCtrl', ng-init='tracker=tracker', ng-click='toggleDropDown')
+            span tracker {{tracker.name}}
+            img.dropdown(src=page.images.rightArrow)
+            ul.nav.nav-tabs
+              li.tracker-info.active
+                .media
+                  img.pull-left.avatar(src=page.images.avatar)
+                  .media-body
+                    h6 {{tracker.location.city}}
+                    h6 {{tracker.location.date}}
+                    h6 {{tracker.location.time}}
+                    h6 {{tracker.location.weather}}
+                .current-info
+                  each item in page.currentInfo
+                    h6 #{item.name} {{tracker.location[#{item.propName}]}}
+
+              li.trip-history
+                .date-select
+                  .media
+                    img.pull-left(src=page.images.clock)
+                    .media-body
+                      h1 {{tracker.history.date}}
+                  .search
+                    img(src=page.images.search)
+                    input(type='text', placeholder='Search date or place')
+                  
+                  ul.trip-list
+                    li(ng-repeat='item in tracker.history', ng-click='toggleTripInfo')
+                      span time {{item.time}} 
+                      span 
+                        img(src=page.images.infoSmall)
+
+            .tracker-bottom
+              a.street-view
+                img(src=page.images.streetView)
+                | street view
+              a.latest-trail
+                img(src=page.images.trail)
+                | latest trail
+              img(src=page.images.setting)
 
       ul.bottom-nav
         each item in page.navs

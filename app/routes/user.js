@@ -1,6 +1,6 @@
 var scrypt = require("scrypt");
 var passport = require('passport');
-var userdata = require('../data/user.json');
+var userPage = require('../data/user.json');
 var maxtime = 0.1;
 var db;
 
@@ -81,7 +81,8 @@ module.exports = {
         "addVirtualFence": false,
         "tile": "alexbirkett.map-bugector"
       },
-      page: userdata
+      page: userPage,
+      user: req.user
     });
   }
 };
