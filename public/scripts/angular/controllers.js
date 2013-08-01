@@ -107,7 +107,138 @@ angular.module('ten20Angular.controllers', []).
 
   }).
   controller('UserCtrl', function ($scope) {
-    $scope.user = user;
+    $scope.user = {
+      id: "51f8cd02fb08a80618000001",
+      first_name: "Daniel",
+      timeWeather: "oslo cloudy -5.C wed jan 23 21:23",
+      trackers: [
+        {
+          index: "one",
+          status: "active",
+          serialNum: "2384390",
+          location: {
+            city: "San Francisco",
+            date: "Wed, July 23",
+            time: "19:35",
+            weather: "cloudy"
+          },
+          current: {
+            fence: "ON 6 km",
+            actTime: "Today 18:45",
+            elevation: "3 km",
+            speed: "7 km"
+          },
+          history: {
+            date: "12 December 2012",
+            data: [
+              {
+                time: "9:00",
+                geodata: []
+              },
+              {
+                time: "10:00",
+                geodata: []
+              },
+              {
+                time: "11:00",
+                geodata: []
+              },
+              {
+                time: "12:00",
+                geodata: []
+              },
+              {
+                time: "13:00",
+                geodata: []
+              }
+            ]
+          }
+        },
+        {
+          index: "two",
+          serialNum: "2384391",
+          location: {
+            city: "San Francisco",
+            date: "Wed, July 23",
+            time: "19:35",
+            weather: "cloudy"
+          },
+          current: {
+            fence: "ON 6 km",
+            actTime: "Today 18:45",
+            elevation: "3 km",
+            speed: "7 km"
+          },
+          history: {
+            date: "12 December 2012",
+            data: [
+              {
+                time: "9:00",
+                geodata: []
+              },
+              {
+                time: "10:00",
+                geodata: []
+              },
+              {
+                time: "11:00",
+                geodata: []
+              },
+              {
+                time: "12:00",
+                geodata: []
+              },
+              {
+                time: "13:00",
+                geodata: []
+              }
+            ]
+          }
+        },
+        {
+          index: "three",
+          serialNum: "2384392",
+          location: {
+            city: "San Francisco",
+            date: "Wed, July 23",
+            time: "19:35",
+            weather: "cloudy"
+          },
+          current: {
+            fence: "ON 6 km",
+            actTime: "Today 18:45",
+            elevation: "3 km",
+            speed: "7 km"
+          },
+          history: {
+            date: "12 December 2012",
+            data: [
+              {
+                time: "9:00",
+                geodata: []
+              },
+              {
+                time: "10:00",
+                geodata: []
+              },
+              {
+                time: "11:00",
+                geodata: []
+              },
+              {
+                time: "12:00",
+                geodata: []
+              },
+              {
+                time: "13:00",
+                geodata: []
+              }
+            ]
+          }
+        }
+      ]
+      
+    };
 
   });
 

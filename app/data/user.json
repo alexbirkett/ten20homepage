@@ -30,7 +30,9 @@
     "infoSmall": "/images/user/info-small.png",
     "streetView": "/images/user/street-view.png",
     "trail": "/images/user/trail.png",
-    "setting": "/images/user/setting.png"
+    "setting": "/images/user/setting.png",
+    "menu": "/images/user/menu.png",
+    "point": "/images/user/point.png"
   },
   "currentInfo": [
     {
