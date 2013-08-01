@@ -70,6 +70,7 @@ module.exports = {
   },
 
   dashboard: function(req, res) {
+    var user = req.user;
     res.render('user', {
       map: {
         "lat": 52.80113,
@@ -82,7 +83,7 @@ module.exports = {
         "tile": "alexbirkett.map-bugector"
       },
       page: userPage,
-      user: req.user
+      user: user
     });
   }
 };

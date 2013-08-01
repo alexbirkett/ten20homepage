@@ -1,6 +1,7 @@
 /* user dashbord page styles */
 body { margin:0; padding:0; }
 
+/* map styles */
 .map-canvas {
   margin: 0;
   padding: 0;
@@ -20,9 +21,84 @@ body { margin:0; padding:0; }
 .tool-box {
   position: fixed;
   top: 10%;
-  left: 80%;
+  right: 5%;
+  width: 250px;
+  padding: 10px;
   background-color: #333;
   z-index: 2000;
+}
+
+.time-weather {
+  text-transform: capitalize;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+.time-weather a {
+  float: right;
+}
+
+.welcome img {
+  width: 20%;
+}
+
+.welcome span {
+  float: right;
+  font-size: 12px;
+  text-transform: capitalize;
+  padding-top: 10px;
+}
+
+.calendar {
+  position: absolute;
+  left: -100%;
+  top: 20%;
+}
+
+.trip-info {
+  position: absolute;
+  left: -200%;
+  top: 10%;
+  width: 250px;
+  padding: 10px;
+  background-color: inherit;
+}
+
+.status-bar {
+  position: absolute;
+  left: -250%;
+  top: 20%;
+  background-color: inherit;
+}
+
+.tracker-list {
+  margin: 0;
+  padding: 5px;
+  clear: both;
+}
+
+.tracker-header {
+  padding: 5px 0 3px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+
+.tracker-header span {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.tracker-header img {
+  float: right;
+  margin-top: 4px;
+}
+
+.tracker-content {
+  display: none;
+}
+
+.tracker-content.active {
+  display: block;
 }
 
 /* nav styles*/
