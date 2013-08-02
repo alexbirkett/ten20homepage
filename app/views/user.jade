@@ -34,8 +34,19 @@ block content
             span tracker {{tracker.index}}
             img.dropdown(src=page.images.rightArrow)
           .tracker-content(class="{{tracker.status}}")
-            ul.nav.nav-tabs
+            ul.nav-tabs
               li.tracker-info.active
+                a(href="#tab-tracker-info", data-toggle="tab")
+                  img(src=page.images.trackerInfo)
+                  | tracker info
+
+              li.trip-history
+                a(href="#tab-trip-history", data-toggle="tab")
+                  img(src=page.images.clockSmall)
+                  | trip history
+
+            .tab-content
+              .tab-pane.active(id="tab-tracker-info")
                 .media
                   img.pull-left.avatar(src=page.images.avatar)
                   .media-body
@@ -45,9 +56,10 @@ block content
                     h6 {{tracker.location.weather}}
                 .current-info
                   each item in page.currentInfo
-                    h6 #{item.name} {{tracker.current[#{item.propName}]}}
+                    h6 #{item.name}:
+                      span {{tracker.current['#{item.propName}']}}
 
-              li.trip-history
+              .tab-pane(id="tab-trip-history")
                 .date-select
                   .media
                     img.pull-left(src=page.images.clock)
