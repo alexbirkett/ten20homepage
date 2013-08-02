@@ -23,7 +23,6 @@ body { margin:0; padding:0; }
   top: 10%;
   right: 5%;
   width: 250px;
-  padding: 10px;
   background-color: #333;
   z-index: 2000;
 }
@@ -31,11 +30,17 @@ body { margin:0; padding:0; }
 .time-weather {
   text-transform: capitalize;
   color: #aaa;
-  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 10px;
 }
 
 .time-weather a {
   float: right;
+}
+
+.welcome {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .welcome img {
@@ -47,6 +52,7 @@ body { margin:0; padding:0; }
   font-size: 12px;
   text-transform: capitalize;
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .calendar {
@@ -57,8 +63,8 @@ body { margin:0; padding:0; }
 
 .trip-info {
   position: absolute;
-  left: -200%;
-  top: 10%;
+  left: -300px;
+  top: 100px;
   width: 250px;
   padding: 10px;
   background-color: inherit;
@@ -66,25 +72,26 @@ body { margin:0; padding:0; }
 
 .status-bar {
   position: absolute;
-  left: -250%;
-  top: 20%;
+  left: -600px;
+  top: 80px;
   background-color: inherit;
 }
 
 .tracker-list {
   margin: 0;
-  padding: 5px;
+  padding: 0;
   clear: both;
 }
 
+
 .tracker-header {
-  padding: 5px 0 3px;
+  padding: 7px 10px 5px;
   border-top: 1px solid #444;
   border-bottom: 1px solid #444;
 }
 
 .tracker-header span {
-  font-size: 18px;
+  font-size: 16px;
   text-transform: capitalize;
 }
 
@@ -95,10 +102,122 @@ body { margin:0; padding:0; }
 
 .tracker-content {
   display: none;
+  background-color: #333;
+}
+
+.tracker-content > div {
+  padding: 10px;
 }
 
 .tracker-content.active {
   display: block;
+}
+
+/* override bootstrap style for tracker tabs */
+.tracker-content .nav-tabs {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.nav-tabs li {
+  width: 125px;
+  height: 42px;
+  background-color: #333;
+}
+
+.nav-tabs > li > a {
+  padding: 0;
+  color: #eee;
+  border: none;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.nav-tabs > li > a img {
+  margin: 5px 15px;
+  float: left;
+}
+
+.nav-tabs > .active {
+  background-color: #444;
+}
+
+.nav-tabs > .active >a,
+.nav-tabs > .active >a:hover,
+.nav-tabs > .active >a:focus {
+  color: #eee;
+  cursor: default;
+  background: none;
+  border: none;
+  text-decoration: none;
+}
+
+.tab-content {
+  background-color: #444;
+}
+
+#tab-tracker-info {
+  margin: 20px 10px 10px;
+  border-bottom: 1px solid #555;
+}
+
+#tab-tracker-info .media {
+  margin-bottom: 25px;
+}
+
+#tab-tracker-info .media > .pull-left {
+  margin-right: 20px;
+}
+
+#tab-tracker-info .media-body {
+  margin-top: 10px;
+}
+
+#tab-tracker-info .media-body h6 {
+  color: #aaa;
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  font-family: arial;
+  line-height: 15px;
+}
+
+.current-info h6 {
+  text-transform: capitalize;
+  font-family: 'AvenirNextLTW01-Regular';
+  font-size: 12px;
+}
+
+.current-info h6 span {
+  margin-left: 5px;
+  color: #f60;
+}
+
+.tracker-content .tracker-bottom {
+  background-color: #444;
+  padding-top: 0;
+}
+
+.tracker-bottom > a {
+  color: #eee;
+  display: inline-block;
+  margin-left: 10px;
+  width: 100px;
+  height: 42px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.tracker-bottom > a img {
+  float: left;
+  margin: 10px 15px;
+}
+
+.tracker-bottom > img {
+  margin-left: 210px;
 }
 
 /* nav styles*/
