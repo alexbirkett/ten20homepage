@@ -21,7 +21,7 @@
   "images": {
     "info": "/images/user/info-big.png",
     "infoSmall": "/images/user/info-small.png",
-    "trackerInfo": "/images/user/info-whiter.png",
+    "infoWhiter": "/images/user/info-whiter.png",
     "logo": "/images/logo.png",
     "marker": "/images/user/marker.png",
     "rightArrow": "/images/user/arrow-right.png",

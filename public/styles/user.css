@@ -63,19 +63,45 @@ body { margin:0; padding:0; }
 
 .trip-info {
   position: absolute;
-  left: -300px;
+  left: 300px;
   top: 100px;
   width: 250px;
   padding: 10px;
-  background-color: inherit;
+  background-color: #444;
+}
+
+.trip-info h5 {
+  background-color: #333;
+  text-transform: capitalize;
+  border-bottom: 1px solid #666;
+  margin: -10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.trip-info h5 img {
+  float: right;
 }
 
 .status-bar {
   position: absolute;
-  left: -600px;
-  top: 80px;
-  background-color: inherit;
+  left: 200px;
+  top: 300px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #333;
 }
+
+.status-bar img {
+  margin-right: 15px;
+}
+
+.status-bar span.speed {
+  margin-right: 20px;
+}
+
+
 
 .tracker-list {
   margin: 0;
@@ -218,6 +244,81 @@ body { margin:0; padding:0; }
 
 .tracker-bottom > img {
   margin-left: 210px;
+}
+
+
+.date-select .media img {
+  margin: 20px;
+}
+
+.date-select .media-body h6 {
+  margin-top: 20px;
+  color: rgba(211, 88, 5, 0.7);
+  font-weight: bold;
+}
+
+.search {
+  width: 200px;
+  margin: auto;
+  padding: 0;
+  background-color: #333;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+
+.search img {
+  margin: auto 10px auto 15px;
+}
+
+.search input[type="text"] {
+  color: #eee;
+  background: none;
+  width: 120px;
+  margin: auto;
+  padding: 8px;
+  border: none;
+  background-color: #333;
+  border-radius: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  font-size: 12px;
+}
+
+.search input[type="text"]:focus {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.trip-list {
+  margin: 10px 0;
+  padding: 0;
+}
+
+.trip-list > li {
+  font-size: 13px;
+  text-transform: capitalize;
+  margin: 0 -10px;
+  padding: 10px;
+  padding-left: 20px;
+  border-top: 1px solid #666;
+}
+
+.trip-list > li:last-child {
+  border-bottom: 1px solid #666;
+}
+
+.trip-list > li img {
+  float: right;
+  margin: -10px;
+  padding: 11px;
+  border-left: 1px solid #666;
+}
+
+.trip-list > li span.timeslot {
+  color: #f60;
+  margin-left: 10px;
 }
 
 /* nav styles*/
