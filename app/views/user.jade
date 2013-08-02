@@ -33,10 +33,10 @@ block content
 
       ul.tracker-list()
         li(ng-repeat='tracker in user.trackers')
-          .tracker-header(ng-click='toggleDropDown')
+          .tracker-header(class="{{tracker.status}}")
             span tracker {{tracker.index}}
-            img.dropdown(src=page.images.rightArrow)
-          .tracker-content(class="{{tracker.status}}")
+            span.dropdown
+          .tracker-content
             ul.nav-tabs
               li.tracker-info.active
                 a(href="#tab-tracker-info", data-toggle="tab")
@@ -97,4 +97,9 @@ block content
       $(function() {
         $('.tool-box').draggable();
         $('.trip-info').draggable();
+
+        // temporarily put here
+        $('.tracker-list').on('click', '.tracker-header', function() {
+          $(this).toggleClass('active');
         });
+      });

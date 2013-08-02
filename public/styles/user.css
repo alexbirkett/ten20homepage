@@ -121,9 +121,19 @@ body { margin:0; padding:0; }
   text-transform: capitalize;
 }
 
-.tracker-header img {
+.tracker-header span.dropdown{
+  display: inline-block;
   float: right;
-  margin-top: 4px;
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+  background-repeat: no-repeat;
+  background-image: url("/images/user/arrow-right.png");
+  background-image: url("/images/user/arrow-right.png");
+}
+
+.tracker-header.active span.dropdown{
+  background-image: url("/images/user/arrow-down.png");
 }
 
 .tracker-content {
@@ -135,7 +145,7 @@ body { margin:0; padding:0; }
   padding: 10px;
 }
 
-.tracker-content.active {
+.tracker-header.active + .tracker-content {
   display: block;
 }
 
