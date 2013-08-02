@@ -1,0 +1,57 @@
+{
+  "navs": [
+    {
+      "name": "logout",
+      "link": "/"
+    },
+    {
+      "name": "tracker",
+      "link": "#tracker",
+      "status": "active"
+    },
+    {
+      "name": "settings",
+      "link": "#setting"
+    },
+    {
+      "name": "help",
+      "link": "#help"
+    }
+  ],
+  "images": {
+    "info": "/images/user/info-big.png",
+    "infoSmall": "/images/user/info-small.png",
+    "infoWhiter": "/images/user/info-whiter.png",
+    "logo": "/images/logo.png",
+    "marker": "/images/user/marker.png",
+    "rightArrow": "/images/user/arrow-right.png",
+    "downArrow": "/images/user/arrow-down.png",
+    "avatar": "/images/user/avatar.png",
+    "clock": "/images/user/trip.png",
+    "clockSmall": "/images/user/trip-small.png",
+    "search": "/images/user/search.png",
+    "streetView": "/images/user/street-view.png",
+    "trail": "/images/user/trail.png",
+    "setting": "/images/user/setting.png",
+    "menu": "/images/user/menu.png",
+    "point": "/images/user/point.png"
+  },
+  "currentInfo": [
+    {
+      "name": "virtual fence",
+      "propName": "fence"
+    },
+    {
+      "name": "latest activity",
+      "propName": "actTime"
+    },
+    {
+      "name": "current elevation",
+      "propName": "elevation"
+    },
+    {
+      "name": "current speed",
+      "propName": "speed"
+    }
+  ]
+}
