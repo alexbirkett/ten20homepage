@@ -1,13 +1,26 @@
 extends layout-angular
 
 block content
-  section.map-canvas
+  section.map-canvas(ng-controller='UserCtrl')
     #map
       script.
         var map = !{JSON.stringify(map)};
         $(function() { new ten20.MapRender('map', map); });
 
-    .tool-box(ng-controller='UserCtrl')
+    .calendar(ui-calendar="calendarOptions", ng-model="eventSources", calendar="myCalendar")
+
+    .trip-info.current-info
+      h5 trip information 
+        img(src=page.images.infoWhiter)
+      each item in page.currentInfo
+        h6 #{item.name} {{#{item.propName}}}
+
+    .status-bar
+      img(src=page.images.point)
+      span.elevation e {{ elevation }}
+      span.speed s {{ speed }}
+
+    .tool-box
       .time-weather
         span {{user.timeWeather}}
         a.info
@@ -17,16 +30,6 @@ block content
         img.logo(src=page.images.logo)
         span welcome {{user.first_name}}
 
-      .calendar(ui-calendar="calendarOptions", ng-model="eventSources", calendar="myCalendar")
-
-      .trip-info.current-info
-        each item in page.currentInfo
-          h6 #{item.name} {{#{item.propName}}}
-
-      .status-bar
-        img(src=page.images.point)
-        span.elevation e {{ elevation }}
-        span.speed s {{ speed }}
 
       ul.tracker-list()
         li(ng-repeat='tracker in user.trackers')
@@ -37,7 +40,7 @@ block content
             ul.nav-tabs
               li.tracker-info.active
                 a(href="#tab-tracker-info", data-toggle="tab")
-                  img(src=page.images.trackerInfo)
+                  img(src=page.images.infoWhiter)
                   | tracker info
 
               li.trip-history
@@ -64,16 +67,16 @@ block content
                   .media
                     img.pull-left(src=page.images.clock)
                     .media-body
-                      h1 {{tracker.history.date}}
+                      h6 {{tracker.history.date}}
                   .search
                     img(src=page.images.search)
                     input(type='text', placeholder='Search date or place')
                   
                   ul.trip-list
                     li(ng-repeat='item in tracker.history.data', ng-click='toggleTripInfo')
-                      span time {{item.time}} 
-                      span 
-                        img(src=page.images.infoSmall)
+                      span time:
+                      span.timeslot {{item.time}} 
+                      img(src=page.images.infoWhiter)
 
             .tracker-bottom
               a.street-view
@@ -90,3 +93,8 @@ block content
           span +
           a(href=item.link)= item.name
 
+    script.
+      $(function() {
+        $('.tool-box').draggable();
+        $('.trip-info').draggable();
+        });
