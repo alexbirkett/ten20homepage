@@ -1,1 +1,376 @@
 /* user dashbord page styles */
+body { margin:0; padding:0; }
+
+/* map styles */
+.map-canvas {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.map-canvas #map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: inherit;
+}
+
+/* tool box styles */
+.tool-box {
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  width: 250px;
+  background-color: #333;
+  z-index: 2000;
+}
+
+.time-weather {
+  text-transform: capitalize;
+  color: #aaa;
+  padding: 5px;
+  font-size: 10px;
+}
+
+.time-weather a {
+  float: right;
+}
+
+.welcome {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.welcome img {
+  width: 20%;
+}
+
+.welcome span {
+  float: right;
+  font-size: 12px;
+  text-transform: capitalize;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.calendar {
+  position: absolute;
+  left: -100%;
+  top: 20%;
+}
+
+.trip-info {
+  position: absolute;
+  left: 300px;
+  top: 100px;
+  width: 250px;
+  padding: 10px;
+  background-color: #444;
+}
+
+.trip-info h5 {
+  background-color: #333;
+  text-transform: capitalize;
+  border-bottom: 1px solid #666;
+  margin: -10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.trip-info h5 img {
+  float: right;
+}
+
+.status-bar {
+  position: absolute;
+  left: 200px;
+  top: 300px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #333;
+}
+
+.status-bar img {
+  margin-right: 15px;
+}
+
+.status-bar span.speed {
+  margin-right: 20px;
+}
+
+
+
+.tracker-list {
+  margin: 0;
+  padding: 0;
+  clear: both;
+}
+
+
+.tracker-header {
+  padding: 7px 10px 5px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+
+.tracker-header span {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.tracker-header span.dropdown{
+  display: inline-block;
+  float: right;
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+  background-repeat: no-repeat;
+  background-image: url("/images/user/arrow-right.png");
+  background-image: url("/images/user/arrow-right.png");
+}
+
+.tracker-header.active span.dropdown{
+  background-image: url("/images/user/arrow-down.png");
+}
+
+.tracker-content {
+  display: none;
+  background-color: #333;
+}
+
+.tracker-content > div {
+  padding: 10px;
+}
+
+.tracker-header.active + .tracker-content {
+  display: block;
+}
+
+/* override bootstrap style for tracker tabs */
+.tracker-content .nav-tabs {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.nav-tabs li {
+  width: 125px;
+  height: 42px;
+  background-color: #333;
+}
+
+.nav-tabs > li > a {
+  padding: 0;
+  color: #eee;
+  border: none;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.nav-tabs > li > a img {
+  margin: 5px 15px;
+  float: left;
+}
+
+.nav-tabs > .active {
+  background-color: #444;
+}
+
+.nav-tabs > .active >a,
+.nav-tabs > .active >a:hover,
+.nav-tabs > .active >a:focus {
+  color: #eee;
+  cursor: default;
+  background: none;
+  border: none;
+  text-decoration: none;
+}
+
+.tab-content {
+  background-color: #444;
+}
+
+#tab-tracker-info {
+  margin: 20px 10px 10px;
+  border-bottom: 1px solid #555;
+}
+
+#tab-tracker-info .media {
+  margin-bottom: 25px;
+}
+
+#tab-tracker-info .media > .pull-left {
+  margin-right: 20px;
+}
+
+#tab-tracker-info .media-body {
+  margin-top: 10px;
+}
+
+#tab-tracker-info .media-body h6 {
+  color: #aaa;
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  font-family: arial;
+  line-height: 15px;
+}
+
+.current-info h6 {
+  text-transform: capitalize;
+  font-family: 'AvenirNextLTW01-Regular';
+  font-size: 12px;
+}
+
+.current-info h6 span {
+  margin-left: 5px;
+  color: #f60;
+}
+
+.tracker-content .tracker-bottom {
+  background-color: #444;
+  padding-top: 0;
+}
+
+.tracker-bottom > a {
+  color: #eee;
+  display: inline-block;
+  margin-left: 10px;
+  width: 100px;
+  height: 42px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.tracker-bottom > a img {
+  float: left;
+  margin: 10px 15px;
+}
+
+.tracker-bottom > img {
+  margin-left: 210px;
+}
+
+
+.date-select .media img {
+  margin: 20px;
+}
+
+.date-select .media-body h6 {
+  margin-top: 20px;
+  color: rgba(211, 88, 5, 0.7);
+  font-weight: bold;
+}
+
+.search {
+  width: 200px;
+  margin: auto;
+  padding: 0;
+  background-color: #333;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+
+.search img {
+  margin: auto 10px auto 15px;
+}
+
+.search input[type="text"] {
+  color: #eee;
+  background: none;
+  width: 120px;
+  margin: auto;
+  padding: 8px;
+  border: none;
+  background-color: #333;
+  border-radius: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  font-size: 12px;
+}
+
+.search input[type="text"]:focus {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.trip-list {
+  margin: 10px 0;
+  padding: 0;
+}
+
+.trip-list > li {
+  font-size: 13px;
+  text-transform: capitalize;
+  margin: 0 -10px;
+  padding: 10px;
+  padding-left: 20px;
+  border-top: 1px solid #666;
+}
+
+.trip-list > li:last-child {
+  border-bottom: 1px solid #666;
+}
+
+.trip-list > li img {
+  float: right;
+  margin: -10px;
+  padding: 11px;
+  border-left: 1px solid #666;
+}
+
+.trip-list > li span.timeslot {
+  color: #f60;
+  margin-left: 10px;
+}
+
+/* nav styles*/
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  width: inherit;
+  background-color: #333;
+  list-style: none;
+  z-index: 2000;
+}
+
+
+.bottom-nav li {
+  display: inline-block;
+  margin: 5px 10px 0 25px;
+  float: right;
+}
+
+
+.bottom-nav li span {
+  display: none;
+  width: 22px;
+  height: 22px;
+  background-image: url(/images/user/menu.png);
+  margin-right: 5px;
+  text-align: center;
+}
+
+.bottom-nav li.active span {
+  display: inline-block;
+  color: #eee;
+}
+
+.bottom-nav li a {
+  color: #aaa;
+  text-transform: capitalize;
+}
+
+.bottom-nav li.active a {
+  color: #eee;
+}

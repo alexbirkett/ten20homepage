@@ -106,8 +106,139 @@ angular.module('ten20Angular.controllers', []).
 
 
   }).
-  controller('MyCtrl2', function ($scope) {
-    // write Ctrl here
+  controller('UserCtrl', function ($scope) {
+    $scope.user = {
+      id: "51f8cd02fb08a80618000001",
+      first_name: "Daniel",
+      timeWeather: "oslo cloudy -5.C wed jan 23 21:23",
+      trackers: [
+        {
+          index: "one",
+          status: "active",
+          serialNum: "2384390",
+          location: {
+            city: "San Francisco",
+            date: "Wed, July 23",
+            time: "19:35",
+            weather: "cloudy"
+          },
+          current: {
+            fence: "ON 6 km",
+            actTime: "Today 18:45",
+            elevation: "3 km",
+            speed: "7 km"
+          },
+          history: {
+            date: "12 December 2012",
+            data: [
+              {
+                time: "9:00",
+                geodata: []
+              },
+              {
+                time: "10:00",
+                geodata: []
+              },
+              {
+                time: "11:00",
+                geodata: []
+              },
+              {
+                time: "12:00",
+                geodata: []
+              },
+              {
+                time: "13:00",
+                geodata: []
+              }
+            ]
+          }
+        },
+        {
+          index: "two",
+          serialNum: "2384391",
+          location: {
+            city: "San Francisco",
+            date: "Wed, July 23",
+            time: "19:35",
+            weather: "cloudy"
+          },
+          current: {
+            fence: "ON 6 km",
+            actTime: "Today 18:45",
+            elevation: "3 km",
+            speed: "7 km"
+          },
+          history: {
+            date: "12 December 2012",
+            data: [
+              {
+                time: "9:00",
+                geodata: []
+              },
+              {
+                time: "10:00",
+                geodata: []
+              },
+              {
+                time: "11:00",
+                geodata: []
+              },
+              {
+                time: "12:00",
+                geodata: []
+              },
+              {
+                time: "13:00",
+                geodata: []
+              }
+            ]
+          }
+        },
+        {
+          index: "three",
+          serialNum: "2384392",
+          location: {
+            city: "San Francisco",
+            date: "Wed, July 23",
+            time: "19:35",
+            weather: "cloudy"
+          },
+          current: {
+            fence: "ON 6 km",
+            actTime: "Today 18:45",
+            elevation: "3 km",
+            speed: "7 km"
+          },
+          history: {
+            date: "12 December 2012",
+            data: [
+              {
+                time: "9:00",
+                geodata: []
+              },
+              {
+                time: "10:00",
+                geodata: []
+              },
+              {
+                time: "11:00",
+                geodata: []
+              },
+              {
+                time: "12:00",
+                geodata: []
+              },
+              {
+                time: "13:00",
+                geodata: []
+              }
+            ]
+          }
+        }
+      ]
+      
+    };
 
   });
 
@@ -124,33 +255,6 @@ function SocketCtrl($scope, socket) {
     $scope.messages.push(message);
   });
 
-  socket.on('change:name', function (data) {
-    changeName(data.oldName, data.newName);
-  });
-
-  socket.on('user:join', function (data) {
-    $scope.messages.push({
-      user: 'chatroom',
-      text: 'User ' + data.name + ' has joined.'
-    });
-    $scope.users.push(data.name);
-  });
-
-  // add a message to the conversation when a user disconnects or leaves the room
-  socket.on('user:left', function (data) {
-    $scope.messages.push({
-      user: 'chatroom',
-      text: 'User ' + data.name + ' has left.'
-    });
-    var i, user;
-    for (i = 0; i < $scope.users.length; i++) {
-      user = $scope.users[i];
-      if (user === data.name) {
-        $scope.users.splice(i, 1);
-        break;
-      }
-    }
-  });
 
   // Private helpers
   // ===============
