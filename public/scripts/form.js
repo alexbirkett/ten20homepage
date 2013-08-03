@@ -226,11 +226,13 @@ $(function(){
       var scroll = $(this).attr('scroll');
 
       if (scroll === 'true') {
-        var offset = $(id).offset().top;
+        if ($(id).length != 0) {
+          var offset = $(id).offset().top;
 
-        $(this).on('click', function (e) {
-          $('body').animate({scrollTop: offset}, 800);
-        });
+          $(this).on('click', function (e) {
+            $('body').animate({scrollTop: offset}, 800);
+          });
+        }
       }
     });
 

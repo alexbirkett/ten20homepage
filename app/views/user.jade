@@ -1,4 +1,105 @@
 extends layout-angular
 
 block content
-  h1 hi, you are logged in! #{email}
+  section.map-canvas(ng-controller='UserCtrl')
+    #map
+      script.
+        var map = !{JSON.stringify(map)};
+        $(function() { new ten20.MapRender('map', map); });
+
+    .calendar(ui-calendar="calendarOptions", ng-model="eventSources", calendar="myCalendar")
+
+    .trip-info.current-info
+      h5 trip information 
+        img(src=page.images.infoWhiter)
+      each item in page.currentInfo
+        h6 #{item.name} {{#{item.propName}}}
+
+    .status-bar
+      img(src=page.images.point)
+      span.elevation e {{ elevation }}
+      span.speed s {{ speed }}
+
+    .tool-box
+      .time-weather
+        span {{user.timeWeather}}
+        a.info
+          img(src=page.images.info)
+
+      .welcome
+        img.logo(src=page.images.logo)
+        span welcome {{user.first_name}}
+
+
+      ul.tracker-list()
+        li(ng-repeat='tracker in user.trackers')
+          .tracker-header(class="{{tracker.status}}")
+            span tracker {{tracker.index}}
+            span.dropdown
+          .tracker-content
+            ul.nav-tabs
+              li.tracker-info.active
+                a(href="#tab-tracker-info", data-toggle="tab")
+                  img(src=page.images.infoWhiter)
+                  | tracker info
+
+              li.trip-history
+                a(href="#tab-trip-history", data-toggle="tab")
+                  img(src=page.images.clockSmall)
+                  | trip history
+
+            .tab-content
+              .tab-pane.active(id="tab-tracker-info")
+                .media
+                  img.pull-left.avatar(src=page.images.avatar)
+                  .media-body
+                    h6 {{tracker.location.city}}
+                    h6 {{tracker.location.date}}
+                    h6 {{tracker.location.time}}
+                    h6 {{tracker.location.weather}}
+                .current-info
+                  each item in page.currentInfo
+                    h6 #{item.name}:
+                      span {{tracker.current['#{item.propName}']}}
+
+              .tab-pane(id="tab-trip-history")
+                .date-select
+                  .media
+                    img.pull-left(src=page.images.clock)
+                    .media-body
+                      h6 {{tracker.history.date}}
+                  .search
+                    img(src=page.images.search)
+                    input(type='text', placeholder='Search date or place')
+                  
+                  ul.trip-list
+                    li(ng-repeat='item in tracker.history.data', ng-click='toggleTripInfo')
+                      span time:
+                      span.timeslot {{item.time}} 
+                      img(src=page.images.infoWhiter)
+
+            .tracker-bottom
+              a.street-view
+                img(src=page.images.streetView)
+                | street view
+              a.latest-trail
+                img(src=page.images.trail)
+                | latest trail
+              img(src=page.images.setting)
+
+    ul.bottom-nav
+      each item in page.navs
+        li(class=item.status)
+          span +
+          a(href=item.link)= item.name
+
+    script.
+      $(function() {
+        $('.tool-box').draggable();
+        $('.trip-info').draggable();
+
+        // temporarily put here
+        $('.tracker-list').on('click', '.tracker-header', function() {
+          $(this).toggleClass('active');
+        });
+      });
