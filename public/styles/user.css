@@ -55,12 +55,80 @@ body { margin:0; padding:0; }
   padding-bottom: 10px;
 }
 
-.calendar {
-  position: absolute;
-  left: -100%;
-  top: 20%;
+/* calendar styles */
+.ui-datepicker {
+  background-color: #333;
+  color: #eee;
 }
 
+.ui-datepicker-header {
+  padding: 10px 15px;
+}
+
+.ui-datepicker-calendar td,
+.ui-datepicker-calendar th {
+  width: 35px;
+  height: 20px;
+  text-align: center;
+  border: 1px solid #555;
+}
+
+.ui-datepicker-calendar td a {
+  color: #eee;
+  text-decoration: none;
+}
+
+.ui-datepicker-calendar th {
+  color: #f60;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.ui-datepicker-year {
+  margin-left: 5px;
+  color: #f60;
+}
+
+.ui-datepicker-prev {
+  width: 20px;
+  height: 20px;
+  background-image: url("/images/user/calendar-left.png");
+  background-repeat: no-repeat;
+  float: left;
+}
+
+.ui-datepicker-next {
+  width: 20px;
+  height: 20px;
+  background-image: url("/images/user/calendar-right.png");
+  background-repeat: no-repeat;
+  float: right;
+}
+
+.ui-datepicker-title {
+  text-align: center;
+  font-size: 14px;
+  padding-top: 2px;
+}
+
+.ui-datepicker-next span,
+.ui-datepicker-prev span {
+  display: none;
+}
+
+.ui-datepicker-today {
+  background-color: #222;
+}
+
+.ui-datepicker-calendar .ui-datepicker-today a {
+  color: #f60;
+}
+
+.ui-datepicker-calendar td a:hover {
+color: #f60;
+}
+
+/* trip info styles */
 .trip-info {
   position: absolute;
   left: 300px;
@@ -101,14 +169,15 @@ body { margin:0; padding:0; }
   margin-right: 20px;
 }
 
-
-
 .tracker-list {
   margin: 0;
   padding: 0;
   clear: both;
 }
 
+.tracker-list li {
+  cursor: default;
+}
 
 .tracker-header {
   padding: 7px 10px 5px;
@@ -132,7 +201,7 @@ body { margin:0; padding:0; }
   background-image: url("/images/user/arrow-right.png");
 }
 
-.tracker-header.active span.dropdown{
+.active .tracker-header span.dropdown{
   background-image: url("/images/user/arrow-down.png");
 }
 
@@ -145,74 +214,67 @@ body { margin:0; padding:0; }
   padding: 10px;
 }
 
-.tracker-header.active + .tracker-content {
-  display: block;
-}
+/* style for tracker tabs */
 
-/* override bootstrap style for tracker tabs */
-.tracker-content .nav-tabs {
+.tracker-content .tabs {
   margin: 0;
   padding: 0;
   border: none;
 }
 
-.nav-tabs li {
-  width: 125px;
+.tracker-content .tabs li {
+  width: 115px;
   height: 42px;
-  background-color: #333;
-}
-
-.nav-tabs > li > a {
-  padding: 0;
-  color: #eee;
-  border: none;
-  font-size: 14px;
-  text-decoration: none;
-  text-transform: capitalize;
   display: inline-block;
+  background-color: #333;
+  font-size: 13px;
+  text-transform: capitalize;
+  padding: 5px;
 }
 
-.nav-tabs > li > a img {
+.tabs > li > img {
   margin: 5px 15px;
   float: left;
 }
 
-.nav-tabs > .active {
+.tracker-content.info-show .tracker-info {
   background-color: #444;
 }
 
-.nav-tabs > .active >a,
-.nav-tabs > .active >a:hover,
-.nav-tabs > .active >a:focus {
-  color: #eee;
-  cursor: default;
-  background: none;
-  border: none;
-  text-decoration: none;
+.tracker-content.info-show .history-tab {
+  display: none;
 }
 
-.tab-content {
+.tracker-content.history-show .tracker-history {
   background-color: #444;
 }
 
-#tab-tracker-info {
+.tracker-content.history-show .info-tab {
+  display: none;
+}
+
+.tabs-content {
+  background-color: #444;
+}
+
+.info-tab {
   margin: 20px 10px 10px;
   border-bottom: 1px solid #555;
 }
 
-#tab-tracker-info .media {
+.info-tab .media {
   margin-bottom: 25px;
 }
 
-#tab-tracker-info .media > .pull-left {
+.info-tab .media > .pull-left {
   margin-right: 20px;
 }
 
-#tab-tracker-info .media-body {
+.info-tab .media-body {
   margin-top: 10px;
 }
 
-#tab-tracker-info .media-body h6 {
+.info-tab .media-body h6 {
   color: #aaa;
   margin: 0;
   padding: 0;
@@ -267,6 +329,13 @@ body { margin:0; padding:0; }
   font-weight: bold;
 }
 
+.date-select .media-body input {
+  position: relative;
+  visibility: hidden;
+  height: 1px;
+  width: 1px;
+}
+
 .search {
   width: 200px;
   margin: auto;
@@ -289,9 +358,9 @@ body { margin:0; padding:0; }
   padding: 8px;
   border: none;
   background-color: #333;
-  border-radius: none;
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
   font-size: 12px;
 }
 
@@ -322,7 +391,7 @@ body { margin:0; padding:0; }
 .trip-list > li img {
   float: right;
   margin: -10px;
-  padding: 11px;
+  padding: 13px;
   border-left: 1px solid #666;
 }
 
