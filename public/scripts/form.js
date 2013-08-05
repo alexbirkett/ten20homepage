@@ -89,7 +89,7 @@ window.ten20.ContactForm = (function() {
     var self = this;
 
     // checkbox already bind state in fakeCheckbox
-    this.$self.find('input[type="text"]').add('input[type="password"]').each(function () {
+    this.$self.find('input[type="text"], input[type="password"]').each(function () {
       self.formData[$(this).attr('id')] = {
         optional: $(this).attr('optional'),
         value: ''
@@ -164,7 +164,7 @@ window.ten20.ContactForm = (function() {
 
   // dynamically set input width of contact forms
   ContactForm.prototype.resizeInput = function () {
-      var inputItems = this.$self.find('list-text').add('list-password');
+      var inputItems = this.$self.find('.list-text, .list-password');
       var totalWidth = this.$self.find('.form ul').innerWidth();
 
       $("body").css('overflow', 'hidden');
