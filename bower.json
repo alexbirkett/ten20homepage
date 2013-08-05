@@ -7,15 +7,15 @@
     "components"
   ],
   "dependencies": {
-    "jquery": "http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js",
+    "jquery": "https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js",
     "jquery-ui": "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
-    "bootstrap": "git@github.com:bowerjs/bootstrap.git",
-    "css3-query": "git@github.com:livingston/css3-mediaqueries-js.git",
-    "html5": "http://html5shiv.googlecode.com/svn/trunk/html5.js",
-    "angular": "git@github.com:angular/bower-angular.git",
+    "bootstrap": "https://github.com/bowerjs/bootstrap.git",
+    "css3-query": "https://github.com/livingston/css3-mediaqueries-js.git",
+    "html5": "https://html5shiv.googlecode.com/svn/trunk/html5.js",
+    "angular": "https://github.com/angular/bower-angular.git",
     "ng-grid": "https://github.com/angular-ui/ng-grid/zipball/master",
     "angular-socket-io": "~0.0.2",
-    "socket-io": "git@github.com:LearnBoost/socket.io-client.git"
+    "socket-io": "https://github.com/LearnBoost/socket.io-client.git"
 
   }
 }
