@@ -110,6 +110,10 @@ body { margin:0; padding:0; }
 }
 
 
+.tracker-list li {
+  cursor: default;
+}
+
 .tracker-header {
   padding: 7px 10px 5px;
   border-top: 1px solid #444;
@@ -132,7 +136,7 @@ body { margin:0; padding:0; }
   background-image: url("/images/user/arrow-right.png");
 }
 
-.tracker-header.active span.dropdown{
+.active .tracker-header span.dropdown{
   background-image: url("/images/user/arrow-down.png");
 }
 
@@ -145,7 +149,7 @@ body { margin:0; padding:0; }
   padding: 10px;
 }
 
-.tracker-header.active + .tracker-content {
+.tracker-list li.active .tracker-content {
   display: block;
 }
 

@@ -32,8 +32,8 @@ block content
 
 
       ul.tracker-list
-        li(ng-repeat='tracker in user.trackers')
-          .tracker-header(class="{{tracker.status}}")
+        li(ng-repeat='tracker in user.trackers', class="{{tracker.status}}")
+          .tracker-header
             span tracker {{tracker.index}}
             span.dropdown
           .tracker-content.info-show
@@ -96,11 +96,13 @@ block content
         $('.tool-box').draggable();
         $('.trip-info').draggable();
 
-        // temporarily put here
+        // trackers list pane show :ps.temporarily put here
         $('.tracker-list').on('click', '.tracker-header', function() {
-          $(this).toggleClass('active');
+          $('.tracker-list').children('.active').removeClass('active');
+          $(this).parent().toggleClass('active');
         });
 
+        // tracker info tabs show
         $('.tracker-content').on('click', '.tabs li', function() {
 
           if ($(this).hasClass('tracker-info')) {
