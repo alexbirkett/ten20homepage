@@ -7,8 +7,6 @@ block content
         var map = !{JSON.stringify(map)};
         $(function() { new ten20.MapRender('map', map); });
 
-    .calendar(ui-calendar="calendarOptions", ng-model="eventSources", calendar="myCalendar")
-
     .trip-info.current-info
       h5 trip information 
         img(src=page.images.infoSmall)
@@ -66,6 +64,7 @@ block content
                     img.pull-left(src=page.images.clock)
                     .media-body
                       h6 {{tracker.history.date}}
+                      input.history-date(type='text', ng-model="tracker.history.date")
                   .search
                     img(src=page.images.search)
                     input(type='text', placeholder='Search date or place')
@@ -122,4 +121,20 @@ block content
               removeClass('info-show').addClass('history-show');
           }
         });
+
+        // date selector
+        $('.history-date').datepicker({
+          beforeShow: function(input, inst) {
+            var leftPos = $(input).parents('.date-select').offset().left - 300;
+            var topPos = $(input).parents('.date-select').offset().top - 15;
+            setTimeout(function () {
+              inst.dpDiv.css({ top: topPos, left: leftPos});
+            }, 0);
+          }
+        });
+
+        $('.date-select .media').click(function() {
+          $(this).find('.history-date').datepicker('show');
+        });
+
       });
