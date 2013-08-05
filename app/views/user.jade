@@ -11,7 +11,7 @@ block content
 
     .trip-info.current-info
       h5 trip information 
-        img(src=page.images.infoWhiter)
+        img(src=page.images.infoSmall)
       each item in page.currentInfo
         h6 #{item.name} {{#{item.propName}}}
 
@@ -74,7 +74,7 @@ block content
                     li(ng-repeat='item in tracker.history.data', ng-click='toggleTripInfo')
                       span time:
                       span.timeslot {{item.time}} 
-                      img(src=page.images.infoWhiter)
+                      img(src=page.images.infoSmall)
 
             .tracker-bottom
               a.street-view
