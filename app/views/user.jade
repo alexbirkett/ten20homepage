@@ -32,7 +32,7 @@ block content
 
 
       ul.tracker-list
-        li(ng-repeat='tracker in user.trackers', class="{{tracker.status}}")
+        li(ng-repeat='tracker in user.trackers')
           .tracker-header
             span tracker {{tracker.index}}
             span.dropdown
@@ -98,9 +98,18 @@ block content
 
         // trackers list pane show :ps.temporarily put here
         $('.tracker-list').on('click', '.tracker-header', function() {
-          $('.tracker-list').children('.active').removeClass('active');
+
+          if (!$(this).parent().hasClass('active')) {
+            $('.tracker-list').children('.active').removeClass('active');
+            $('.tracker-list').find('.tracker-content').hide();
+          }
+
           $(this).parent().toggleClass('active');
+          $(this).next().slideToggle();
+
         });
+
+        $('.tracker-list').find('.tracker-header').first().click();
 
         // tracker info tabs show
         $('.tracker-content').on('click', '.tabs li', function() {
