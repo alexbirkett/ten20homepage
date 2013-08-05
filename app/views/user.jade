@@ -31,25 +31,23 @@ block content
         span welcome {{user.first_name}}
 
 
-      ul.tracker-list()
+      ul.tracker-list
         li(ng-repeat='tracker in user.trackers')
           .tracker-header(class="{{tracker.status}}")
             span tracker {{tracker.index}}
             span.dropdown
-          .tracker-content
-            ul.nav-tabs
-              li.tracker-info.active
-                a(href="#tab-tracker-info", data-toggle="tab")
+          .tracker-content.info-show
+            ul.tabs
+              li.tracker-info
                   img(src=page.images.infoWhiter)
                   | tracker info
 
-              li.trip-history
-                a(href="#tab-trip-history", data-toggle="tab")
+              li.tracker-history
                   img(src=page.images.clockSmall)
                   | trip history
 
-            .tab-content
-              .tab-pane.active(id="tab-tracker-info")
+            .tabs-content
+              .info-tab
                 .media
                   img.pull-left.avatar(src=page.images.avatar)
                   .media-body
@@ -62,7 +60,7 @@ block content
                     h6 #{item.name}:
                       span {{tracker.current['#{item.propName}']}}
 
-              .tab-pane(id="tab-trip-history")
+              .history-tab
                 .date-select
                   .media
                     img.pull-left(src=page.images.clock)
@@ -101,5 +99,16 @@ block content
         // temporarily put here
         $('.tracker-list').on('click', '.tracker-header', function() {
           $(this).toggleClass('active');
+        });
+
+        $('.tracker-content').on('click', '.tabs li', function() {
+
+          if ($(this).hasClass('tracker-info')) {
+            $(this).parents('.tracker-content').
+              removeClass('history-show').addClass('info-show');
+          } else {
+            $(this).parents('.tracker-content').
+              removeClass('info-show').addClass('history-show');
+          }
         });
       });
