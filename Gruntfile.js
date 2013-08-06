@@ -111,8 +111,8 @@ module.exports = function (grunt) {
     preprocess : {
       dev: {
         files: {
-          'app/views/partials/head.jade':'app/views/partials/src/head.jade',
-          'app/views/partials/angular.jade':'app/views/partials/src/angular.jade'
+          'app/views/partials/build/head.jade':'app/views/partials/head.jade',
+          'app/views/partials/build/angular.jade':'app/views/partials/angular.jade'
         },
         options: {
           context : {
@@ -122,8 +122,8 @@ module.exports = function (grunt) {
       },
       prod: {
         files: {
-          'app/views/partials/head.jade':'app/views/partials/src/head.jade',
-          'app/views/partials/angular.jade':'app/views/partials/src/angular.jade'
+          'app/views/partials/build/head.jade':'app/views/partials/head.jade',
+          'app/views/partials/build/angular.jade':'app/views/partials/angular.jade'
         },
         options: {
           context : {
