@@ -4,3 +4,4 @@ public/build
 .tmp/
 .DS_Store
 certs
+.idea
