@@ -10,6 +10,7 @@ var express = require('express'),
     pass = require('./app/pass'),
     passport = require('passport'),
     options = require('./app/http-options'),
+    configureApi = require('ten20api'),
     RedisStore = require('connect-redis')(express);
 
 
@@ -56,6 +57,9 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
+
+
+configureApi(app);
 
 // admin console
 app.get('/admin/login', routes.admin.login);
