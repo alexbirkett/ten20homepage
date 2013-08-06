@@ -3,3 +3,4 @@ public/components
 public/build
 .tmp/
 .DS_Store
+certs
