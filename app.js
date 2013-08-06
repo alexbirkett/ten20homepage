@@ -1,3 +1,4 @@
+require('ten20location.io'); // start ten20 LocationIO adapter
 
 var express = require('express'),
     http = require('http'),
