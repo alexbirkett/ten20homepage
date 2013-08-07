@@ -74,11 +74,6 @@ module.exports = {
   },
 
   dashboard: function(req, res) {
-    var id = req.user._id;
-    console.log(id);
-    res.render('user', {
-      page: userPage,
-      'id': id
-    });
+    res.render('user', { page: userPage });
   }
 };
