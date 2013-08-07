@@ -9,6 +9,10 @@ module.exports = {
     db = dbs;
   },
 
+  userinfo: function(req, res) {
+    res.json(req.user);
+  },
+
   signin: function(req, res, next) {
     var userInfo = req.body;
 
@@ -70,20 +74,11 @@ module.exports = {
   },
 
   dashboard: function(req, res) {
-    var user = req.user;
+    var id = req.user._id;
+    console.log(id);
     res.render('user', {
-      map: {
-        "lat": 52.80113,
-        "lng": -1.63130,
-        "zoomLevel": 16,
-        "numberOfTrackers": 0,
-        "showHistory": false,
-        "followFirstTracker": true,
-        "addVirtualFence": false,
-        "tile": "alexbirkett.map-bugector"
-      },
       page: userPage,
-      user: user
+      'id': id
     });
   }
 };

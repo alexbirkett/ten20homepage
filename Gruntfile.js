@@ -61,7 +61,7 @@ module.exports = function (grunt) {
         options: {
           separator: ';',
         },
-        src: ['<%= pkg.src.script %>/angular/*.js'],
+        src: ['<%= pkg.src.script %>/angular/*.js', '<%= pkg.src.script %>/angular/controllers/*.js'],
         dest: 'public/build/.temp/angular-all.js'
       }
     },
