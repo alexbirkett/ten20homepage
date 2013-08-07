@@ -133,6 +133,8 @@ color: #f60;
   position: absolute;
   left: 300px;
   top: 100px;
+  left: 66px;
+  top: 560px;
   width: 250px;
   padding: 10px;
   background-color: #444;
@@ -442,4 +444,128 @@ color: #f60;
 
 .bottom-nav li.active a {
   color: #eee;
+}
+
+/* styles for smaller pc screens */
+@media only screen and (max-height: 800px) {
+
+  .tool-box {
+    bottom: auto;
+    left: 150px;
+    top: auto;
+    right: auto;
+  }
+
+  .tracker-content {
+    display: block;
+    position: absolute;
+    left: 250px;
+    top: 0;
+    bottom: 0;
+  }
+
+  .tracker-content .tabs {
+    width: 300px;
+  }
+
+  .tabs-content {
+    position: absolute;
+    left: 250px;
+    top: 0;
+    bottom: 0;
+    width: 400px;
+  }
+
+  .tracker-header span.dropdown {
+    background-image: url("/images/user/arrow-down.png");
+  }
+
+  .active .tracker-header {
+    background-color: #444;
+  }
+
+  .active .tracker-header span.dropdown {
+    background-image: url("/images/user/arrow-right.png");
+  }
+
+  .tracker-content .tracker-bottom {
+    position: absolute;
+    left: 0;
+    width: 250px;
+    top: 50px;
+    bottom: 0;
+    padding-top: 50px;
+  }
+
+  .info-tab {
+    margin-top: 10px;
+    margin-left: 50px;
+    border-bottom: none;
+  }
+
+  .info-tab .media {
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  .info-tab .media > .pull-left {
+    float: none;
+  }
+
+  .info-tab .current-info {
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+    top: -45px;
+  }
+
+  .date-select .media {
+    display: inline-block;
+    width: 100px;
+    overflow: visible;
+    float: left;
+  }
+
+  .date-select .media img {
+    margin-bottom: 0;
+  }
+
+  .date-select .media-body {
+    display: inline-block;
+    overflow: visible;
+  }
+
+  .date-select .media-body h6 {
+    text-align: center;
+    display: inline-block;
+    width: 110px;
+  }
+
+  .search {
+    margin-left: 170px;
+  }
+
+  .trip-list {
+    padding-left: 130px;
+  }
+
+  .trip-list > li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .trip-list > li:last-child {
+    border-bottom: none;
+  }
+
+  .trip-list > li img {
+    float: none;
+    margin: 0;
+    border-left: none;
+  }
+
+  .tracker-bottom {
+    padding-bottom: 50px;
+  }
 }

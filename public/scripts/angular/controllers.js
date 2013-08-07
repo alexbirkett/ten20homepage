@@ -132,7 +132,7 @@ angular.module('ten20Angular.controllers', []).
             date: "12 December 2012",
             data: [
               {
-                time: "9:00",
+                time: "09:00",
                 geodata: []
               },
               {
@@ -173,7 +173,7 @@ angular.module('ten20Angular.controllers', []).
             date: "12 December 2012",
             data: [
               {
-                time: "9:00",
+                time: "09:00",
                 geodata: []
               },
               {
@@ -214,7 +214,7 @@ angular.module('ten20Angular.controllers', []).
             date: "12 December 2012",
             data: [
               {
-                time: "9:00",
+                time: "09:00",
                 geodata: []
               },
               {
