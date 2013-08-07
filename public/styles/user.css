@@ -15,6 +15,7 @@ body { margin:0; padding:0; }
   top: 0;
   bottom: 0;
   width: inherit;
+  background-color: #aaa;
 }
 
 /* tool box styles */
@@ -167,8 +168,10 @@ color: #f60;
   margin-right: 15px;
 }
 
+.status-bar span.elevation,
 .status-bar span.speed {
   margin-right: 20px;
+  margin-left: 5px;
 }
 
 .tracker-list {
