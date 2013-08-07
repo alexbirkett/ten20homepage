@@ -38,11 +38,18 @@ module.exports = function (socket) {
   });
 
   // get trackers current location info
-  socket.on('get:current', function() {
+  socket.on('get:current', function(data) {
+    //TODO
+    data.trackers;
+    socket.emit('send:current', current);
   });
 
   // get trackers current location info
   socket.on('get:history', function(data) {
+    //TODO
+    data.trackerSerial,
+    data.date,
+    socket.emit('send:history', history);
   });
 
   setInterval(function () {

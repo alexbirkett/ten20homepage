@@ -26,21 +26,21 @@ body {
 }
 
 h1 {
-  font: 400 36px/54px 'AvenirNextLTW01-Regular';
+  font: 400 36px/54px 'AvenirNextLTW01-Regular', sans-serif;
   letter-spacing: 3px;
 }
 
 h2 {
-  font: 400  14px/21px 'AvenirNextLTW01-Regular';
+  font: 400  14px/21px 'AvenirNextLTW01-Regular', sans-serif;
 }
 
 h3 {
-  font: 400 11px/18px 'AvenirNextLTW01-Regular';
+  font: 400 11px/18px 'AvenirNextLTW01-Regular', sans-serif;
   text-transform: uppercase;
 }
 
 h4 {
-  font: 400 11px/18px 'Avenir Next LT W01 Demi';
+  font: 400 11px/18px 'Avenir Next LT W01 Demi', sans-serif;
   text-transform: uppercase;
 }
 
