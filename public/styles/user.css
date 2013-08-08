@@ -49,11 +49,16 @@ body { margin:0; padding:0; }
 }
 
 .welcome span {
-  float: right;
+  display: inline-block;
   font-size: 12px;
   text-transform: capitalize;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  margin-left: 10px;
+}
+
+.welcome span.info {
+  margin-left: 60px;
 }
 
 /* calendar styles */
@@ -139,6 +144,7 @@ color: #f60;
   width: 250px;
   padding: 10px;
   background-color: #444;
+  z-index: 2000;
 }
 
 .trip-info h5 {
@@ -159,9 +165,11 @@ color: #f60;
   position: absolute;
   left: 200px;
   top: 300px;
+  width: 200px;
   padding: 5px 10px;
   border-radius: 20px;
   background-color: #333;
+  z-index: 2000;
 }
 
 .status-bar img {
@@ -170,6 +178,7 @@ color: #f60;
 
 .status-bar span.elevation,
 .status-bar span.speed {
+  display: inline-block;
   margin-right: 20px;
   margin-left: 5px;
 }
@@ -188,6 +197,10 @@ color: #f60;
   padding: 7px 10px 5px;
   border-top: 1px solid #444;
   border-bottom: 1px solid #444;
+}
+
+.tracker-header .first {
+  margin-right: 30px;
 }
 
 .tracker-header span {
