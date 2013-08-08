@@ -2,6 +2,8 @@ window.ten20 = window.ten20 || {};
 
 window.ten20.MapRender = (function () {
     // circle options
+    var LatlngBound = 0.05;
+
     var circleMarkerOpt = {
         stroke: true,
         weight: 6,
@@ -132,6 +134,8 @@ window.ten20.MapRender = (function () {
 
     MapRender.prototype.updateNextMarker = function() {
 
+        var self = this;
+
         if (this.markers.length == 0) {
           return;
         }
@@ -141,7 +145,7 @@ window.ten20.MapRender = (function () {
         }
 
         var marker = this.markers[this.currentMarkerIndex];
-        moveMarker(marker);
+        moveMarker(marker, self);
         this.twinkleMarker(marker);
         if (this.showHistory) {
             updateHistory(marker);
@@ -196,13 +200,36 @@ window.ten20.MapRender = (function () {
         return random;
     }
 
-    function moveMarker (marker) {
+    function moveMarker (marker, self) {
         var latLng = marker.getLatLng();
+        var marginLat, marginLng, deltaLat = 0, deltaLng = 0;
 
         marker.latDelta = getDelta(marker.latDelta);
         marker.lngDelta = getDelta(marker.lngDelta);
 
-        marker.setLatLng([latLng.lat + marker.latDelta, latLng.lng +  marker.lngDelta]);
+        // restrict marker activity in a boundary
+        if (self.restrict) {
+          marginLat = Math.abs(marker.latDelta + latLng.lat - self.lat);
+          marginLng = Math.abs(marker.lngDelta + latLng.lng - self.lng);
+
+          if (marginLat > LatlngBound) {
+            if (marker.latDelta + latLng.lat < self.lat - LatlngBound) {
+              deltaLat =  marginLat - LatlngBound;
+            } else {
+              deltaLat = -(marginLat - LatlngBound);
+            }
+          }
+
+          if (marginLng > LatlngBound) {
+            if (marker.lngDelta + latLng.lng < self.lng - LatlngBound) {
+              deltaLng =  marginLng - LatlngBound;
+            } else {
+              deltaLng =  -(marginLng - LatlngBound);
+            }
+          }
+        }
+
+        marker.setLatLng([latLng.lat + marker.latDelta + deltaLat/10, latLng.lng + marker.lngDelta + deltaLng/10]);
 
     }
 
