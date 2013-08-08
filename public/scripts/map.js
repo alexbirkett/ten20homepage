@@ -2,7 +2,10 @@ window.ten20 = window.ten20 || {};
 
 window.ten20.MapRender = (function () {
     // circle options
-    var LatlngBound = 0.05;
+    var LatlngBound = {
+      lat: 0.001,
+      lng: 0.005
+    };
 
     var circleMarkerOpt = {
         stroke: true,
@@ -212,19 +215,19 @@ window.ten20.MapRender = (function () {
           marginLat = Math.abs(marker.latDelta + latLng.lat - self.lat);
           marginLng = Math.abs(marker.lngDelta + latLng.lng - self.lng);
 
-          if (marginLat > LatlngBound) {
-            if (marker.latDelta + latLng.lat < self.lat - LatlngBound) {
-              deltaLat =  marginLat - LatlngBound;
+          if (marginLat > LatlngBound.lat) {
+            if (marker.latDelta + latLng.lat < self.lat - LatlngBound.lat) {
+              deltaLat =  marginLat - LatlngBound.lat;
             } else {
-              deltaLat = -(marginLat - LatlngBound);
+              deltaLat = -(marginLat - LatlngBound.lat);
             }
           }
 
-          if (marginLng > LatlngBound) {
-            if (marker.lngDelta + latLng.lng < self.lng - LatlngBound) {
-              deltaLng =  marginLng - LatlngBound;
+          if (marginLng > LatlngBound.lng) {
+            if (marker.lngDelta + latLng.lng < self.lng - LatlngBound.lng) {
+              deltaLng =  marginLng - LatlngBound.lng;
             } else {
-              deltaLng =  -(marginLng - LatlngBound);
+              deltaLng =  -(marginLng - LatlngBound.lng);
             }
           }
         }
