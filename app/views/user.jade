@@ -25,23 +25,23 @@ block content
 
         .welcome
           img.logo(src=page.images.logo)
-          span welcome
+          span.info welcome
           span(ng-bind='user.name')
 
 
         ul.tracker-list
           li(ng-repeat='tracker in trackers')
             .tracker-header(ng-click='setActiveTracker($index)')
-              span tracker
-              span(ng-bind='tracker.index')
+              span.first tracker
+              span(ng-bind='tracker.serialNum')
               span.dropdown
             .tracker-content.info-show
               ul.tabs
-                li.tracker-info
+                li.tracker-info(ng-click='hideHistoryTrip()')
                     img(src=page.images.infoWhiter)
                     | tracker info
 
-                li.tracker-history
+                li.tracker-history(ng-click='updateHistoryTrip(0)')
                     img(src=page.images.clockSmall)
                     | trip history
 
@@ -71,7 +71,7 @@ block content
                       input(type='text', placeholder='Search date or place')
                     
                     ul.trip-list
-                      li(ng-repeat='item in tracker.history.data', ng-click='toggleHistoryTrip($index)', ng-class='{active : isHistoryItemSelected($index)}')
+                      li(ng-repeat='item in tracker.history.data', ng-click='updateHistoryTrip($index)', ng-class='{active : isHistoryItemSelected($index)}')
                         span time:
                         span.timeslot(ng-bind='item.time')
                         img(src=page.images.infoSmall)

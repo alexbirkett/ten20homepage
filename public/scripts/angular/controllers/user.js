@@ -5,82 +5,123 @@
 angular.module('ten20Angular.controllers', []).
   controller('UserCtrl', function ($scope, $http, socket, mapbox) {
 
+  $scope.trackers = [];
+
   $http.get('/user/info').success(function(data) {
     $scope.user = data;
+
+    // bind socket events
+    bindSocket($scope, socket, mapbox);
+    // bind UI events
+    bindUIEvents($scope);
+
+    $scope.$watch(function() {
+      if ($scope.activeTracker) {
+        return $scope.activeTracker.date;
+      } else {
+        return true;
+      }
+    }, queryHistory);
+
   });
 
-  $scope.trackers = [];
-  $scope.currentInfo = {};
-  $scope.history = {};
 
-  //TODO:bindSocket($scope, socket, mapbox);
-  bindUIEvents($scope);
-  //TODO:queryCurrent();
+  // get trackers current information
+  // could get one or all trackers at a same query
+  function queryCurrent(index) {
+    var trackerInfo = [];
 
-  //TODO
-  $scope.$watch(function() {
-    if ($scope.activeTracker) {
-      return $scope.activeTracker.date;
+    if (index) {
+      trackerInfo.push({
+        'index': index,
+        'serial': $scope.trackers[index].serialNum
+      });
+
     } else {
-      return true;
+      for (var i = 0; i < $scope.trackers.length; i++) {
+        trackerInfo.push({
+          'index': i,
+          'serial': $scope.trackers[i].serialNum
+        });
+      };
     }
-  }, queryHistory);
 
-
-
-  /* helper functions for controller */
-  function queryCurrent() {
-    var trackerSerials = [];
-
-    socket.emit('get:current', trackerSerials);
+    socket.emit('get:current', trackerInfo);
   }
 
+  // get active tracker history information
   function queryHistory() {
-    /*TODO:OPEN
-    var data = {
-      "serial": $scope.activeTracker.serialNum,
-      "date": $scope.activeTracker.date
-    };
+    var historyInfo;
 
-    socket.emit('get:history', data);
-    */
+    if ($scope.activeIndex) {
+      historyInfo = {
+        "index": $scope.activeIndex,
+        "serial": $scope.activeTracker.serialNum,
+        "date": $scope.activeTracker.date
+      };
+
+      socket.emit('get:history', historyInfo);
+    }
   }
 
   function bindSocket($scope, socket, mapbox) {
+
     socket.on('connect', function () { 
-      socket.emit('init:start', $scope.userId);
+      socket.emit('init:start', $scope.user._id);
     });
 
     socket.on('init:ok', function(data) {
       $scope.user = data.user;
       $scope.trackers = data.trackers;
-      $scope.map = mapbox(trackers[0].currentLocation);
+      $scope.map = mapbox(data.trackers[0].current.latlng);
+
+      for (var i = 0; i < data.trackers.length; i++) {
+        $scope.map.addTracker(i, data.trackers[i].current.latlng);
+      };
+
+      // start update trackers current information
+      $scope.setActiveTracker(0);
+      queryCurrent();
+
     });
 
     socket.on('send:timeWeather', function(data) {
-      $scope.timeWeather = data.city + data.weather + 
-      data.temperature + data.time.toString();
+      $scope.timeWeather = data.city + ' ' + data.weather + ' ' + 
+                           data.temperature + ' ' + data.time;
     });
 
     socket.on('send:current', function(data) {
-      $scope.currentInfo = data;
-      $scope.map.updateCurrent(data);
-      setTimeout(queryCurrent, 300);
+
+      for (var i = 0; i < data.length; i++) {
+        $scope.trackers[data[i].trackerIndex].current = data[i].data;
+        $scope.map.updateTracker(data[i].trackerIndex, data[i].data.latlng, false);
+      };
+
+      //delay 1s to update trackers again... loop
+      setTimeout(queryCurrent, 1000);
     });
 
-    socket.on('send:history', function(data) {
-      $scope.history[data.trackerSerial].push = data.history; 
+    socket.on('send:history', function(trip) {
+      $scope.trackers[trip.trackerIndex].history.data = [].concat(trip.data);
     });
   }
 
   function bindUIEvents(scope) {
     scope.setActiveTracker = function(index) {
       scope.activeTracker = scope.trackers[index];
+      scope.activeIndex = index;
     };
 
-    scope.toggleHistoryTrip = function(timeIndex) {
+    scope.hideHistoryTrip = function() {
+      scope.map.hideTripHistory(scope.activeIndex);
+    };
+
+    scope.updateHistoryTrip = function(timeIndex) {
+      var latlngs;
+
       scope.activeTracker.history.activeIndex  = timeIndex;
-      scope.map.updateHistory();
+      latlngs = scope.activeTracker.history.data[timeIndex].geodata;
+      scope.map.updateTripHistory(scope.activeIndex, latlngs);
     };
 
     scope.isHistoryItemSelected = function(index) {
@@ -92,13 +133,11 @@ angular.module('ten20Angular.controllers', []).
     };
 
     scope.streetView = function() {
-      var serial = scope.activeTracker.serialNum;
-      scope.map.toggleStreetView();
+      //TODO
     };
 
     scope.latestTrail = function() {
-      var serial = scope.activeTracker.serialNum;
-      scope.map.updateHistory();
+      //TODO
     };
 
     scope.setUp = function() {
@@ -106,138 +145,6 @@ angular.module('ten20Angular.controllers', []).
     };
   }
 
-  $scope.user = {
-    id: "51f8cd02fb08a80618000001",
-    name: "Daniel"
-  };
-
-  $scope.timeWeather =  "oslo cloudy -5.C wed jan 23 21:23";
-
-  $scope.trackers = [
-    {
-      index: "one",
-      serialNum: "2384390",
-      location: {
-        city: "San Francisco",
-        date: "Wed, July 23",
-        time: "19:35",
-        weather: "cloudy"
-      },
-      current: {
-        fence: "ON 7 km",
-        actTime: "Today 11:45",
-        elevation: "0 km",
-        speed: "20 km"
-      },
-      history: {
-        date: "12 December 2013",
-        data: [
-        {
-          time: "09:00",
-          geodata: []
-        },
-        {
-          time: "10:00",
-          geodata: []
-        },
-        {
-          time: "11:00",
-          geodata: []
-        },
-        {
-          time: "12:00",
-          geodata: []
-        },
-        {
-          time: "13:00",
-          geodata: []
-        }
-        ]
-      }
-    },
-    {
-      index: "two",
-      serialNum: "2384391",
-      location: {
-        city: "San Francisco",
-        date: "Wed, July 23",
-        time: "19:35",
-        weather: "cloudy"
-      },
-      current: {
-        fence: "OFF",
-        actTime: "Today 07:45",
-        elevation: "13 km",
-        speed: "0 km"
-      },
-      history: {
-        date: "03 Octobor 2012",
-        data: [
-        {
-          time: "09:00",
-          geodata: []
-        },
-        {
-          time: "10:00",
-          geodata: []
-        },
-        {
-          time: "11:00",
-          geodata: []
-        },
-        {
-          time: "12:00",
-          geodata: []
-        },
-        {
-          time: "13:00",
-          geodata: []
-        }
-        ]
-      }
-    },
-    {
-      index: "three",
-      serialNum: "2384392",
-      location: {
-        city: "San Francisco",
-        date: "Wed, July 23",
-        time: "19:35",
-        weather: "cloudy"
-      },
-      current: {
-        fence: "ON 6 km",
-        actTime: "Today 18:45",
-        elevation: "3 km",
-        speed: "7 km"
-      },
-      history: {
-        date: "12 December 2012",
-        data: [
-        {
-          time: "09:00",
-          geodata: []
-        },
-        {
-          time: "10:00",
-          geodata: []
-        },
-        {
-          time: "11:00",
-          geodata: []
-        },
-        {
-          time: "12:00",
-          geodata: []
-        },
-        {
-          time: "13:00",
-          geodata: []
-        }
-        ]
-      }
-    }
-    ]
 });
 
 

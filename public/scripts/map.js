@@ -2,7 +2,10 @@ window.ten20 = window.ten20 || {};
 
 window.ten20.MapRender = (function () {
     // circle options
-    var LatlngBound = 0.05;
+    var LatlngBound = {
+      lat: 0.001,
+      lng: 0.005
+    };
 
     var circleMarkerOpt = {
         stroke: true,
@@ -39,7 +42,6 @@ window.ten20.MapRender = (function () {
       }
 
       this.markers = [];
-      this.polylines = [];
       this.init();
     }
 
@@ -65,32 +67,80 @@ window.ten20.MapRender = (function () {
 
       this.map.setView([this.lat, this.lng], this.zoomLevel);
       this.map.scrollWheelZoom.disable();
-      this.setupVirtualFence();
-      this.addMarkers();
+      this.map.dragging.disable();
+
+      // home page map demo code
+      if (!this.usermap) {
+        this.setupVirtualFence();
+        this.addMarkers();
 
 
-      setInterval(function() {
-        self.updateNextMarker();
-      }, 2000);
+        setInterval(function() {
+          self.updateNextMarker();
+        }, 2000);
 
-      // tweak map control styles
-      var layerLabel = $('.leaflet-control-layers-base label');
+        // tweak map control styles
+        var layerLabel = $('.leaflet-control-layers-base label');
 
-      // bind click
-      layerLabel.on('click', function (e) {
+        // bind click
+        layerLabel.on('click', function (e) {
 
-        $(this).parent().children().removeClass('active');
-        $(this).addClass('active');
+          $(this).parent().children().removeClass('active');
+          $(this).addClass('active');
 
-        if ($(this).is(':last-child')) {
-          $('.leaflet-control-layers-list').addClass('darker');
-        } else {
-          $('.leaflet-control-layers-list').removeClass('darker');
-        }
-      });
+          if ($(this).is(':last-child')) {
+            $('.leaflet-control-layers-list').addClass('darker');
+          } else {
+            $('.leaflet-control-layers-list').removeClass('darker');
+          }
+        });
 
-      layerLabel.first().click();
+        layerLabel.first().click();
+      }
     }
+
+    /*BEGIN: user map methods  */
+    MapRender.prototype.addTracker = function(index, latlng) {
+        var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(this.map);
+        this.map.addLayer(marker);
+        this.markers[index] = marker;
+    }
+
+    MapRender.prototype.updateTracker = function(index, latlng, pan) {
+      var marker = this.markers[index];
+      if (marker) {
+        marker.setLatLng(latlng);
+        if (pan) {
+          this.map.panTo(this.markers[index].getLatLng());
+        }
+      } else {
+        this.addTracker(index, latlng);
+      }
+    } 
+    
+    MapRender.prototype.addTripHistory = function(index, latlngArr) {
+      var marker = this.markers[index];
+      marker.history = this.addPolyline(latlngArr);
+    }
+
+    MapRender.prototype.updateTripHistory = function(index, latlngArr) {
+      var marker = this.markers[index];
+      if (marker.history) {
+        marker.history.setLatLngs(latlngArr);
+      } else {
+        this.addUserHistory(index, latlngArr);
+      }
+    }
+
+    MapRender.prototype.hideTripHistory = function(index) {
+      var marker = this.markers[index];
+
+      if (marker.history) {
+        marker.history.setLatLngs([]);
+      }
+    }
+    /*END: user map methods  */
+
 
     MapRender.prototype._getRandomVisibleLatLng = function() {
         var bounds = this.map.getBounds();
@@ -212,19 +262,19 @@ window.ten20.MapRender = (function () {
           marginLat = Math.abs(marker.latDelta + latLng.lat - self.lat);
           marginLng = Math.abs(marker.lngDelta + latLng.lng - self.lng);
 
-          if (marginLat > LatlngBound) {
-            if (marker.latDelta + latLng.lat < self.lat - LatlngBound) {
-              deltaLat =  marginLat - LatlngBound;
+          if (marginLat > LatlngBound.lat) {
+            if (marker.latDelta + latLng.lat < self.lat - LatlngBound.lat) {
+              deltaLat =  marginLat - LatlngBound.lat;
             } else {
-              deltaLat = -(marginLat - LatlngBound);
+              deltaLat = -(marginLat - LatlngBound.lat);
             }
           }
 
-          if (marginLng > LatlngBound) {
-            if (marker.lngDelta + latLng.lng < self.lng - LatlngBound) {
-              deltaLng =  marginLng - LatlngBound;
+          if (marginLng > LatlngBound.lng) {
+            if (marker.lngDelta + latLng.lng < self.lng - LatlngBound.lng) {
+              deltaLng =  marginLng - LatlngBound.lng;
             } else {
-              deltaLng =  -(marginLng - LatlngBound);
+              deltaLng =  -(marginLng - LatlngBound.lng);
             }
           }
         }

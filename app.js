@@ -1,4 +1,4 @@
-require('ten20location.io'); // start ten20 LocationIO adapter
+//require('ten20location.io'); // start ten20 LocationIO adapter
 
 var express = require('express'),
     http = require('http'),
@@ -79,6 +79,15 @@ app.get('/signout', user.signout);
 app.post('/contact', routes.contact);
 app.get(/\/\w?/, routes.index);
 
+io.set('log level', 3);
+
+io.set('transports', [
+    'websocket'
+  , 'flashsocket'
+  , 'htmlfile'
+  , 'xhr-polling'
+  , 'jsonp-polling'
+]);
 
 // Socket.io Communication
 io.sockets.on('connection', require('./app/routes/socket'));
@@ -92,6 +101,6 @@ dbs(function(db) {
         https.createServer(options.https, app).listen(options.https.port);
         console.log('https listening on ' + options.https.port);
     }
-    http.createServer(app).listen(options.http.port);
+    server.listen(options.http.port);
     console.log('http listening on ' + options.http.port);
 });
