@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('ten20Angular.controllers', []).
+angular.module('ten20Angular.controllers').
   controller('UserCtrl', function ($scope, $http, socket, mapbox) {
 
   $scope.trackers = [];
@@ -77,10 +77,13 @@ angular.module('ten20Angular.controllers', []).
 
       for (var i = 0; i < data.trackers.length; i++) {
         $scope.map.addTracker(i, data.trackers[i].current.latlng);
+
+        $scope.trackers[i].activeTab = 'info-show';
       };
 
       // start update trackers current information
       $scope.setActiveTracker(0);
+      angular.element('.tracker-header').click();
       queryCurrent();
 
     });
@@ -113,7 +116,13 @@ angular.module('ten20Angular.controllers', []).
     };
 
     scope.hideHistoryTrip = function() {
+      scope.activeTracker.activeTab = 'info-show';
       scope.map.hideTripHistory(scope.activeIndex);
+    };
+
+    scope.showHistoryTrip = function() {
+      scope.activeTracker.activeTab = 'history-show';
+      scope.map.hideTripHistory(0);
     };
 
     scope.updateHistoryTrip = function(timeIndex) {

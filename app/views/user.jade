@@ -35,13 +35,13 @@ block content
               span.first tracker
               span(ng-bind='tracker.serialNum')
               span.dropdown
-            .tracker-content.info-show
+            .tracker-content(ng-class='trackers[$index].activeTab')
               ul.tabs
                 li.tracker-info(ng-click='hideHistoryTrip()')
                     img(src=page.images.infoWhiter)
                     | tracker info
 
-                li.tracker-history(ng-click='updateHistoryTrip(0)')
+                li.tracker-history(ng-click='showHistoryTrip(0)')
                     img(src=page.images.clockSmall)
                     | trip history
 
@@ -110,18 +110,6 @@ block content
         });
 
         $('.tracker-list').find('.tracker-header').first().click();
-
-        // tracker info tabs show
-        $('.tracker-content').on('click', '.tabs li', function() {
-
-          if ($(this).hasClass('tracker-info')) {
-            $(this).parents('.tracker-content').
-              removeClass('history-show').addClass('info-show');
-          } else {
-            $(this).parents('.tracker-content').
-              removeClass('info-show').addClass('history-show');
-          }
-        });
 
         // date selector
         $('.history-date').datepicker({
