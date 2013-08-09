@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('ten20Angular.controllers', []).
+angular.module('ten20Angular.controllers').
   controller('UserCtrl', function ($scope, $http, socket, mapbox) {
 
   $scope.trackers = [];
