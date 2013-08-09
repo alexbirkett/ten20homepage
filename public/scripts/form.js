@@ -66,6 +66,9 @@ window.ten20.ContactForm = (function() {
 
     $.post(this.ajaxUrl,  data, 'json').
       done(function(res) {
+
+        self.clearInput();
+
         if (res.message != '') {
           self.$self.find('.success').text(res.message);
         } else {
@@ -82,7 +85,23 @@ window.ten20.ContactForm = (function() {
         self.$self.find('.active').removeClass('active');
         self.$self.find('.error').addClass('active');
       });
-  }
+  };
+
+  // clear input after send success
+  ContactForm.prototype.clearInput = function () {
+
+    this.$self.find('input[type="text"], input[type="password"]').each(function () {
+      $(this).val('');
+      $(this).blur();
+    });
+
+    this.$self.find('input[type="checkbox"]').each(function() {
+      if ($(this).prop("checked")) {
+        $(this).next('.fakeCheckBox').click();
+      }
+    });
+
+  };
 
   // dynamically save input fields to form object
   ContactForm.prototype.bindInput = function() {
@@ -132,9 +151,18 @@ window.ten20.ContactForm = (function() {
   }
 
   ContactForm.prototype.restorePage = function () {
-      this.$self.fadeOut();
-      window.history.back();
-      $("body").css('overflow', 'scroll');
+
+    var self = this;
+
+    this.$self.find('.success.active').each(function() {
+      $(this).removeClass('active');
+      self.$self.find('.description').addClass('active');
+    });
+
+    this.$self.fadeOut();
+    window.history.back();
+    $("body").css('overflow', 'scroll');
+
   };
 
   // need fakecheckbox to show distinguished design
