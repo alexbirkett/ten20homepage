@@ -81,8 +81,8 @@ module.exports = function (socket) {
   //TODO
   function getCurrent(index, serial) {
 
-    var hour = (new Date()).getHours();
-    var minute = (new Date()).getMinutes();
+    var hour = ('0' + (new Date()).getHours()).slice(-2);
+    var minute = ('0' + (new Date()).getMinutes()).slice(-2);
     var elevation = Math.floor(Math.random()*50);
     var speed = Math.floor(Math.random()*20);
     var latRan = Math.random() * 0.0002;
@@ -95,7 +95,7 @@ module.exports = function (socket) {
 
     return {
       "fence": "ON 7 km",
-      "actTime": "Today" +  hour + ":" + minute,
+      "actTime": "Today " +  hour + ":" + minute,
       "elevation": elevation + ' km',
       "speed":  speed + ' km/h',
       "latlng":[latlng.lat + latRan, latlng.lng + lngRan]
