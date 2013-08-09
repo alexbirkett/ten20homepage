@@ -71,7 +71,7 @@ app.get('/admin', routes.admin.console);
 // user console
 app.post('/signup', user.signup);
 app.get('/user/info', user.userinfo);
-app.get('/user', pass.ensureAuthenticated, user.dashboard);
+app.get('/user', user.dashboard);
 app.post('/signin', user.signin);
 app.get('/signout', user.signout);
 
