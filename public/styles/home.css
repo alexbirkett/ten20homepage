@@ -639,6 +639,10 @@ header {
   border-radius: 5px;
 }
 
+.contact .form.submitted {
+  padding-bottom: 20px;
+}
+
 .contact .form .cancel {
   position: absolute;
   top: 5px;
@@ -658,6 +662,10 @@ header {
   font-size: 14px;
   letter-spacing: 1px;
   line-height: 22px;
+  display: none;
+}
+
+.contact .form .btn-ok {
   display: none;
 }
 

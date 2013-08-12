@@ -8,6 +8,8 @@ section.contact(id=section.name)
     h3.require= section['require-message']
     h3.error= section['error-message']
 
+    button.btn-ok ok
+
     form
       ul
         each item in section.items
@@ -18,7 +20,7 @@ section.contact(id=section.name)
               label(for=item.name)  #{item.label}*
             input(type=item.type, id=item.name, optional="" + item.optional)
         li.btn-wrap
-          button(type="submit") #{section.button_text || 'send'} 
+          button.submit(type="submit") #{section.button_text || 'send'} 
           p *Required
     script.
       $(function() { new ten20.ContactForm({

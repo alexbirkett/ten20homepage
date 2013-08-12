@@ -24,21 +24,19 @@ window.ten20.ContactForm = (function() {
   ContactForm.prototype.bindEvent = function () {
     var self = this;
     if (location.hash === '#' + this.id) {
-      this.$self.fadeIn();
-      this.resizeInput();
+      self.showForm();
     }
 
     // bind nav links
     $('a[href="#' + this.id + '"]').on('click', function() {
-      self.$self.fadeIn();
-      self.resizeInput();
+      self.showForm();
     });
 
-    this.$self.find('.cancel').on('click', function() {
-      self.restorePage();
+    this.$self.find('.cancel, .btn-ok').on('click', function() {
+      self.hideForm();
     });
 
-    this.$self.find('button').on('click', function(e) {
+    this.$self.find('.submit').on('click', function(e) {
       e.preventDefault();
       if (self.checkFields()) {
         self.send();
@@ -76,6 +74,10 @@ window.ten20.ContactForm = (function() {
             window.location = self.redirectUrl;
           }
         }
+
+        self.$self.find('.form').addClass('submitted');
+        self.$self.find('.form form').hide();
+        self.$self.find('.btn-ok').show();
 
         self.$self.find('.active').removeClass('active');
         self.$self.find('.success').addClass('active');
@@ -150,19 +152,29 @@ window.ten20.ContactForm = (function() {
     return check;
   }
 
-  ContactForm.prototype.restorePage = function () {
+  ContactForm.prototype.hideForm = function () {
 
     var self = this;
 
-    this.$self.find('.success.active').each(function() {
-      $(this).removeClass('active');
-      self.$self.find('.description').addClass('active');
+    this.$self.fadeOut(400, function() {
+
+      self.$self.find('.success.active').each(function() {
+        $(this).removeClass('active');
+        self.$self.find('.description').addClass('active');
+      });
+
+      window.history.back();
+      $("body").css('overflow', 'scroll');
     });
 
-    this.$self.fadeOut();
-    window.history.back();
-    $("body").css('overflow', 'scroll');
+  };
 
+  ContactForm.prototype.showForm = function () {
+    this.$self.find('.submitted').removeClass('submitted');
+    this.$self.find('form').show();
+    this.$self.find('.btn-ok').hide();
+    this.$self.fadeIn();
+    this.resizeInput();
   };
 
   // need fakecheckbox to show distinguished design
