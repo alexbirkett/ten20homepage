@@ -852,7 +852,7 @@ header {
 }
 
 /* login page styles */
-.login-form {
+.submit-form-container {
   width: 80%;
   padding: 5px;
   max-width: 450px;
@@ -860,14 +860,14 @@ header {
   padding-top: 50px;
 }
 
-.login-form a.controls {
+.submit-form-container a.controls {
   color: #eee;
   font-size: 16px;
   text-transform: capitalize;
   text-decoration: none;
 }
 
-.login-form .alerter{
+.submit-form-container .alerter{
   display: none;
   color: red;
   font-size: 14px;
