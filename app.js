@@ -74,6 +74,7 @@ app.get('/admin/data', routes.admin.data);
 app.get('/admin', routes.admin.console);
 
 // user console
+app.get('/signup', routes.signup);
 app.post('/signup', user.signup);
 app.get('/user/info', user.userinfo);
 app.get('/user', user.dashboard);

@@ -42,7 +42,6 @@ module.exports = {
   signup: function(req, res) {
     var userInfo = req.body;
 
-
     db.user.findOne({email: userInfo.email}, function(error, user) {
       if (!error) {
         if (!user) {
@@ -53,7 +52,6 @@ module.exports = {
               delete userInfo.password;
               delete userInfo.rememberMe;
               db.user.insert(userInfo, function(error, docs) {
-                // body...
                 req.login(userInfo, function(err) {
                   if (err) { return next(err); }
                   return res.json({message: ''});

@@ -223,24 +223,45 @@ window.ten20.ContactForm = (function() {
 })();
 
 
-window.ten20.login = function () {
-  $('form .btn').on('click', function(e) {
-    e.preventDefault();
-    var name = $('form #username').val();
-    var password = $('form #password').val();
-    $.post('/admin/login', {username: name, password: password}, function(res) {
-      if (!res.status) {
-        $('form .alerter').show();
-        $('form #username').val('');
-        $('form #password').val('');
+window.ten20.submitForm = function (postUrl, redirectUrl) {
 
-        setTimeout(function () {
-          $('form .alerter').fadeOut(2000);
-        }, 1000);
+  var self = $('.submit-form');
+
+  self.find('.btn').on('click', function(e) {
+    e.preventDefault();
+
+    var data = {};
+
+    self.find('input').each(function () {
+      var name = $(this).attr('id');
+      data[name] = $(this).val();
+    });
+
+    if (data['re-password'] &&
+        data['re-password'] != data['password']) {
+      self.find('input[id="password"]').val('');
+      self.find('input[id="re-password"]').val('');
+      doAlert('password not match!');
+      return;
+    }
+
+    $.post(postUrl || '/', data, function(res) {
+      if (res.message != '') {
+        doAlert(res.message);
       } else {
-        window.location = '/admin';
+        window.location = redirectUrl || '/';
       }
     });
+
+    function doAlert(msg) {
+      var alerter = self.find('.alerter');
+      alerter.text(msg);
+      alerter.show();
+
+      setTimeout(function () {
+        alerter.fadeOut(2000);
+      }, 1000);
+    }
   });
 }
 
