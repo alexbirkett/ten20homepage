@@ -78,7 +78,7 @@ module.exports = function (grunt) {
         },
         prod: {
           options: {
-            args: [/*'-O'*/'-p 80', '-s 443'],
+            args: ['-p 80', '-s 443'],
             script: 'app.js',
             node_env: 'production'
           }
@@ -166,6 +166,12 @@ module.exports = function (grunt) {
       'default',
       'express:prod',
       'watch:prod'
+      ]);
+
+  grunt.registerTask('debug-https', [
+      'default',
+      'express:dev',
+      'watch:dev'
       ]);
 
   grunt.registerTask('develop', [
