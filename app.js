@@ -18,6 +18,11 @@ var express = require('express'),
 
 var app = module.exports = express();
 var server = require('http').createServer(app);
+
+if (options.https) {
+  server = https.createServer(options.https, app);
+}
+
 var io = require('socket.io').listen(server);
 // Configuration
 
@@ -98,9 +103,10 @@ dbs(function(db) {
     pass.setDb(db);
 
     if (options.https) {
-        https.createServer(options.https, app).listen(options.https.port);
-        console.log('https listening on ' + options.https.port);
+      server.listen(options.https.port);
+      console.log('https listening on ' + options.https.port);
+    } else {
+      server.listen(options.http.port);
+      console.log('http listening on ' + options.http.port);
     }
-    server.listen(options.http.port);
-    console.log('http listening on ' + options.http.port);
 });
