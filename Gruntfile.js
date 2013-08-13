@@ -168,12 +168,6 @@ module.exports = function (grunt) {
       'watch:prod'
       ]);
 
-  grunt.registerTask('debug-https', [
-      'default',
-      'express:dev',
-      'watch:dev'
-      ]);
-
   grunt.registerTask('develop', [
       'preprocess:dev',
       'express:dev',
