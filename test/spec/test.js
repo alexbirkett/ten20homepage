@@ -8,7 +8,7 @@ var assert = chai.assert,
 describe(" admin console test", function () {
   var ctrl, scope, httpMock, createController;
 
-  beforeEach(module('adminConsole'));
+  beforeEach(module('ten20Angular'));
 
   beforeEach(inject(function ($httpBackend, $http, $rootScope, $controller) {
 
@@ -32,11 +32,6 @@ describe(" admin console test", function () {
       return $controller('ContactUserCtrl', {'$scope' : scope, $http: $http});
     };
   }));
-
-  afterEach(function() {
-    httpMock.verifyNoOutstandingExpectation();
-    httpMock.verifyNoOutstandingRequest();
-  }); 
 
   it("has filter option attribute", function () {
     var controller = createController();
