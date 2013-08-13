@@ -7,7 +7,8 @@ angular.module('ten20Angular', [
   'ten20Angular.services',
   'ten20Angular.directives',
   'ngGrid',
-  'btford.socket-io'
+  'btford.socket-io',
+  'ui.date'
 ]);
 /*.
 config(function ($routeProvider, $locationProvider) {
