@@ -83,7 +83,12 @@ angular.module('ten20Angular.controllers').
 
       // start update trackers current information
       $scope.setActiveTracker(0);
-      angular.element('.tracker-header').click();
+
+      // expand first tracker
+      setTimeout(function() {
+        $('.tracker-list').find('.tracker-header').first().click();
+      }, 0);
+
       queryCurrent();
 
     });

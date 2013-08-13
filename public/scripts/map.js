@@ -128,7 +128,7 @@ window.ten20.MapRender = (function () {
       if (marker.history) {
         marker.history.setLatLngs(latlngArr);
       } else {
-        this.addUserHistory(index, latlngArr);
+        this.addTripHistory(index, latlngArr);
       }
     }
 
