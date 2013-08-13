@@ -15,7 +15,7 @@ block content
         | E:
         span.elevation(ng-bind='activeTracker.current.elevation')
         | S:
-        span.speed(ng-bind='activeTracker.current.speed') s
+        span.speed(ng-bind='activeTracker.current.speed')
 
       .tool-box
         .time-weather
@@ -65,7 +65,7 @@ block content
                       img.pull-left(src=page.images.clock)
                       .media-body
                         h6(ng-bind='tracker.history.date')
-                        input.history-date(type='text', ng-model="tracker.history.date")
+                        input.history-date(ui-date, ui-date-format="DD, d MM, yy", type='text', ng-model="tracker.history.date")
                     .search
                       img(src=page.images.search)
                       input(type='text', placeholder='Search date or place')
@@ -96,7 +96,7 @@ block content
         $('.tool-box').draggable();
         $('.trip-info').draggable();
 
-        // trackers list pane show :ps.temporarily put here
+        // trackers list pane
         $('.tracker-list').on('click', '.tracker-header', function() {
 
           if (!$(this).parent().hasClass('active')) {
@@ -106,22 +106,6 @@ block content
 
           $(this).parent().toggleClass('active');
           $(this).next().slideToggle();
-
-        });
-
-        // date selector
-        $('.history-date').datepicker({
-          beforeShow: function(input, inst) {
-            var leftPos = $(input).parents('.date-select').offset().left - 300;
-            var topPos = $(input).parents('.date-select').offset().top - 15;
-            setTimeout(function () {
-              inst.dpDiv.css({ top: topPos, left: leftPos});
-            }, 0);
-          }
-        });
-
-        $('.date-select .media').click(function() {
-          $(this).find('.history-date').datepicker('show');
         });
 
       });

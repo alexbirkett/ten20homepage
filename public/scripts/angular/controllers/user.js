@@ -84,9 +84,24 @@ angular.module('ten20Angular.controllers').
       // start update trackers current information
       $scope.setActiveTracker(0);
 
-      // expand first tracker
       setTimeout(function() {
+      // expand first tracker
         $('.tracker-list').find('.tracker-header').first().click();
+        // relocate date picker
+        $('.history-date').datepicker("option", {
+          beforeShow: function(input, inst) {
+            var leftPos = $(input).parents('.date-select').offset().left - 300;
+            var topPos = $(input).parents('.date-select').offset().top - 15;
+            setTimeout(function () {
+              inst.dpDiv.css({ top: topPos, left: leftPos});
+            }, 0);
+          }
+        });
+
+        // bind click event
+        $('.date-select .media').click(function() {
+          $(this).find('.history-date').datepicker('show');
+        });
       }, 0);
 
       queryCurrent();
