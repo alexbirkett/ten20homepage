@@ -875,6 +875,24 @@ header {
   margin-bottom: -10px;
 }
 
+.faq {
+  text-align: center;
+}
+
+.faq .row-fluid .span8 {
+  margin: auto;
+  float: none;
+}
+
+.faq .questions {
+  list-style: initial;
+  text-align: left;
+}
+
+.faq .questions h5 {
+  color: #f60;
+}
+
 /* footer styles */
 footer {
   width: 100%;

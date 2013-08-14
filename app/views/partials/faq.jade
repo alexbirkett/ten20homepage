@@ -1,0 +1,13 @@
+section.faq(id=section.type)
+  .container
+    .row-fluid
+      .span12
+        .head
+          h4= section.name
+    .row-fluid
+      .span8
+        ul.questions
+          each item in section.items
+            li
+              h5= item.title
+              p= item.text
