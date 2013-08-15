@@ -6,14 +6,12 @@ var express = require('express'),
     connect = require('connect')
     routes = require('./app/routes'),
     user = require('./app/routes/user'),
-    api = require('./app/routes/api'),
     dbs = require('./app/db'),
     pass = require('./app/pass'),
     passport = require('passport'),
     options = require('./app/http-options'),
     configureApi = require('ten20api'),
     RedisStore = require('connect-redis')(express);
-
 
 
 var app = module.exports = express();
@@ -64,9 +62,6 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-
-configureApi(app);
-
 // admin console
 app.get('/admin/login', routes.admin.login);
 app.post('/admin/login', routes.admin.signin);
@@ -85,19 +80,9 @@ app.get('/signout', user.signout);
 app.post('/contact', routes.contact);
 app.get(/\/\w?/, routes.index);
 
-io.set('log level', 3);
-
-io.set('transports', [
-    'websocket'
-  , 'flashsocket'
-  , 'htmlfile'
-  , 'xhr-polling'
-  , 'jsonp-polling'
-]);
-
-// Socket.io Communication
-io.sockets.on('connection', require('./app/routes/socket'));
-
+// attach api to home page app
+configureApi(app, io);
+ 
 dbs(function(db) {
     routes.setDb(db);
     user.setDb(db);
