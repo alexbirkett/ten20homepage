@@ -96,3 +96,5 @@ dbs(function(db) {
       console.log('http listening on ' + options.http.port);
     }
 });
+
+module.exports = server;

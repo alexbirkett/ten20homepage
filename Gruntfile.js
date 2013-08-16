@@ -149,6 +149,25 @@ module.exports = function (grunt) {
           urls: [ 'http://localhost:8000/test/index.html' ]
         }
       }
+    },
+
+    bgShell: {
+      _defaults: {
+        bg: true
+      },
+      server: {
+        cmd: 'node app -O',
+        stdout: false,
+        stderr: true
+      }
+    },
+
+    exec: {
+      mocha_test: {
+        command: 'mocha test/functional/*.js -R spec',
+        stdout: true,
+        stderr: true
+      }
     }
 
   });
@@ -176,6 +195,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
       'connect:server',
-      'mocha_phantomjs'
+      'mocha_phantomjs',
+      'bgShell:server',
+      'exec:mocha_test'
       ]);
 };
