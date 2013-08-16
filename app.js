@@ -6,7 +6,6 @@ var express = require('express'),
     connect = require('connect')
     routes = require('./app/routes'),
     user = require('./app/routes/user'),
-    api = require('./app/routes/api'),
     dbs = require('./app/db'),
     pass = require('./app/pass'),
     passport = require('passport'),
@@ -15,9 +14,13 @@ var express = require('express'),
     RedisStore = require('connect-redis')(express);
 
 
-
 var app = module.exports = express();
 var server = require('http').createServer(app);
+
+if (options.https) {
+  server = https.createServer(options.https, app);
+}
+
 var io = require('socket.io').listen(server);
 // Configuration
 
@@ -59,9 +62,6 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-
-configureApi(app);
-
 // admin console
 app.get('/admin/login', routes.admin.login);
 app.post('/admin/login', routes.admin.signin);
@@ -69,6 +69,7 @@ app.get('/admin/data', routes.admin.data);
 app.get('/admin', routes.admin.console);
 
 // user console
+app.get('/signup', routes.signup);
 app.post('/signup', user.signup);
 app.get('/user/info', user.userinfo);
 app.get('/user', user.dashboard);
@@ -79,28 +80,21 @@ app.get('/signout', user.signout);
 app.post('/contact', routes.contact);
 app.get(/\/\w?/, routes.index);
 
-io.set('log level', 3);
-
-io.set('transports', [
-    'websocket'
-  , 'flashsocket'
-  , 'htmlfile'
-  , 'xhr-polling'
-  , 'jsonp-polling'
-]);
-
-// Socket.io Communication
-io.sockets.on('connection', require('./app/routes/socket'));
-
+// attach api to home page app
+configureApi(app, io);
+ 
 dbs(function(db) {
     routes.setDb(db);
     user.setDb(db);
     pass.setDb(db);
 
     if (options.https) {
-        https.createServer(options.https, app).listen(options.https.port);
-        console.log('https listening on ' + options.https.port);
+      server.listen(options.https.port);
+      console.log('https listening on ' + options.https.port);
+    } else {
+      server.listen(options.http.port);
+      console.log('http listening on ' + options.http.port);
     }
-    server.listen(options.http.port);
-    console.log('http listening on ' + options.http.port);
 });
+
+module.exports = server;

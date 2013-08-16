@@ -53,7 +53,7 @@ if (!options.http.only) {
     process.exit(1);
   }
 } else {
-    options.https = undefined;
+  options.https = undefined;
 }
 
 module.exports = options;

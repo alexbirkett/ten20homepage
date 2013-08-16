@@ -16,7 +16,7 @@ module.exports = {
   signin: function(req, res, next) {
     var userInfo = req.body;
 
-    if ( userInfo.remember ) {
+    if (userInfo.remember) {
       req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
     } else {
       req.session.cookie.expires = false;
@@ -42,7 +42,6 @@ module.exports = {
   signup: function(req, res) {
     var userInfo = req.body;
 
-
     db.user.findOne({email: userInfo.email}, function(error, user) {
       if (!error) {
         if (!user) {
@@ -53,7 +52,6 @@ module.exports = {
               delete userInfo.password;
               delete userInfo.rememberMe;
               db.user.insert(userInfo, function(error, docs) {
-                // body...
                 req.login(userInfo, function(err) {
                   if (err) { return next(err); }
                   return res.json({message: ''});
