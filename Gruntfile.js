@@ -155,6 +155,11 @@ module.exports = function (grunt) {
       _defaults: {
         bg: true
       },
+      kill: {
+        cmd: 'pkill -f "node app -O"',
+        stdout: false,
+        stderr: false
+      },
       server: {
         cmd: 'node app -O',
         stdout: false,
@@ -196,7 +201,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
       'connect:server',
       'mocha_phantomjs',
-      'bgShell:server',
+      'bgShell',
       'exec:mocha_test'
       ]);
 };
