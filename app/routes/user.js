@@ -16,7 +16,7 @@ module.exports = {
   signin: function(req, res, next) {
     var userInfo = req.body;
 
-    if ( userInfo.remember ) {
+    if (userInfo.remember) {
       req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
     } else {
       req.session.cookie.expires = false;
