@@ -639,6 +639,10 @@ header {
   border-radius: 5px;
 }
 
+.contact .form.submitted {
+  padding-bottom: 20px;
+}
+
 .contact .form .cancel {
   position: absolute;
   top: 5px;
@@ -658,6 +662,10 @@ header {
   font-size: 14px;
   letter-spacing: 1px;
   line-height: 22px;
+  display: none;
+}
+
+.contact .form .btn-ok {
   display: none;
 }
 
@@ -844,7 +852,7 @@ header {
 }
 
 /* login page styles */
-.login-form {
+.submit-form-container {
   width: 80%;
   padding: 5px;
   max-width: 450px;
@@ -852,19 +860,37 @@ header {
   padding-top: 50px;
 }
 
-.login-form a.controls {
+.submit-form-container a.controls {
   color: #eee;
   font-size: 16px;
   text-transform: capitalize;
   text-decoration: none;
 }
 
-.login-form .alerter{
+.submit-form-container .alerter{
   display: none;
   color: red;
   font-size: 14px;
   text-align: left;
   margin-bottom: -10px;
+}
+
+.faq {
+  text-align: center;
+}
+
+.faq .row-fluid .span8 {
+  margin: auto;
+  float: none;
+}
+
+.faq .questions {
+  list-style: initial;
+  text-align: left;
+}
+
+.faq .questions h5 {
+  color: #f60;
 }
 
 /* footer styles */

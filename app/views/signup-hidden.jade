@@ -1,0 +1,41 @@
+extends layout-angular
+
+block content
+  .signup-form.submit-form-container
+    .row-fluid 
+      .span12
+        form.form-horizontal.submit-form
+          .control-group
+            a.controls(href='/')
+              img(src='/images/logo.png')
+              | sign up
+
+            h5.controls.alerter sign up failed!
+
+          .control-group
+            label.control-label(for="username") Username
+            .controls
+              input(type="text", id="username", placeholder="user name")
+
+          .control-group
+            label.control-label(for="email") Email
+            .controls
+              input(type="text", id="email", placeholder="email address")
+
+          .control-group
+            label.control-label(for="password") Password
+            .controls
+              input(type="password", id="password", placeholder="Password")
+
+          .control-group
+            label.control-label(for="re-password") Retype Password
+            .controls
+              input(type="password", id="re-password", placeholder="Password")
+              br
+              br
+              button.btn(type="submit") sign up 
+
+      script
+        $(function() {
+          ten20.submitForm('/signup', '/user');
+        })
