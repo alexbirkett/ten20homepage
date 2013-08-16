@@ -26,6 +26,11 @@
       "text": "About Us",
       "link": "#about-us",
       "scroll": "true"
+    },
+    {
+      "text": "FAQ",
+      "link": "#faq",
+      "scroll": "true"
     }
   ]
 

@@ -152,6 +152,9 @@
         },
         {
           "file": "about.json"
+        },
+        {
+          "file": "faq.json"
         }
     ]
 }

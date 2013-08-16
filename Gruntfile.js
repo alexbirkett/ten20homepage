@@ -78,7 +78,7 @@ module.exports = function (grunt) {
         },
         prod: {
           options: {
-            args: [/*'-O'*/'-p 80', '-s 443'],
+            args: ['-p 80', '-s 443'],
             script: 'app.js',
             node_env: 'production'
           }
@@ -149,6 +149,30 @@ module.exports = function (grunt) {
           urls: [ 'http://localhost:8000/test/index.html' ]
         }
       }
+    },
+
+    bgShell: {
+      _defaults: {
+        bg: true
+      },
+      kill: {
+        cmd: 'pkill -f "node app -O"',
+        stdout: false,
+        stderr: false
+      },
+      server: {
+        cmd: 'node app -O',
+        stdout: false,
+        stderr: true
+      }
+    },
+
+    exec: {
+      mocha_test: {
+        command: 'mocha test/functional/*.js -R spec',
+        stdout: true,
+        stderr: true
+      }
     }
 
   });
@@ -176,6 +200,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
       'connect:server',
-      'mocha_phantomjs'
+      'mocha_phantomjs',
+      'bgShell',
+      'exec:mocha_test'
       ]);
 };

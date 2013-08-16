@@ -108,6 +108,10 @@ exports.contact = function(req, res){
     });
 };
 
+exports.signup = function(req, res) {
+  res.render('signup-hidden', {pageTitle: 'Sign Up | ten20live'});
+}
+
 exports.admin =  {
 
   login: function (req, res) {
@@ -121,9 +125,9 @@ exports.admin =  {
     if (username === config.username &&
         password === config.password) {
       res.cookie('authorized', '1', { maxAge: 14*24*60*60*1000, signed: true });
-      res.json({status: true});
+      res.json({message: ''});
     } else {
-      res.json({status: false});
+      res.json({message: 'login failed!'});
     }
   },
 
