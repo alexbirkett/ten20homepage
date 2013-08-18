@@ -15,10 +15,12 @@ var express = require('express'),
 
 
 var app = module.exports = express();
-var server = require('http').createServer(app);
+var server = require('http').createServer(app).listen(options.http.port);
+console.log('http listening on ' + options.http.port);
 
 if (options.https) {
-  server = https.createServer(options.https, app);
+    server = https.createServer(options.https, app).listen(options.https.port);
+    console.log('https listening on ' + options.https.port);
 }
 
 var io = require('socket.io').listen(server);
@@ -87,14 +89,6 @@ dbs(function(db) {
     routes.setDb(db);
     user.setDb(db);
     pass.setDb(db);
-
-    if (options.https) {
-      server.listen(options.https.port);
-      console.log('https listening on ' + options.https.port);
-    } else {
-      server.listen(options.http.port);
-      console.log('http listening on ' + options.http.port);
-    }
 });
 
 module.exports = server;
