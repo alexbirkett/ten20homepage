@@ -90,6 +90,13 @@ module.exports = function (grunt) {
         }
     },
 
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        singleRun: true
+      }
+    },
+
    // watch node process
     watch: {
       dev: {
@@ -138,15 +145,6 @@ module.exports = function (grunt) {
         options: {
           port: 8000,
           base: '.',
-        }
-      }
-    },
-
-
-    mocha_phantomjs: {
-      all: {
-        options: {
-          urls: [ 'http://localhost:8000/test/index.html' ]
         }
       }
     },
@@ -210,9 +208,6 @@ module.exports = function (grunt) {
       ]);
 
   grunt.registerTask('test', [
-      'connect:server',
-      'mocha_phantomjs',
-      'bgShell',
-      'exec:mocha_test'
+      'karma'
       ]);
 };

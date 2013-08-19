@@ -1,10 +1,6 @@
 /*global describe, it */
 'use strict';
 
-var assert = chai.assert,
-    expect = chai.expect,
-    should = chai.should();
-
 describe(" admin console test", function () {
   var ctrl, scope, httpMock, createController;
 
@@ -33,24 +29,20 @@ describe(" admin console test", function () {
     };
   }));
 
-  it("has filter option attribute", function () {
-    var controller = createController();
-    createController();
-    expect(scope.filterOptions).to.not.be.undefined;
+  afterEach(function() {
+    httpMock.verifyNoOutstandingExpectation();
+    httpMock.verifyNoOutstandingRequest();
   });
 
-  it("expect data undefined", function () {
+  it("gets user contact data correctly", function () {
     httpMock.expectGET('/admin/data');
     createController();
-    expect(scope.userData).to.be.undefined;
-  });
-
-  /* for later debug
-  it("data attribute phone number correct", function () {
-    httpMock.expectGET('/admin/data');
-    createController();
+    expect(scope.filterOptions).toBeDefined();
+    expect(scope.userData).toBeUndefined();
     httpMock.flush();
+    expect(scope.userData.length).toBe(1);
     expect(scope.userData[0].phone).toEqual('100000');
+    expect(scope.userData[0].first_name).toEqual('test1');
   });
-  */
+
 });
