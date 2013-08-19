@@ -5,6 +5,7 @@ basePath = '';
 
 // list of files / patterns to load in the browser
 files = [
+  'public/components/angular/angular.js',
   ANGULAR_SCENARIO,
   ANGULAR_SCENARIO_ADAPTER,
   'test/e2e/**/*.js'
@@ -18,7 +19,7 @@ exclude = [];
 reporters = ['progress'];
 
 // web server port
-port = 8080;
+port = 3002;
 
 // cli runner port
 runnerPort = 9100;
@@ -30,6 +31,10 @@ colors = true;
 // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
 logLevel = LOG_INFO;
 
+proxies = {
+  // change this if you've changed your grunt server port. default is 9000
+      '/': 'http://localhost:3000' 
+};
 // enable / disable watching file and executing tests whenever any file changes
 autoWatch = false;
 
