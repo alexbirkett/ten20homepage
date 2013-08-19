@@ -28,31 +28,29 @@ angular.module('ten20Angular.controllers', []).
     };
 
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-      setTimeout(function () {
-        var data;
+      var data;
 
-        if (searchText) {
-          var ft = searchText.toLowerCase();
-          $http.get('/admin/data').success(function (rsp) {		
-            data = rsp.filter(function(item) {
-              return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
-            });
-            $scope.setPagingData(data, page, pageSize);
-          });            
-
-        } else {
-          $http.get('/admin/data').success(function (rsp) {
-            $scope.setPagingData(rsp, page, pageSize);
+      if (searchText) {
+        var ft = searchText.toLowerCase();
+        $http.get('/admin/data').success(function (rsp) {		
+          data = rsp.filter(function(item) {
+            return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
           });
-        }
+          $scope.setPagingData(data, page, pageSize);
+        });            
 
-      }, 100);
+      } else {
+        $http.get('/admin/data').success(function (rsp) {
+          $scope.setPagingData(rsp, page, pageSize);
+        });
+      }
+
     };
 
     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
 
     $scope.$watch('pagingOptions', function (newVal, oldVal) {
-      if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+      if (newVal !== oldVal) {
         $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
       }
     }, true);

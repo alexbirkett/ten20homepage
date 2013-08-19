@@ -78,7 +78,7 @@ module.exports = function (grunt) {
         },
         prod: {
           options: {
-            args: ['-p 80', '-s 443'],
+            args: ['-p 3000', '-s 4403', '-k key.pem', '-c cert.pem'],
             script: 'app.js',
             node_env: 'production'
           }
@@ -88,6 +88,16 @@ module.exports = function (grunt) {
             script: 'test/server.js'
           }
         }
+    },
+
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        singleRun: true
+      },
+      e2e: {
+       configFile: 'karma-e2e.conf.js'
+      }
     },
 
    // watch node process
@@ -142,15 +152,6 @@ module.exports = function (grunt) {
       }
     },
 
-
-    mocha_phantomjs: {
-      all: {
-        options: {
-          urls: [ 'http://localhost:8000/test/index.html' ]
-        }
-      }
-    },
-
     bgShell: {
       _defaults: {
         bg: true
@@ -164,6 +165,16 @@ module.exports = function (grunt) {
         cmd: 'node app -O',
         stdout: false,
         stderr: true
+      }
+    },
+
+    shell: {
+      gen_key: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+          command: './generateKey.sh'
       }
     },
 
@@ -188,6 +199,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('product', [
       'default',
+      'shell:gen_key',
       'express:prod',
       'watch:prod'
       ]);
@@ -199,9 +211,6 @@ module.exports = function (grunt) {
       ]);
 
   grunt.registerTask('test', [
-      'connect:server',
-      'mocha_phantomjs',
-      'bgShell',
-      'exec:mocha_test'
+      'karma'
       ]);
 };
