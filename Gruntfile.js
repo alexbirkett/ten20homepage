@@ -78,7 +78,7 @@ module.exports = function (grunt) {
         },
         prod: {
           options: {
-            args: ['-p 80', '-s 443'],
+            args: ['-p 3000', '-s 4403', '-k key.pem', '-c cert.pem'],
             script: 'app.js',
             node_env: 'production'
           }
@@ -167,6 +167,16 @@ module.exports = function (grunt) {
       }
     },
 
+    shell: {
+      gen_key: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+          command: './generateKey.sh'
+      }
+    },
+
     exec: {
       mocha_test: {
         command: 'mocha test/functional/*.js -R spec',
@@ -188,6 +198,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('product', [
       'default',
+      'shell:gen_key',
       'express:prod',
       'watch:prod'
       ]);
