@@ -6,3 +6,4 @@ app/views/partials/build/
 .DS_Store
 certs
 .idea
+*.pem
