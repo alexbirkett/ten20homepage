@@ -1,7 +1,7 @@
 /*global describe, it */
 'use strict';
 
-describe(" admin console test", function () {
+describe("admin console test", function () {
   var ctrl, scope, httpMock, createController;
 
   beforeEach(module('ten20Angular'));
@@ -45,4 +45,48 @@ describe(" admin console test", function () {
     expect(scope.userData[0].first_name).toEqual('test1');
   });
 
+  it("filter user correctly one", function () {
+    createController();
+    httpMock.flush();
+    httpMock.expectGET('/admin/data');
+    scope.$apply(function() {
+      scope.filterOptions.filterText = 'ten20';
+    });
+    httpMock.flush();
+    expect(scope.userData.length).toBe(0);
+  });
+
+  it("filter user correctly two", function () {
+    createController();
+    httpMock.flush();
+    httpMock.expectGET('/admin/data');
+    scope.$apply(function() {
+      scope.filterOptions.filterText = 'test1';
+    });
+    httpMock.flush();
+    expect(scope.userData.length).toBe(1);
+  });
+
+  it("set paging size correctly", function () {
+    createController();
+    httpMock.flush();
+    httpMock.expectGET('/admin/data');
+    scope.$apply(function() {
+      scope.pagingOptions.pageSize = 20;
+    });
+    httpMock.flush();
+    expect(scope.userData.length).toBe(1);
+  });
+
+
+  it("set current page correctly", function () {
+    createController();
+    httpMock.flush();
+    httpMock.expectGET('/admin/data');
+    scope.$apply(function() {
+      scope.pagingOptions.currentPage = 2;
+    });
+    httpMock.flush();
+    expect(scope.userData.length).toBe(0);
+  });
 });
