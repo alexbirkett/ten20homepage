@@ -283,10 +283,11 @@ $(function(){
 
     // scroll effects
     $('.nav li a').each(function() {
-      var id = $(this).attr('href');
+      var id;
       var scroll = $(this).attr('scroll');
 
-      if (scroll === 'true') {
+      if (scroll === 'true' && location.pathname === '/') {
+        id = $(this).attr('href').replace('/', '');
         if ($(id).length != 0) {
           var offset = $(id).offset().top;
 
