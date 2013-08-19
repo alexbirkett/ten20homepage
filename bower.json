@@ -13,6 +13,8 @@
     "css3-query": "https://github.com/livingston/css3-mediaqueries-js.git",
     "html5": "https://html5shiv.googlecode.com/svn/trunk/html5.js",
     "angular": "https://github.com/angular/bower-angular.git",
+    "angular-mocks": "~1.0.7",
+    "angular-scenario": "~1.0.7",
     "ng-grid": "https://github.com/angular-ui/ng-grid/zipball/master",
     "angular-socket-io": "~0.0.2",
     "socket-io": "https://github.com/LearnBoost/socket.io-client.git",
