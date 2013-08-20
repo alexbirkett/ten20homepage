@@ -1,31 +1,28 @@
 'user strict'
 
-describe("home page tests", function() {
+describe("partner page tests", function() {
   beforeEach(function() {
-    browser().navigateTo('/');
+    browser().navigateTo('/partner');
   });
 
   it('page should render correnctly', function() {
-    expect(element('title').text()).toEqual('ten20 - Track the location of people and things');
+    expect(element('title').text()).toEqual('ten20 partner program');
     expect(element('.contact').count()).toBe(5);
   });
 
   it('maps render properly', function() {
-    expect(element('.leaflet-map-pane').count()).toBe(4);
+    expect(element('.leaflet-map-pane').count()).toBe(1);
   });
 
-  it('nav links work properly', function() {
-    element('a[href="/#supported"]').click();
-    expect(browser().window().hash()).toEqual('supported');
-
-    element('a[href="/#plans"]').click();
-    expect(browser().window().hash()).toEqual('plans');
-
+  it('local nav links work properly', function() {
     element('a[href="#about-us"]').click();
     expect(browser().window().hash()).toEqual('about-us');
+  });
 
-    element('a[href="/#faq"]').click();
-    expect(browser().window().hash()).toEqual('faq');
+  it('foreign nav links work properly', function() {
+    element('a[href="/#supported"]').click();
+    expect(browser().window().path()).toEqual('/');
+    expect(browser().window().hash()).toEqual('supported');
   });
 
   it('contact forms shows and hides properly', function() {
@@ -36,19 +33,16 @@ describe("home page tests", function() {
     expect(element('#contact-us').css('display')).toEqual('block');
 
     element('#contact-us .cancel').click();
-    expect(browser().window().path()).toEqual('/');
-
-    element('a[href="/#faq"]').click();
-    expect(element('#contact-us').css('display')).toEqual('none');
+    expect(browser().window().path()).toEqual('/partner');
   });
 
   it('contact forms should submit success', function() {
     element('.call-to-action a[href="#contact-us"]').click();
 
     // change input value
-    element('#contact-us #first_name').val('testFIRSTNAME');
-    element('#contact-us #last_name').val('testLASTNAME');
-    element('#contact-us #email').val('testMAIL');
+    element('#contact-us #first_name').val('testPARTNER-FIRSTNAME');
+    element('#contact-us #last_name').val('testPARTNER-LASTNAME');
+    element('#contact-us #email').val('testPARTNER-MAIL');
 
     // update data field
     element('#contact-us input').query(function(elements, done) {
