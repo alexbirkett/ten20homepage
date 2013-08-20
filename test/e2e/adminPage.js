@@ -6,6 +6,7 @@ describe("admin page tests", function() {
   });
 
   it('should redirect to login page correnctly', function() {
+    expect(browser().window().path()).toEqual('/admin/login');
     expect(element('title').text()).toEqual('Login | ten20live');
     expect(element('.login-form ').count()).toBe(1);
   });
