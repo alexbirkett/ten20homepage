@@ -46,6 +46,22 @@ describe("admin page tests", function() {
 
   });
 
+  it('should delete item correctly', function() {
+    var error = binding('error');
+    var initNum = binding('totalServerItems');
+
+    if (initNum > 0) {
+      // delete an item
+      element('.ngCell.col8 input[type="button"]').query(function(elements, done) {
+        elements[0].click();
+        setTimeout(done, 2000);
+      });
+
+      //using('.ngFooterPanel').
+      expect(binding('totalServerItems')).toBe(initNum-1);
+    }
+
+  });
 
   it('should logout success', function() {
     element('.header-bar .exit').query(function(elements, done) {
