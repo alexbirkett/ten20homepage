@@ -47,7 +47,6 @@ describe("admin page tests", function() {
   });
 
   it('should delete item correctly', function() {
-    var error = binding('error');
     var initNum = binding('totalServerItems');
 
     if (initNum > 0) {
@@ -57,7 +56,6 @@ describe("admin page tests", function() {
         setTimeout(done, 2000);
       });
 
-      //using('.ngFooterPanel').
       expect(binding('totalServerItems')).toBe(initNum-1);
     }
 
