@@ -4,6 +4,7 @@
  */
 
 var extend = require('extend');
+var ObjectID = require('mongodb').ObjectID;
 var indexModel = require('../data/index.json');
 var form = require('../data/form.json');
 var config = require('../config.js');
@@ -140,7 +141,7 @@ exports.admin =  {
     }
   },
 
-  data: function(req, res) {
+  getData: function(req, res) {
     db.contact.find().toArray(function(error, users) {
       if (error || users.length === 0) {
         res.json(testData);
@@ -148,7 +149,19 @@ exports.admin =  {
         res.json(users);
       }
     });
+  },
 
+  deleteData: function(req, res) {
+    var id = req.param('id');
+
+    db.contact.findAndRemove({_id: new ObjectID(id)}, function(err, contact) {
+      if (err || !contact) {
+        res.json({error: 'query contact failed!'});
+      } else {
+        res.json({error: ''});
+      }
+    });
   }
+
 };
 

@@ -2,12 +2,14 @@ extends layout-angular
 
 block content
 
-  section.admin
+  section.admin(ng-controller="ContactUserCtrl")
     div.header-bar
       a.logo(href="/")
         img(src="/images/logo.png")
       a.exit(href="/admin/login") logout
 
     h1.grid-header contact user information
-    div.grid(ng-controller="ContactUserCtrl")
+    h6(ng-bind="error", ng-show="error")
+    span(ng-bind="totalServerItems")
+    div.grid
        div.gridStyle(ng-grid="gridOptions")
