@@ -22,6 +22,7 @@ angular.module('ten20Angular.controllers', []).
       var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
       $scope.userData = pagedData;
       $scope.totalServerItems = data.length;
+      $(window).resize();
       if (!$scope.$$phase) {
         $scope.$apply();
       }
