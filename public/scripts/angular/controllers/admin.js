@@ -2,7 +2,7 @@
 
 /* admin console page controller */
 angular.module('ten20Angular.controllers', []).
-  controller('ContactUserCtrl', function ($scope, $http) {
+  controller('ContactUserCtrl', function ($scope, $http, $timeout) {
 
     $scope.filterOptions = {
       filterText: "",
@@ -17,11 +17,14 @@ angular.module('ten20Angular.controllers', []).
       currentPage: 1
     };	
 
+    $scope.error = '';
+
     $scope.setPagingData = function(data, page, pageSize){	
 
       var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
       $scope.userData = pagedData;
       $scope.totalServerItems = data.length;
+      $(window).resize();
       if (!$scope.$$phase) {
         $scope.$apply();
       }
@@ -46,6 +49,26 @@ angular.module('ten20Angular.controllers', []).
       }
 
     };
+
+    $scope.$on('delete', function(event, id) {
+
+      $http.post('/admin/data', {id: id}).success(function(res) {
+        if (res.error === '') {
+          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+        } else {
+          $scope.error = res.error;
+          $timeout(function() { $scope.error = ''; }, 2000);
+        }
+      }).error(function(data, status, headers, config) {
+        if (status) {
+          $scope.error = data.description;
+        } else {
+          $scope.error = 'connection timeout!';
+        }
+        $timeout(function() { $scope.error = ''; }, 2000);
+      });
+    });
+
 
     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
 
@@ -78,12 +101,14 @@ angular.module('ten20Angular.controllers', []).
         { field: 'first_name', displayName: 'NAME', width: '10%',
           cellTemplate: '<div class="ngCellText">{{row.getProperty(col.field)}} {{row.getProperty("last_name")}}</div>' },
         { field: 'formType', width: '7%', displayName: 'FORM' },
-        { field: 'email', width: '20%', displayName: 'EMAIL' },
+        { field: 'email', width: '18%', displayName: 'EMAIL' },
         { field: 'phone', width: '10%', displayName: 'PHONE' },
         { field: 'call_me', width: '10%', displayName: 'CALLBACK' },
         { field: 'news_letter', width: '10%', displayName: 'NEWSLETTER' },
         { field: 'company_name', width: '10%', displayName: 'COMPANY' },
-        { field: 'company_website_url', displayName: 'URL'}
+        { field: 'company_website_url', width: '14.5%', displayName: 'URL'},
+        { displayName: 'OPTIONS', width: '10%', cellTemplate: '<input type="button" ng-click="$emit(\'delete\', row.entity._id)" name="delete" value="Delete">' }
+
       ]
     };
 
