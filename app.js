@@ -74,7 +74,8 @@ dbs(function(err, db) {
     // admin console
     app.get('/admin/login', routes.admin.login);
     app.post('/admin/login', routes.admin.signin);
-    app.get('/admin/data', routes.admin.data);
+    app.get('/admin/data', routes.admin.getData);
+    app.post('/admin/data', routes.admin.deleteData);
     app.get('/admin', routes.admin.console);
 
     // user console
