@@ -16,12 +16,12 @@ var argv = optimist.usage('Usage: $0 -p [num] -s [num] -c [string] -k [string] -
   }).
   options('c', {
     alias : 'certificate',
-    default : 'cert.pem',
+    default : path.join(root, 'cert.pem'),
     describe: 'https certificate'
   }).
   options('k', {
     alias : 'key',
-    default : 'key.pem',
+    default : path.join(root, 'key.pem') ,
     describe: 'https key'
   }).
   options('O', {
@@ -44,13 +44,15 @@ if (argv.h) {
 options.http.port = argv.p;
 options.http.only = !!argv.O;
 
+var keyFile = argv.k.trim();
+var certFile = argv.c.trim();
 if (!options.http.only) {
   try {
     options.https.port = argv.s;
-    options.https.key = fs.readFileSync(path.join(root, argv.k.trim())).toString();
-    options.https.cert = fs.readFileSync(path.join(root, argv.c.trim())).toString();
+    options.https.key = fs.readFileSync(keyFile).toString();
+    options.https.cert = fs.readFileSync(certFile).toString();
   } catch (e) {
-    console.log("can't find key and or cert");
+    console.log("can't find key (" + keyFile + ") and or cert (" + certFile + ")");
     options.https = undefined;
     process.exit(1);
   }
