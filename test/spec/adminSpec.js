@@ -19,7 +19,8 @@ describe("admin console test", function () {
       "last_name": "",
       "phone": "100000",
       "company_name": "Test1 Company",
-      "company_website_url": "www.test1.com"
+      "company_website_url": "www.test1.com",
+      "date": "Thu Aug 22 2013"
     }]);
 
     scope = $rootScope.$new();

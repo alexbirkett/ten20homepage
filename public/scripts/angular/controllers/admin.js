@@ -101,13 +101,14 @@ angular.module('ten20Angular.controllers', []).
         { field: 'first_name', displayName: 'NAME', width: '10%',
           cellTemplate: '<div class="ngCellText">{{row.getProperty(col.field)}} {{row.getProperty("last_name")}}</div>' },
         { field: 'formType', width: '7%', displayName: 'FORM' },
-        { field: 'email', width: '18%', displayName: 'EMAIL' },
+        { field: 'email', width: '12%', displayName: 'EMAIL' },
         { field: 'phone', width: '10%', displayName: 'PHONE' },
         { field: 'call_me', width: '10%', displayName: 'CALLBACK' },
-        { field: 'news_letter', width: '10%', displayName: 'NEWSLETTER' },
+        { field: 'news_letter', width: '5%', displayName: 'NEWSLETTER' },
         { field: 'company_name', width: '10%', displayName: 'COMPANY' },
-        { field: 'company_website_url', width: '14.5%', displayName: 'URL'},
-        { displayName: 'OPTIONS', width: '10%', cellTemplate: '<input type="button" ng-click="$emit(\'delete\', row.entity._id)" name="delete" value="Delete">' }
+        { field: 'company_website_url', width: '15%', displayName: 'URL'},
+        { field: 'date', width: '12%', displayName: 'DATE'},
+        { displayName: 'OPTIONS', width: '8%', cellTemplate: '<input type="button" ng-click="$emit(\'delete\', row.entity._id)" name="delete" value="Delete">' }
 
       ]
     };
