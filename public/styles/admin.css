@@ -76,7 +76,7 @@
   border-top: 1px solid #d4d4d4;
 }
 
-.admin .ngCell.col8 input[type="button"] {
+.admin .ngCell input[type="button"] {
   margin: 2px auto;
   width: 70px;
   display: block;
