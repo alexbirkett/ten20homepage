@@ -26,6 +26,7 @@ body { margin:0; padding:0; }
   width: 250px;
   background-color: #333;
   z-index: 2000;
+  cursor: move;
 }
 
 .time-weather {
@@ -155,6 +156,7 @@ color: #f60;
   margin-bottom: 20px;
   padding: 10px;
   font-size: 18px;
+  cursor: move;
 }
 
 .trip-info h5 img {
