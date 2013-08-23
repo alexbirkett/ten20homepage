@@ -102,7 +102,9 @@ exports.index = function(req, res){
 };
 
 exports.contact = function(req, res){
-    var  data = req.body;
+    var data = req.body;
+
+    data.date = (new Date()).toDateString()
 
     db.contact.insert(data, function(error, docs) {
       res.json({error: !!error});
