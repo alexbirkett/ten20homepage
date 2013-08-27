@@ -179,8 +179,8 @@ module.exports = function (grunt) {
     },
 
     exec: {
-      mocha_test: {
-        command: 'mocha test/functional/*.js -R spec',
+      mocha: {
+        command: 'mocha test/*.js -R spec --timeout 15000',
         stdout: true,
         stderr: true
       }
@@ -212,6 +212,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
       'bgShell',
+      'exec:mocha',
       'karma'
       ]);
 };
