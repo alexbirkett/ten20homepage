@@ -82,7 +82,7 @@ dbs(function(err, db) {
     app.get('/signup', routes.signup);
     app.post('/signup', user.signup);
     app.get('/user/info', user.userinfo);
-    app.get('/user', user.dashboard);
+    app.get('/user', pass.ensureAuthenticated, user.dashboard);
     app.post('/signin', user.signin);
     app.get('/signout', user.signout);
 
