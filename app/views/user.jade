@@ -46,6 +46,16 @@ block content
                     img(src=page.images.clockSmall)
                     | trip history
 
+              .tracker-bottom
+                img(src=page.images.setting)(ng-click='setUp')
+              //
+                a.street-view(ng-click='streetView')
+                  img(src=page.images.streetView)
+                  | street view
+                a.latest-trail(ng-click='lastestTail')
+                  img(src=page.images.trail)
+                  | latest trail
+
               .tabs-content
                 .info-tab
                   .media
@@ -77,14 +87,6 @@ block content
                         span.timeslot(ng-bind='item.time')
                         img(src=page.images.infoSmall)
 
-              .tracker-bottom
-                a.street-view(ng-click='streetView')
-                  img(src=page.images.streetView)
-                  | street view
-                a.latest-trail(ng-click='lastestTail')
-                  img(src=page.images.trail)
-                  | latest trail
-                img(src=page.images.setting)(ng-click='setUp')
 
       ul.bottom-nav
         each item in page.navs
@@ -106,7 +108,7 @@ block content
           }
 
           $(this).parent().toggleClass('active');
-          if ($(window).height > 800) {
+          if ($(window).height() > 800) {
             $(this).next().slideToggle();
           } else {
             $(this).next().animate({width: 'toggle'});

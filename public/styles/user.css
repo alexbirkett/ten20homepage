@@ -257,12 +257,17 @@ color: #f60;
   float: left;
 }
 
+.tracker-content .history-tab {
+  margin-top: -20px;
+}
+
 .tracker-content.info-show .tracker-info {
   background-color: #444;
 }
 
 .tracker-content.info-show .history-tab {
   display: none;
+  margin-top: -20px;
 }
 
 .tracker-content.history-show .tracker-history {
@@ -278,12 +283,14 @@ color: #f60;
 }
 
 .info-tab {
-  margin: 20px 10px 10px;
-  border-bottom: 1px solid #555;
+  margin: 10px;
+  margin-top: -10px;
 }
 
 .info-tab .media {
-  margin-bottom: 25px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #555;
 }
 
 .info-tab .media > .pull-left {
@@ -316,7 +323,7 @@ color: #f60;
 
 .tracker-content .tracker-bottom {
   background-color: #444;
-  padding-top: 0;
+  padding-top: 10px;
 }
 
 .tracker-bottom > a {
@@ -478,18 +485,23 @@ color: #f60;
     display: block;
     position: absolute;
     left: 250px;
-    width: 600px;
+    width: 400px;
     top: 0;
     bottom: 0;
   }
 
   .tracker-content .tabs {
-    width: 300px;
+    width: 150px;
+  }
+
+  .tracker-content .tabs li {
+    display: block;
+    padding: 15px 5px;
   }
 
   .tabs-content {
     position: absolute;
-    left: 250px;
+    left: 120px;
     top: 0;
     bottom: 0;
     width: 400px;
@@ -510,10 +522,12 @@ color: #f60;
   .tracker-content .tracker-bottom {
     position: absolute;
     left: 0;
-    width: 250px;
-    top: 50px;
     bottom: 0;
-    padding-top: 50px;
+    right: 0;
+  }
+
+  .tracker-content .tracker-bottom > img {
+    margin-left: 10px;
   }
 
   .info-tab {
@@ -525,6 +539,7 @@ color: #f60;
   .info-tab .media {
     margin-right: 10px;
     display: inline-block;
+    border-bottom: none;
   }
 
   .info-tab .media > .pull-left {
@@ -536,6 +551,10 @@ color: #f60;
     position: relative;
     margin-left: 10px;
     top: -45px;
+  }
+
+  .date-select {
+    padding-top: 20px;
   }
 
   .date-select .media {
