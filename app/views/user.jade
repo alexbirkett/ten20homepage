@@ -3,19 +3,20 @@ extends layout-angular
 block content
   section.map-canvas(ng-controller='UserCtrl')
     #map
-      .trip-info.current-info
-        h5 trip information 
-          img(src=page.images.infoSmall)
-        each item in page.currentInfo
-          h6 #{item.name}
-            span(ng-bind='activeTracker.current.' + item.propName)
+      //
+        .trip-info.current-info
+          h5 trip information 
+            img(src=page.images.infoSmall)
+          each item in page.currentInfo
+            h6 #{item.name}
+              span(ng-bind='activeTracker.current.' + item.propName)
 
-      .status-bar
-        img(src=page.images.point)
-        | E:
-        span.elevation(ng-bind='activeTracker.current.elevation')
-        | S:
-        span.speed(ng-bind='activeTracker.current.speed')
+        .status-bar
+          img(src=page.images.point)
+          | E:
+          span.elevation(ng-bind='activeTracker.current.elevation')
+          | S:
+          span.speed(ng-bind='activeTracker.current.speed')
 
       .tool-box
         .time-weather
@@ -44,6 +45,16 @@ block content
                 li.tracker-history(ng-click='showHistoryTrip(0)')
                     img(src=page.images.clockSmall)
                     | trip history
+
+              .tracker-bottom
+                img(src=page.images.setting)(ng-click='setUp')
+              //
+                a.street-view(ng-click='streetView')
+                  img(src=page.images.streetView)
+                  | street view
+                a.latest-trail(ng-click='lastestTail')
+                  img(src=page.images.trail)
+                  | latest trail
 
               .tabs-content
                 .info-tab
@@ -76,14 +87,6 @@ block content
                         span.timeslot(ng-bind='item.time')
                         img(src=page.images.infoSmall)
 
-              .tracker-bottom
-                a.street-view(ng-click='streetView')
-                  img(src=page.images.streetView)
-                  | street view
-                a.latest-trail(ng-click='lastestTail')
-                  img(src=page.images.trail)
-                  | latest trail
-                img(src=page.images.setting)(ng-click='setUp')
 
       ul.bottom-nav
         each item in page.navs
@@ -105,7 +108,11 @@ block content
           }
 
           $(this).parent().toggleClass('active');
-          $(this).next().slideToggle();
+          if ($(window).height() > 800) {
+            $(this).next().slideToggle();
+          } else {
+            $(this).next().animate({width: 'toggle'});
+          }
         });
 
       });
