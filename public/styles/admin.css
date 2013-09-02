@@ -59,6 +59,14 @@
   font-size: 13px;
 } 
 
+.admin .ngCellText {
+  -webkit-user-select: initial;
+  -moz-user-select: -moz-initial;
+  -khtml-user-select: initial;
+  -o-user-select: initial;
+  user-select: initial;
+}
+
 .admin .ngRow.even {
   background-color: #666;
 }
@@ -76,8 +84,13 @@
   border-top: 1px solid #d4d4d4;
 }
 
+.admin .ngCell {
+  cursor: default !important;
+}
+
 .admin .ngCell input[type="button"] {
   margin: 2px auto;
   width: 70px;
+  cursor: pointer;
   display: block;
 }
