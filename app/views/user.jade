@@ -103,8 +103,15 @@ block content
         $('.tracker-list').on('click', '.tracker-header', function() {
 
           if (!$(this).parent().hasClass('active')) {
-            $('.tracker-list').children('.active').removeClass('active');
-            $('.tracker-list').find('.tracker-content').hide();
+            var activeTracker = $('.tracker-list > .active').children('.tracker-content');
+
+            if ($(window).height() > 800) {
+              activeTracker.slideToggle();
+            } else {
+              activeTracker.hide();
+            }
+
+            $('.tracker-list > .active').removeClass('active');
           }
 
           $(this).parent().toggleClass('active');
