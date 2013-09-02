@@ -86,7 +86,6 @@ angular.module('ten20Angular.controllers', []).
 
     $scope.gridOptions = {
       data: 'userData',
-      enableCellSelection: true,
       enablePaging: true,
       enableRowSelection: true,
       enableColumnResize: true,
