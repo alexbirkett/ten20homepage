@@ -122,4 +122,13 @@ block content
           }
         });
 
+        $('.tracker-list').on('focusTracker', function(e, index) {
+          var $tracker = $(this).find('.tracker-header').eq(index);
+
+          // if not the active tracker, then switch to active
+          if (!$tracker.parent().hasClass('active')) {
+            $tracker.click();
+          }
+        });
+
       });

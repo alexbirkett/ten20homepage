@@ -104,6 +104,10 @@ window.ten20.MapRender = (function () {
         var marker = L.circleMarker(latlng, circleMarkerOpt).addTo(this.map);
         this.map.addLayer(marker);
         this.markers[index] = marker;
+
+        marker.on('click', function () {
+          $('.tracker-list').trigger('focusTracker', index);
+        });
     }
 
     MapRender.prototype.updateTracker = function(index, latlng, pan) {
