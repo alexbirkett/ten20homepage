@@ -71,6 +71,12 @@ angular.module('ten20Angular.controllers').
     });
 
     socket.on('init:ok', function(data) {
+      // socket reconnected with server
+      if ($scope.map) {
+        queryCurrent();
+        return;
+      }
+
       $scope.user = data.user;
       $scope.trackers = data.trackers;
       $scope.map = mapbox(data.trackers[0].current.latlng);
