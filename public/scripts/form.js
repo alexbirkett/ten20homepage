@@ -4,7 +4,7 @@ window.ten20.ContactForm = (function() {
 
   function ContactForm (option) {
     /*
-     * id, ajaxUrl, redirectUrl
+     * id, ajaxUrl, redirectUrl, signform
      */
 
     for (var key in option) {
@@ -75,9 +75,11 @@ window.ten20.ContactForm = (function() {
           }
         }
 
-        self.$self.find('.form').addClass('submitted');
-        self.$self.find('.form form').hide();
-        self.$self.find('.btn-ok').show();
+        if (!self.signform) {
+          self.$self.find('.form').addClass('submitted');
+          self.$self.find('.form form').hide();
+          self.$self.find('.btn-ok').show();
+        }
 
         self.$self.find('.active').removeClass('active');
         self.$self.find('.success').addClass('active');
