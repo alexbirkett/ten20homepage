@@ -67,7 +67,10 @@ window.ten20.MapRender = (function () {
 
       this.map.setView([this.lat, this.lng], this.zoomLevel);
       this.map.scrollWheelZoom.disable();
-      this.map.dragging.disable();
+      // disable dragging on touch devices
+      if ('ontouchstart' in document.documentElement) {
+        this.map.dragging.disable();
+      }
 
       // home page map demo code
       if (!this.usermap) {
