@@ -13,6 +13,12 @@ var express = require('express'),
     configureApi = require('ten20api'),
     RedisStore = require('connect-redis')(express);
 
+// redis connection detect
+var redis = new RedisStore();
+redis.client.on('error', function() {
+  console.error('connect to redis failed, app exits!');
+  process.exit(0);
+});
 
 dbs(function(err, db) {
 
@@ -53,7 +59,7 @@ dbs(function(err, db) {
       app.use(express.methodOverride());
       app.use(express.cookieParser('&*(j#$84nui$%'));
       app.use(express.session({
-        store: new RedisStore(),
+        store: redis,
         secret: '1234567890QWERTY'
       }));
       app.use(passport.initialize());
