@@ -26,6 +26,7 @@ section.contact(id=section.name)
       $(function() { new ten20.ContactForm({
           id: !{JSON.stringify(section.name)},
           ajaxUrl: !{JSON.stringify(section.ajaxUrl)},
-          redirectUrl: !{JSON.stringify(section.redirect || '')} 
+          redirectUrl: !{JSON.stringify(section.redirect || '')},
+          signform: !{JSON.stringify(section.signform || '')}
         });
       });
