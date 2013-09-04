@@ -482,7 +482,6 @@ color: #f60;
   }
 
   .tracker-content {
-    display: block;
     position: absolute;
     left: 250px;
     width: 400px;
