@@ -105,16 +105,17 @@ block content
           if (!$(this).parent().hasClass('active')) {
             var activeTracker = $('.tracker-list > .active').children('.tracker-content');
 
+            $('.tracker-list > .active').removeClass('active');
+
             if ($(window).height() > 800) {
               activeTracker.slideToggle();
             } else {
               activeTracker.hide();
             }
-
-            $('.tracker-list > .active').removeClass('active');
           }
 
           $(this).parent().toggleClass('active');
+
           if ($(window).height() > 800) {
             $(this).next().slideToggle();
           } else {
