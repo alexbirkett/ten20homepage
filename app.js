@@ -94,10 +94,12 @@ dbs(function(err, db) {
 
     // home page
     app.post('/contact', routes.contact);
-    app.get(/\/\w?/, routes.index);
 
     // attach api to home page app
     configureApi(app, io);
+
+    app.get(/\/\w?/, routes.index);
+
 
     routes.setDb(db);
     user.setDb(db);
