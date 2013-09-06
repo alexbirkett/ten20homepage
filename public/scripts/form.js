@@ -65,15 +65,16 @@ window.ten20.ContactForm = (function() {
     $.post(this.ajaxUrl,  data, 'json').
       done(function(res) {
 
-        self.clearInput();
-
         if (res.message != '') {
           self.$self.find('.success').text(res.message);
         } else {
           if (self.redirectUrl !== '') {
             window.location = self.redirectUrl;
+            return;
           }
         }
+
+        self.clearInput();
 
         if (!self.signform) {
           self.$self.find('.form').addClass('submitted');

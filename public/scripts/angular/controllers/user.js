@@ -7,21 +7,24 @@ angular.module('ten20Angular.controllers').
 
   $scope.trackers = [];
 
-  $http.get('/user/info').success(function(data) {
-    $scope.user = data;
+  $http.get('/user/info').success(function(userinfo) {
+    $scope.user = userinfo;
 
-    // bind socket events
-    bindSocket($scope, socket, mapbox);
-    // bind UI events
-    bindUIEvents($scope);
+    $http({
+      url: '/trackers',
+      method: "GET",
+      params: { email: 'test@ten20live.com'/*$scope.user.email*/}
+    }).success(function(trackers) {
+      // init trackers
+      initTrackers(trackers);
+      // bind UI events
+      bindUIEvents($scope);
+      // bind socket events
+      bindSocket($scope, socket);
+      // init history date to today
+      initHistory();
 
-    $scope.$watch(function() {
-      if ($scope.activeTracker) {
-        return $scope.activeTracker.date;
-      } else {
-        return true;
-      }
-    }, queryHistory);
+    });
 
   });
 
@@ -32,17 +35,11 @@ angular.module('ten20Angular.controllers').
     var trackerInfo = [];
 
     if (index) {
-      trackerInfo.push({
-        'index': index,
-        'serial': $scope.trackers[index].serialNum
-      });
+      trackerInfo.push($scope.trackers[index].serialNumber);
 
     } else {
       for (var i = 0; i < $scope.trackers.length; i++) {
-        trackerInfo.push({
-          'index': i,
-          'serial': $scope.trackers[i].serialNum
-        });
+        trackerInfo.push($scope.trackers[i].serialNumber);
       };
     }
 
@@ -50,84 +47,65 @@ angular.module('ten20Angular.controllers').
   }
 
   // get active tracker history information
-  function queryHistory() {
+  function queryHistory(index) {
     var historyInfo;
 
-    if ($scope.activeIndex) {
-      historyInfo = {
-        "index": $scope.activeIndex,
-        "serial": $scope.activeTracker.serialNum,
-        "date": $scope.activeTracker.date
-      };
+    historyInfo = {
+      "index": index,
+      "serial": $scope.trackers[index].serialNumber,
+      "date": (new Date($scope.trackers[index].history.date)).valueOf()
+    };
 
-      socket.emit('get:history', historyInfo);
-    }
+    socket.emit('get:history', historyInfo);
   }
 
-  function bindSocket($scope, socket, mapbox) {
+  function initTrackers(trackers) {
+    $scope.trackers = trackers;
+    $scope.map = mapbox([trackers[0].latitude, trackers[0].longitude]);
 
-    socket.on('connect', function () { 
-      socket.emit('init:start', $scope.user._id);
-    });
+    for (var i = 0; i < trackers.length; i++) {
+      $scope.map.addTracker(i, [trackers[i].latitude, trackers[i].longitude]);
+      $scope.trackers[i].activeTab = 'info-show';
+    };
 
-    socket.on('init:ok', function(data) {
-      // socket reconnected with server
-      if ($scope.map) {
-        queryCurrent();
-        return;
-      }
 
-      $scope.user = data.user;
-      $scope.trackers = data.trackers;
-      $scope.map = mapbox(data.trackers[0].current.latlng);
+  }
 
-      for (var i = 0; i < data.trackers.length; i++) {
-        $scope.map.addTracker(i, data.trackers[i].current.latlng);
+  function bindSocket($scope, socket) {
 
-        $scope.trackers[i].activeTab = 'info-show';
-      };
-
-      // start update trackers current information
-      $scope.setActiveTracker(0);
-
-      setTimeout(function() {
-      // expand first tracker
-        $('.tracker-list').find('.tracker-header').first().click();
-        // relocate date picker
-        $('.history-date').datepicker("option", {
-          beforeShow: function(input, inst) {
-            var leftPos = $(input).parents('.date-select').offset().left - 300;
-            var topPos = $(input).parents('.date-select').offset().top - 15;
-            setTimeout(function () {
-              inst.dpDiv.css({ top: topPos, left: leftPos});
-            }, 0);
-          }
-        });
-
-        // bind click event
-        $('.date-select .media').click(function() {
-          $(this).find('.history-date').datepicker('show');
-        });
-      }, 0);
-
+    socket.on('connect', function() { 
       queryCurrent();
-
     });
 
-    socket.on('send:timeWeather', function(data) {
+    socket.on('timeWeather', function(data) {
       $scope.timeWeather = data.city + ' ' + data.weather + ' ' + 
                            data.temperature + ' ' + data.time;
     });
 
-    socket.on('send:current', function(data) {
+    socket.on('send:current', function(trackers) {
+      var tmp;
 
-      for (var i = 0; i < data.length; i++) {
-        $scope.trackers[data[i].trackerIndex].current = data[i].data;
-        $scope.map.updateTracker(data[i].trackerIndex, data[i].data.latlng, false);
+      for (var i = 0; i < $scope.trackers.length; i++) {
+        tmp = findTracker($scope.trackers[i].serialNumber, trackers);
+        for (var key in tmp) {
+          $scope.trackers[i][key] = tmp[key];
+        };
+        $scope.map.updateTracker($scope.trackers[i].index,
+          [$scope.trackers[i].latitude, $scope.trackers[i].longitude], false);
       };
 
+      function findTracker(serial, trackers) {
+        for (var i = 0; i < trackers.length; i++) {
+          if (serial === trackers[i].serialNumber) {
+            return trackers[i];
+          }
+        };
+
+        return null;
+      }
       //delay 1s to update trackers again... loop
       setTimeout(queryCurrent, 1000);
+
     });
 
     socket.on('send:history', function(trip) {
@@ -148,7 +126,6 @@ angular.module('ten20Angular.controllers').
 
     scope.showHistoryTrip = function() {
       scope.activeTracker.activeTab = 'history-show';
-      scope.map.hideTripHistory(0);
     };
 
     scope.updateHistoryTrip = function(timeIndex) {
@@ -177,6 +154,50 @@ angular.module('ten20Angular.controllers').
 
     scope.setUp = function() {
       //TODO
+    };
+
+    // start update trackers current information
+    scope.setActiveTracker(0);
+
+    setTimeout(function() {
+      // expand first tracker
+      $('.tracker-list').find('.tracker-header').first().click();
+      // relocate date picker
+      $('.history-date').datepicker("option", {
+        beforeShow: function(input, inst) {
+          var leftPos = $(input).parents('.date-select').offset().left - 300;
+          var topPos = $(input).parents('.date-select').offset().top - 15;
+          setTimeout(function () {
+            inst.dpDiv.css({ top: topPos, left: leftPos});
+          }, 0);
+        }
+      });
+
+      // bind click event
+      $('.date-select .media').click(function() {
+        $(this).find('.history-date').datepicker('show');
+      });
+    }, 0);
+  }
+
+  function initHistory() {
+    var months = ["January","February","March","April","May","June","July",
+                  "August","September","October","November","December"],
+        weekday = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday", "Sunday"];
+    var today = new Date();
+    var dayStr = weekday[today.getDay() - 1] + ', ' + 
+                 today.getDate() +  ' ' +
+                 months[today.getMonth()] + ', ' +
+                 today.getFullYear();
+
+    for (var i = 0; i < $scope.trackers.length; i++) {
+      $scope.trackers[i].history = {};
+      $scope.trackers[i].history.date = dayStr;
+      // watch history date change
+      (function (index) {
+        $scope.$watch('trackers[' + index + '].history.date', 
+          function() { queryHistory(index); });
+      })(i);
     };
   }
 
