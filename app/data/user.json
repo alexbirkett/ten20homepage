@@ -36,18 +36,26 @@
     "menu": "/images/user/menu.png",
     "point": "/images/user/point.png"
   },
-  "currentInfo": [
+  "trackerInfo": [
     {
       "name": "virtual fence",
       "propName": "fence"
     },
     {
       "name": "latest activity",
-      "propName": "actTime"
+      "propName": "lastUpdateTimestamp"
     },
     {
-      "name": "current elevation",
-      "propName": "elevation"
+      "name": "latitude",
+      "propName": "latitude"
+    },
+    {
+      "name": "longitude",
+      "propName": "longitude"
+    },
+    {
+      "name": "course",
+      "propName": "course"
     },
     {
       "name": "current speed",
