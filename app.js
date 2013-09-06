@@ -77,6 +77,9 @@ dbs(function(err, db) {
       app.use(express.errorHandler());
     });
 
+    // attach api to home page app
+    configureApi(app, io);
+
     // admin console
     app.get('/admin/login', routes.admin.login);
     app.post('/admin/login', routes.admin.signin);
@@ -95,9 +98,6 @@ dbs(function(err, db) {
     // home page
     app.post('/contact', routes.contact);
     app.get(/\/\w?/, routes.index);
-
-    // attach api to home page app
-    configureApi(app, io);
 
     routes.setDb(db);
     user.setDb(db);
