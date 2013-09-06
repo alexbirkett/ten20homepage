@@ -67,8 +67,8 @@ window.ten20.MapRender = (function () {
 
       this.map.setView([this.lat, this.lng], this.zoomLevel);
       this.map.scrollWheelZoom.disable();
-      // disable dragging on touch devices
-      if ('ontouchstart' in document.documentElement) {
+      // disable dragging on touch devices and user dashboard
+      if ('ontouchstart' in document.documentElement || this.usermap) {
         this.map.dragging.disable();
       }
 
