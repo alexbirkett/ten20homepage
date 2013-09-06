@@ -482,12 +482,10 @@ color: #f60;
   }
 
   .tracker-content {
-    display: block;
     position: absolute;
     left: 250px;
-    width: 400px;
+    width: 150px;
     top: 0;
-    bottom: 0;
   }
 
   .tracker-content .tabs {
@@ -519,20 +517,13 @@ color: #f60;
     background-image: url("/images/user/arrow-right.png");
   }
 
-  .tracker-content .tracker-bottom {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-
   .tracker-content .tracker-bottom > img {
     margin-left: 10px;
   }
 
   .info-tab {
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 20px;
     border-bottom: none;
   }
 
@@ -540,6 +531,7 @@ color: #f60;
     margin-right: 10px;
     display: inline-block;
     border-bottom: none;
+    float: left;
   }
 
   .info-tab .media > .pull-left {
@@ -549,8 +541,8 @@ color: #f60;
   .info-tab .current-info {
     display: inline-block;
     position: relative;
-    margin-left: 10px;
-    top: -45px;
+    margin-left: 25px;
+    top: -25px;
   }
 
   .date-select {

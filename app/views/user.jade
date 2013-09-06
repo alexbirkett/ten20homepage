@@ -7,7 +7,7 @@ block content
         .trip-info.current-info
           h5 trip information 
             img(src=page.images.infoSmall)
-          each item in page.currentInfo
+          each item in page.trackerInfo
             h6 #{item.name}
               span(ng-bind='activeTracker.current.' + item.propName)
 
@@ -34,7 +34,7 @@ block content
           li(ng-repeat='tracker in trackers')
             .tracker-header(ng-click='setActiveTracker($index)')
               span.first tracker
-              span(ng-bind='tracker.serialNum')
+              span(ng-bind='tracker.id')
               span.dropdown
             .tracker-content(ng-class='trackers[$index].activeTab')
               ul.tabs
@@ -66,9 +66,9 @@ block content
                       h6(ng-bind='tracker.location.time')
                       h6(ng-bind='tracker.location.weather')
                   .current-info
-                    each item in page.currentInfo
+                    each item in page.trackerInfo
                       h6 #{item.name}:
-                        span(ng-bind='tracker.current[#{JSON.stringify(item.propName)}]')
+                        span(ng-bind='tracker[#{JSON.stringify(item.propName)}]')
 
                 .history-tab
                   .date-select
@@ -105,16 +105,17 @@ block content
           if (!$(this).parent().hasClass('active')) {
             var activeTracker = $('.tracker-list > .active').children('.tracker-content');
 
+            $('.tracker-list > .active').removeClass('active');
+
             if ($(window).height() > 800) {
               activeTracker.slideToggle();
             } else {
               activeTracker.hide();
             }
-
-            $('.tracker-list > .active').removeClass('active');
           }
 
           $(this).parent().toggleClass('active');
+
           if ($(window).height() > 800) {
             $(this).next().slideToggle();
           } else {
