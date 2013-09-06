@@ -20,6 +20,24 @@ redis.client.on('error', function() {
   process.exit(0);
 });
 
+// Configuration
+function removeWWW(req, res, next) {
+    var host = req.get('host');
+    if (host.indexOf('www.') === 0) {
+        var redirectUrl = 'https://' + host.slice(4) + req.url;
+        return res.redirect(redirectUrl);
+    }
+    next();
+}
+
+function requireHTTPS(req, res, next) {
+    if (!req.secure) {
+        //FYI this should work for local development as well
+        return res.redirect('https://' + req.get('host') + req.url);
+    }
+    next();
+}
+
 dbs(function(err, db) {
 
     if(err) {
@@ -37,19 +55,11 @@ dbs(function(err, db) {
     }
 
     var io = require('socket.io').listen(server);
-    // Configuration
-
-    function requireHTTPS(req, res, next) {
-        if (!req.secure) {
-            //FYI this should work for local development as well
-            return res.redirect('https://' + req.get('host') + req.url);
-        }
-        next();
-    }
 
     app.configure(function(){
       app.set('views', __dirname + '/app/views');
       app.set('view engine', 'jade');
+      app.use(removeWWW);
       if (options.https) {
           app.use(requireHTTPS);
       }
