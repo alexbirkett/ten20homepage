@@ -7,15 +7,19 @@ exports.setDb = function(dbs) {
     db = dbs;
 };
 
+exports.authenticateMiddleware = function(req, res, next) {
+    if (req.signedCookies.authorized || req.path === '/login') {
+        next();
+    } else {
+        res.redirect('/admin/login');
+    }
+};
+
 exports.admin =  {
 
     get: function(req, res) {
+        res.render('admin', { pageTitle: 'Admin | ten20live' });
 
-        if (req.signedCookies.authorized) {
-            res.render('admin', { pageTitle: 'Admin | ten20live' });
-        } else {
-            res.redirect('/admin/login');
-        }
     },
     login : {
         get: function (req, res) {
@@ -32,6 +36,12 @@ exports.admin =  {
             } else {
                 res.json({message: 'login failed!'});
             }
+        }
+    },
+    logout: {
+        get: function (req, res) {
+            res.clearCookie('authorized');
+            res.redirect('/admin/login');
         }
     },
     data:{
