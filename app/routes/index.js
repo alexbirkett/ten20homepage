@@ -4,11 +4,8 @@
  */
 
 var extend = require('extend');
-var ObjectID = require('mongodb').ObjectID;
 var indexModel = require('../data/index.json');
 var form = require('../data/form.json');
-var config = require('../config.js');
-var testData = require('../../test/contact-user.json');
 var db = {};
 var forms = [];
 
@@ -115,55 +112,4 @@ exports.signup = function(req, res) {
   res.render('signup-hidden', {pageTitle: 'Sign Up | ten20live'});
 }
 
-exports.admin =  {
-
-  login: function (req, res) {
-    res.render('login', {pageTitle: 'Login | ten20live'});
-  },
-
-  signin: function(req, res) {
-    var username = req.param('username');
-    var password = req.param('password');
-
-    if (username === config.username &&
-        password === config.password) {
-      res.cookie('authorized', '1', { maxAge: 14*24*60*60*1000, signed: true });
-      res.json({message: ''});
-    } else {
-      res.json({message: 'login failed!'});
-    }
-  },
-
-  console: function(req, res) {
-
-    if (req.signedCookies.authorized) {
-      res.render('admin', { pageTitle: 'Admin | ten20live' });
-    } else {
-      res.redirect('/admin/login');
-    }
-  },
-
-  getData: function(req, res) {
-    db.contact.find().toArray(function(error, users) {
-      if (error || users.length === 0) {
-        res.json(testData);
-      } else {
-        res.json(users);
-      }
-    });
-  },
-
-  deleteData: function(req, res) {
-    var id = req.param('id');
-
-    db.contact.findAndRemove({_id: new ObjectID(id)}, function(err, contact) {
-      if (err || !contact) {
-        res.json({error: 'query contact failed!'});
-      } else {
-        res.json({error: ''});
-      }
-    });
-  }
-
-};
 
