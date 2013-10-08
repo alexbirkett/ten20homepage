@@ -1,6 +1,5 @@
 var config = require('../config.js');
 var ObjectID = require('mongodb').ObjectID;
-var testData = require('../../test/contact-user.json');
 
 var db = {};
 
@@ -38,23 +37,25 @@ exports.admin =  {
     data:{
         get: function(req, res) {
             db.contact.find().toArray(function(error, users) {
-                if (error || users.length === 0) {
-                    res.json(testData);
-                } else {
-                    res.json(users);
+                if (error) {
+                    users = [];
                 }
+                res.json(users);
             });
         },
-        post: function(req, res) {
-            var id = req.param('id');
-
-            db.contact.findAndRemove({_id: new ObjectID(id)}, function(err, contact) {
-                if (err || !contact) {
-                    res.json({error: 'query contact failed!'});
-                } else {
-                    res.json({error: ''});
-                }
-            });
+        ":id": {
+            delete: function(req, res) {
+                var id = req.param('id');
+                console.log(id);
+                db.contact.findAndRemove({_id: new ObjectID(id)}, function(err, contact) {
+                    if (err || !contact) {
+                        res.json({error: 'query contact failed!'});
+                    } else {
+                        res.json({error: ''});
+                    }
+                });
+            }
         }
+
     }
 };
