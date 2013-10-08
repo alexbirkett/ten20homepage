@@ -52,7 +52,8 @@ angular.module('ten20Angular.controllers', []).
 
     $scope.$on('delete', function(event, id) {
 
-      $http.post('/admin/data', {id: id}).success(function(res) {
+      $http.delete('/admin/data/' + id).
+          success(function(res) {
         if (res.error === '') {
           $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
         } else {
