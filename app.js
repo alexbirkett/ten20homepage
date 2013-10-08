@@ -6,11 +6,13 @@ var express = require('express'),
     connect = require('connect')
     routes = require('./app/routes'),
     user = require('./app/routes/user'),
+    admin = require('./app/routes/admin')
     dbs = require('./app/db'),
     pass = require('./app/pass'),
     passport = require('passport'),
     options = require('./app/http-options'),
     configureApi = require('ten20api'),
+    configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express);
 
 // redis connection detect
@@ -81,11 +83,7 @@ dbs(function(err, db) {
     configureApi(app, io);
 
     // admin console
-    app.get('/admin/login', routes.admin.login);
-    app.post('/admin/login', routes.admin.signin);
-    app.get('/admin/data', routes.admin.getData);
-    app.post('/admin/data', routes.admin.deleteData);
-    app.get('/admin', routes.admin.console);
+    configureDryRoutes(admin, app);
 
     // user console
     app.get('/signup', routes.signup);
@@ -100,6 +98,7 @@ dbs(function(err, db) {
     app.get(/\/\w?/, routes.index);
 
     routes.setDb(db);
+    admin.setDb(db);
     user.setDb(db);
     pass.setDb(db);
 });
