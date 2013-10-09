@@ -101,7 +101,7 @@ dbs(function(err, db) {
 
     // user console
     app.get('/signup', routes.signup);
-
+    app.get('/user', routes.user);
     // home page
     app.post('/contact', routes.contact);
     app.get(/\/\w?/, routes.index);
