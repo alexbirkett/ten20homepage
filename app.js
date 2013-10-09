@@ -79,6 +79,7 @@ dbs(function(err, db) {
       app.use(express.static(__dirname + '/public'));
       app.use(express.favicon(__dirname + '/public/favicon.ico'));
       app.use('/admin', admin.authenticateMiddleware);
+      app.use('/user', pass.ensureAuthenticated);
       app.use(app.router);
     });
 
@@ -96,13 +97,10 @@ dbs(function(err, db) {
     // admin console
     configureDryRoutes(admin, app);
 
+    configureDryRoutes(user.console, app);
+
     // user console
     app.get('/signup', routes.signup);
-    app.post('/signup', user.signup);
-    app.get('/user/info', user.userinfo);
-    app.get('/user', pass.ensureAuthenticated, user.dashboard);
-    app.post('/signin', user.signin);
-    app.get('/signout', user.signout);
 
     // home page
     app.post('/contact', routes.contact);
