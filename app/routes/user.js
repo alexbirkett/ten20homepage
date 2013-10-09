@@ -4,74 +4,81 @@ var userPage = require('../data/user.json');
 var maxtime = 0.1;
 var db;
 
-module.exports = {
-  setDb: function(dbs) {
+exports.setDb = function(dbs) {
     db = dbs;
-  },
+};
 
-  userinfo: function(req, res) {
-    res.json(req.user);
-  },
+exports.console = {
 
-  signin: function(req, res, next) {
-    var userInfo = req.body;
-
-    if (userInfo.remember) {
-      req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
-    } else {
-      req.session.cookie.expires = false;
-    }
-
-    passport.authenticate('local', function(err, user, info) {
-      if (err) { return next(err) }
-      if (!user) {
-        return res.json(info);
+  user : {
+      info: {
+          get : function(req, res) {
+              res.json(req.user);
+          }
+      },
+      get: function(req, res) {
+          res.render('user', { page: userPage });
       }
-      req.logIn(user, function(err) {
-        if (err) { return next(err); }
-        res.json({message: ''});
-      });
-    })(req, res, next);
   },
+  signin: {
+      post :function(req, res, next) {
+          var userInfo = req.body;
 
-  signout: function(req, res) {
-    req.logout();
-    res.redirect('/');
-  },
+          if (userInfo.remember) {
+              req.session.cookie.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
+          } else {
+              req.session.cookie.expires = false;
+          }
 
-  signup: function(req, res) {
-    var userInfo = req.body;
-
-    db.user.findOne({email: userInfo.email}, function(error, user) {
-      if (!error) {
-        if (!user) {
-          scrypt.passwordHash(userInfo.password, maxtime, function(err, pwdhash) {
-            if (!err) {
-              //pwdhash should now be stored in the database
-              userInfo.hash = pwdhash;
-              delete userInfo.password;
-              delete userInfo.rememberMe;
-              db.user.insert(userInfo, function(error, docs) {
-                req.login(userInfo, function(err) {
+          passport.authenticate('local', function(err, user, info) {
+              if (err) { return next(err) }
+              if (!user) {
+                  return res.json(info);
+              }
+              req.logIn(user, function(err) {
                   if (err) { return next(err); }
-                  return res.json({message: ''});
-                });
+                  res.json({message: ''});
               });
-            } else {
-              res.json({message: 'server interal error!'});
-            }
-          });
-        // already exist username
-        } else {
-          res.json({message: 'username already exists!'});
-        }
-      } else {
-          res.json({message: 'server interal error!'});
+          })(req, res, next);
       }
-    });
   },
+  signout: {
+      get: function(req, res) {
+          req.logout();
+          res.redirect('/');
+      }
+  },
+  signup: {
+      post: function(req, res) {
+          var userInfo = req.body;
 
-  dashboard: function(req, res) {
-    res.render('user', { page: userPage });
+          db.user.findOne({email: userInfo.email}, function(error, user) {
+              if (!error) {
+                  if (!user) {
+                      scrypt.passwordHash(userInfo.password, maxtime, function(err, pwdhash) {
+                          if (!err) {
+                              //pwdhash should now be stored in the database
+                              userInfo.hash = pwdhash;
+                              delete userInfo.password;
+                              delete userInfo.rememberMe;
+                              db.user.insert(userInfo, function(error, docs) {
+                                  req.login(userInfo, function(err) {
+                                      if (err) { return next(err); }
+                                      return res.json({message: ''});
+                                  });
+                              });
+                          } else {
+                              res.json({message: 'server interal error!'});
+                          }
+                      });
+                      // already exist username
+                  } else {
+                      res.json({message: 'username already exists!'});
+                  }
+              } else {
+                  res.json({message: 'server interal error!'});
+              }
+          });
+      }
   }
 };
