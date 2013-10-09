@@ -8,6 +8,7 @@ var indexModel = require('../data/index.json');
 var form = require('../data/form.json');
 var db = {};
 var forms = [];
+var userPage = require('../data/user.json');
 
 // extend forms
 var tmp = {};
@@ -110,6 +111,8 @@ exports.contact = function(req, res){
 
 exports.signup = function(req, res) {
   res.render('signup-hidden', {pageTitle: 'Sign Up | ten20live'});
-}
+};
 
-
+exports.user = function (req, res) {
+    res.render('user', { page: userPage });
+};

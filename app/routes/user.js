@@ -1,6 +1,5 @@
 var scrypt = require("scrypt");
 var passport = require('passport');
-var userPage = require('../data/user.json');
 var maxtime = 0.1;
 var db;
 
@@ -15,9 +14,6 @@ exports.console = {
           get : function(req, res) {
               res.json(req.user);
           }
-      },
-      get: function(req, res) {
-          res.render('user', { page: userPage });
       }
   },
   signin: {
