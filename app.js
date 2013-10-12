@@ -58,38 +58,36 @@ dbs(function(err, db) {
 
     var io = require('socket.io').listen(server);
 
-    app.configure(function(){
-      app.set('views', __dirname + '/app/views');
-      app.set('view engine', 'jade');
-      app.use(removeWWW);
-      if (options.https) {
-          app.use(requireHTTPS);
-      }
-      app.use(connect.compress());
-      app.use(express.logger('dev'));
-      app.use(express.bodyParser());
-      app.use(express.methodOverride());
-      app.use(express.cookieParser('&*(j#$84nui$%'));
-      app.use(express.session({
-        store: redis,
-        secret: '1234567890QWERTY'
-      }));
-      app.use(passport.initialize());
-      app.use(passport.session());
-      app.use(express.static(__dirname + '/public'));
-      app.use(express.favicon(__dirname + '/public/favicon.ico'));
-      app.use('/admin', admin.authenticateMiddleware);
-      app.use('/user', pass.ensureAuthenticated);
-      app.use(app.router);
-    });
+    app.set('views', __dirname + '/app/views');
+    app.set('view engine', 'jade');
+    app.use(removeWWW);
+    if (options.https) {
+      app.use(requireHTTPS);
+    }
+    app.use(connect.compress());
+    app.use(express.logger('dev'));
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(express.cookieParser('&*(j#$84nui$%'));
+    app.use(express.session({
+    store: redis,
+    secret: '1234567890QWERTY'
+    }));
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.use(express.static(__dirname + '/public'));
+    app.use(express.favicon(__dirname + '/public/favicon.ico'));
+    app.use('/admin', admin.authenticateMiddleware);
+    app.use('/user', pass.ensureAuthenticated);
+    app.use(app.router);
 
-    app.configure('development', function(){
-      app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-    });
+    if ('development' == app.get('env')) {
+        app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+    }
 
-    app.configure('production', function(){
-      app.use(express.errorHandler());
-    });
+    if ('production' == app.get('env')) {
+        app.use(express.errorHandler());
+    };
 
     // attach api to home page app
     configureApi(app, io);
