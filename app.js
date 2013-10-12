@@ -6,17 +6,19 @@ var express = require('express'),
     connect = require('connect')
     routes = require('./app/routes'),
     user = require('./app/routes/user'),
-    admin = require('./app/routes/admin')
-    dbs = require('./app/db'),
+    admin = require('./app/routes/admin'),
     pass = require('./app/pass'),
     passport = require('passport'),
     options = require('./app/http-options'),
     configureApi = require('ten20api'),
     configureDryRoutes = require('express-dry-router'),
-    RedisStore = require('connect-redis')(express);
+    RedisStore = require('connect-redis')(express),
+    MongoClient = require('mongodb').MongoClient;
 
 // redis connection detect
 var redis = new RedisStore();
+var db = {};
+
 redis.client.on('error', function() {
   console.error('connect to redis failed, app exits!');
   process.exit(0);
@@ -40,7 +42,11 @@ function requireHTTPS(req, res, next) {
     next();
 }
 
-dbs(function(err, db) {
+MongoClient.connect('mongodb://localhost/ten20home', function(err, mongoDb) {
+
+
+    db['contact'] = mongoDb.collection('contact');
+    db['user'] = mongoDb.collection('user');
 
     if(err) {
         console.error('connect to mongodb failed, app exits!');
