@@ -1,10 +1,10 @@
 var config = require('../config.js');
 var ObjectID = require('mongodb').ObjectID;
 
-var db = {};
+var contactCollection;
 
-exports.setDb = function(dbs) {
-    db = dbs;
+exports.setDb = function(db) {
+    contactCollection = db.collection('contact');
 };
 
 exports.authenticateMiddleware = function(req, res, next) {
@@ -46,7 +46,7 @@ exports.admin =  {
     },
     data:{
         get: function(req, res) {
-            db.contact.find().toArray(function(error, users) {
+            contactCollection.find().toArray(function(error, users) {
                 if (error) {
                     users = [];
                 }
@@ -57,7 +57,7 @@ exports.admin =  {
             delete: function(req, res) {
                 var id = req.param('id');
                 console.log(id);
-                db.contact.findAndRemove({_id: new ObjectID(id)}, function(err, contact) {
+                contactCollection.findAndRemove({_id: new ObjectID(id)}, function(err, contact) {
                     if (err || !contact) {
                         res.json({error: 'query contact failed!'});
                     } else {

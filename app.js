@@ -17,7 +17,6 @@ var express = require('express'),
 
 // redis connection detect
 var redis = new RedisStore();
-var db = {};
 
 redis.client.on('error', function() {
   console.error('connect to redis failed, app exits!');
@@ -42,11 +41,7 @@ function requireHTTPS(req, res, next) {
     next();
 }
 
-MongoClient.connect('mongodb://localhost/ten20home', function(err, mongoDb) {
-
-
-    db['contact'] = mongoDb.collection('contact');
-    db['user'] = mongoDb.collection('user');
+MongoClient.connect('mongodb://localhost/ten20home', function(err, db) {
 
     if(err) {
         console.error('connect to mongodb failed, app exits!');
@@ -93,7 +88,7 @@ MongoClient.connect('mongodb://localhost/ten20home', function(err, mongoDb) {
 
     if ('production' == app.get('env')) {
         app.use(express.errorHandler());
-    };
+    }
 
     // attach api to home page app
     configureApi(app, io);

@@ -6,9 +6,9 @@
 var extend = require('extend');
 var indexModel = require('../data/index.json');
 var form = require('../data/form.json');
-var db = {};
 var forms = [];
 var userPage = require('../data/user.json');
+var contactCollection;
 
 // extend forms
 var tmp = {};
@@ -38,8 +38,8 @@ function extendForm(target, source) {
   return target;
 }
 
-exports.setDb = function(dbs) {
-    db = dbs;
+exports.setDb = function(db) {
+    contactCollection = db.collection('contact');;
 };
 
 exports.index = function(req, res){
@@ -104,7 +104,7 @@ exports.contact = function(req, res){
 
     data.date = (new Date()).toDateString()
 
-    db.contact.insert(data, function(error, docs) {
+    contactCollection.insert(data, function(error, docs) {
       res.json({error: !!error});
     });
 };
