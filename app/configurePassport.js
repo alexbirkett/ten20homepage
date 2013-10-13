@@ -3,7 +3,7 @@ var passport = require('passport'),
     scrypt = require("scrypt");
 
 
-module.exports = function Pass(app, db) {
+module.exports = function(app, db) {
     var userCollection = db.collection('user');
 
     app.use(passport.initialize());
