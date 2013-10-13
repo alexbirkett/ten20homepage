@@ -7,7 +7,7 @@ var express = require('express'),
     routes = require('./app/routes'),
     user = require('./app/routes/user'),
     admin = require('./app/routes/admin'),
-    Pass = require('./app/pass'),
+    configurePassport = require('./app/configurePassport'),
     options = require('./app/http-options'),
     configureApi = require('ten20api'),
     configureDryRoutes = require('express-dry-router'),
@@ -75,7 +75,7 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     store: redis,
     secret: '1234567890QWERTY'
     }));
-    new Pass(app, db);
+    configurePassport(app, db);
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/favicon.ico'));
     app.use('/admin', admin.authenticateMiddleware);
