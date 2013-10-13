@@ -1,10 +1,10 @@
 var scrypt = require("scrypt");
 var passport = require('passport');
 var maxtime = 0.1;
-var db;
+var userCollection;
 
-exports.setDb = function(dbs) {
-    db = dbs;
+exports.setDb = function(db) {
+    userCollection = db.collection('user');
 };
 
 exports.console = {
@@ -48,7 +48,7 @@ exports.console = {
       post: function(req, res) {
           var userInfo = req.body;
 
-          db.user.findOne({email: userInfo.email}, function(error, user) {
+          userCollection.findOne({email: userInfo.email}, function(error, user) {
               if (!error) {
                   if (!user) {
                       scrypt.passwordHash(userInfo.password, maxtime, function(err, pwdhash) {
@@ -57,7 +57,7 @@ exports.console = {
                               userInfo.hash = pwdhash;
                               delete userInfo.password;
                               delete userInfo.rememberMe;
-                              db.user.insert(userInfo, function(error, docs) {
+                              userCollection.insert(userInfo, function(error, docs) {
                                   req.login(userInfo, function(err) {
                                       if (err) { return next(err); }
                                       return res.json({message: ''});

@@ -1,7 +1,7 @@
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     scrypt = require("scrypt"),
-    db;
+    userCollection;
 
 // Remember Me implementation helper method
 generateRandomToken = function () {
@@ -23,12 +23,12 @@ generateRandomToken = function () {
 passport.serializeUser(function(user, done) {
   var createAccessToken = function () {
     var token = generateRandomToken();
-    db.user.findOne( { acessToken: token }, function (err, existingUser) {
+      userCollection.findOne( { acessToken: token }, function (err, existingUser) {
       if (err) { return done(err); }
       if (existingUser) {
         createAccessToken(); // Run the function again - the token has to be unique!
       } else {
-        db.user.update({email: user.email}, {$set: {acessToken: token}}, function (err) {
+          userCollection.update({email: user.email}, {$set: {acessToken: token}}, function (err) {
           if (err) return done(err);
           return done(null, token);
         });
@@ -42,7 +42,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(token, done) {
-  db.user.findOne( {acessToken: token }, function(err, user) {
+    userCollection.findOne( {acessToken: token }, function(err, user) {
     done(err, user);
   });
 });
@@ -52,7 +52,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(mail, password, done) {
-    db.user.findOne({ email: mail}, function(err, user) {
+      userCollection.findOne({ email: mail}, function(err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false, { message: 'Unknown user ' + mail}); }
       scrypt.verifyHash(user.hash, password, function(err, isMatch) {
@@ -74,7 +74,7 @@ exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
   }
 };
 
-exports.setDb = function(dbs) {
-  db = dbs;
+exports.setDb = function(db) {
+    userCollection = db.collection('user');
 };
 
