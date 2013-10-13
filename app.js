@@ -79,7 +79,7 @@ MongoClient.connect('mongodb://localhost/ten20home', function(err, db) {
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/favicon.ico'));
     app.use('/admin', admin.authenticateMiddleware);
-    app.use('/user', pass.ensureAuthenticated);
+    app.use('/user', user.ensureAuthenticated);
     app.use(app.router);
 
     if ('development' == app.get('env')) {
