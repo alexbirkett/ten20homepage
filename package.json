@@ -16,12 +16,10 @@
     "optimist": "0.6.0",
     "connect-redis": "1.4.x",
     "connect": "2.8.x",
-    "scrypt": "1.7.0",
-    "passport": "0.1.17",
-    "passport-local": "0.1.6",
     "ten20api": "git+ssh://git@github.com:alexbirkett/ten20api.git#master",
     "ten20location.io": "git+ssh://git@github.com:alexbirkett/ten20location.io.git#master",
-    "express-dry-router": "0.0.1"
+    "express-dry-router": "0.0.1",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "should": "1.2.2",

@@ -5,11 +5,9 @@ var express = require('express'),
     https = require('https'),
     connect = require('connect')
     routes = require('./app/routes'),
-    user = require('./app/routes/user'),
     admin = require('./app/routes/admin'),
-    configurePassport = require('./app/configurePassport'),
     options = require('./app/http-options'),
-    configureApi = require('ten20api'),
+    Ten20Api = require('ten20api'),
     configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express),
     MongoClient = require('mongodb').MongoClient;
@@ -59,7 +57,7 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     }
 
     var io = require('socket.io').listen(server);
-
+    var ten20api = new Ten20Api(app, db, io);
     app.set('views', __dirname + '/app/views');
     app.set('view engine', 'jade');
     app.use(removeWWW);
@@ -72,14 +70,13 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     app.use(express.methodOverride());
     app.use(express.cookieParser('&*(j#$84nui$%'));
     app.use(express.session({
-    store: redis,
-    secret: '1234567890QWERTY'
+        store: redis,
+        secret: '1234567890QWERTY'
     }));
-    configurePassport(app, db);
+    ten20api.configureMiddleware();
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/favicon.ico'));
     app.use('/admin', admin.authenticateMiddleware);
-    app.use('/user', user.ensureAuthenticated);
     app.use(app.router);
 
     if ('development' == app.get('env')) {
@@ -90,13 +87,9 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         app.use(express.errorHandler());
     }
 
-    // attach api to home page app
-    configureApi(app, io);
-
+    ten20api.configureRoutes();
     // admin console
     configureDryRoutes(admin, app);
-
-    configureDryRoutes(user.console, app);
 
     // user console
     app.get('/signup', routes.signup);
@@ -107,5 +100,5 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
 
     routes.setDb(db);
     admin.setDb(db);
-    user.setDb(db);
+
 });
