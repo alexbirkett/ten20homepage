@@ -103,7 +103,7 @@
     "description": "Sign in to your ten20 account.",
     "name": "signin",
     "ajaxUrl": "/signin",
-    "redirect": "/user",
+    "redirect": "/console",
     "items": [
       {
         "type": "text",
