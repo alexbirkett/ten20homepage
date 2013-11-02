@@ -77,6 +77,14 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/favicon.ico'));
     app.use('/admin', admin.authenticateMiddleware);
+    app.use('/console',function (req, res, next) {
+        if (req.isAuthenticated()) {
+            next();
+        } else {
+            res.redirect('/#signin');
+        }
+    });
+
     app.use(app.router);
 
     if ('development' == app.get('env')) {
@@ -93,7 +101,7 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
 
     // user console
     app.get('/signup', routes.signup);
-    app.get('/user', routes.user);
+    app.get('/console', routes.console);
     // home page
     app.post('/contact', routes.contact);
     app.get(/\/\w?/, routes.index);
