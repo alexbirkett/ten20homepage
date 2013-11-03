@@ -34,7 +34,7 @@ exports.admin =  {
                 res.cookie('authorized', '1', { maxAge: 14*24*60*60*1000, signed: true });
                 res.json({message: ''});
             } else {
-                res.json({message: 'login failed!'});
+                res.json(401, {message: 'login failed!'});
             }
         }
     },
