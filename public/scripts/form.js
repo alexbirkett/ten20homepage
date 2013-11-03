@@ -249,10 +249,11 @@ window.ten20.submitForm = function (postUrl, redirectUrl) {
     }
 
     $.post(postUrl || '/', data, function(res) {
-      if (res.message != '') {
-        doAlert(res.message);
-      } else {
-        window.location = redirectUrl || '/';
+       window.location = redirectUrl || '/';
+    }).fail(function(res) {
+      var responseJSON = res.responseJSON;
+      if (responseJSON && responseJSON.message && responseJSON.message !== '') {
+          doAlert(res.message);
       }
     });
 
