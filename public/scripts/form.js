@@ -65,13 +65,9 @@ window.ten20.ContactForm = (function() {
     $.post(this.ajaxUrl,  data, 'json').
       done(function(res) {
 
-        if (res.message != '') {
-          self.$self.find('.success').text(res.message);
-        } else {
-          if (self.redirectUrl !== '') {
+        if (self.redirectUrl && self.redirectUrl !== '') {
             window.location = self.redirectUrl;
             return;
-          }
         }
 
         self.clearInput();
@@ -89,6 +85,12 @@ window.ten20.ContactForm = (function() {
       fail(function(jhr, text, thrown) {
         self.$self.find('.active').removeClass('active');
         self.$self.find('.error').addClass('active');
+
+         var responseJSON = jhr.responseJSON;
+
+        if (responseJSON.message && responseJSON.message != '') {
+            self.$self.find('.error').text(responseJSON.message);
+        }
       });
   };
 
