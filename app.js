@@ -50,8 +50,8 @@ var apiEndpoints = [
 ];
 
 var proxyOptions = {
-    host: 'localhost',
-    port: 3001
+    host: options.proxyHost,
+    port: options.proxyPort
 };
 
 function forwardApiRequest(req, res, next) {
