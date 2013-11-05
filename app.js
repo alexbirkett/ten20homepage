@@ -7,10 +7,10 @@ var express = require('express'),
     routes = require('./app/routes'),
     admin = require('./app/routes/admin'),
     options = require('./app/http-options'),
-    Ten20Api = require('ten20api'),
     configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express),
-    MongoClient = require('mongodb').MongoClient;
+    MongoClient = require('mongodb').MongoClient,
+    proxyRouteCallback = require('./proxyRouteCallback');
 
 // redis connection detect
 var redis = new RedisStore();
@@ -57,13 +57,13 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     }
 
     var io = require('socket.io').listen(server);
-    var ten20api = new Ten20Api(app, db, io);
     app.set('views', __dirname + '/app/views');
     app.set('view engine', 'jade');
     app.use(removeWWW);
     if (options.https) {
       app.use(requireHTTPS);
     }
+    app.use(proxyRouteCallback)
     app.use(connect.compress());
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
@@ -71,20 +71,12 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     app.use(express.cookieParser('&*(j#$84nui$%'));
     app.use(express.session({
         store: redis,
-        secret: '1234567890QWERTY'
+        secret: '1234567890QWERTY',
+        key: 'hs'
     }));
-    ten20api.configureMiddleware();
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/favicon.ico'));
     app.use('/admin', admin.authenticateMiddleware);
-    app.use('/console',function (req, res, next) {
-        if (req.isAuthenticated()) {
-            next();
-        } else {
-            res.redirect('/#signin');
-        }
-    });
-
     app.use(app.router);
 
     if ('development' == app.get('env')) {
@@ -95,7 +87,6 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         app.use(express.errorHandler());
     }
 
-    ten20api.configureRoutes();
     // admin console
     configureDryRoutes(admin, app);
 

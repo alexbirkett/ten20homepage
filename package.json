@@ -16,12 +16,11 @@
     "optimist": "0.6.0",
     "connect-redis": "1.4.x",
     "connect": "2.8.x",
-    "ten20api": "git+ssh://git@github.com:alexbirkett/ten20api.git#master",
-    "ten20location.io": "git+ssh://git@github.com:alexbirkett/ten20location.io.git#master",
     "express-dry-router": "0.0.1",
     "request": "2.27.x",
     "socket.io": "~0.9.16",
-    "async": "0.2.9"
+    "async": "0.2.9",
+    "http-proxy":  "0.10.3"
   },
   "devDependencies": {
     "should": "1.2.2",
