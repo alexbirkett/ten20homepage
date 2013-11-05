@@ -24,14 +24,10 @@ var argv = optimist.usage('Usage: $0 -p [num] -s [num] -c [string] -k [string] -
     default : path.join(root, 'key.pem') ,
     describe: 'https key'
   }).
-  options('u', {
-    alias : 'proxy-host',
-    default: 'localhost',
-    describe: 'proxy host'
-  }).options('z', {
-    alias : 'proxy-port',
-    default: 3001,
-    describe: 'proxy port'
+  options('a', {
+    alias : 'api-url',
+    default: 'https://ten20live.com/',
+    describe: 'api url'
   }).
   options('O', {
     alias : 'only-http',
@@ -52,8 +48,7 @@ if (argv.h) {
 
 options.http.port = argv.p;
 options.http.only = !!argv.O;
-options.proxyPort = argv.z;
-options.proxyHost = argv.u;
+options.apiUrl = argv.a;
 
 var keyFile = argv.k.trim();
 var certFile = argv.c.trim();

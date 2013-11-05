@@ -20,7 +20,7 @@
     "request": "2.27.x",
     "socket.io": "~0.9.16",
     "async": "0.2.9",
-    "http-proxy":  "0.10.3"
+    "http-proxy":  "git://github.com/nodejitsu/node-http-proxy#caronte"
   },
   "devDependencies": {
     "should": "1.2.2",
