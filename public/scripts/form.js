@@ -88,7 +88,7 @@ window.ten20.ContactForm = (function() {
 
          var responseJSON = jhr.responseJSON;
 
-        if (responseJSON.message && responseJSON.message != '') {
+        if (responseJSON && responseJSON.message && responseJSON.message != '') {
             self.$self.find('.error').text(responseJSON.message);
         }
       });
