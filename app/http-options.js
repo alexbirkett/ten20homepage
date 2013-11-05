@@ -3,7 +3,7 @@ var optimist = require('optimist');
 var path = require('path');
 var root = path.dirname(__dirname);
 
-var argv = optimist.usage('Usage: $0 -p [num] -s [num] -c [string] -k [string] -O').
+var argv = optimist.usage('Usage: $0 -p [num] -s [num] -c [string] -k [string] -u [string] -z [num] -O').
   options('p', {
     alias : 'http-port',
     default : 3000,
@@ -24,13 +24,22 @@ var argv = optimist.usage('Usage: $0 -p [num] -s [num] -c [string] -k [string] -
     default : path.join(root, 'key.pem') ,
     describe: 'https key'
   }).
+  options('u', {
+    alias : 'proxy-host',
+    default: 'localhost',
+    describe: 'proxy host'
+  }).options('z', {
+    alias : 'proxy-port',
+    default: 3001,
+    describe: 'proxy port'
+  }).
   options('O', {
     alias : 'only-http',
     describe: 'only serve http'
   }).
   options('h', {
-    alias : 'help',
-    describe: 'show help'
+     alias : 'help',
+     describe: 'show help'
   }).argv;
 
 
@@ -43,6 +52,8 @@ if (argv.h) {
 
 options.http.port = argv.p;
 options.http.only = !!argv.O;
+options.proxyPort = argv.z;
+options.proxyHost = argv.u;
 
 var keyFile = argv.k.trim();
 var certFile = argv.c.trim();
