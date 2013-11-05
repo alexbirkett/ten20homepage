@@ -10,8 +10,8 @@ var express = require('express'),
     configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express),
     MongoClient = require('mongodb').MongoClient,
-    httpProxy = require('http-proxy'),
-    proxy = new httpProxy.RoutingProxy();
+    httpProxy = require('http-proxy');
+
 
 // redis connection detect
 var redis = new RedisStore();
@@ -49,10 +49,7 @@ var apiEndpoints = [
 
 ];
 
-var proxyOptions = {
-    host: options.proxyHost,
-    port: options.proxyPort
-};
+var proxy = new httpProxy.createProxyServer({target: options.apiUrl });
 
 function forwardApiRequest(req, res, next) {
 
@@ -65,7 +62,7 @@ function forwardApiRequest(req, res, next) {
         }
     }
     if(forward) {
-        return proxy.proxyRequest(req, res, proxyOptions);
+        return proxy.web(req, res);
     } else {
         next();
     }
