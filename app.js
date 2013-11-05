@@ -10,7 +10,8 @@ var express = require('express'),
     configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express),
     MongoClient = require('mongodb').MongoClient,
-    proxyRouteCallback = require('./proxyRouteCallback');
+    httpProxy = require('http-proxy'),
+    proxy = new httpProxy.RoutingProxy();
 
 // redis connection detect
 var redis = new RedisStore();
@@ -39,6 +40,37 @@ function requireHTTPS(req, res, next) {
     next();
 }
 
+var apiEndpoints = [
+    { path: '/trackers' },
+    { path: '/signup', method: 'POST' },
+    { path: '/user'},
+    { path: '/signin' },
+    { path: '/signout'}
+
+];
+
+var proxyOptions = {
+    host: 'localhost',
+    port: 3001
+};
+
+function forwardApiRequest(req, res, next) {
+
+    var forward = false;
+    for (var i = 0; i < apiEndpoints.length; i++) {
+        var route = apiEndpoints[i];
+        if (req.url.indexOf(route.path) === 0 && (!route.method || route.method === req.method)) {
+            forward = true;
+            break;
+        }
+    }
+    if(forward) {
+        return proxy.proxyRequest(req, res, proxyOptions);
+    } else {
+        next();
+    }
+};
+
 var dbName = 'development' === app.get('env') ? 'ten20homeDevelopment' : 'ten20home';
 
 MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
@@ -63,7 +95,7 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     if (options.https) {
       app.use(requireHTTPS);
     }
-    app.use(proxyRouteCallback)
+    app.use(forwardApiRequest);
     app.use(connect.compress());
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
