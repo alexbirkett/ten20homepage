@@ -16,7 +16,7 @@ angular.module('ten20Angular.controllers').
       params: { email: 'test@ten20live.com'/*$scope.user.email*/}
     }).success(function(trackers) {
       // init trackers
-      initTrackers(trackers);
+      initTrackers(trackers.items);
       // bind UI events
       bindUIEvents($scope);
       // bind socket events
