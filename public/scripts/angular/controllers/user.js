@@ -12,8 +12,7 @@ angular.module('ten20Angular.controllers').
 
     $http({
       url: '/trackers',
-      method: "GET",
-      params: { email: 'test@ten20live.com'/*$scope.user.email*/}
+      method: "GET"
     }).success(function(trackers) {
       // init trackers
       initTrackers(trackers.items);
