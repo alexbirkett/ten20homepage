@@ -24,7 +24,7 @@ var trackers = [
         "name": "Xiaolei",
         "iconEmail": "alex@birkett.no",
         "iconColor": "FF00FF",
-        "serialNumber": "14234234234", // device serial number
+        "serial": "14234234234", // device serial number
         "lastUpdateTimestamp": (new Date()).valueOf(),
         "fence": "on 5km", // on *km, off
         "latitude": 52.80113,
@@ -37,7 +37,7 @@ var trackers = [
         "name": "Alex",
         "iconEmail": "alex@birkett.no",
         "iconColor": "FF00FF",
-        "serialNumber": "24234234235", // device serial number
+        "serial": "24234234235", // device serial number
         "lastUpdateTimestamp": (new Date()).valueOf(),
         "fence": "off", // on *km, off
         "latitude": 52.80323,
