@@ -45,7 +45,8 @@ var apiEndpoints = [
     { path: '/signup', method: 'POST' },
     { path: '/user'},
     { path: '/signin' },
-    { path: '/signout'}
+    { path: '/signout'},
+    { path: '/location'}
 
 ];
 
