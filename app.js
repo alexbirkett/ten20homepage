@@ -46,7 +46,8 @@ var apiEndpoints = [
     { path: '/user'},
     { path: '/signin' },
     { path: '/signout'},
-    { path: '/location'}
+    { path: '/message' },
+    { path: '/reset_password'}
 
 ];
 
