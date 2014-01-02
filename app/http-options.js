@@ -26,7 +26,7 @@ var argv = optimist.usage('Usage: $0 -p [num] -s [num] -c [string] -k [string] -
   }).
   options('a', {
     alias : 'api-url',
-    default: 'https://ten20live.com/',
+    default: 'http://ten20live.com:3001',
     describe: 'api url'
   }).
   options('O', {
