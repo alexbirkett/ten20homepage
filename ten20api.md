@@ -75,7 +75,7 @@ A tracker object always has a ```userId``` variable - a reference to the user th
 By convention, tracker objects contain:
 
 ##### Last message object
-The last message object (lastMessage) contains the last message sent by the tracking device. The contents of lastMessage is tracker protocol specific but typically it will contain a longitude latitude.
+The last message object (```lastMessage```) contains the last message sent by the tracking device. The contents of lastMessage is tracker protocol specific but typically it will contain a longitude latitude.
 
 ##### Settings object
 The settings object contains tracker specific settings
