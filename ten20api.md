@@ -29,8 +29,10 @@ The settings object contains tracker specific settings
 The recent_messages collection contains objects that represent recent messages sent by the trackers that have not yet been combined into a trip. The contents of a message object are tracker protocol specific but typically contain a latitude and longitude.
 
 A recent_message object always has:
- * a ```userId``` variable - a reference to the user that owns the message
- * a ```trackerId``` variable - a reference to the tracker that owns the message
+ * ```_id``` - the object id
+ * ```userId``` - a reference to the user that owns the message
+ * ```trackerId``` - a reference to the tracker that owns the message
+
 
 Recent messages can be fetched on a per tracker basis to avoid the client having to work out which message is associated with which tracker e.g.
 
@@ -40,9 +42,13 @@ where ```52c5e10e6c7a4aa52000029c``` is a valid tracker id.
 
 #### /trips
 
-A trip object always has:
- * a ```userId``` variable - a reference to the user that owns the trip
- * a ```trackerId``` variable - a reference to the tracker that owns the trip
+A trip object always has the following variables:
+ * ```_id``` - the object id
+ * ```userId``` - a reference to the user that owns the trip
+ * ```trackerId``` - a reference to the tracker that owns the trip
+ * ```startTime``` - the time when the trip started
+ * ```endTime``` - the time when the trip ended
+ * ```messages``` - an array of tracker protocol specific messages, that typically contains latitdue, longitude and timesamps. The content of the message objects is the same as the messages in the recent_messages collection.
 
 The trips collection contains trips formed by combining recent messages.
 
