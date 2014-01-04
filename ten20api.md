@@ -6,7 +6,9 @@ The staging version of the API is running at http://ten20live.com:3001
 
 ### Authentication
 
-### Collections
+## Collections
+
+### Collection endpoints
 
 #### /trackers
 
@@ -60,4 +62,34 @@ Trips can be fetched on a per tracker basis to avoid the client having to work o
 
 where ```52c5e10e6c7a4aa52000029c``` is a valid tracker id.
 
+#### Interacting with collections via HTTP(s)
+
+##### Adding objects to collections
+Objects are added using the HTTP POST verb
+
+An single JSON object or and array of objects can be POSTed to the collection endpoint.
+
+##### Retrieving objects from collections
+
+Objects are retrieved using the HTTP GET verb.
+
+A GET request to the collection endpoint will retrieve an array of objects associated with logged in user. The objects will be contains in a variable called ```items```
+
+A specific object can be requested by specifying its id, e.g sending a GET to.
+
+```trackers/52c5e10e6c7a4aa52000029c``` will retrieve the tracker with id ```52c5e10e6c7a4aa52000029c```
+
+##### Updating objects
+
+Objects can be replaced using the HTTP PUT verb, e.g. sending a PUT to ```trackers/52c5e10e6c7a4aa52000029c``` 
+will overwrite the object with the specified in the request body
+
+Objects can be ammended using the [HTTP PATCH](http://tools.ietf.org/html/rfc5789) verb, e.g. sending a PATCH to ```trackers/52c5e10e6c7a4aa52000029c``` 
+will overwrite only the JSON fields specified in the http request body. Fields not specified in the request body will not be modified.
+
+##### Deleting objects
+
+Objects can be deleted using the HTTP DELETE verb, e.g. sending a DELETE to ```trackers/52c5e10e6c7a4aa52000029c``` will delete the contents of the ```52c5e10e6c7a4aa52000029c``` object.
+
+Sending DELETE to the collection endpoint without specifying an id will result in the entire collection being deleted.
 
