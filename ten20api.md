@@ -6,6 +6,61 @@ The staging version of the API is running at http://ten20live.com:3001
 
 ### Authentication
 
+#### Credential object
+The credential must currenly consist of an ```email``` and ```password```, e.g.:
+    
+    {
+        email: 'test@ten20.com',
+        password: 'passwordone'
+    }
+
+
+although future support for a credential considsing of ```username``` and ```password``` in addition to ```email``` and ```password``` will be added.
+
+
+#### Sessions
+Sessions are cookie based. 
+
+#### Signup
+Signup is achieved using the HTTP POST verb to send a credential object, which can optionally also contain other data, to the ```/signup``` endpoint.
+
+POSTing to the ```/signup``` endpoint does *NOT* automatically sign in the user.
+
+#### Signin
+Signin is achieved using the HTTP POST verb to send a credential object to the ```/signin``` endpoint.
+
+#### Signout
+Signout is achieved by sending an HTTP get request to ```/signout```
+
+
+#### Example using [request](https://github.com/mikeal/request)
+
+    module.exports = function (url, request) {
+        return {
+            signUp: function (credential, callback) {
+                request.post({url: url + '/signup', json: credential}, function (error, response, body) {
+                    callback(error, response, body);
+                });
+            },
+            signIn: function (credential, callback) {
+                request.post({url: url + '/signin', json: credential}, function (error, response, body) {
+                    callback(error, response, body);
+                });
+            },
+            signOut: function(callback) {
+                request.get(url + '/signout', function (error, response, body) {
+                    callback(error, response, body);
+                });
+            },
+            getUserInfo: function(callback) {
+                request.get(url + '/user/info', function (error, response, body) {
+                    callback(error, response, JSON.parse(body));
+                });
+            }
+        }
+    };
+
+
 ## Collections
 
 ### Collection endpoints
