@@ -2,7 +2,7 @@
 
 
 ### Location
-The staging version of the API is running at http://ten20live.com:3001
+The staging version of the API is running at http://ten20live.com:4000
 
 ### Authentication
 
