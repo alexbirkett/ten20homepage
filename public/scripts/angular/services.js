@@ -16,7 +16,7 @@ angular.module('ten20Angular.services', []).
         "tile":"alexbirkett.map-t0fodlre",
         "layers":[{"label":"Satellite","tileLayer":"alexbirkett.map-t0fodlre"},{"label":"Map","tileLayer":"alexbirkett.map-bugector"}]
       };
-      return new ten20.MapRender('map', params);
+      return new ten20.UserMap('map', params);
     };
   }).
   value('version', '0.0.1');

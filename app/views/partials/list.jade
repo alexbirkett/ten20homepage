@@ -15,7 +15,7 @@ section.list-view
             - if (section.media == "map") {
               .list-content(id='list-map' + index)
                 script.
-                  $(function() { new ten20.MapRender('list-map' + '#{index}', !{JSON.stringify(item.map)}); });
+                  $(function() { new ten20.HomeMap('list-map' + '#{index}', !{JSON.stringify(item.map)}); });
             - } else {
               .list-content
                 img(src='/images/' + item.image)

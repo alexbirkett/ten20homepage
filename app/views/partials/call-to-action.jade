@@ -2,7 +2,7 @@ section.mapbox
   #map
     script.
       var callMap = !{JSON.stringify(section.map)};
-      $(function() { new ten20.MapRender('map', callMap); });
+      $(function() { new ten20.HomeMap('map', callMap); });
 
     .call-to-action
       h1= section.text[0]
