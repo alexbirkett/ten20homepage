@@ -31,6 +31,21 @@ angular.module('ten20Angular.directives', []).
         $scope.updateTrackerLoc = function() {
           // body...
         };
+
+        // init trackers
+        function _initTrackers() {
+          // check whether user has trackers
+          if ($scope.trackers.length === 0) {
+            return;
+          }
+
+          for (var i = 0; i < $scope.trackers.length; i++) {
+            if ($scope.trackers[i].lastMessage) {
+              $scope.map.updateTracker($scope.trackers[i].lastMessage, true);
+            }
+          };
+        }
+
         // init map
         function _initMap() {
           var center = {}, params;
@@ -69,8 +84,11 @@ angular.module('ten20Angular.directives', []).
             ]
           };
 
-          console.log('id: ' + $attrs.id);
           $scope.map = new ten20.UserMap($attrs.id, params);
+          
+          // add trackers
+          $timeout(_initTrackers, 500);
+
         }
 
         $scope.$on('InitMap', _initMap);
