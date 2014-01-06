@@ -32,7 +32,7 @@ logLevel = LOG_INFO;
 
 proxies = {
   // change this if you've changed your grunt server port. default is 3000
-      '/': 'http://localhost:3000/' 
+      '/': 'http://127.0.0.1:3000/'
 };
 
 // enable / disable watching file and executing tests whenever any file changes
