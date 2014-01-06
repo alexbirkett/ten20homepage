@@ -16,8 +16,8 @@ angular.module('ten20Angular.directives', []).
       scope: true,
       controller: function($scope, $element, $attrs) {
         // add tracker to map
-        $scope.addTracker = function() {
-          // body...
+        $scope.addTracker = function(msg) {
+          $scope.map.updateTracker(msg);
         };
         // add trip to map
         $scope.addTrip = function () {
@@ -26,10 +26,6 @@ angular.module('ten20Angular.directives', []).
         // remove trip
         $scope.removeTrip = function() {
 
-        };
-        // update tracker location
-        $scope.updateTrackerLoc = function() {
-          // body...
         };
 
         // init trackers
