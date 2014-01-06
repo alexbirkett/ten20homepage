@@ -3,29 +3,14 @@ extends layout-angular
 block content
   section.map-canvas(ng-controller='UserCtrl')
     #map
-      //
-        .trip-info.current-info
-          h5 trip information 
-            img(src=page.images.infoSmall)
-          each item in page.trackerInfo
-            h6 #{item.name}
-              span(ng-bind='activeTracker.current.' + item.propName)
-
-        .status-bar
-          img(src=page.images.point)
-          | E:
-          span.elevation(ng-bind='activeTracker.current.elevation')
-          | S:
-          span.speed(ng-bind='activeTracker.current.speed')
-
       .tool-box
         .time-weather
           span(ng-bind='timeWeather')
           a.info
-            img(src=page.images.info)
+            img(src='/images/user/info-big.png')
 
         .welcome
-          img.logo(src=page.images.logo)
+          img.logo(src='/images/logo.png')
           span.info welcome
           span(ng-bind='user.name')
 
@@ -39,60 +24,70 @@ block content
             .tracker-content(ng-class='trackers[$index].activeTab')
               ul.tabs
                 li.tracker-info(ng-click='hideHistoryTrip()')
-                    img(src=page.images.infoWhiter)
+                    img(src='/images/user/info-whiter.png')
                     | tracker info
 
                 li.tracker-history(ng-click='showHistoryTrip(0)')
-                    img(src=page.images.clockSmall)
+                    img(src='/images/user/trip-small.png')
                     | trip history
 
               .tracker-bottom
-                img(src=page.images.setting)(ng-click='setUp')
-              //
-                a.street-view(ng-click='streetView')
-                  img(src=page.images.streetView)
-                  | street view
-                a.latest-trail(ng-click='lastestTail')
-                  img(src=page.images.trail)
-                  | latest trail
+                img(src='/images/user/setting.png')(ng-click='setUp')
 
               .tabs-content
                 .info-tab
                   .media
-                    img.pull-left.avatar(src=page.images.avatar)
+                    img.pull-left.avatar(src="/images/user/avatar.png")
                     .media-body
                       h6(ng-bind='tracker.location.city')
                       h6(ng-bind='tracker.location.date')
                       h6(ng-bind='tracker.location.time')
                       h6(ng-bind='tracker.location.weather')
                   .current-info
-                    each item in page.trackerInfo
-                      h6 #{item.name}:
-                        span(ng-bind='tracker[#{JSON.stringify(item.propName)}]')
+                    h6 virtual fence:
+                      span(ng-bind='tracker[fence]')
+                    h6 latest activity:
+                      span(ng-bind='tracker[lastUpdateTimestamp]')
+                    h6 latitude:
+                      span(ng-bind='tracker[latitude]')
+                    h6 longitude:
+                      span(ng-bind='tracker[longitude]')
+                    h6 course:
+                      span(ng-bind='tracker[course]')
+                    h6 current speed:
+                      span(ng-bind='tracker[speed]')
 
                 .history-tab
                   .date-select
                     .media
-                      img.pull-left(src=page.images.clock)
+                      img.pull-left(src='/images/user/trip.png')
                       .media-body
                         h6(ng-bind='tracker.history.date')
                         input.history-date(ui-date, ui-date-format="DD, d MM, yy", type='text', ng-model="tracker.history.date")
                     .search
-                      img(src=page.images.search)
+                      img(src='/images/user/search.png')
                       input(type='text', placeholder='Search date or place')
                     
                     ul.trip-list
                       li(ng-repeat='item in tracker.history.data', ng-click='updateHistoryTrip($index)', ng-class='{active : isHistoryItemSelected($index)}')
                         span time:
                         span.timeslot(ng-bind='item.time')
-                        img(src=page.images.infoSmall)
+                        img(src='/images/user/info-small.png')
 
 
       ul.bottom-nav
-        each item in page.navs
-          li(class=item.status)
-            span +
-            a(href=item.link)= item.name
+        li
+          span +
+            a(href='/signout')= logout
+        li
+          span +
+            a(href="/#tracker")= trackers
+        li
+          span +
+            a(href="/#setting")= settings
+        li
+          span +
+            a(href="/#help")= help
 
     script.
       $(function() {
