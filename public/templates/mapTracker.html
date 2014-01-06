@@ -1,0 +1,95 @@
+<div class="page-wrapper">
+  <!-- map render elem -->
+  <div id="map">
+  </div>
+  <!-- tool box -->
+  <div class="tool-box">
+    <!-- general user info --> 
+    <div class="time-weather">
+      <span ng-bind="timeWeather"></span>
+      <a class="info"><img src="/images/user/info-big.png"/></a>
+    </div>
+    <div class="welcome"><img src="/images/logo.png" class="logo"/>
+      <span class="info">welcome</span><span ng-bind="user.name"></span>
+    </div>
+
+    <!-- trackers accordion -->
+    <ul class="tracker-list">
+      <li ng-repeat="tracker in trackers">
+      <div ng-click="setActiveTracker($index)" class="tracker-header">
+        <span class="first">tracker</span><span ng-bind="tracker.id"></span>
+        <span class="dropdown"></span>
+      </div>
+      <div ng-class="trackers[$index].activeTab" class="tracker-content">
+        <!-- tabs -->
+        <ul class="tabs">
+          <li ng-click="hideHistoryTrip()" class="tracker-info">
+            <img src="/images/user/info-whiter.png"/><span>tracker info</span>
+          </li>
+          <li ng-click="showHistoryTrip(0)" class="tracker-history">
+            <img src="/images/user/trip-small.png"/><span>trip history</span>
+          </li>
+        </ul>
+        <!-- bottom setting -->
+        <div class="tracker-bottom">
+          <img src="/images/user/setting.png" ng-click="setUp"/>
+        </div>
+
+        <!-- tabs content -->
+        <div class="tabs-content">
+
+          <div class="info-tab">
+            <div class="media"><img src="/images/user/avatar.png" class="pull-left avatar"/>
+              <div class="media-body">
+                <h6 ng-bind="tracker.location.city"></h6>
+                <h6 ng-bind="tracker.location.date"></h6>
+                <h6 ng-bind="tracker.location.time"></h6>
+                <h6 ng-bind="tracker.location.weather"></h6>
+              </div>
+            </div>
+            <div class="current-info">
+              <h6>virtual fence:<span ng-bind="tracker[fence]"></span></h6>
+              <h6>latest activity:<span ng-bind="tracker[lastUpdateTimestamp]"></span></h6>
+              <h6>latitude:<span ng-bind="tracker[latitude]"></span></h6>
+              <h6>longitude:<span ng-bind="tracker[longitude]"></span></h6>
+              <h6>course:<span ng-bind="tracker[course]"></span></h6>
+              <h6>current speed:<span ng-bind="tracker[speed]"></span></h6>
+            </div>
+          </div>
+
+          <div class="history-tab">
+            <div class="date-select">
+              <div class="media"><img src="/images/user/trip.png" class="pull-left"/>
+                <div class="media-body">
+                  <h6 ng-bind="tracker.history.date"></h6>
+                  <input ui-date="ui-date" ui-date-format="DD, d MM, yy" type="text"
+                  ng-model="tracker.history.date" class="history-date"/>
+                </div>
+              </div>
+              <div class="search"><img src="/images/user/search.png"/>
+                <input type="text" placeholder="Search date or place"/>
+              </div>
+              <ul class="trip-list">
+                <li ng-repeat="item in tracker.history.data"
+                ng-click="updateHistoryTrip($index)"
+                ng-class="{active : isHistoryItemSelected($index)}">
+                  <span>time:</span><span ng-bind="item.time" class="timeslot"></span>
+                  <img src="/images/user/info-small.png"/>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- bottom nav -->
+  <ul class="bottom-nav">
+    <li><span>+<a href="/signout"></a></span></li>
+    <li><span>+<a href="/#tracker"></a></span></li>
+    <li><span>+<a href="/#setting"></a></span></li>
+    <li><span>+<a href="/#help"></a></span></li>
+  </ul>
+</div>
