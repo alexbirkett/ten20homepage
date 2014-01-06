@@ -17,6 +17,13 @@ angular.module('ten20Angular.controllers').
     $scope.$broadcast('InitMap');
   });
 
+  $http.get('/recent_messages').success(function(data) {
+    //TODO
+  });
+
+  $http.get('/trips').success(function(data) {
+    //TODO
+  });
 });
 
 
