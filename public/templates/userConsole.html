@@ -13,11 +13,12 @@
     </div>
 
     <!-- trackers accordion -->
-    <accordion close-others="oneAtATime" class="tracker-list">
-      <accordion-group is-open="$index===0" ng-repeat="tracker in trackers">
+    <accordion close-others="true" class="tracker-list">
+    <accordion-group is-open="isopen" ng-class="{opened: isopen}" ng-repeat="tracker in trackers">
 
         <accordion-heading>
-          <span class="first">tracker</span><span ng-bind="tracker.serial"></span>
+          <span class="first">tracker</span>
+          <span ng-bind="tracker.serial"></span>
           <span class="dropdown"></span>
         </accordion-heading>
 

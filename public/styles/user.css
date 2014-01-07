@@ -27,7 +27,6 @@ body { margin:0; padding:0; }
   width: 250px;
   background-color: #333;
   z-index: 2000;
-  cursor: move;
 }
 
 .tool-box .panel-collapse {
@@ -201,33 +200,38 @@ color: #f60;
   cursor: default;
 }
 
-.tracker-header {
+.panel-heading {
   padding: 7px 10px 5px;
   border-top: 1px solid #444;
   border-bottom: 1px solid #444;
 }
 
-.tracker-header .first {
-  margin-right: 30px;
+.panel-heading .first {
+  margin-right: 10px;
 }
 
-.tracker-header span {
+.panel-heading span {
+  color: #bbb;
   font-size: 16px;
   text-transform: capitalize;
 }
 
-.tracker-header span.dropdown{
+.panel-heading:hover span {
+  color: #eee;
+}
+
+.panel-heading span.dropdown{
   display: inline-block;
   float: right;
   width: 12px;
   height: 12px;
-  margin-top: 5px;
+  margin-top: 3px;
   background-repeat: no-repeat;
-  background-image: url("/images/user/arrow-right.png");
   background-image: url("/images/user/arrow-right.png");
 }
 
-.active .tracker-header span.dropdown{
+.opened .panel-heading span.dropdown{
+  margin-top: 5px;
   background-image: url("/images/user/arrow-down.png");
 }
 
@@ -512,15 +516,15 @@ color: #f60;
     width: 400px;
   }
 
-  .tracker-header span.dropdown {
+  .panel-heading span.dropdown {
     background-image: url("/images/user/arrow-down.png");
   }
 
-  .active .tracker-header {
+  .opened .panel-heading {
     background-color: #444;
   }
 
-  .active .tracker-header span.dropdown {
+  .opened .panel-heading span.dropdown {
     background-image: url("/images/user/arrow-right.png");
   }
 
