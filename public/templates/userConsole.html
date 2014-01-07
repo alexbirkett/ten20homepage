@@ -46,9 +46,7 @@
               <div class="date-select">
                 <div class="media"><img src="/images/user/trip.png" class="pull-left"/>
                   <div class="media-body">
-                    <h6 ng-bind="tracker.history.date"></h6>
-                    <input ui-date="ui-date" ui-date-format="DD, d MM, yy" type="text"
-                    ng-model="tracker.history.date" class="history-date"/>
+                    <input type="text" class="history-date" datepicker-popup="{{format}}" ng-model="tracker.history.date" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                   </div>
                 </div>
                 <div class="search"><img src="/images/user/search.png"/>
@@ -88,17 +86,6 @@
           </li>
         </ul>
 
-        <!-- tabs content -->
-        <div class="tabs-content">
-
-          <div class="info-tab">
-          </div>
-
-          <div class="history-tab">
-          </div>
-        </div>
-      </div>
-      </li>
     </ul>
   </div> -->
 
