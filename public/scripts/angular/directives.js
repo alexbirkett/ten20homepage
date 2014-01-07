@@ -84,7 +84,6 @@ angular.module('ten20Angular.directives', []).
           
           // add trackers
           $timeout(_initTrackers, 500);
-
         }
 
         $scope.$on('InitMap', _initMap);
