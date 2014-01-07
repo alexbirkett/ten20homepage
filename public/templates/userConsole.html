@@ -9,12 +9,12 @@
       <a class="info"><img src="/images/user/info-big.png"/></a>
     </div>
     <div class="welcome"><img src="/images/logo.png" class="logo"/>
-      <span class="info">welcome</span><span ng-bind="user.name"></span>
+      <span class="info">welcome</span><span ng-bind="user.username"></span>
     </div>
 
     <!-- trackers accordion -->
     <accordion close-others="oneAtATime" class="tracker-list">
-      <accordion-group is-open="isopen" ng-repeat="tracker in trackers">
+      <accordion-group is-open="$index===0" ng-repeat="tracker in trackers">
 
         <accordion-heading>
           <span class="first">tracker</span><span ng-bind="tracker.serial"></span>
@@ -22,36 +22,48 @@
         </accordion-heading>
 
         <div class="tracker-content">
-          <tabset justified="true">
-            <tab heading="tracker info" class="info-tab">
-                <div class="media"><img src="/images/user/avatar.png" class="pull-left avatar"/>
-                  <div class="media-body">
-                    <h6 ng-bind="tracker.location.city"></h6>
-                    <h6 ng-bind="tracker.location.date"></h6>
-                    <h6 ng-bind="tracker.location.time"></h6>
-                    <h6 ng-bind="tracker.location.weather"></h6>
-                  </div>
+          <tabset>
+            <tab class="info-tab">
+              <tab-heading class="tracker-info">
+                <img src="/images/user/info-whiter.png"/>
+                <span>tracker info</span>
+              </tab-heading>
+              <div class="media"><img src="/images/user/avatar.png" class="pull-left avatar"/>
+                <div class="media-body">
+                  <h6 ng-bind="tracker.location.city"></h6>
+                  <h6 ng-bind="tracker.location.date"></h6>
+                  <h6 ng-bind="tracker.location.time"></h6>
+                  <h6 ng-bind="tracker.location.weather"></h6>
                 </div>
-                <div class="current-info">
-                  <h6>virtual fence:<span ng-bind="tracker[fence]"></span></h6>
-                  <h6>latest activity:<span ng-bind="tracker[lastUpdateTimestamp]"></span></h6>
-                  <h6>latitude:<span ng-bind="tracker[latitude]"></span></h6>
-                  <h6>longitude:<span ng-bind="tracker[longitude]"></span></h6>
-                  <h6>course:<span ng-bind="tracker[course]"></span></h6>
-                  <h6>current speed:<span ng-bind="tracker[speed]"></span></h6>
-                </div>
+              </div>
+              <div class="current-info">
+                <h6>virtual fence:<span ng-bind="tracker[fence]"></span></h6>
+                <h6>latest activity:<span ng-bind="tracker[lastUpdateTimestamp]"></span></h6>
+                <h6>latitude:<span ng-bind="tracker[latitude]"></span></h6>
+                <h6>longitude:<span ng-bind="tracker[longitude]"></span></h6>
+                <h6>course:<span ng-bind="tracker[course]"></span></h6>
+                <h6>current speed:<span ng-bind="tracker[speed]"></span></h6>
+              </div>
             </tab>
 
-            <tab heading="tracker-history" class="history-tab">
+            <tab class="history-tab">
+              <tab-heading class="tracker-history">
+                <img src="/images/user/trip-small.png"/>
+                <span>trip history</span>
+              </tab-heading>
               <div class="date-select">
+
                 <div class="media"><img src="/images/user/trip.png" class="pull-left"/>
                   <div class="media-body">
                     <input type="text" class="history-date" datepicker-popup="{{format}}" ng-model="tracker.history.date" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                   </div>
                 </div>
-                <div class="search"><img src="/images/user/search.png"/>
+
+                <div class="search">
+                  <img src="/images/user/search.png"/>
                   <input type="text" placeholder="Search date or place"/>
                 </div>
+
                 <ul class="trip-list">
                   <li ng-repeat="item in tracker.history.data"
                   ng-click="updateHistoryTrip($index)"
@@ -60,6 +72,7 @@
                     <img src="/images/user/info-small.png"/>
                   </li>
                 </ul>
+
               </div>
             </tab>
           </tabset>
@@ -68,26 +81,9 @@
         <div class="tracker-bottom">
           <img src="/images/user/setting.png" ng-click="setUp"/>
         </div>
+
       </accordion-group>
     </accordion>
-
-    <!--
-    <ul class="tracker-list">
-      <div ng-click="setActiveTracker($index)" class="tracker-header">
-      </div>
-      <div ng-class="trackers[$index].activeTab" class="tracker-content">
-        <!-- tabs -->
-        <ul class="tabs">
-          <li ng-click="hideHistoryTrip()" class="tracker-info">
-            <img src="/images/user/info-whiter.png"/><span>tracker info</span>
-          </li>
-          <li ng-click="showHistoryTrip(0)" class="tracker-history">
-            <img src="/images/user/trip-small.png"/><span>trip history</span>
-          </li>
-        </ul>
-
-    </ul>
-  </div> -->
 
   <!-- bottom nav -->
   <ul class="bottom-nav">

@@ -30,6 +30,10 @@ body { margin:0; padding:0; }
   cursor: move;
 }
 
+.tool-box .panel-collapse {
+  overflow: hidden;
+}
+
 .time-weather {
   text-transform: capitalize;
   color: #aaa;
@@ -228,7 +232,6 @@ color: #f60;
 }
 
 .tracker-content {
-  display: none;
   background-color: #333;
 }
 
@@ -238,23 +241,25 @@ color: #f60;
 
 /* style for tracker tabs */
 
-.tracker-content .tabs {
+.tracker-content .nav {
+  float: none;
   margin: 0;
   padding: 0;
   border: none;
 }
 
-.tracker-content .tabs li {
+.tracker-content .nav li {
   width: 115px;
   height: 42px;
   display: inline-block;
   background-color: #333;
   font-size: 13px;
+  float: none;
   text-transform: capitalize;
   padding: 5px;
 }
 
-.tabs > li > img {
+.nav > li > img {
   margin: 5px 15px;
   float: left;
 }
