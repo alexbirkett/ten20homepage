@@ -7,4 +7,21 @@ angular.module('ten20Angular.filters', []).
     return function (text) {
       return String(text).replace(/\%VERSION\%/mg, version);
     }
+  }).
+  filter('timeFormat', function () {
+    return function(time, key) {
+      var t = new Date(time);
+
+      if (!time) {
+        return 'not available';
+      }
+
+      if (key === 'date') {
+        return t.toDateString();
+      }
+
+      if (key === 'time') {
+        return t.toTimeString().split(' ')[0];
+      }
+    }
   });
