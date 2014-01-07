@@ -7,17 +7,14 @@
     "components"
   ],
   "dependencies": {
-    "jquery": "https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js",
     "bootstrap": "https://github.com/bowerjs/bootstrap.git",
     "css3-query": "https://github.com/livingston/css3-mediaqueries-js.git",
     "html5shiv": "~3.7.0",
     "angular": "https://github.com/angular/bower-angular.git",
-    "angular-mocks": "~1.0.7",
-    "angular-scenario": "~1.0.7",
+    "angular-mocks": "latest",
+    "angular-scenario": "latest",
     "ng-grid": "https://github.com/angular-ui/ng-grid/zipball/master",
-    "angular-bootstrap": "~0.9.0"
-  },
-  "resolutions": {
-    "jquery": ">=1.6"
+    "angular-bootstrap": "~0.9.0",
+    "jquery": "~2.0.3"
   }
 }
