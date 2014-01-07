@@ -239,7 +239,7 @@ color: #f60;
   background-color: #333;
 }
 
-.tracker-content > div {
+.tracker-content .tab-content {
   padding: 10px;
 }
 
@@ -253,19 +253,47 @@ color: #f60;
 }
 
 .tracker-content .nav li {
-  width: 115px;
+  width: 125px;
   height: 42px;
   display: inline-block;
   background-color: #333;
   font-size: 13px;
-  float: none;
+  float: left;
+  margin: 0;
   text-transform: capitalize;
-  padding: 5px;
 }
 
-.nav > li > img {
+.tracker-content .nav li.active {
+  background-color: #454545;
+}
+
+.tracker-content .nav > li a,
+.tracker-content .nav > li a:hover {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #eee;
+  display: inline-block;
+  width: 100%;
+}
+
+.tracker-content .nav > li img {
   margin: 5px 15px;
+  margin-top: 12px;
   float: left;
+}
+
+.tracker-content .nav > li span{
+  vertical-align: middle;
+  line-height: 42px;
+}
+
+.tracker-content .tab-pane {
+  margin: -10px;
+  padding: 10px;
+  background-color: #454545;
 }
 
 .tracker-content .history-tab {
@@ -332,7 +360,7 @@ color: #f60;
   color: #f60;
 }
 
-.tracker-content .tracker-bottom {
+.tracker-content + .tracker-bottom {
   background-color: #444;
   padding-top: 10px;
 }
