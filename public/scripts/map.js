@@ -303,33 +303,36 @@
       return 'UserMap';
     };
 
-    MapRender.prototype._addTracker = function(msg) {
-      var latlng = [ msg.latitude, msg.longitude ];
+    MapRender.prototype._addTracker = function(tracker) {
+      var latlng = [
+        tracker.lastMessage.location.latitude,
+        tracker.lastMessage.location.longitude,
+      ];
       var marker = L.circleMarker(latlng, this.circleMarkerOpt).addTo(this.map);
 
-      marker.serial = msg.serial;
+      marker.serial = tracker.serial;
       this.map.addLayer(marker);
       this.markers.push(marker);
     };
 
-    MapRender.prototype.updateTracker = function(trackMsg, pan) {
-      var marker;
+    MapRender.prototype.updateTracker = function(tracker, pan) {
+      var marker, location = tracker.lastMessage.location;
 
       // find the tracker marker in existing markers
       for (var i = 0; i < this.markers.length; i++) {
-        if (this.markers[i].serial === trackMsg.serial) {
+        if (this.markers[i].serial === tracker.serial) {
           marker = this.markers[i];
           break;
         }
       };
       // update existing marker location
       if (marker) {
-        marker.setLatLng([trackMsg.latitude, trackMsg.longitude]);
+        marker.setLatLng([location.latitude, location.longitude]);
         if (pan) {
           this.map.panTo(marker.getLatLng());
         }
       } else { // new tracker, need to add to map
-        this._addTracker(trackMsg);
+        this._addTracker(tracker);
       }
     };
 

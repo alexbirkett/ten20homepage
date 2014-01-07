@@ -37,7 +37,7 @@ angular.module('ten20Angular.directives', []).
 
           for (var i = 0; i < $scope.trackers.length; i++) {
             if ($scope.trackers[i].lastMessage) {
-              $scope.map.updateTracker($scope.trackers[i].lastMessage, true);
+              $scope.map.updateTracker($scope.trackers[i], true);
             }
           };
         }
@@ -50,8 +50,8 @@ angular.module('ten20Angular.directives', []).
           if ($scope.trackers.length !== 0) {
             for (var i = 0; i < $scope.trackers.length; i++) {
               if ($scope.trackers[i].lastMessage) {
-                center.lat = $scope.trackers[i].lastMessage.latitude;
-                center.lng = $scope.trackers[i].lastMessage.longitude;
+                center.lat = $scope.trackers[i].lastMessage.location.latitude;
+                center.lng = $scope.trackers[i].lastMessage.location.longitude;
                 break;
               }
             };
