@@ -33,6 +33,10 @@ body { margin:0; padding:0; }
   overflow: hidden;
 }
 
+.tool-box .panel-collapse.in {
+  overflow: visible;
+}
+
 .time-weather {
   text-transform: capitalize;
   color: #aaa;
@@ -406,6 +410,7 @@ color: #f60;
   width: 200px;
   margin: auto;
   padding: 0;
+  padding-left: 20px;
   background-color: #333;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -419,7 +424,7 @@ color: #f60;
 .search input[type="text"] {
   color: #eee;
   background: none;
-  width: 120px;
+  width: 130px;
   margin: auto;
   padding: 8px;
   border: none;
@@ -434,6 +439,10 @@ color: #f60;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
+}
+
+.search .dropdown-menu {
+  left: -30px !important;
 }
 
 .trip-list {

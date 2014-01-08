@@ -51,22 +51,16 @@
               </tab-heading>
               <div class="date-select">
 
-                <div class="media"><img src="/images/user/trip.png" class="pull-left"/>
-                  <div class="media-body">
-                    <input type="text" class="history-date" datepicker-popup="{{format}}" ng-model="tracker.history.date" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                  </div>
-                </div>
-
                 <div class="search">
-                  <img src="/images/user/search.png"/>
-                  <input type="text" placeholder="Search date or place"/>
+                  <input type="text" ng-bind="tracker.trip.search" show-weeks="false" datepicker-popup="dd-MMMM-yyyy" ng-model="tracker.trip.search" show-button-bar="false" close-text="Close" placeholder="Search date or place"/>
+                  <img src="/images/user/search.png" ng-click="open($event)"/>
                 </div>
 
                 <ul class="trip-list">
-                  <li ng-repeat="item in tracker.history.data"
+                  <li ng-repeat="item in tracker.trip.slices"
                   ng-click="updateHistoryTrip($index)"
                   ng-class="{active : isHistoryItemSelected($index)}">
-                    <span>time:</span><span ng-bind="item.time" class="timeslot"></span>
+                  <span>time:</span><span class="timeslot">{{slices[0].timestamp | timeFormat: 'time'}}</span>
                     <img src="/images/user/info-small.png"/>
                   </li>
                 </ul>
