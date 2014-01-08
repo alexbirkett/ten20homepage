@@ -318,6 +318,8 @@
     MapRender.prototype.updateTracker = function(tracker, pan) {
       var marker, location = tracker.lastMessage.location;
 
+      // return if location not available for this tracker
+      if (!tracker.lastMessage) {return;}
       // find the tracker marker in existing markers
       for (var i = 0; i < this.markers.length; i++) {
         if (this.markers[i].serial === tracker.serial) {

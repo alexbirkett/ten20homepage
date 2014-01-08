@@ -7,7 +7,17 @@ angular.module('ten20Angular.directives', []).
     return {
 			templateUrl: '/templates/userConsole.html',
 			restrict: 'A',
-			replace: true
+			replace: true,
+      link: function(scope, element, attrs) {
+        // bind tracker accordion click to update tracker data
+        element.delegate('.panel-heading a', 'click', function(e) {
+          var panelScope = $(e.target).parents('.panel').scope();
+
+          if (panelScope.isopen) {
+            scope.refreshTracker(panelScope.tracker);
+          }
+        });
+      }
     };
   }).
   directive('userMap', function($timeout) {
@@ -87,6 +97,11 @@ angular.module('ten20Angular.directives', []).
         }
 
         $scope.$on('InitMap', _initMap);
+        $scope.$on('FocusTracker', _focusTracker);
+
+        function _focusTracker(e, t) {
+          $scope.map.updateTracker(t, true);
+        }
 
       },
       link: function(scope, elem, attrs) {
