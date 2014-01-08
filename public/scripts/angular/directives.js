@@ -26,16 +26,8 @@ angular.module('ten20Angular.directives', []).
       scope: true,
       controller: function($scope, $element, $attrs) {
         // add tracker to map
-        $scope.addTracker = function(msg) {
+        $scope.mapTracker = function(msg) {
           $scope.map.updateTracker(msg);
-        };
-        // add trip to map
-        $scope.addTrip = function () {
-          // body...
-        };
-        // remove trip
-        $scope.removeTrip = function() {
-
         };
 
         // init trackers
@@ -98,11 +90,27 @@ angular.module('ten20Angular.directives', []).
 
         $scope.$on('InitMap', _initMap);
         $scope.$on('FocusTracker', _focusTracker);
+        $scope.$on('RecentUpdate', _updateRecent);
+        $scope.$on('TripUpdate', _updateTrip);
 
+        // center map to tracker location
         function _focusTracker(e, t) {
           $scope.map.updateTracker(t, true);
         }
 
+        // show recent msg on map for a tracker
+        function _updateRecent(e, t) {
+          // prefetch line coordinates from message
+          t.recent.latlngs = _getLineCoords(t.recent.msgs)
+          $scope.map.updateTail(t);
+        }
+
+        // show recent msg on map for a tracker
+        function _updateTrip(e, t, timespan) {
+          // prefetch line coordinates from trip
+          t.trip.latlngs = _getLineCoords(t.trip.msgs)
+          $scope.map.updateTrip(t);
+        }
       },
       link: function(scope, elem, attrs) {
       }

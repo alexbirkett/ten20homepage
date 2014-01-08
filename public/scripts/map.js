@@ -126,9 +126,9 @@
         var latlng = this._getRandomVisibleLatLng();
         var marker = L.circleMarker(latlng, this.circleMarkerOpt).addTo(this.map);
 
-        if (this.showHistory) {
+        if (this.showTail) {
           var tailer = _preTailer(marker);
-          marker.history = this.addPolyline(tailer);
+          marker.tail = this.addPolyline(tailer);
         }
 
         this.map.addLayer(marker);
@@ -151,8 +151,8 @@
       var marker = this.markers[this.currentMarkerIndex];
       _moveMarker(marker, self);
       this.twinkleMarker(marker);
-      if (this.showHistory) {
-        updateHistory(marker);
+      if (this.showTail) {
+        _updateTail(marker);
       }
 
       if (this.followFirstTracker && this.markers.length > 0) {
@@ -252,15 +252,16 @@
       return latlngTail;
     }
 
-    function updateHistory(marker) {
-      var latlngs = marker.history.getLatLngs();
+    function _updateTail(marker) {
+      var latlngs = marker.tail.getLatLngs();
 
       latlngs.push(marker.getLatLng());
 
       if (latlngs.length > 100) {
         latlngs.shift();
       }
-      marker.history.setLatLngs(latlngs);
+
+      marker.tail.setLatLngs(latlngs);
     }
 
     MapRender.prototype.afterInit = function (argument) {
@@ -315,18 +316,28 @@
       this.markers.push(marker);
     };
 
-    MapRender.prototype.updateTracker = function(tracker, pan) {
-      var marker, location = tracker.lastMessage.location;
+    MapRender.prototype._findMarker = function(tracker) {
+      var marker = null;
 
-      // return if location not available for this tracker
-      if (!tracker.lastMessage) {return;}
-      // find the tracker marker in existing markers
       for (var i = 0; i < this.markers.length; i++) {
         if (this.markers[i].serial === tracker.serial) {
           marker = this.markers[i];
           break;
         }
       };
+
+      return marker;
+    };
+
+    MapRender.prototype.updateTracker = function(tracker, pan) {
+      var marker, location;
+
+      // return if location not available for this tracker
+      if (!tracker.lastMessage) {return;}
+
+      location = tracker.lastMessage.location;
+      // find the tracker marker in existing markers
+      marker = this._findMarker(tracker);
       // update existing marker location
       if (marker) {
         marker.setLatLng([location.latitude, location.longitude]);
@@ -338,25 +349,48 @@
       }
     };
 
-    MapRender.prototype.addTripHistory = function(index, latlngArr) {
-      var marker = this.markers[index];
-      marker.history = this.addPolyline(latlngArr);
-    };
+    MapRender.prototype._addTail = function(t) {
+      var marker = this._findMarker(t);
+      var latlngs = [];
 
-    MapRender.prototype.updateTripHistory = function(index, latlngArr) {
-      var marker = this.markers[index];
-      if (marker.history) {
-        marker.history.setLatLngs(latlngArr);
-      } else {
-        this.addTripHistory(index, latlngArr);
+      if (marker) {
+        latlngs = t.recent.latlngs;
+        marker.tail = this.addPolyline(latlngs);
       }
     };
 
-    MapRender.prototype.hideTripHistory = function(index) {
-      var marker = this.markers[index];
+    // update recent message location to map
+    MapRender.prototype.updateTrail = function(t) {
+      var marker = this._findMarker(t);
+      var latlngs = [];
 
-      if (marker.history) {
-        marker.history.setLatLngs([]);
+      if (marker.tail) {
+        latlngs = t.recent.latlngs;
+        marker.tail.setLatLngs(latlngs);
+      } else {
+        this._addTail(t);
+      }
+    };
+
+    MapRender.prototype._addTrip = function(t) {
+      var marker = this._findMarker(t);
+      var latlngs = [];
+
+      if (marker) {
+        latlngs = t.trip.latlngs;
+        marker.trip = this.addPolyline(latlngs);
+      }
+    };
+
+    MapRender.prototype.updateTrip = function(t) {
+      var marker = this._findMarker(t);
+      var latlngs = [];
+
+      if (marker.trip) {
+        latlngs = t.trip.latlngs;
+        marker.trip.setLatLngs(latlngs);
+      } else {
+        this._addTrip(t);
       }
     };
 
