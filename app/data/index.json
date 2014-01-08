@@ -25,7 +25,7 @@
               "zoomLevel": 12,
               "numberOfTrackers": 5,
               "zoomControl": true,
-              "showHistory": true,
+              "showTail": true,
               "tile": "alexbirkett.map-t0fodlre",
               "layers": [ {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"}, 
                           { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}]
@@ -51,7 +51,7 @@
                       "zoomLevel": 16,
                       "restrict": true,
                       "numberOfTrackers": 1,
-                      "showHistory": false,
+                      "showTail": false,
                       "followFirstTracker": true,
                       "addVirtualFence": false,
                       "tile": "alexbirkett.map-bugector"
@@ -67,7 +67,7 @@
                       "zoomLevel": 15,
                       "restrict": true,
                       "numberOfTrackers": 1,
-                      "showHistory": true,
+                      "showTail": true,
                       "followFirstTracker":true,
                       "addVirtualFence": false,
                       "tile": "alexbirkett.map-bugector"
@@ -83,7 +83,7 @@
                       "zoomLevel": 13,
                       "restrict": true,
                       "numberOfTrackers": 0,
-                      "showHistory": false,
+                      "showTail": false,
                       "followFirstTracker": false,
                       "addVirtualFence":true,
                       "tile": "alexbirkett.map-bugector"

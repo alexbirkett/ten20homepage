@@ -360,12 +360,15 @@
     };
 
     // update recent message location to map
-    MapRender.prototype.updateTrail = function(t) {
+    MapRender.prototype.updateTail = function(t) {
       var marker = this._findMarker(t);
-      var latlngs = [];
+      var latlngs = t.recent.latlngs;
+
+      if (latlngs.length === 0) {
+        return;
+      }
 
       if (marker.tail) {
-        latlngs = t.recent.latlngs;
         marker.tail.setLatLngs(latlngs);
       } else {
         this._addTail(t);
@@ -384,10 +387,13 @@
 
     MapRender.prototype.updateTrip = function(t) {
       var marker = this._findMarker(t);
-      var latlngs = [];
+      var latlngs = t.trip.latlngs;
+
+      if (latlngs.length === 0) {
+        return;
+      }
 
       if (marker.trip) {
-        latlngs = t.trip.latlngs;
         marker.trip.setLatLngs(latlngs);
       } else {
         this._addTrip(t);

@@ -30,6 +30,7 @@ angular.module('ten20Angular.controllers').
     $http.get('/recent_messages?trackerId=' + t.trackerId).success(function(data) {
       console.log('------recent_message-----');
       console.log(data);
+      t.recent = t.recent || {};
       t.recent.msgs = _filterMessage(data);
       console.log(t.recentMsg);
       $scope.$broadcast('RecentUpdate', t);
@@ -41,6 +42,7 @@ angular.module('ten20Angular.controllers').
     $http.get('/trips?trackerId=' + t.trackerId).success(function(data) {
       console.log('------trips-----');
       console.log(data);
+      t.trip = t.trip || {};
       t.trip.msgs = data;
       $scope.$broadcast('TripUpdate', t);
     });
