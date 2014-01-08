@@ -111,6 +111,11 @@ angular.module('ten20Angular.directives', []).
           t.trip.latlngs = _getLineCoords(t.trip.msgs)
           $scope.map.updateTrip(t);
         }
+
+        function _getLineCoords () {
+          //TODO
+          return [];
+        }
       },
       link: function(scope, elem, attrs) {
       }
