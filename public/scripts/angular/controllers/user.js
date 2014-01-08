@@ -27,7 +27,7 @@ angular.module('ten20Angular.controllers').
 
   // load recent msg of a tracker
   $scope.loadRecentMsg = function(t) {
-    $http.get('/recent_messages?trackerId=' + t.trackerId).success(function(data) {
+    $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
       console.log('------recent_message-----');
       console.log(data);
       t.recent = t.recent || {};
@@ -39,7 +39,7 @@ angular.module('ten20Angular.controllers').
   
   // load trips of at tracker
   $scope.loadTrip = function(t) {
-    $http.get('/trips?trackerId=' + t.trackerId).success(function(data) {
+    $http.get('/trips?trackerId=' + t._id).success(function(data) {
       console.log('------trips-----');
       console.log(data);
       t.trip = t.trip || {};
