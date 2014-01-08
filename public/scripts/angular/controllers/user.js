@@ -30,18 +30,19 @@ angular.module('ten20Angular.controllers').
     $http.get('/recent_messages?trackerId=' + t.trackerId).success(function(data) {
       console.log('------recent_message-----');
       console.log(data);
-      t.recentMsg = _filterMessage(data);
+      t.recent.msgs = _filterMessage(data);
       console.log(t.recentMsg);
-      $scope.$broadcast('RecentMsgUpdate', t);
+      $scope.$broadcast('RecentUpdate', t);
     });
   }
   
   // load trips of at tracker
   $scope.loadTrip = function(t) {
     $http.get('/trips?trackerId=' + t.trackerId).success(function(data) {
-      //TODO
       console.log('------trips-----');
       console.log(data);
+      t.trip.msgs = data;
+      $scope.$broadcast('TripUpdate', t);
     });
   }
 
