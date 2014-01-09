@@ -70,7 +70,7 @@
         fillOpacity: 1
       };
 
-      for (key in opts) {
+      for (var key in opts) {
         pointOpt[key] = opts[key];
       };
 
@@ -86,7 +86,7 @@
         smoothFactor: 1
       };
 
-      for (key in opts) {
+      for (var key in opts) {
         polyOption[key] = opts[key];
       };
 
@@ -331,7 +331,7 @@
         opt.fillColor = '#' + tracker.settings.iconColor;
       }
 
-      marker = this.addPoint(latlng opts);
+      marker = this.addPoint(latlng, opt);
       marker.trackerId = tracker._id;
 
       this.map.addLayer(marker);
