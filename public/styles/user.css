@@ -519,6 +519,40 @@ color: #f60;
   color: #eee;
 }
 
+/* marker popup styles */
+.leaflet-popup-content p {
+  line-height: 30px;
+  text-indent: 30px;
+  text-transform: uppercase;
+}
+
+.leaflet-popup-content p span {
+  color: #f60;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+.leaflet-popup-content {
+  width: 250px !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 20px;
+  background-color: #333;
+  color: #eee;
+  padding: 0;
+}
+
+.leaflet-popup-pane {
+  z-index: 3;
+}
+
+.leaflet-popup-tip-container {display: none;}
+
+.leaflet-popup {
+  bottom: -33px !important;
+  left: -20px !important;
+}
 /* styles for smaller pc screens */
 @media only screen and (max-height: 800px) {
 

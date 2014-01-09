@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('ten20Angular.controllers').
-  controller('UserCtrl', function ($scope, $http, socket) {
+  controller('UserCtrl', function ($scope, $http) {
   // init user and trackers information
   $scope.user = {};
   $scope.trackers = [];
@@ -27,25 +27,52 @@ angular.module('ten20Angular.controllers').
 
   // load recent msg of a tracker
   $scope.loadRecentMsg = function(t) {
-    $http.get('/recent_messages?trackerId=' + t.trackerId).success(function(data) {
+    $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
       console.log('------recent_message-----');
-      console.log(data);
+      // REMOVE LATER
+      _stubDataforTesing(data.items);
       t.recent = t.recent || {};
-      t.recent.msgs = _filterMessage(data);
-      console.log(t.recentMsg);
+      t.recent.msgs = _filterMessage(data.items);
+      console.log(t.recent.msgs);
       $scope.$broadcast('RecentUpdate', t);
     });
   }
   
   // load trips of at tracker
   $scope.loadTrip = function(t) {
-    $http.get('/trips?trackerId=' + t.trackerId).success(function(data) {
+    $http.get('/trips?trackerId=' + t._id).success(function(data) {
       console.log('------trips-----');
       console.log(data);
       t.trip = t.trip || {};
       t.trip.msgs = data;
       $scope.$broadcast('TripUpdate', t);
     });
+  }
+
+  //TODO: remove later
+  function _stubDataforTesing(data) {
+    var l = data.length;
+    var mockL;
+
+    if (l === 0) {
+      return;
+    } else if (l <= 6) {
+      mockL = l;
+    } else {
+      mockL = Math.min(l, l%7 + 6);
+    }
+    // cut data to mock length
+    data.splice(mockL, l - mockL);
+
+    // start from index 1
+    for (var i = 1; i < mockL; i++) {
+      data[i].message.location.latitude = data[i - 1].message.location.latitude + _randomDelta();
+      data[i].message.location.longitude = data[i - 1].message.location.longitude + _randomDelta();
+    };
+
+    function _randomDelta() {
+      return Math.random() * 0.01 - 0.005;
+    }
   }
 
   // filter out useless messages, condition:
@@ -57,14 +84,15 @@ angular.module('ten20Angular.controllers').
       if (m[i].message.location) {
         if (validMsg.length !== 0) {
           if (_compareDist(m[i].message, validMsg[validMsg.length - 1])) {
-            valideMsg.push(m[i].message);
+            validMsg.push(m[i].message);
           }
         } else {
           validMsg.push(m[i].message);
         }
       }
     };
-    
+
+    return validMsg;
   }
   // compare two message distance
   function _compareDist(msg1, msg2) {
@@ -84,11 +112,11 @@ angular.module('ten20Angular.controllers').
   // calculate two point circle distance on earth
   function _getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
     var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2-lat1);  // deg2rad below
-    var dLon = deg2rad(lon2-lon1); 
+    var dLat = _deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = _deg2rad(lon2-lon1); 
     var a = 
       Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.cos(_deg2rad(lat1)) * Math.cos(_deg2rad(lat2)) * 
       Math.sin(dLon/2) * Math.sin(dLon/2)
       ; 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
