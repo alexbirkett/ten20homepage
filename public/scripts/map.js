@@ -374,14 +374,19 @@
     MapRender.prototype._addTail = function(t) {
       var marker = this._findMarker(t);
       var latlngs = [];
-      var opts = {
-        weight: 5
-      };
+      var optsLine = { weight: 3 };
+      var optsPoint = { weight: 3, radius: 5 };
 
       if (marker) {
+        marker.tail = {line:null, points:[]};
         latlngs = t.recent.latlngs;
-        t.settings ? opts.color = '#' + t.settings.iconColor : null;
-        marker.tail = this.addPolyline(latlngs, opts);
+        if (t.settings) {
+          optsLine.color = '#' + t.settings.iconColor;
+          optsPoint.color = '#' + t.settings.iconColor;
+          optsPoint.fillColor= '#' + t.settings.iconColor;
+        }
+        marker.tail.line = this.addPolyline(latlngs, optsLine);
+        this._addPathPoints(marker.tail, latlngs, optsPoint);
       }
     };
 
@@ -389,16 +394,39 @@
     MapRender.prototype.updateTail = function(t) {
       var marker = this._findMarker(t);
       var latlngs = t.recent.latlngs;
+      var optsPoint = { weight: 3, radius: 5 };
 
-      if (latlngs.length === 0) {
+      if (!marker || latlngs.length === 0) {
         return;
       }
 
       if (marker.tail) {
-        marker.tail.setLatLngs(latlngs);
+        if (t.settings) {
+          optsPoint.color = '#' + t.settings.iconColor;
+          optsPoint.fillColor= '#' + t.settings.iconColor;
+        }
+
+        this._clearPathPoints(marker.tail.points);
+        marker.tail.line.setLatLngs(latlngs);
+        this._addPathPoints(marker.tail, latlngs, optsPoint);
       } else {
         this._addTail(t);
       }
+    };
+
+    MapRender.prototype._addPathPoints = function(path, latlngs, opts) {
+      for (var i = 0; i < latlngs.length; i++) {
+        path.points.push(this.addPoint(latlngs[i], opts));
+      };
+      
+    };
+
+    MapRender.prototype._clearPathPoints = function(points) {
+      for (var i = 0; i < points.length; i++) {
+        this.map.removeLayer(points[i]);
+      };
+
+      points = [];
     };
 
     MapRender.prototype._addTrip = function(t) {
