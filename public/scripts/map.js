@@ -311,7 +311,7 @@
       ];
       var marker = L.circleMarker(latlng, this.circleMarkerOpt).addTo(this.map);
 
-      marker.serial = tracker.serial;
+      marker.trackerId = tracker._id;
       this.map.addLayer(marker);
       this.markers.push(marker);
     };
@@ -320,7 +320,7 @@
       var marker = null;
 
       for (var i = 0; i < this.markers.length; i++) {
-        if (this.markers[i].serial === tracker.serial) {
+        if (this.markers[i].trackerId === tracker._id) {
           marker = this.markers[i];
           break;
         }
