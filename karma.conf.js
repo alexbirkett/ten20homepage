@@ -11,7 +11,6 @@ files = [
   'public/components/angular/angular.js',
   'public/components/ng-grid/ng-grid-2.0.7.debug.js',
   'public/components/angular-mocks/angular-mocks.js',
-  'public/components/angular-socket-io/socket.js',
   'public/components/angular-ui-date/src/date.js',
   'public/scripts/*.js',
   'public/scripts/**/*.js',
