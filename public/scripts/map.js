@@ -379,21 +379,21 @@
 
       if (marker) {
         marker.tail = {line:null, points:[]};
-        latlngs = t.recent.latlngs;
+        latlngs = _getLineCoordsFromMsg(t.recent.msgs);
         if (t.settings) {
           optsLine.color = '#' + t.settings.iconColor;
           optsPoint.color = '#' + t.settings.iconColor;
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
         marker.tail.line = this.addPolyline(latlngs, optsLine);
-        this._addPathPoints(marker.tail, latlngs, optsPoint);
+        this._addPathPoints(marker.tail, t.recent.msgs, optsPoint);
       }
     };
 
     // update recent message location to map
     MapRender.prototype.updateTail = function(t) {
       var marker = this._findMarker(t);
-      var latlngs = t.recent.latlngs;
+      var latlngs = _getLineCoordsFromMsg(t.recent.msgs);
       var optsPoint = { weight: 2, radius: 5 };
 
       if (!marker || latlngs.length === 0) {
@@ -408,15 +408,23 @@
 
         this._clearPathPoints(marker.tail.points);
         marker.tail.line.setLatLngs(latlngs);
-        this._addPathPoints(marker.tail, latlngs, optsPoint);
+        this._addPathPoints(marker.tail, t.recent.msgs, optsPoint);
       } else {
         this._addTail(t);
       }
     };
 
-    MapRender.prototype._addPathPoints = function(path, latlngs, opts) {
-      for (var i = 0; i < latlngs.length; i++) {
-        path.points.push(this.addPoint(latlngs[i], opts));
+    MapRender.prototype._addPathPoints = function(path, msgs, opts) {
+      var popup;
+      var opt = {closeButton: false};
+      for (var i = 0; i < msgs.length; i++) {
+        path.points.push(
+            this.addPoint([
+              msgs[i].location.latitude,
+              msgs[i].location.longitude
+              ], opts));
+        popup = _generatePopup(msgs[i]);
+        path.points[i].bindPopup(popup, opt);
       };
       
     };
@@ -434,14 +442,14 @@
       var latlngs = [];
 
       if (marker) {
-        latlngs = t.trip.latlngs;
+        latlngs = _getLineCoordsFromMsg(t.trip.msgs);
         marker.trip = this.addPolyline(latlngs);
       }
     };
 
     MapRender.prototype.updateTrip = function(t) {
       var marker = this._findMarker(t);
-      var latlngs = t.trip.latlngs;
+      var latlngs = _getLineCoordsFromMsg(t.trip.msgs);
 
       if (latlngs.length === 0) {
         return;
@@ -454,6 +462,24 @@
       }
     };
 
+    function _getLineCoordsFromMsg(msgs) {
+      var lines = [];
+
+      for (var i = 0; i < msgs.length; i++) {
+        lines.push([
+            msgs[i].location.latitude,
+            msgs[i].location.longitude
+            ]);
+      };
+
+      return lines;
+    }
+
+    function _generatePopup(msg) {
+      return '<p style="color: #333;"> Lat: ' + msg.location.latitude.toFixed(5) + 
+             '  Lng: ' + msg.location.longitude.toFixed(5) +'</p>';
+    }
+    
     return MapRender;
   })();
 
