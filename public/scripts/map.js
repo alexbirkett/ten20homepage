@@ -64,7 +64,7 @@
       // circle options
       var pointOpt = {
         stroke: true,
-        weight: 6,
+        weight: 5,
         color: '#eee',
         fillColor: '#f60',
         fillOpacity: 1
@@ -374,8 +374,8 @@
     MapRender.prototype._addTail = function(t) {
       var marker = this._findMarker(t);
       var latlngs = [];
-      var optsLine = { weight: 3 };
-      var optsPoint = { weight: 3, radius: 5 };
+      var optsLine = { weight: 2 };
+      var optsPoint = { weight: 2, radius: 5 };
 
       if (marker) {
         marker.tail = {line:null, points:[]};
@@ -394,7 +394,7 @@
     MapRender.prototype.updateTail = function(t) {
       var marker = this._findMarker(t);
       var latlngs = t.recent.latlngs;
-      var optsPoint = { weight: 3, radius: 5 };
+      var optsPoint = { weight: 2, radius: 5 };
 
       if (!marker || latlngs.length === 0) {
         return;
