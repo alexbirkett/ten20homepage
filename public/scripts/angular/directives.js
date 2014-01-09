@@ -100,30 +100,14 @@ angular.module('ten20Angular.directives', []).
 
         // show recent msg on map for a tracker
         function _updateRecent(e, t) {
-          // prefetch line coordinates from message
-          t.recent.latlngs = _getLineCoords(t.recent.msgs)
           $scope.map.updateTail(t);
         }
 
         // show recent msg on map for a tracker
         function _updateTrip(e, t, timespan) {
-          // prefetch line coordinates from trip
-          t.trip.latlngs = _getLineCoords(t.trip.msgs)
           $scope.map.updateTrip(t);
         }
 
-        function _getLineCoords(msgs) {
-          var lines = [];
-
-          for (var i = 0; i < msgs.length; i++) {
-            lines.push([
-              msgs[i].location.latitude,
-              msgs[i].location.longitude
-            ]);
-          };
-
-          return lines;
-        }
       },
       link: function(scope, elem, attrs) {
       }
