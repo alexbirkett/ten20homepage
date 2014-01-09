@@ -16,14 +16,6 @@
       this.init();
     }
 
-    // circle options
-    Map.prototype.circleMarkerOpt = {
-      stroke: true,
-      weight: 6,
-      color: '#eee',
-      fillColor: '#f60',
-      fillOpacity: 1
-    };
     // user map or home page map
     Map.prototype.getMapType = function () {
       // override in children class
@@ -68,7 +60,24 @@
       return this.map;
     };
 
-    Map.prototype.addPolyline = function(latlng) {
+    Map.prototype.addPoint = function(latlng, opts) {
+      // circle options
+      var pointOpt = {
+        stroke: true,
+        weight: 6,
+        color: '#eee',
+        fillColor: '#f60',
+        fillOpacity: 1
+      };
+
+      for (key in opts) {
+        pointOpt[key] = opts[key];
+      };
+
+      return L.circleMarker(latlng, pointOpt).addTo(this.map);
+    };
+
+    Map.prototype.addPolyline = function(latlng, opts) {
       var polyOption = {
         stroke: true,
         weight: 2,
@@ -76,8 +85,12 @@
         dashArray: '3,4',
         smoothFactor: 1
       };
-      var polyLine = L.polyline(latlng, polyOption).addTo(this.map);
-      return polyLine;
+
+      for (key in opts) {
+        polyOption[key] = opts[key];
+      };
+
+      return L.polyline(latlng, polyOption).addTo(this.map);
     }
 
     return Map;
@@ -124,7 +137,7 @@
     MapRender.prototype.addMarkers = function() {
       for (var i = 0; i < this.numberOfTrackers; i++) {
         var latlng = this._getRandomVisibleLatLng();
-        var marker = L.circleMarker(latlng, this.circleMarkerOpt).addTo(this.map);
+        var marker = this.addPoint(latlng)
 
         if (this.showTail) {
           var tailer = _preTailer(marker);
@@ -164,8 +177,9 @@
     MapRender.prototype.setupVirtualFence = function() {
       if (this.addVirtualFence) {
         var markerPosition = this.map.getCenter();
-        L.circleMarker(markerPosition, virtualVenceMarkerOuterOpt).addTo(this.map);
-        L.circleMarker(markerPosition, virtualVenceMarkerInnerOpt).addTo(this.map);
+
+        this.addPoint(markerPosition, virtualVenceMarkerOuterOpt);
+        this.addPoint(markerPosition, virtualVenceMarkerInnerOpt);
       }
     };
 
@@ -309,9 +323,17 @@
         tracker.lastMessage.location.latitude,
         tracker.lastMessage.location.longitude,
       ];
-      var marker = L.circleMarker(latlng, this.circleMarkerOpt).addTo(this.map);
 
+      var opt = {}, marker;
+
+      if (tracker.settings) {
+        opt.color = '#' + tracker.settings.iconColor;
+        opt.fillColor = '#' + tracker.settings.iconColor;
+      }
+
+      marker = this.addPoint(latlng opts);
       marker.trackerId = tracker._id;
+
       this.map.addLayer(marker);
       this.markers.push(marker);
     };
@@ -352,10 +374,14 @@
     MapRender.prototype._addTail = function(t) {
       var marker = this._findMarker(t);
       var latlngs = [];
+      var opts = {
+        weight: 5
+      };
 
       if (marker) {
         latlngs = t.recent.latlngs;
-        marker.tail = this.addPolyline(latlngs);
+        t.settings ? opts.color = '#' + t.settings.iconColor : null;
+        marker.tail = this.addPolyline(latlngs, opts);
       }
     };
 
