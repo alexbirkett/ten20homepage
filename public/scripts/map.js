@@ -406,7 +406,7 @@
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
 
-        this._clearPathPoints(marker.tail.points);
+        this._clearPathPoints(marker.tail);
         marker.tail.line.setLatLngs(latlngs);
         this._addPathPoints(marker.tail, t.recent.msgs, optsPoint);
       } else {
@@ -425,16 +425,20 @@
               ], opts));
         popup = _generatePopup(msgs[i]);
         path.points[i].bindPopup(popup, opt);
+
+        _bindEvents(path.points[i]);
       };
       
     };
 
-    MapRender.prototype._clearPathPoints = function(points) {
-      for (var i = 0; i < points.length; i++) {
-        this.map.removeLayer(points[i]);
+    
+    MapRender.prototype._clearPathPoints = function(path) {
+      for (var i = 0; i < path.points.length; i++) {
+        path.points[i].unbindPopup();
+        this.map.removeLayer(path.points[i]);
       };
 
-      points = [];
+      path.points = [];
     };
 
     MapRender.prototype._addTrip = function(t) {
@@ -478,6 +482,15 @@
     function _generatePopup(msg) {
       return '<p style="color: #333;"> Lat: ' + msg.location.latitude.toFixed(5) + 
              '  Lng: ' + msg.location.longitude.toFixed(5) +'</p>';
+    }
+
+    function _bindEvents(marker) {
+      marker.on('mouseover', function() {
+        marker.openPopup();
+      });
+      marker.on('mouseout', function() {
+        marker.closePopup();
+      });
     }
     
     return MapRender;
