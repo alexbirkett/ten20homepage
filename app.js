@@ -88,7 +88,6 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         console.log('https listening on ' + options.https.port);
     }
 
-    var io = require('socket.io').listen(server);
     app.set('views', __dirname + '/app/views');
     app.set('view engine', 'jade');
     app.use(removeWWW);

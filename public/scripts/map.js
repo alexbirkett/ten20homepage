@@ -16,14 +16,6 @@
       this.init();
     }
 
-    // circle options
-    Map.prototype.circleMarkerOpt = {
-      stroke: true,
-      weight: 6,
-      color: '#eee',
-      fillColor: '#f60',
-      fillOpacity: 1
-    };
     // user map or home page map
     Map.prototype.getMapType = function () {
       // override in children class
@@ -68,7 +60,24 @@
       return this.map;
     };
 
-    Map.prototype.addPolyline = function(latlng) {
+    Map.prototype.addPoint = function(latlng, opts) {
+      // circle options
+      var pointOpt = {
+        stroke: true,
+        weight: 5,
+        color: '#eee',
+        fillColor: '#f60',
+        fillOpacity: 1
+      };
+
+      for (var key in opts) {
+        pointOpt[key] = opts[key];
+      };
+
+      return L.circleMarker(latlng, pointOpt).addTo(this.map);
+    };
+
+    Map.prototype.addPolyline = function(latlng, opts) {
       var polyOption = {
         stroke: true,
         weight: 2,
@@ -76,8 +85,12 @@
         dashArray: '3,4',
         smoothFactor: 1
       };
-      var polyLine = L.polyline(latlng, polyOption).addTo(this.map);
-      return polyLine;
+
+      for (var key in opts) {
+        polyOption[key] = opts[key];
+      };
+
+      return L.polyline(latlng, polyOption).addTo(this.map);
     }
 
     return Map;
@@ -124,7 +137,7 @@
     MapRender.prototype.addMarkers = function() {
       for (var i = 0; i < this.numberOfTrackers; i++) {
         var latlng = this._getRandomVisibleLatLng();
-        var marker = L.circleMarker(latlng, this.circleMarkerOpt).addTo(this.map);
+        var marker = this.addPoint(latlng)
 
         if (this.showTail) {
           var tailer = _preTailer(marker);
@@ -164,8 +177,9 @@
     MapRender.prototype.setupVirtualFence = function() {
       if (this.addVirtualFence) {
         var markerPosition = this.map.getCenter();
-        L.circleMarker(markerPosition, virtualVenceMarkerOuterOpt).addTo(this.map);
-        L.circleMarker(markerPosition, virtualVenceMarkerInnerOpt).addTo(this.map);
+
+        this.addPoint(markerPosition, virtualVenceMarkerOuterOpt);
+        this.addPoint(markerPosition, virtualVenceMarkerInnerOpt);
       }
     };
 
@@ -309,9 +323,17 @@
         tracker.lastMessage.location.latitude,
         tracker.lastMessage.location.longitude,
       ];
-      var marker = L.circleMarker(latlng, this.circleMarkerOpt).addTo(this.map);
 
-      marker.serial = tracker.serial;
+      var opt = {}, marker;
+
+      if (tracker.settings) {
+        opt.color = '#' + tracker.settings.iconColor;
+        opt.fillColor = '#' + tracker.settings.iconColor;
+      }
+
+      marker = this.addPoint(latlng, opt);
+      marker.trackerId = tracker._id;
+
       this.map.addLayer(marker);
       this.markers.push(marker);
     };
@@ -320,7 +342,7 @@
       var marker = null;
 
       for (var i = 0; i < this.markers.length; i++) {
-        if (this.markers[i].serial === tracker.serial) {
+        if (this.markers[i].trackerId === tracker._id) {
           marker = this.markers[i];
           break;
         }
@@ -352,27 +374,71 @@
     MapRender.prototype._addTail = function(t) {
       var marker = this._findMarker(t);
       var latlngs = [];
+      var optsLine = { weight: 2 };
+      var optsPoint = { weight: 2, radius: 5 };
 
       if (marker) {
-        latlngs = t.recent.latlngs;
-        marker.tail = this.addPolyline(latlngs);
+        marker.tail = {line:null, points:[]};
+        latlngs = _getLineCoordsFromMsg(t.recent.msgs);
+        if (t.settings) {
+          optsLine.color = '#' + t.settings.iconColor;
+          optsPoint.color = '#' + t.settings.iconColor;
+          optsPoint.fillColor= '#' + t.settings.iconColor;
+        }
+        marker.tail.line = this.addPolyline(latlngs, optsLine);
+        this._addPathPoints(marker.tail, t.recent.msgs, optsPoint);
       }
     };
 
     // update recent message location to map
     MapRender.prototype.updateTail = function(t) {
       var marker = this._findMarker(t);
-      var latlngs = t.recent.latlngs;
+      var latlngs = _getLineCoordsFromMsg(t.recent.msgs);
+      var optsPoint = { weight: 2, radius: 5 };
 
-      if (latlngs.length === 0) {
+      if (!marker || latlngs.length === 0) {
         return;
       }
 
       if (marker.tail) {
-        marker.tail.setLatLngs(latlngs);
+        if (t.settings) {
+          optsPoint.color = '#' + t.settings.iconColor;
+          optsPoint.fillColor= '#' + t.settings.iconColor;
+        }
+
+        this._clearPathPoints(marker.tail);
+        marker.tail.line.setLatLngs(latlngs);
+        this._addPathPoints(marker.tail, t.recent.msgs, optsPoint);
       } else {
         this._addTail(t);
       }
+    };
+
+    MapRender.prototype._addPathPoints = function(path, msgs, opts) {
+      var popup;
+      var opt = {closeButton: false};
+      for (var i = 0; i < msgs.length; i++) {
+        path.points.push(
+            this.addPoint([
+              msgs[i].location.latitude,
+              msgs[i].location.longitude
+              ], opts));
+        popup = _generatePopup(msgs[i]);
+        path.points[i].bindPopup(popup, opt);
+
+        _bindEvents(path.points[i]);
+      };
+      
+    };
+
+    
+    MapRender.prototype._clearPathPoints = function(path) {
+      for (var i = 0; i < path.points.length; i++) {
+        path.points[i].unbindPopup();
+        this.map.removeLayer(path.points[i]);
+      };
+
+      path.points = [];
     };
 
     MapRender.prototype._addTrip = function(t) {
@@ -380,14 +446,14 @@
       var latlngs = [];
 
       if (marker) {
-        latlngs = t.trip.latlngs;
+        latlngs = _getLineCoordsFromMsg(t.trip.msgs);
         marker.trip = this.addPolyline(latlngs);
       }
     };
 
     MapRender.prototype.updateTrip = function(t) {
       var marker = this._findMarker(t);
-      var latlngs = t.trip.latlngs;
+      var latlngs = _getLineCoordsFromMsg(t.trip.msgs);
 
       if (latlngs.length === 0) {
         return;
@@ -400,6 +466,33 @@
       }
     };
 
+    function _getLineCoordsFromMsg(msgs) {
+      var lines = [];
+
+      for (var i = 0; i < msgs.length; i++) {
+        lines.push([
+            msgs[i].location.latitude,
+            msgs[i].location.longitude
+            ]);
+      };
+
+      return lines;
+    }
+
+    function _generatePopup(msg) {
+      return '<p>Lat: <span>' + msg.location.latitude.toFixed(3) + 
+             '</span>  Lng: <span>' + msg.location.longitude.toFixed(3) +'</span></p>';
+    }
+
+    function _bindEvents(marker) {
+      marker.on('mouseover', function() {
+        marker.openPopup();
+      });
+      marker.on('mouseout', function() {
+        marker.closePopup();
+      });
+    }
+    
     return MapRender;
   })();
 
