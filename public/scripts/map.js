@@ -480,8 +480,8 @@
     }
 
     function _generatePopup(msg) {
-      return '<p style="color: #333;"> Lat: ' + msg.location.latitude.toFixed(5) + 
-             '  Lng: ' + msg.location.longitude.toFixed(5) +'</p>';
+      return '<p>Lat: <span>' + msg.location.latitude.toFixed(3) + 
+             '</span>  Lng: <span>' + msg.location.longitude.toFixed(3) +'</span></p>';
     }
 
     function _bindEvents(marker) {
