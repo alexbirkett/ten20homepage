@@ -9,20 +9,3 @@ angular.module('ten20Angular', [
   'ngGrid',
   'ui.bootstrap'
 ]);
-/*.
-config(function ($routeProvider, $locationProvider) {
-  $routeProvider.
-    when('/admin', {
-      //templateUrl: 'partials/partial1',
-      controller: 'ContactUserCtrl'
-    }).
-    when('/user', {
-      //templateUrl: 'partials/partial2',
-      controller: 'SocketCtrl'
-    }).
-    otherwise({
-      redirectTo: '/'
-    });
-
-  $locationProvider.html5Mode(true);
-}); */
