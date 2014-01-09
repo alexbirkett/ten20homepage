@@ -38,9 +38,9 @@
               </div>
               <div class="current-info">
                 <h6>latest activity:<span>{{tracker.lastMessage.location.timestamp | timeFormat: 'time'}}</span></h6>
-                <h6>latitude:<span>{{tracker.lastMessage.location.latitude | number:4}}</span></h6>
-                <h6>longitude:<span>{{tracker.lastMessage.location.longitude | number:4}}</span></h6>
-                <h6>current speed:<span>{{tracker.lastMessage.location.speed}}</span></h6>
+                <h6>latitude:<span>{{tracker.lastMessage.location.latitude | number:4 || '--'}}</span></h6>
+                <h6>longitude:<span>{{tracker.lastMessage.location.longitude | number:4 || '--'}}</span></h6>
+                <h6>current speed:<span>{{tracker.lastMessage.location.speed || '--'}}</span></h6>
               </div>
             </tab>
 
