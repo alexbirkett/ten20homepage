@@ -32,7 +32,7 @@ angular.module('ten20Angular.controllers').
       console.log(data);
       t.recent = t.recent || {};
       t.recent.msgs = _filterMessage(data);
-      console.log(t.recentMsg);
+      console.log(t.recent.msgs);
       $scope.$broadcast('RecentUpdate', t);
     });
   }
@@ -64,7 +64,8 @@ angular.module('ten20Angular.controllers').
         }
       }
     };
-    
+
+    return validMsg;
   }
   // compare two message distance
   function _compareDist(msg1, msg2) {
