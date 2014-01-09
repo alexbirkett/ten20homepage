@@ -7,7 +7,6 @@ angular.module('ten20Angular', [
   'ten20Angular.services',
   'ten20Angular.directives',
   'ngGrid',
-  'btford.socket-io',
   'ui.bootstrap'
 ]);
 /*.

@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('ten20Angular.controllers').
-  controller('UserCtrl', function ($scope, $http, socket) {
+  controller('UserCtrl', function ($scope, $http) {
   // init user and trackers information
   $scope.user = {};
   $scope.trackers = [];
