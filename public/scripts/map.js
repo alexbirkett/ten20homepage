@@ -336,6 +336,7 @@
 
       this.map.addLayer(marker);
       this.markers.push(marker);
+      this.map.panTo(marker.getLatLng());
     };
 
     MapRender.prototype._findMarker = function(tracker) {
