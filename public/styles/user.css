@@ -46,11 +46,13 @@ body { margin:0; padding:0; }
 
 .time-weather a {
   float: right;
+  padding-top: 5px;
 }
 
 .welcome {
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 8px;
 }
 
 .welcome img {
@@ -61,8 +63,8 @@ body { margin:0; padding:0; }
   display: inline-block;
   font-size: 12px;
   text-transform: capitalize;
-  padding-top: 20px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   margin-left: 10px;
 }
 
@@ -223,6 +225,10 @@ color: #f60;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.panel-heading .panel-title > a:hover{
+  text-decoration: none !important;
 }
 
 .panel-heading .first {
