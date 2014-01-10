@@ -29,10 +29,10 @@ angular.module('ten20Angular.controllers').
   $scope.loadRecentMsg = function(t) {
     $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
       console.log('------recent_message-----');
-      // REMOVE LATER
-      _stubDataforTesing(data.items);
       t.recent = t.recent || {};
-      t.recent.msgs = _filterMessage(data.items);
+      // REMOVE LATER
+      //t.recent.msgs = _filterMessage(_stubDataforTesing(data.items));
+      t.recent.msgs = _stubDataforTesing(data.items);
       console.log(t.recent.msgs);
       $scope.$broadcast('RecentUpdate', t);
     });
@@ -51,11 +51,23 @@ angular.module('ten20Angular.controllers').
 
   //TODO: remove later
   function _stubDataforTesing(data) {
-    var l = data.length;
+    var l;
+    var validMsg = [];
     var mockL;
 
+    // filter out useless messages
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].message && data[i].message.location) {
+        validMsg.push(data[i].message);
+      }
+    };
+
+    return validMsg;
+
+    l = validMsg.length;
+
     if (l === 0) {
-      return;
+      return [];
     } else if (l <= 6) {
       mockL = l;
     } else {
@@ -66,13 +78,15 @@ angular.module('ten20Angular.controllers').
 
     // start from index 1
     for (var i = 1; i < mockL; i++) {
-      data[i].message.location.latitude = data[i - 1].message.location.latitude + _randomDelta();
-      data[i].message.location.longitude = data[i - 1].message.location.longitude + _randomDelta();
+      validMsg[i].message.location.latitude = validMsg[i - 1].message.location.latitude + _randomDelta();
+      validMsg[i].message.location.longitude = validMsg[i - 1].message.location.longitude + _randomDelta();
     };
 
     function _randomDelta() {
       return Math.random() * 0.01 - 0.005;
     }
+
+    return validMsg;
   }
 
   // filter out useless messages, condition:

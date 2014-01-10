@@ -46,11 +46,13 @@ body { margin:0; padding:0; }
 
 .time-weather a {
   float: right;
+  padding-top: 5px;
 }
 
 .welcome {
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 8px;
 }
 
 .welcome img {
@@ -61,8 +63,8 @@ body { margin:0; padding:0; }
   display: inline-block;
   font-size: 12px;
   text-transform: capitalize;
-  padding-top: 20px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   margin-left: 10px;
 }
 
@@ -208,6 +210,25 @@ color: #f60;
   padding: 7px 10px 5px;
   border-top: 1px solid #444;
   border-bottom: 1px solid #444;
+}
+
+.panel-heading .panel-title {
+  height: 15px;
+  position: relative;
+}
+
+.panel-heading .panel-title > a{
+  line-height: 15px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.panel-heading .panel-title > a:hover{
+  text-decoration: none !important;
 }
 
 .panel-heading .first {
@@ -554,130 +575,4 @@ color: #f60;
   left: -20px !important;
 }
 /* styles for smaller pc screens */
-@media only screen and (max-height: 800px) {
 
-  .tool-box {
-    bottom: auto;
-    left: 150px;
-    top: auto;
-    right: auto;
-  }
-
-  .tracker-content {
-    position: absolute;
-    left: 250px;
-    width: 150px;
-    top: 0;
-  }
-
-  .tracker-content .tabs {
-    width: 150px;
-  }
-
-  .tracker-content .tabs li {
-    display: block;
-    padding: 15px 5px;
-  }
-
-  .tabs-content {
-    position: absolute;
-    left: 120px;
-    top: 0;
-    bottom: 0;
-    width: 400px;
-  }
-
-  .panel-heading span.dropdown {
-    background-image: url("/images/user/arrow-down.png");
-  }
-
-  .opened .panel-heading {
-    background-color: #444;
-  }
-
-  .opened .panel-heading span.dropdown {
-    background-image: url("/images/user/arrow-right.png");
-  }
-
-  .tracker-content .tracker-bottom > img {
-    margin-left: 10px;
-  }
-
-  .info-tab {
-    margin-top: 10px;
-    margin-left: 20px;
-    border-bottom: none;
-  }
-
-  .info-tab .media {
-    margin-right: 10px;
-    display: inline-block;
-    border-bottom: none;
-    float: left;
-  }
-
-  .info-tab .media > .pull-left {
-    float: none;
-  }
-
-  .info-tab .current-info {
-    display: inline-block;
-    position: relative;
-    margin-left: 25px;
-    top: -25px;
-  }
-
-  .date-select {
-    padding-top: 20px;
-  }
-
-  .date-select .media {
-    display: inline-block;
-    width: 100px;
-    overflow: visible;
-    float: left;
-  }
-
-  .date-select .media img {
-    margin-bottom: 0;
-  }
-
-  .date-select .media-body {
-    display: inline-block;
-    overflow: visible;
-  }
-
-  .date-select .media-body h6 {
-    text-align: center;
-    display: inline-block;
-    width: 110px;
-  }
-
-  .search {
-    margin-left: 170px;
-  }
-
-  .trip-list {
-    padding-left: 130px;
-  }
-
-  .trip-list > li {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-  }
-
-  .trip-list > li:last-child {
-    border-bottom: none;
-  }
-
-  .trip-list > li img {
-    float: none;
-    margin: 0;
-    border-left: none;
-  }
-
-  .tracker-bottom {
-    padding-bottom: 50px;
-  }
-}
