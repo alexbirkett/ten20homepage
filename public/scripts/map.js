@@ -396,7 +396,14 @@
       var latlngs = _getLineCoordsFromMsg(t.recent.msgs);
       var optsPoint = { weight: 2, radius: 5 };
 
-      if (!marker || latlngs.length === 0) {
+      if (latlngs.length === 0) {
+        return;
+      }
+      // pick a point to show marker
+      if (!marker) {
+        t.lastMessage.location = t.recent.msgs[0].location;
+        this.updateTracker(t, true);
+        this.updateTail(t);
         return;
       }
 
