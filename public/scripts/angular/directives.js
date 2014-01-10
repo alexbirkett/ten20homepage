@@ -38,7 +38,7 @@ angular.module('ten20Angular.directives', []).
           }
 
           for (var i = 0; i < $scope.trackers.length; i++) {
-            if ($scope.trackers[i].lastMessage) {
+            if ($scope.trackers[i].lastMessage.location) {
               $scope.map.updateTracker($scope.trackers[i], true);
             }
           };
@@ -51,7 +51,7 @@ angular.module('ten20Angular.directives', []).
           // set center to first locatable tracker 
           if ($scope.trackers.length !== 0) {
             for (var i = 0; i < $scope.trackers.length; i++) {
-              if ($scope.trackers[i].lastMessage) {
+              if ($scope.trackers[i].lastMessage.location) {
                 center.lat = $scope.trackers[i].lastMessage.location.latitude;
                 center.lng = $scope.trackers[i].lastMessage.location.longitude;
                 break;
