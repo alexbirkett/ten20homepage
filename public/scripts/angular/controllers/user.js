@@ -29,9 +29,10 @@ angular.module('ten20Angular.controllers').
   $scope.loadRecentMsg = function(t) {
     $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
       console.log('------recent_message-----');
-      // REMOVE LATER
       t.recent = t.recent || {};
-      t.recent.msgs = _filterMessage(_stubDataforTesing(data.items));
+      // REMOVE LATER
+      //t.recent.msgs = _filterMessage(_stubDataforTesing(data.items));
+      t.recent.msgs = _stubDataforTesing(data.items);
       console.log(t.recent.msgs);
       $scope.$broadcast('RecentUpdate', t);
     });
@@ -57,9 +58,11 @@ angular.module('ten20Angular.controllers').
     // filter out useless messages
     for (var i = 0; i < data.length; i++) {
       if (data[i].message && data[i].message.location) {
-        validMsg.push(data[i]);
+        validMsg.push(data[i].message);
       }
     };
+
+    return validMsg;
 
     l = validMsg.length;
 
