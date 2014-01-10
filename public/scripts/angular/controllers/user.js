@@ -32,7 +32,7 @@ angular.module('ten20Angular.controllers').
       t.recent = t.recent || {};
       // REMOVE LATER
       //t.recent.msgs = _filterMessage(_stubDataforTesing(data.items));
-      t.recent.msgs = _stubDataforTesing(data.items);
+      t.recent.msgs = data.items;
       console.log(t.recent.msgs);
       $scope.$broadcast('RecentUpdate', t);
     });
