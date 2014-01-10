@@ -17,8 +17,7 @@
       <accordion-group is-open="isopen" ng-class="{opened: isopen}" ng-repeat="tracker in trackers">
 
         <accordion-heading>
-          <span class="first">tracker</span>
-          <span>{{ tracker.serial | limitTo:11 }}</span>
+          <span class="first">{{tracker.name}}</span>
           <span class="dropdown"></span>
         </accordion-heading>
 
