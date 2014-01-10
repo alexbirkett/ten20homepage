@@ -17,7 +17,7 @@
       <accordion-group is-open="isopen" ng-class="{opened: isopen}" ng-repeat="tracker in trackers">
 
         <accordion-heading>
-          <span class="first">{{tracker.name}}</span>
+          <span class="first">{{tracker.name | limitTo:20}}</span>
           <span class="dropdown"></span>
         </accordion-heading>
 

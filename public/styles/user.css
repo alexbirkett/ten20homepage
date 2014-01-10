@@ -210,6 +210,21 @@ color: #f60;
   border-bottom: 1px solid #444;
 }
 
+.panel-heading .panel-title {
+  height: 15px;
+  position: relative;
+}
+
+.panel-heading .panel-title > a{
+  line-height: 15px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .panel-heading .first {
   margin-right: 10px;
 }
