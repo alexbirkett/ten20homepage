@@ -355,7 +355,7 @@
       var marker, location;
 
       // return if location not available for this tracker
-      if (!tracker.lastMessage) {return;}
+      if (!tracker.lastMessage || !tracker.lastMessage.location) {return;}
 
       location = tracker.lastMessage.location;
       // find the tracker marker in existing markers
