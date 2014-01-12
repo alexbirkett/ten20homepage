@@ -82,77 +82,58 @@ body { margin:0; padding:0; }
 }
 
 /* calendar styles */
-.ui-datepicker {
-  display: none;
+.dropdown-menu {
   background-color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu table .btn {
+  border: none;
+  background: none;
+  color: #eee;
+  border-radius: 0;
+  box-shadow:none;
+  text-shadow: none;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.dropdown-menu table .btn:hover {
+  color: #f60;
+}
+
+.dropdown-menu table .btn.btn-info {
+  background-color: #f60;
+}
+
+.dropdown-menu table .btn.btn-info:hover {
   color: #eee;
 }
 
-.ui-datepicker-header {
-  padding: 10px 15px;
+.dropdown-menu .glyphicon.glyphicon-chevron-right {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("/images/user/calendar-right.png");
 }
 
-.ui-datepicker-calendar td,
-.ui-datepicker-calendar th {
-  width: 35px;
+.dropdown-menu .glyphicon.glyphicon-chevron-left {
+  display: inline-block;
+  width: 20px;
   height: 20px;
+  background-image: url("/images/user/calendar-left.png");
+}
+
+
+tr td,
+.h6 th {
   text-align: center;
   border: 1px solid #555;
 }
 
-.ui-datepicker-calendar td a {
-  color: #eee;
-  text-decoration: none;
-}
-
-.ui-datepicker-calendar th {
+.h6 th {
   color: #f60;
-  font-size: 13px;
-  letter-spacing: 0;
-}
-
-.ui-datepicker-year {
-  margin-left: 5px;
-  color: #f60;
-}
-
-.ui-datepicker-prev {
-  width: 20px;
-  height: 20px;
-  background-image: url("/images/user/calendar-left.png");
-  background-repeat: no-repeat;
-  float: left;
-}
-
-.ui-datepicker-next {
-  width: 20px;
-  height: 20px;
-  background-image: url("/images/user/calendar-right.png");
-  background-repeat: no-repeat;
-  float: right;
-}
-
-.ui-datepicker-title {
-  text-align: center;
-  font-size: 14px;
-  padding-top: 2px;
-}
-
-.ui-datepicker-next span,
-.ui-datepicker-prev span {
-  display: none;
-}
-
-.ui-datepicker-today {
-  background-color: #222;
-}
-
-.ui-datepicker-calendar .ui-datepicker-today a {
-  color: #f60;
-}
-
-.ui-datepicker-calendar td a:hover {
-color: #f60;
 }
 
 /* trip info styles */
@@ -523,6 +504,7 @@ color: #f60;
   display: inline-block;
   margin: 5px 10px 0 25px;
   float: right;
+  cursor: pointer;
 }
 
 
