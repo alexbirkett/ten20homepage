@@ -19,6 +19,15 @@ body { margin:0; padding:0; }
   background-color: #aaa;
 }
 
+.user-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+
 /* tool box styles */
 .tool-box {
   position: fixed;
@@ -503,7 +512,7 @@ color: #f60;
   margin: 0;
   padding: 0;
   height: 30px;
-  width: inherit;
+  width: 100%;
   background-color: #333;
   list-style: none;
   z-index: 2000;
@@ -518,22 +527,37 @@ color: #f60;
 
 
 .bottom-nav li span {
-  display: none;
-  width: 22px;
+  display: inline-block;
   height: 22px;
-  background-image: url(/images/user/menu.png);
   margin-right: 5px;
+  font-size: 14px;
   text-align: center;
 }
 
-.bottom-nav li.active span {
+.bottom-nav li span:before {
+  content: "+";
   display: inline-block;
+  opacity: 0;
+  width: 22px;
+}
+
+.bottom-nav li:hover span {
   color: #eee;
+}
+
+.bottom-nav li:hover span:before {
+  opacity: 1;
+  background-image: url(/images/user/menu.png);
 }
 
 .bottom-nav li a {
   color: #aaa;
   text-transform: capitalize;
+}
+
+.bottom-nav li:hover a {
+  text-decoration: none;
+  color: #eee;
 }
 
 .bottom-nav li.active a {
