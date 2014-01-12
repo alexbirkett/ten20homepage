@@ -377,7 +377,7 @@
       var marker = this._findMarker(t);
       var latlngs = [];
       var optsLine = { weight: 2 };
-      var optsPoint = { weight: 2, radius: 5 };
+      var optsPoint = { weight: 2, radius: 3 };
 
       if (marker) {
         marker.tail = {line:null, points:[]};
@@ -396,7 +396,7 @@
     MapRender.prototype.updateTail = function(t) {
       var marker = this._findMarker(t);
       var latlngs = _getLineCoordsFromMsg(t.recent.msgs);
-      var optsPoint = { weight: 2, radius: 5 };
+      var optsPoint = { weight: 2, radius: 3 };
 
       window.testMap = this.map;
 
@@ -444,7 +444,7 @@
               msg.location.longitude
               ], opts);
 
-        popup = _generatePopup(msg);
+        popup = _generatePopup(msg, opts);
         point.bindPopup(popup, opt);
         path.points.push(point);
         _bindEvents(point);
@@ -528,9 +528,15 @@
       return lines;
     }
 
-    function _generatePopup(msg) {
-      return '<p>Lat: <span>' + msg.location.latitude.toFixed(3) + 
-             '</span>  Lng: <span>' + msg.location.longitude.toFixed(3) +'</span></p>';
+    function _generatePopup(msg, opts) {
+      var time = msg.location.timestamp.split('T')[1].slice(0, 5);
+
+      return '<p><span class="marker" style="background-color:' +
+             opts.color +' "></span>' + '<span>' + time + '</span>' +
+             '<span style="color:' + opts.color + '">' +
+              + msg.location.latitude.toFixed(3) + 
+             '</span><span style="color:' + opts.color + '">' +
+              msg.location.longitude.toFixed(3) +'</span></p>';
     }
 
     function _bindEvents(marker) {
