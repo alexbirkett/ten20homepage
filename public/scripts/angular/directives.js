@@ -27,7 +27,7 @@ angular.module('ten20Angular.directives', []).
       controller: function($scope, $element, $attrs) {
         // add tracker to map
         $scope.mapTracker = function(msg) {
-          $scope.map.updateTracker(msg);
+          $scope.userMap.updateTracker(msg);
         };
 
         // init trackers
@@ -39,7 +39,7 @@ angular.module('ten20Angular.directives', []).
 
           for (var i = 0; i < $scope.trackers.length; i++) {
             if ($scope.trackers[i].lastMessage.location) {
-              $scope.map.updateTracker($scope.trackers[i], true);
+              $scope.userMap.updateTracker($scope.trackers[i], true);
             }
           };
         }
@@ -82,10 +82,17 @@ angular.module('ten20Angular.directives', []).
             ]
           };
 
-          $scope.map = new ten20.UserMap($attrs.id, params);
+          $scope.userMap = new ten20.UserMap($attrs.id, params);
           
           // add trackers
           $timeout(_initTrackers, 500);
+
+          // bind map zoom event
+          $scope.userMap.map.on('zoomend', function() {
+            if ($scope.activeTracker) {
+              _updateRecent(null, $scope.activeTracker);
+            }
+          });
         }
 
         $scope.$on('InitMap', _initMap);
@@ -95,21 +102,27 @@ angular.module('ten20Angular.directives', []).
 
         // center map to tracker location
         function _focusTracker(e, t) {
-          $scope.map.updateTracker(t, true);
+          $scope.userMap.updateTracker(t, true);
         }
 
         // show recent msg on map for a tracker
         function _updateRecent(e, t) {
-          $scope.map.updateTail(t);
+          if (t.recent && t.recent.msgs.length !== 0) {
+            $scope.userMap.updateTail(t);
+          }
         }
 
         // show recent msg on map for a tracker
         function _updateTrip(e, t, timespan) {
-          $scope.map.updateTrip(t);
+          if (t.trip && t.trip.msgs.length !== 0) {
+            $scope.userMap.updateTrip(t);
+          }
+
         }
 
       },
       link: function(scope, elem, attrs) {
+        // bind accordion click, set active tracker
       }
     };
   });

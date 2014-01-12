@@ -20,6 +20,7 @@ angular.module('ten20Angular.controllers').
 
   // refresh tracker
   $scope.refreshTracker = function(t) {
+    $scope.activeTracker = t;
     $scope.$broadcast('FocusTracker', t);
     $scope.loadRecentMsg(t);
     $scope.loadTrip(t);
