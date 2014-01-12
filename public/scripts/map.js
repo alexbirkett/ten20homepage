@@ -397,6 +397,8 @@
       var latlngs = _getLineCoordsFromMsg(t.recent.msgs);
       var optsPoint = { weight: 2, radius: 5 };
 
+      window.testMap = this.map;
+
       if (latlngs.length === 0) {
         return;
       }
@@ -423,19 +425,59 @@
     };
 
     MapRender.prototype._addPathPoints = function(path, msgs, opts) {
-      var popup;
+      var popup, self;
       var opt = {closeButton: false};
-      for (var i = 0; i < msgs.length; i++) {
-        path.points.push(
-            this.addPoint([
-              msgs[i].location.latitude,
-              msgs[i].location.longitude
-              ], opts));
-        popup = _generatePopup(msgs[i]);
-        path.points[i].bindPopup(popup, opt);
+      
+      self = this;
 
-        _bindEvents(path.points[i]);
-      };
+      // add msg points
+      for (var i = 0; i < msgs.length; i++) {
+        if (_comparePixelDist(msgs[i])) {
+          _addPoint(msgs[i]);
+        }
+      }
+
+      function _addPoint(msg) {
+        var point = self.addPoint([
+              msg.location.latitude,
+              msg.location.longitude
+              ], opts);
+
+        popup = _generatePopup(msg);
+        point.bindPopup(popup, opt);
+        path.points.push(point);
+        _bindEvents(point);
+      }
+
+      function _comparePixelDist(msg) {
+        var prePoint, current, distPixel;
+
+        if (path.points.length === 0) {
+          return true;
+        }
+
+        prePoint = self.map.latLngToLayerPoint(
+          path.points[path.points.length - 1].getLatLng()
+        );
+        
+        current = self.map.latLngToLayerPoint(
+          L.latLng(
+            msg.location.latitude,
+            msg.location.longitude
+          )
+        );
+
+        distPixel = current.distanceTo(prePoint);
+
+        console.log(distPixel);
+
+        if (distPixel > 40) {
+          return true;
+        } else {
+          return false;
+        }
+
+      }
       
     };
 
