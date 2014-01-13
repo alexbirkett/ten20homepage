@@ -18,16 +18,16 @@ mixin itemInfo(item)
 
 section.pricing(id=section.name)
   .container
-    .row-fluid
+    .row
       h4= section.title
-    .row-fluid
+    .row
       each item in section.items
         - if (item.highlighted) {
-          .span4.highlight
+          .col-md-4.highlight
             h3 most popular
             mixin itemInfo(item)
         - } else {
-          .span4
+          .col-md-4
             mixin itemInfo(item)
         - }
 
