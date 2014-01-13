@@ -70,7 +70,7 @@
         </div>
 
         <div class="tracker-bottom">
-          <img src="/images/user/setting.png" model-form src-model="tracker" tpl-url="/templates/trackerSetting.html" method="PATCH" path="/trackers" dialog-class="small" request-prop="settings"/>
+          <img src="/images/user/setting.png" model-form src-model="tracker" tpl-url="/templates/trackerSetting.html" method="PATCH" path="/trackers/{{tracker._id}}" dialog-class="small" request-prop="settings"/>
         </div>
 
       </accordion-group>
@@ -80,8 +80,7 @@
   <!-- bottom nav -->
   <ul class="bottom-nav">
     <li><span><a href="/signout">signout</a></span></li>
-    <li><span><a >my account</a></span></li>
-    <li><span><a >setting</a></span></li>
+    <li><span><a model-form src-model="user" tpl-url="/templates/userSetting.html" method="PATCH" path="/users/{{user._id}}" dialog-class="small">my account</a></span></li>
     <li><span><a href="/#help">help</a></span></li>
   </ul>
 </div>
