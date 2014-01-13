@@ -251,10 +251,8 @@ header {
   line-height:21px;
 }
 
-.mapbox-control-info.active .map-info-container {
-  display: inline-block;
-  background-color: #333;
-  border-radius: 13px;
+.mapbox-control-info {
+  display: none !important;
 }
 
 /* hide legends and attribution */
@@ -324,7 +322,7 @@ header {
 
 .benefits .items {
   position: relative;
-  top: -40px;
+  top: -15px;
   font-size: 14px;
 }
 
@@ -341,7 +339,7 @@ header {
 }
 
 /* list view section styles */
-.list-view .row-fluid .span8 {
+.list-view .row .col-md-8 {
   margin: 30px auto;
   float: none;
   text-align: center;
@@ -352,24 +350,24 @@ header {
   padding-bottom: 20px;
 }
 
-.list-view .span8 h4 {
+.list-view .col-md-8 h4 {
   padding-bottom: 20px;
 }
 
-.list-view .span8 h1 {
+.list-view .col-md-8 h1 {
   text-transform: none;
   margin: 50px 0;
 }
 
-.list-view .span8 h1 span {
+.list-view .col-md-8 h1 span {
   color: #f60;
 }
 
-.list-view .span8 img {
+.list-view .col-md-8 img {
   padding-bottom: 10px;
 }
 
-.list-view .span8 h2 {
+.list-view .col-md-8 h2 {
   max-width: 600px; 
   margin: 20px auto;
 }
@@ -525,7 +523,7 @@ header {
   padding-bottom: 10px;
 }
 
-.pricing .span4 {
+.pricing .col-md-4 {
   margin: 0;
   padding-top: 40px;
 }
@@ -543,7 +541,7 @@ header {
   font-size: 16px;
 }
 
-.pricing .span4:first-child {
+.pricing .col-md-4:first-child {
   margin-left: 2.5%;
 }
 
@@ -584,8 +582,8 @@ header {
   font-size: 16px;
 }
 
-.pricing .span4:first-child .head h3,
-.pricing .span4:last-child .head h3 {
+.pricing .col-md-4:first-child .head h3,
+.pricing .col-md-4:last-child .head h3 {
   color: #f60;
 }
 
@@ -594,7 +592,7 @@ header {
   text-indent: 20px;
 }
 
-.pricing .span4:first-child .head h5 {
+.pricing .col-md-4:first-child .head h5 {
   text-indent: 0;
 }
 
@@ -622,11 +620,11 @@ header {
   font-style: italic;
 }
 
-.pricing .span4 ul {
+.pricing .col-md-4 ul {
   margin: 20px 0;
 }
 
-.pricing .span4 li {
+.pricing .col-md-4 li {
   margin: 2px auto;
   padding: 10px 0 10px 20px;
   width: 70%;
@@ -634,7 +632,7 @@ header {
   background-color: #666;
 }
 
-.pricing .span4 p {
+.pricing .col-md-4 p {
   text-align: left;
   font-size: 14px;
   padding: 0;
@@ -744,7 +742,7 @@ header {
   margin: 80px auto;
 }
 
-.about .row-fluid .span8 {
+.about .row .col-md-8 {
   margin: auto;
   float: none;
 }
@@ -906,7 +904,7 @@ header {
   text-align: center;
 }
 
-.faq .row-fluid .span8 {
+.faq .row .col-md-8 {
   margin: auto;
   float: none;
 }
@@ -1045,13 +1043,13 @@ footer p {
     display: none;
   }
 
-  .benefits .items .span3 {
+  .benefits .items .col-md-3 {
     width: 100%;
     margin: 0;
     padding: 15px;
   }
 
-  .benefits .items .span3 p {
+  .benefits .items .col-md-3 p {
     text-align: center;
   }
 
@@ -1063,11 +1061,11 @@ footer p {
     position: absolute;
   }
 
-  .pricing .span4 {
+  .pricing .col-md-4 {
     border: none;
   }
 
-  .pricing .span4:first-child {
+  .pricing .col-md-4:first-child {
     margin-left: 0;
   }
 
