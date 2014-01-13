@@ -1,8 +1,8 @@
 'use strict';
 
-/* Directives */
+/*  user map direcitve */
 
-angular.module('ten20Angular.directives', []).
+angular.module('ten20Angular').
   directive('userConsole', function() {
     return {
 			templateUrl: '/templates/userConsole.html',
