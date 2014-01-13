@@ -932,6 +932,103 @@ footer p {
   font-size: 12px;
 }
 
+/** modal dialog styles */
+.modal.small .modal-content {
+  width: 300px;
+}
+
+.modal.big .modal-content {
+  width: 500px;
+}
+
+.modal-header {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-header .cancel {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 16px;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: #000;
+  text-align: center;
+  margin: 100px auto;
+}
+
+.modal-body .form-group {
+  text-align: left;
+  height: 35px;
+  padding-top: 12px;
+  border-bottom: 1px solid #444;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.modal-body .form-group label {
+  text-transform: capitalize;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.modal-body .form-group > div {
+  padding: 0;
+}
+
+.modal-body .form-group input {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 20px;
+  text-indent: 5px;
+  background: 0;
+  color: #aaa;
+}
+
+.modal-body .form-group input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.modal-footer {
+  border: none;
+  text-align: center;
+}
+
+.modal-footer button {
+  max-width: 180px;
+  width: 40%;
+  border: 0;
+  opacity: 1;
+  background: rgba(255,102,0,1);
+  color: #eee;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+.modal-footer button:hover {
+  background: rgba(255,102,0,1);
+  color: #eee;
+}
+
+.modal.small .modal-footer button {
+  font-size: 15px;
+  border-radius: 20px;
+  padding: 10px;
+}
+
 /************************* login page styles *********************************/
 
 /************************* 404 page styles *********************************/
