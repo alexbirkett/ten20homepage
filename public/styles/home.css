@@ -948,34 +948,61 @@ footer p {
     position: absolute;
     top: 200px;
   }
+
+  .nav > li {
+    margin-left: 10px;
+  }
 }
 
 
 @media only screen and (max-width: 767px) {
 
-  .nav-collapse .nav { margin-top: 20px; }
+  .navbar { margin-bottom: 0;}
 
-  .navbar { margin-bottom: 0 }
-
-  .navbar .btn-navbar .icon-bar {
-    background-color: #f60;
+  .navbar .navbar-collapse {
+    clear: both;
+    padding: 0;
   }
 
-  .nav > li {
+  .navbar-collapse .nav { 
+    width: 100%;
+  }
+
+  .navbar .navbar-btn {
+    margin-top: 5px;
+    margin-left: 10px;
+    float: right;
+  }
+
+  .navbar .navbar-btn .icon-bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin-bottom: 3px;
+    background-color: #f60;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  }
+
+  .navbar .navbar-collapse .nav > li {
     display: block;
     margin: 10px 0;
     width: 100%;
   }
 
-  .nav > li a {
+  .navbar .navbar-collapse .nav > li a {
     width: 90%;
     display: inline-block;
     text-shadow: none !important;
-    color: #eee !important;
+    color: #eee;
   }
 
-  .nav > li a:hover {
-    color: #f60 !important;
+  .navbar .navbar-collapse .nav > li:hover a{
+    color: #f60;
   }
 
   .mapbox .call-to-action {
