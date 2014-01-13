@@ -196,10 +196,19 @@ tr td,
   cursor: default;
 }
 
-.panel-heading {
-  padding: 7px 10px 5px;
+.panel-group .panel {
+  background: none;
+  border: none;
+}
+
+.panel-group .panel .panel-heading {
+  padding: 10px;
   border-top: 1px solid #444;
-  border-bottom: 1px solid #444;
+  background: none;
+}
+
+.panel-group .panel+.panel {
+  margin-top: 0;
 }
 
 .panel-heading .panel-title {
@@ -245,6 +254,10 @@ tr td,
   background-image: url("/images/user/arrow-right.png");
 }
 
+.panel-group .panel-heading +.panel-collapse .panel-body {
+  border-top: none;
+}
+
 .opened .panel-heading span.dropdown{
   margin-top: 5px;
   background-image: url("/images/user/arrow-down.png");
@@ -268,7 +281,7 @@ tr td,
 }
 
 .tracker-content .nav li {
-  width: 125px;
+  width: 110px;
   height: 42px;
   display: inline-block;
   background-color: #333;
