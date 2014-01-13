@@ -505,6 +505,7 @@ header {
   margin-left: 20px;
   border-radius: 5px;
   background-color: #ddd;
+  border: none;
 }
 
 .carousel-view .carousel-control {
@@ -541,20 +542,16 @@ header {
   font-size: 16px;
 }
 
-.pricing .col-md-4:first-child {
-  margin-left: 2.5%;
-}
-
 .pricing .head {
   background-color: #444;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  max-width: 300px;
   width: 70%;
-  height: auto;
+  max-width: 300px;
   margin: 0 auto;
   padding: 20px 10px;
+  padding-bottom: 50px;
 }
 
 .pricing .highlight .head {
@@ -569,7 +566,6 @@ header {
 }
 
 .pricing .head > a {
-  display: inline-block;
   margin-bottom: 20px;
   padding: 10px 25px;
   -webkit-border-radius: 5px;
@@ -590,6 +586,7 @@ header {
 .pricing .head h5 {
   padding-bottom: 10px;
   text-indent: 20px;
+  margin-bottom: 30px;
 }
 
 .pricing .col-md-4:first-child .head h5 {
@@ -621,14 +618,16 @@ header {
 }
 
 .pricing .col-md-4 ul {
-  margin: 20px 0;
+  margin: 20px auto;
+  width: 70%;
+  max-width: 300px;
+  padding: 0;
 }
 
 .pricing .col-md-4 li {
-  margin: 2px auto;
+  margin: 2px 0;
   padding: 10px 0 10px 20px;
-  width: 70%;
-  max-width: 300px;
+  width: 100%;
   background-color: #666;
 }
 
