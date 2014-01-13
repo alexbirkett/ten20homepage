@@ -781,6 +781,7 @@ header {
   text-align: left;
   display: inline-block;
   margin-right: 5px;
+  font-size: 14px;
 }
 
 .form input {
