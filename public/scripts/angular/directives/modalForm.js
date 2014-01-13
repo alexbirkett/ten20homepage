@@ -8,6 +8,7 @@ angular.module('ten20Angular').
 			restrict: 'A',
       scope: {
         srcModel: "=", // data model bind to the modal dialog template
+        requestProp: "@", // data field that send to server in srcModel
         tplUrl: "@",  // modal dialog template url
         method: "@",  // server request method, POST, PUT, etc
         path: "@",   // server request path
@@ -26,7 +27,7 @@ angular.module('ten20Angular').
                   src: $scope.srcModel,
                   ajaxMethod: $scope.method,
                   ajaxUrl: $scope.path,
-                  width: $scope.width
+                  field: $scope.requestProp
                 };
               }
             },
@@ -39,20 +40,24 @@ angular.module('ten20Angular').
           });
         };
 
-        var ModalInstanceCtrl = function($scope, $http, $modalInstance, config) {
+        var ModalInstanceCtrl = function($scope, $http, $timeout, $modalInstance, config) {
 
+          $scope.sync = false;
+          $scope.error = '';
           $scope.data = config.src;
 
           $scope.ok = function () {
-            $scope.showLoadingBar = true;
+            $scope.sync = true;
             $http({
               method: config.ajaxMethod,
               url: config.ajaxUrl,
-              data: config.src
+              data: config.field?config.src[config.field]:config.src
             }).success(function () {
-              console.log('reqeust success');
-            }).error(function (argument) {
-              console.log('reqeust fail');
+              $scope.sync = false;
+            }).error(function(error) {
+              $scope.sync = false;
+              $scope.error = error;
+              $timeout(function() { $scope.error = '';}, 5000);
             });
             //$modalInstance.close($scope.data);
           };
