@@ -250,6 +250,10 @@ tr td,
   background-image: url("/images/user/arrow-right.png");
 }
 
+.panel-collapse .panel-body {
+  padding: 10px 0;
+}
+
 .panel-group .panel-heading +.panel-collapse .panel-body {
   border-top: none;
 }
@@ -277,7 +281,7 @@ tr td,
 }
 
 .tracker-content .nav li {
-  width: 110px;
+  width: 125px;
   height: 42px;
   display: inline-block;
   background-color: #333;
@@ -399,13 +403,9 @@ tr td,
   text-decoration: none;
 }
 
-.tracker-bottom > a img {
-  float: left;
-  margin: 10px 15px;
-}
-
 .tracker-bottom > img {
-  margin-left: 210px;
+  float: right;
+  margin-right: 10px;
 }
 
 
