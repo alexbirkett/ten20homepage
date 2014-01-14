@@ -1,9 +1,6 @@
 /* defines the basice prototype of map class */
 (function() {
   'use strict';
-
-  var MAX_PATH_POINTS = 25;
-
   window.ten20 = window.ten20 || {};
 
   window.ten20.createMapProto = function () {
@@ -396,7 +393,6 @@
 
     // update recent message location to map
     MapRender.prototype.updateTail = function(t) {
-      console.log('update tail');
       var marker = this._findMarker(t);
       var latlngs = _getLineCoordsFromMsg(t.recent.msgs);
       var optsPoint = { weight: 2, radius: 5 };
@@ -428,27 +424,19 @@
 
     MapRender.prototype._addPathPoints = function(path, msgs, opts) {
       var popup;
-      var opt = { closeButton: false };
+      var opt = {closeButton: false};
+      for (var i = 0; i < msgs.length; i++) {
+        path.points.push(
+            this.addPoint([
+              msgs[i].location.latitude,
+              msgs[i].location.longitude
+              ], opts));
+        popup = _generatePopup(msgs[i]);
+        path.points[i].bindPopup(popup, opt);
 
-      var skip = 1;
-      if (msgs.length > MAX_PATH_POINTS) {
-          skip = Math.floor(msgs.length / MAX_PATH_POINTS);
-      }
-
-      for (var i = 0; i < msgs.length; i = skip + i) {
-        var message = msgs[i].message;
-        if (message && message.location && message.location.latitude && message.location.latitude) {
-            var point = this.addPoint([
-                message.location.latitude,
-                message.location.longitude
-            ], opts);
-
-            path.points.push(point);
-            popup = _generatePopup(message);
-            point.bindPopup(popup, opt);
-            _bindEvents(point);
-        }
+        _bindEvents(path.points[i]);
       };
+      
     };
 
     
@@ -487,21 +475,14 @@
     };
 
     function _getLineCoordsFromMsg(msgs) {
-
-        var lines = [];
+      var lines = [];
 
       for (var i = 0; i < msgs.length; i++) {
-
-        var message = msgs[i].message;
-        if (message && message.location && message.location.latitude && message.location.longitude) {
-            lines.push([
-                message.location.latitude,
-                message.location.longitude
+        lines.push([
+            msgs[i].location.latitude,
+            msgs[i].location.longitude
             ]);
-        }
-
       };
-
 
       return lines;
     }
