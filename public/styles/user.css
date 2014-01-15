@@ -472,7 +472,7 @@ tr td,
   margin: 20px auto;
   font-size: 13px;
   text-transform: capitalize;
-  color: rgb(235, 61, 61);
+  color: #f60;
 }
 
 .trip-list {
@@ -521,6 +521,13 @@ tr td,
 
 .trip-load .btn {
   text-transform: capitalize;
+  color: #f60;
+  background-image: none;
+  background-color: #eee;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border: 0;
 }
 
 /* nav styles*/
