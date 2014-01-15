@@ -373,55 +373,55 @@
       }
     };
 
-    MapRender.prototype._addTail = function(t) {
+    MapRender.prototype._addPath = function(t) {
       var marker = this._findMarker(t);
       var latlngs = [];
       var optsLine = { weight: 2 };
       var optsPoint = { weight: 2, radius: 3 };
 
       if (marker) {
-        marker.tail = {line:null, points:[]};
-        latlngs = _getLineCoordsFromMsg(t.recent.msgs);
+        marker.path = {line:null, points:[]};
+        latlngs = _getLineCoordsFromMsg(t.path);
         if (t.settings) {
           optsLine.color = '#' + t.settings.iconColor;
           optsPoint.color = '#' + t.settings.iconColor;
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
-        marker.tail.line = this.addPolyline(latlngs, optsLine);
-        this._addPathPoints(marker.tail, t.recent.msgs, optsPoint);
+        marker.path.line = this.addPolyline(latlngs, optsLine);
+        this.map.fitBounds(marker.path.line.getBounds());
+        this._addPathPoints(marker.path, t.path, optsPoint);
       }
     };
 
     // update recent message location to map
-    MapRender.prototype.updateTail = function(t) {
+    MapRender.prototype.updatePath = function(t) {
       var marker = this._findMarker(t);
-      var latlngs = _getLineCoordsFromMsg(t.recent.msgs);
-      var optsPoint = { weight: 2, radius: 3 };
-
-      window.testMap = this.map;
+      var latlngs = _getLineCoordsFromMsg(t.path);
+      var optsPoint = { weight: 2, radius: 4 };
 
       if (latlngs.length === 0) {
         return;
       }
       // pick a point to show marker
       if (!marker) {
-        t.lastMessage.location = t.recent.msgs[0].location;
+        t.lastMessage.location = t.path[0];
         this.updateTracker(t, true);
-        this.updateTail(t);
+        this.updatePath(t);
         return;
       }
 
-      if (marker.tail) {
+      if (marker.path) {
         if (t.settings) {
           optsPoint.color = '#' + t.settings.iconColor;
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
 
-        this._clearPathPoints(marker.tail);
-        marker.tail.line.setLatLngs(latlngs);
-        this._addPathPoints(marker.tail, t.recent.msgs, optsPoint);
+        this._clearPathPoints(marker.path);
+        marker.path.line.setLatLngs(latlngs);
+        this.map.fitBounds(marker.path.line.getBounds());
+        this._addPathPoints(marker.path, t.path, optsPoint);
       } else {
-        this._addTail(t);
+        this._addPath(t);
       }
     };
 
@@ -440,9 +440,8 @@
 
       function _addPoint(msg) {
         var point = self.addPoint([
-              msg.location.latitude,
-              msg.location.longitude
-              ], opts);
+              msg.latitude, msg.longitude
+            ], opts);
 
         popup = _generatePopup(msg, opts);
         point.bindPopup(popup, opt);
@@ -462,10 +461,7 @@
         );
         
         current = self.map.latLngToLayerPoint(
-          L.latLng(
-            msg.location.latitude,
-            msg.location.longitude
-          )
+          L.latLng(msg.latitude, msg.longitude)
         );
 
         distPixel = current.distanceTo(prePoint);
@@ -490,38 +486,13 @@
       path.points = [];
     };
 
-    MapRender.prototype._addTrip = function(t) {
-      var marker = this._findMarker(t);
-      var latlngs = [];
-
-      if (marker) {
-        latlngs = _getLineCoordsFromMsg(t.trip.msgs);
-        marker.trip = this.addPolyline(latlngs);
-      }
-    };
-
-    MapRender.prototype.updateTrip = function(t) {
-      var marker = this._findMarker(t);
-      var latlngs = _getLineCoordsFromMsg(t.trip.msgs);
-
-      if (latlngs.length === 0) {
-        return;
-      }
-
-      if (marker.trip) {
-        marker.trip.setLatLngs(latlngs);
-      } else {
-        this._addTrip(t);
-      }
-    };
-
     function _getLineCoordsFromMsg(msgs) {
       var lines = [];
 
       for (var i = 0; i < msgs.length; i++) {
         lines.push([
-            msgs[i].location.latitude,
-            msgs[i].location.longitude
+            msgs[i].latitude,
+            msgs[i].longitude
             ]);
       };
 
@@ -529,14 +500,14 @@
     }
 
     function _generatePopup(msg, opts) {
-      var time = msg.location.timestamp.split('T')[1].slice(0, 5);
+      var time = msg.timestamp.split('T')[1].slice(0, 5);
 
       return '<p><span class="marker" style="background-color:' +
              opts.color +' "></span>' + '<span>' + time + '</span>' +
              '<span style="color:' + opts.color + '">' +
-              + msg.location.latitude.toFixed(3) + 
+              + msg.latitude.toFixed(3) + 
              '</span><span style="color:' + opts.color + '">' +
-              msg.location.longitude.toFixed(3) +'</span></p>';
+              msg.longitude.toFixed(3) +'</span></p>';
     }
 
     function _bindEvents(marker) {
