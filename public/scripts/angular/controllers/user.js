@@ -67,6 +67,7 @@ angular.module('ten20Angular.controllers').
 
   // load recent msg of a tracker
   $scope.recentMsg = function(t) {
+
     $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
       console.log('------recent_message-----');
       t.recent = t.recent || {};
@@ -88,6 +89,11 @@ angular.module('ten20Angular.controllers').
 
   $scope.loadTrips = function (tracker, init) {
     var BATCH = 3; // load trip counts per time
+
+    if (tracker.trips && tracker.trips.error !== '') {
+      return false;
+    }
+
     // prevent load more if user secondly click trip tab
     if (init && tracker.trips &&
         tracker.trips.data.length !==0) {
@@ -95,7 +101,7 @@ angular.module('ten20Angular.controllers').
       return;
     }
 
-    tracker.trips ? null: tracker.trips = { data:[], destCnt: 0 };
+    tracker.trips ? null: tracker.trips = { data:[], destCnt: 0, error: '' };
     tracker.trips.destCnt = tracker.trips.data.length + BATCH;
     tracker.trips.loading = true;
 
