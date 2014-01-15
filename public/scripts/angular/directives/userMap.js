@@ -85,7 +85,7 @@ angular.module('ten20Angular').
           // bind map zoom event
           $scope.userMap.map.on('zoomend', function() {
             if ($scope.activeTracker) {
-              _updateRecent(null, $scope.activeTracker);
+              _updatePath(null, $scope.activeTracker);
             }
           });
         }
@@ -93,8 +93,7 @@ angular.module('ten20Angular').
         $scope.$on('InitMap', _initMap);
         $scope.$on('TrackerUpdate', _updateTracker);
         $scope.$on('FocusTracker', _focusTracker);
-        $scope.$on('RecentUpdate', _updateRecent);
-        $scope.$on('TripUpdate', _updateTrip);
+        $scope.$on('PathUpdate', _updatePath);
 
         // center map to tracker location
         function _focusTracker(e, t) {
@@ -105,19 +104,11 @@ angular.module('ten20Angular').
           $scope.userMap.updateTracker(t);
         }
 
-        // show recent msg on map for a tracker
-        function _updateRecent(e, t) {
-          if (t.recent && t.recent.msgs.length !== 0) {
-            $scope.userMap.updateTail(t);
+        // show recent or trip msg as path on map for a tracker
+        function _updatePath(e, t) {
+          if (t.path && t.path.length !== 0) {
+            $scope.userMap.updatePath(t);
           }
-        }
-
-        // show recent msg on map for a tracker
-        function _updateTrip(e, t, timespan) {
-          if (t.trip && t.trip.msgs.length !== 0) {
-            $scope.userMap.updateTrip(t);
-          }
-
         }
 
       },

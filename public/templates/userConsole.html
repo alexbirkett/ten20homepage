@@ -24,7 +24,7 @@
         <div class="tracker-content">
           <tabset>
             <tab class="info-tab">
-              <tab-heading class="tracker-info">
+              <tab-heading class="tracker-info" ng-click="recentMsg(tracker)">
                 <img src="/images/user/info-whiter.png"/>
                 <span>info</span>
               </tab-heading>
@@ -44,7 +44,7 @@
             </tab>
 
             <tab class="history-tab">
-              <tab-heading class="tracker-history">
+              <tab-heading class="tracker-history" ng-click="loadTrips(tracker, true)">
                 <img src="/images/user/trip-small.png"/>
                 <span>trip</span>
               </tab-heading>
@@ -56,13 +56,15 @@
                 </div>
 
                 <ul class="trip-list">
-                  <li ng-repeat="item in tracker.trip.slices"
-                  ng-click="updateHistoryTrip($index)"
-                  ng-class="{active : isHistoryItemSelected($index)}">
-                  <span>time:</span><span class="timeslot">{{slices[0].timestamp | timeFormat: 'time'}}</span>
+                  <li ng-repeat="item in tracker.trips.data"
+                  ng-click="showTrip(tracker, $index)"
+                  ng-class="{active : $index === tracker.trips.active}">
+                  <span>time:</span><span class="timeslot">{{item.startTime| timeFormat: 'time'}}</span>
                     <img src="/images/user/info-small.png"/>
                   </li>
                 </ul>
+
+                <button ng-click="loadTrips(tracker)"> load more</button>
 
               </div>
             </tab>
