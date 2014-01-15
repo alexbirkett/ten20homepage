@@ -94,6 +94,7 @@ exports.index = function(req, res){
         // set environment variable
         res.render('index', model);
       } else {
+          res.status(404);
           res.render('404', {pageTitle: 'Page Not Found'});
       }
 };
