@@ -26,8 +26,7 @@
               "numberOfTrackers": 5,
               "zoomControl": true,
               "showTail": true,
-              "tile": "alexbirkett.map-t0fodlre",
-              "layers": [ {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"}, 
+              "layers": [ {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"},
                           { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}]
             }
         },
