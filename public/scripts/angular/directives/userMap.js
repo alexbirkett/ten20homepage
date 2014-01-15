@@ -17,6 +17,19 @@ angular.module('ten20Angular').
             scope.refreshTracker(panelScope.tracker);
           }
         });
+
+        // bind tracker tab click to update tracker recent or trip
+        element.delegate('.nav-tabs a', 'click', function(e) {
+          var tracker = $(e.target).parents('.panel').scope().tracker;
+          var infoTab = $(e.target).parent().hasClass('info-tab');
+
+          if (infoTab) {
+            scope.recentMsg(tracker);
+          } else {
+            scope.loadTrips(tracker, true);
+          }
+        });
+
       }
     };
   }).
@@ -82,7 +95,6 @@ angular.module('ten20Angular').
           // add trackers
           $timeout(_initTrackers, 500);
 
-          window.mapboxMap = $scope.userMap.map;
           // bind map zoom event
           $scope.userMap.map.on('zoomend', function() {
             if ($scope.activeTracker) {
