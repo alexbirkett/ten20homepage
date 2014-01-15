@@ -37,6 +37,13 @@
           var layer = this.layers[i];
           tileLayers[layer.label] = L.mapbox.tileLayer(layer.tileLayer);
         }
+
+        if (!this.tile) {
+            // Add first layer to map
+            tileLayers[this.layers[0].label].addTo(this.map);
+        }
+
+
         L.control.layers(tileLayers).addTo(this.map);
       }
       // set map geometry

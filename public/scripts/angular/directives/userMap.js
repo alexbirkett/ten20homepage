@@ -76,7 +76,6 @@ angular.module('ten20Angular').
             "lng": 0,
             "zoomLevel": 6,
             "zoomControl":true,
-            "tile":"alexbirkett.map-t0fodlre",
             "layers":[
               {
                 "label":"Satellite",
