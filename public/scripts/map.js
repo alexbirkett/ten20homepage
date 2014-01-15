@@ -26,7 +26,7 @@
             $(this).parent().children().removeClass('active');
             $(this).addClass('active');
 
-            if ($(this).is(':last-child')) {
+            if ($(this).is(':first-child')) {
                 $('.leaflet-control-layers-list').addClass('darker');
             } else {
                 $('.leaflet-control-layers-list').removeClass('darker');
