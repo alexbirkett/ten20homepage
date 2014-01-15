@@ -1,12 +1,12 @@
 section.benefits
   .container
-    .row-fluid
-      .span12
+    .row
+      .col-md-12
         hr
-    .row-fluid
+    .row
       .items
         each item in section.items
-          .span3
+          .col-md-3
             img(src="/images/" + item.icon)
             h2= item.title
             p= item.text

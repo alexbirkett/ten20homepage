@@ -1,12 +1,12 @@
 section.about(id=section.type)
   .container
-    .row-fluid
-      .span12
+    .row
+      .col-md-12
         .head
           h4= section.title
           h1= section.description
-    .row-fluid
-      .span8
+    .row
+      .col-md-8
         ul.persons
           each item in section.items
             li

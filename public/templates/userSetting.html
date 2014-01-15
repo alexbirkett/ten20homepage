@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h3>{{data.username}}</h3>
+  <h6 class="error" ng-show="error!=''">{{error}}</h6>
+  <div class="cancel" ng-click="cancel()">
+    <span>X</span>
+  </div>
+</div>
+<div class="modal-body">
+  <form name="f" class="form-horizontal" role="form">
+    <div class="form-group">
+      <label for="#email" class="col-sm-2 control-label">email:</label>
+      <div class="col-sm-10">
+        <input type="text" id="email" class="form-control" ng-model="data.email" ng-disabled="sync" ng-pattern="/.*@.*/" required/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="#passwd" class="col-sm-4 control-label">password:</label>
+      <div class="col-sm-8">
+        <input type="password" id="passwd" class="form-control" ng-model="data.pass" ng-disabled="sync" ng-minlength="6" ng-pattern="/^\d+$/"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="#tz" class="col-sm-4 control-label">time zone:</label>
+      <div class="col-sm-8">
+        <input type="text" id="tz" class="form-control" ng-model="data.tz" ng-disabled="sync" ng-minlength="3" ng-pattern="/^\d+$/"/>
+      </div>
+    </div>
+  </form>
+  <h4 class="progress-bar" ng-show="sync"><img src="/images/loading_bar.gif" alt="" /></h4>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-disabled="sync" ng-click="ok()">save</button>
+</div>

@@ -2,24 +2,22 @@ extends layout-angular
 
 block content
   .login-form.submit-form-container
-    .row-fluid 
-      .span12
+    .row
+      ..col-md-12
         form.form-horizontal.submit-form
-          .control-group
-            a.controls(href='/')
+          .form-group
+            a.(href='/')
               img(src='/images/logo.png')
               | admin
 
-            h5.controls.alerter login failed!
+            h5.alerter login failed!
 
-          .control-group
+          .form-group
             label.control-label(for="username") Username
-            .controls
               input(type="text",id="username",placeholder="user name")
 
-          .control-group
+          .form-group
             label.control-label(for="password") Password
-            .controls
               input(type="password",id="password", placeholder="Password")
               br
               br
