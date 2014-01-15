@@ -30,6 +30,10 @@ angular.module('ten20Angular').
           }
         });
 
+        // make tool box draggable
+         var toolbox = element.find('.tool-box')[0];
+         draggable(toolbox);
+
       }
     };
   }).
