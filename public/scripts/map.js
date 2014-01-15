@@ -408,7 +408,7 @@
       if (!marker) {
         t.lastMessage.location = t.path[0];
         this.updateTracker(t, true);
-        this.updatePath(t);
+        this.updatePath(t, true);
         return;
       }
 
