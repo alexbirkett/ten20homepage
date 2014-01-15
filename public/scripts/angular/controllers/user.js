@@ -15,7 +15,7 @@ angular.module('ten20Angular.controllers').
   // get trackers info
   $http.get('/trackers').success(function(data) {
     $scope.trackers = data.items;
-    $scope.$broadcast('InitMap');
+    $scope.$broadcast('InitTrackers');
   });
 
   var delay = 1; // delay seconds for get trip message
