@@ -82,10 +82,11 @@ angular.module('ten20Angular').
           // add trackers
           $timeout(_initTrackers, 500);
 
+          window.mapboxMap = $scope.userMap.map;
           // bind map zoom event
           $scope.userMap.map.on('zoomend', function() {
             if ($scope.activeTracker) {
-              _updatePath(null, $scope.activeTracker);
+              $scope.userMap.updatePath($scope.activeTracker, false);
             }
           });
         }
@@ -107,7 +108,7 @@ angular.module('ten20Angular').
         // show recent or trip msg as path on map for a tracker
         function _updatePath(e, t) {
           if (t.path && t.path.length !== 0) {
-            $scope.userMap.updatePath(t);
+            $scope.userMap.updatePath(t, true);
           }
         }
 
