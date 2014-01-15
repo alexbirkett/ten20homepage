@@ -18,6 +18,28 @@ angular.module('ten20Angular.controllers').
     $scope.$broadcast('InitMap');
   });
 
+  function getMessages() {
+    $http.get('/message/notify').success(function (tracker) {
+      var newTracker = true;
+      console.log(tracker.name + ' udpated');
+
+      for (var i = 0; i < $scope.trackers.length; i++) {
+        if ($scope.trackers[i]._id === tracker._id) {
+          $scope.trackers[i] = tracker;
+          newTracker = false;
+        }
+      };
+      if (newTracker) {
+        $scope.trackers.push(tracker);
+      }
+
+      $scope.$broadcast('TrackerUpdate', tracker);
+      getMessages();
+
+    });
+  }
+  getMessages();
+
   // refresh tracker
   $scope.refreshTracker = function(t) {
     $scope.activeTracker = t;
