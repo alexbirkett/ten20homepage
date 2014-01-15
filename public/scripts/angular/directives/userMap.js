@@ -25,11 +25,6 @@ angular.module('ten20Angular').
 			restrict: 'A',
       scope: true,
       controller: function($scope, $element, $attrs) {
-        // add tracker to map
-        $scope.mapTracker = function(msg) {
-          $scope.userMap.updateTracker(msg);
-        };
-
         // init trackers
         function _initTrackers() {
           // check whether user has trackers
@@ -96,6 +91,7 @@ angular.module('ten20Angular').
         }
 
         $scope.$on('InitMap', _initMap);
+        $scope.$on('TrackerUpdate', _updateTracker);
         $scope.$on('FocusTracker', _focusTracker);
         $scope.$on('RecentUpdate', _updateRecent);
         $scope.$on('TripUpdate', _updateTrip);
@@ -103,6 +99,10 @@ angular.module('ten20Angular').
         // center map to tracker location
         function _focusTracker(e, t) {
           $scope.userMap.updateTracker(t, true);
+        }
+
+        function _updateTracker(e, t) {
+          $scope.userMap.updateTracker(t);
         }
 
         // show recent msg on map for a tracker
