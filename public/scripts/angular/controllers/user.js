@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('ten20Angular.controllers').
-  controller('UserCtrl', function ($scope, $http) {
+  controller('UserCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
   // init user and trackers information
   $scope.user = {};
   $scope.trackers = [];
@@ -15,133 +15,154 @@ angular.module('ten20Angular.controllers').
   // get trackers info
   $http.get('/trackers').success(function(data) {
     $scope.trackers = data.items;
-    $scope.$broadcast('InitMap');
+    $scope.$broadcast('InitTrackers');
   });
+
+  var delay = 1; // delay seconds for get trip message
+  function getMessages() {
+    var start = new Date().valueOf();
+    $http.get('/message/notify').success(function (tracker) {
+      var newTracker = true;
+
+      // server response time less than One secend
+      if ((new Date().valueOf()) - start < 2000) {
+        delay *= 2;
+      } else {
+        // reset delay
+        delay = 1;
+      }
+
+      console.log(tracker.name + ' udpated');
+      // update or add tracker
+      for (var i = 0; i < $scope.trackers.length; i++) {
+        if ($scope.trackers[i]._id === tracker._id) {
+          for (var key in tracker) {
+            $scope.trackers[i][key] = tracker[key];
+          }
+          newTracker = false;
+        }
+      }
+
+      if (newTracker) {
+        $scope.trackers.push(tracker);
+      }
+
+      $scope.$broadcast('TrackerUpdate', tracker);
+      $timeout(getMessages, delay * 1000);
+
+    }).error(function() {
+      delay *= 2;
+      $timeout(getMessages, delay * 1000);
+    });
+  }
+
+  getMessages();
 
   // refresh tracker
   $scope.refreshTracker = function(t) {
+    $scope.activeTracker = t;
     $scope.$broadcast('FocusTracker', t);
-    $scope.loadRecentMsg(t);
-    $scope.loadTrip(t);
+    $scope.recentMsg(t);
   };
 
   // load recent msg of a tracker
-  $scope.loadRecentMsg = function(t) {
+  $scope.recentMsg = function(t) {
+
     $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
       console.log('------recent_message-----');
       t.recent = t.recent || {};
-      // REMOVE LATER
-      //t.recent.msgs = _filterMessage(_stubDataforTesing(data.items));
-      t.recent.msgs = _stubDataforTesing(data.items);
+      t.recent.msgs = _filterValidMsg(data.items);
       console.log(t.recent.msgs);
-      $scope.$broadcast('RecentUpdate', t);
+      if (t.recent.msgs.length > 1) {
+        t.path = t.recent.msgs;
+        $scope.$broadcast('PathUpdate', t);
+      }
     });
   }
   
   // load trips of at tracker
-  $scope.loadTrip = function(t) {
-    $http.get('/trips?trackerId=' + t._id).success(function(data) {
-      console.log('------trips-----');
-      console.log(data);
-      t.trip = t.trip || {};
-      t.trip.msgs = data;
-      $scope.$broadcast('TripUpdate', t);
+  $scope.showTrip = function(t, index) {
+      t.path = t.trips.data[index].messages;
+      t.trips.active = index;
+      $scope.$broadcast('PathUpdate', t);
+  };
+
+  $scope.loadTrips = function (tracker, init) {
+    var BATCH = 3; // load trip counts per time
+
+    if (tracker.trips && tracker.trips.error !== '') {
+      return false;
+    }
+
+    // prevent load more if user secondly click trip tab
+    if (init && tracker.trips &&
+        tracker.trips.data.length !==0) {
+      $scope.showTrip(tracker, 0);
+      return;
+    }
+
+    tracker.trips ? null: tracker.trips = { data:[], destCnt: 0, error: '' };
+    tracker.trips.destCnt = tracker.trips.data.length + BATCH;
+    tracker.trips.loading = true;
+
+    _getOneTrip(tracker);
+  };
+
+  // get one trip from server
+  function _getOneTrip(tracker) {
+    var trips = tracker.trips;
+    var before = '';
+    var url;
+
+    if (trips.length > 0) {
+      before = '&_id=before$' + trips[trips.length - 1]._id;
+    }
+
+    url = '/trips?sortBy=_id$desc&limit=1&trackerId=' + tracker._id + before;
+    console.log(url);
+
+    $http.get(url).success(function (documents) {
+      if (documents.items.length > 0) {
+        trips.data.push(_simplifyTripMsg(documents.items[0]));
+        // get next trip
+        if (trips.data.length < tracker.trips.destCnt) {
+          _getOneTrip(tracker);
+        } else {
+          tracker.trips.loading = false;
+        }
+        tracker.trips.error = '';
+      } else {
+        tracker.trips.loading = false;
+        tracker.trips.error = 'no trips, retry later';
+        $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
+      }
+    }).error(function(data) {
+      tracker.trips.error = data;
+      tracker.trips.loading = false;
+      $timeout(function() { tracker.trips.error = ''; }, 5000);
     });
+  };
+
+  function _simplifyTripMsg(trip) {
+    // cut useless info in trip messages
+    trip.messages = _filterValidMsg(trip.messages);
+
+    return trip;
   }
 
-  //TODO: remove later
-  function _stubDataforTesing(data) {
-    var l;
+  function _filterValidMsg(data) {
     var validMsg = [];
-    var mockL;
 
     // filter out useless messages
     for (var i = 0; i < data.length; i++) {
       if (data[i].message && data[i].message.location) {
-        validMsg.push(data[i].message);
+        validMsg.push(data[i].message.location);
       }
-    };
-
-    return validMsg;
-
-    l = validMsg.length;
-
-    if (l === 0) {
-      return [];
-    } else if (l <= 6) {
-      mockL = l;
-    } else {
-      mockL = Math.min(l, l%7 + 6);
-    }
-    // cut data to mock length
-    data.splice(mockL, l - mockL);
-
-    // start from index 1
-    for (var i = 1; i < mockL; i++) {
-      validMsg[i].message.location.latitude = validMsg[i - 1].message.location.latitude + _randomDelta();
-      validMsg[i].message.location.longitude = validMsg[i - 1].message.location.longitude + _randomDelta();
-    };
-
-    function _randomDelta() {
-      return Math.random() * 0.01 - 0.005;
     }
 
     return validMsg;
   }
 
-  // filter out useless messages, condition:
-  // Two point distance greater than 400m
-  function _filterMessage(m) {
-    var validMsg = [];
-
-    for (var i = 0; i < m.length; i++) {
-      if (m[i].message.location) {
-        if (validMsg.length !== 0) {
-          if (_compareDist(m[i].message, validMsg[validMsg.length - 1])) {
-            validMsg.push(m[i].message);
-          }
-        } else {
-          validMsg.push(m[i].message);
-        }
-      }
-    };
-
-    return validMsg;
-  }
-  // compare two message distance
-  function _compareDist(msg1, msg2) {
-
-    var dist = _getDistanceFromLatLonInKm(
-          msg1.location.latitude, msg1.location.longitude,
-          msg2.location.latitude, msg2.location.longitude
-        );
-
-    if (dist > 0.4) {
-      return true;
-    } 
-
-    return false;
-  }
-
-  // calculate two point circle distance on earth
-  function _getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = _deg2rad(lat2-lat1);  // deg2rad below
-    var dLon = _deg2rad(lon2-lon1); 
-    var a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(_deg2rad(lat1)) * Math.cos(_deg2rad(lat2)) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-      ; 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    var d = R * c; // Distance in km
-    return d;
-  }
-  // degree to radius
-  function _deg2rad(deg) {
-    return deg * (Math.PI/180)
-  }
-
-});
+}]);
 
 

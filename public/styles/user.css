@@ -19,6 +19,16 @@ body { margin:0; padding:0; }
   background-color: #aaa;
 }
 
+.user-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+
 /* tool box styles */
 .tool-box {
   position: fixed;
@@ -27,14 +37,6 @@ body { margin:0; padding:0; }
   width: 250px;
   background-color: #333;
   z-index: 2000;
-}
-
-.tool-box .panel-collapse {
-  overflow: hidden;
-}
-
-.tool-box .panel-collapse.in {
-  overflow: visible;
 }
 
 .time-weather {
@@ -73,77 +75,62 @@ body { margin:0; padding:0; }
 }
 
 /* calendar styles */
-.ui-datepicker {
-  display: none;
+.dropdown-menu {
   background-color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu table .btn {
+  border: none;
+  background: none;
+  color: #eee;
+  border-radius: 0;
+  box-shadow:none;
+  text-shadow: none;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.dropdown-menu table .btn:hover {
+  color: #f60;
+}
+
+.dropdown-menu table .btn.btn-info {
+  background-color: #f60;
+}
+
+.dropdown-menu table .btn.btn-info:hover {
   color: #eee;
 }
 
-.ui-datepicker-header {
-  padding: 10px 15px;
+.dropdown-menu .glyphicon.glyphicon-chevron-right {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("/images/user/calendar-right.png");
 }
 
-.ui-datepicker-calendar td,
-.ui-datepicker-calendar th {
-  width: 35px;
+.dropdown-menu .glyphicon.glyphicon-chevron-left {
+  display: inline-block;
+  width: 20px;
   height: 20px;
+  background-image: url("/images/user/calendar-left.png");
+}
+
+.glyphicon.glyphicon-chevron-right:before, 
+.glyphicon.glyphicon-chevron-left:before {
+  display: none;
+}
+
+tr td,
+.h6 th {
   text-align: center;
   border: 1px solid #555;
 }
 
-.ui-datepicker-calendar td a {
-  color: #eee;
-  text-decoration: none;
-}
-
-.ui-datepicker-calendar th {
+.h6 th {
   color: #f60;
-  font-size: 13px;
-  letter-spacing: 0;
-}
-
-.ui-datepicker-year {
-  margin-left: 5px;
-  color: #f60;
-}
-
-.ui-datepicker-prev {
-  width: 20px;
-  height: 20px;
-  background-image: url("/images/user/calendar-left.png");
-  background-repeat: no-repeat;
-  float: left;
-}
-
-.ui-datepicker-next {
-  width: 20px;
-  height: 20px;
-  background-image: url("/images/user/calendar-right.png");
-  background-repeat: no-repeat;
-  float: right;
-}
-
-.ui-datepicker-title {
-  text-align: center;
-  font-size: 14px;
-  padding-top: 2px;
-}
-
-.ui-datepicker-next span,
-.ui-datepicker-prev span {
-  display: none;
-}
-
-.ui-datepicker-today {
-  background-color: #222;
-}
-
-.ui-datepicker-calendar .ui-datepicker-today a {
-  color: #f60;
-}
-
-.ui-datepicker-calendar td a:hover {
-color: #f60;
 }
 
 /* trip info styles */
@@ -206,10 +193,19 @@ color: #f60;
   cursor: default;
 }
 
-.panel-heading {
-  padding: 7px 10px 5px;
+.panel-group .panel {
+  background: none;
+  border: none;
+}
+
+.panel-group .panel .panel-heading {
+  padding: 10px;
   border-top: 1px solid #444;
-  border-bottom: 1px solid #444;
+  background: none;
+}
+
+.panel-group .panel+.panel {
+  margin-top: 0;
 }
 
 .panel-heading .panel-title {
@@ -253,6 +249,14 @@ color: #f60;
   margin-top: 3px;
   background-repeat: no-repeat;
   background-image: url("/images/user/arrow-right.png");
+}
+
+.panel-collapse .panel-body {
+  padding: 10px 0;
+}
+
+.panel-group .panel-heading +.panel-collapse .panel-body {
+  border-top: none;
 }
 
 .opened .panel-heading span.dropdown{
@@ -400,13 +404,9 @@ color: #f60;
   text-decoration: none;
 }
 
-.tracker-bottom > a img {
-  float: left;
-  margin: 10px 15px;
-}
-
 .tracker-bottom > img {
-  margin-left: 210px;
+  float: right;
+  margin-right: 10px;
 }
 
 
@@ -449,6 +449,7 @@ color: #f60;
   margin: auto;
   padding: 8px;
   border: none;
+  outline: none;
   background-color: #333;
   border-radius: 0;
   -webkit-border-radius: 0;
@@ -463,7 +464,15 @@ color: #f60;
 }
 
 .search .dropdown-menu {
-  left: -30px !important;
+  left: -10px !important;
+}
+
+.error {
+  text-align: center;
+  margin: 20px auto;
+  font-size: 13px;
+  text-transform: capitalize;
+  color: rgb(235, 61, 61);
 }
 
 .trip-list {
@@ -478,6 +487,10 @@ color: #f60;
   padding: 10px;
   padding-left: 20px;
   border-top: 1px solid #666;
+}
+
+.trip-list > li.active {
+  background-color: #333;
 }
 
 .trip-list > li:last-child {
@@ -496,6 +509,14 @@ color: #f60;
   margin-left: 10px;
 }
 
+.trip-load {
+  text-align: center;
+}
+
+.trip-load .btn {
+  text-transform: capitalize;
+}
+
 /* nav styles*/
 .bottom-nav {
   position: absolute;
@@ -503,7 +524,7 @@ color: #f60;
   margin: 0;
   padding: 0;
   height: 30px;
-  width: inherit;
+  width: 100%;
   background-color: #333;
   list-style: none;
   z-index: 2000;
@@ -514,26 +535,42 @@ color: #f60;
   display: inline-block;
   margin: 5px 10px 0 25px;
   float: right;
+  cursor: pointer;
 }
 
 
 .bottom-nav li span {
-  display: none;
-  width: 22px;
+  display: inline-block;
   height: 22px;
-  background-image: url(/images/user/menu.png);
   margin-right: 5px;
+  font-size: 14px;
   text-align: center;
 }
 
-.bottom-nav li.active span {
+.bottom-nav li span:before {
+  content: "+";
   display: inline-block;
+  opacity: 0;
+  width: 22px;
+}
+
+.bottom-nav li:hover span {
   color: #eee;
+}
+
+.bottom-nav li:hover span:before {
+  opacity: 1;
+  background-image: url(/images/user/menu.png);
 }
 
 .bottom-nav li a {
   color: #aaa;
   text-transform: capitalize;
+}
+
+.bottom-nav li:hover a {
+  text-decoration: none;
+  color: #eee;
 }
 
 .bottom-nav li.active a {
@@ -543,18 +580,30 @@ color: #f60;
 /* marker popup styles */
 .leaflet-popup-content p {
   line-height: 30px;
-  text-indent: 30px;
+  text-indent: 10px;
   text-transform: uppercase;
 }
 
 .leaflet-popup-content p span {
-  color: #f60;
-  margin-left: 5px;
-  margin-right: 10px;
+  color: #eee;
+  margin-left: 2px;
+  margin-right: 3px;
+  font-size: 13px;
+}
+
+.leaflet-popup-content p  .marker {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 10px;
 }
 
 .leaflet-popup-content {
-  width: 250px !important;
+  min-width: 190px !important;
+  width: auto !important;
+  margin: 0;
+  padding: 0;
 }
 
 .leaflet-popup-content-wrapper {
@@ -562,10 +611,6 @@ color: #f60;
   background-color: #333;
   color: #eee;
   padding: 0;
-}
-
-.leaflet-popup-pane {
-  z-index: 3;
 }
 
 .leaflet-popup-tip-container {display: none;}

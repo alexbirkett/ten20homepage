@@ -5,7 +5,6 @@ angular.module('ten20Angular', [
   'ten20Angular.controllers',
   'ten20Angular.filters',
   'ten20Angular.services',
-  'ten20Angular.directives',
   'ngGrid',
   'ui.bootstrap'
 ]);

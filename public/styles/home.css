@@ -150,6 +150,10 @@ header {
 
 
 /* map controls */
+.leaflet-bar {
+  background: none;
+}
+
 .leaflet-bar a:first-child {
   -webkit-border-top-left-radius: 15px;
   border-top-left-radius: 15px;
@@ -167,16 +171,21 @@ header {
 
 .leaflet-bar a {
   background-color: #333;
+  background-image: none;
   color: #CCC;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 2px solid #aaa;
   width: 36px;
   height: 36px;
+  font-size: 18px;
+  font-weight: bold;
   line-height: 36px;
   text-indent: 2px;
+  text-align: center;
 }
 
 .leaflet-bar a:hover {
   background-color: #333;
+  border-bottom-color: #aaa;
   color: #f60;
 }
 
@@ -221,6 +230,7 @@ header {
 .leaflet-control-layers label {
   display: inline-block;
   margin-right: 20px;
+  font-size: 14px;
 }
 
 .leaflet-control-layers {
@@ -228,6 +238,21 @@ header {
   background: none;
   -webkit-border-radius: 0;
   border-radius: 0;
+}
+
+.leaflet-container h1 {
+  font-size:36px;
+  line-height:54px;
+  letter-spacing: 3px;
+}
+
+.leaflet-container h2 {
+  font-size:14px;
+  line-height:21px;
+}
+
+.mapbox-control-info {
+  display: none !important;
 }
 
 /* hide legends and attribution */
@@ -297,7 +322,7 @@ header {
 
 .benefits .items {
   position: relative;
-  top: -40px;
+  top: -15px;
   font-size: 14px;
 }
 
@@ -314,7 +339,7 @@ header {
 }
 
 /* list view section styles */
-.list-view .row-fluid .span8 {
+.list-view .row .col-md-8 {
   margin: 30px auto;
   float: none;
   text-align: center;
@@ -325,24 +350,24 @@ header {
   padding-bottom: 20px;
 }
 
-.list-view .span8 h4 {
+.list-view .col-md-8 h4 {
   padding-bottom: 20px;
 }
 
-.list-view .span8 h1 {
+.list-view .col-md-8 h1 {
   text-transform: none;
   margin: 50px 0;
 }
 
-.list-view .span8 h1 span {
+.list-view .col-md-8 h1 span {
   color: #f60;
 }
 
-.list-view .span8 img {
+.list-view .col-md-8 img {
   padding-bottom: 10px;
 }
 
-.list-view .span8 h2 {
+.list-view .col-md-8 h2 {
   max-width: 600px; 
   margin: 20px auto;
 }
@@ -480,6 +505,7 @@ header {
   margin-left: 20px;
   border-radius: 5px;
   background-color: #ddd;
+  border: none;
 }
 
 .carousel-view .carousel-control {
@@ -498,7 +524,7 @@ header {
   padding-bottom: 10px;
 }
 
-.pricing .span4 {
+.pricing .col-md-4 {
   margin: 0;
   padding-top: 40px;
 }
@@ -516,20 +542,16 @@ header {
   font-size: 16px;
 }
 
-.pricing .span4:first-child {
-  margin-left: 2.5%;
-}
-
 .pricing .head {
   background-color: #444;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  max-width: 300px;
   width: 70%;
-  height: auto;
+  max-width: 300px;
   margin: 0 auto;
   padding: 20px 10px;
+  padding-bottom: 50px;
 }
 
 .pricing .highlight .head {
@@ -544,7 +566,6 @@ header {
 }
 
 .pricing .head > a {
-  display: inline-block;
   margin-bottom: 20px;
   padding: 10px 25px;
   -webkit-border-radius: 5px;
@@ -557,17 +578,18 @@ header {
   font-size: 16px;
 }
 
-.pricing .span4:first-child .head h3,
-.pricing .span4:last-child .head h3 {
+.pricing .col-md-4:first-child .head h3,
+.pricing .col-md-4:last-child .head h3 {
   color: #f60;
 }
 
 .pricing .head h5 {
   padding-bottom: 10px;
   text-indent: 20px;
+  margin-bottom: 30px;
 }
 
-.pricing .span4:first-child .head h5 {
+.pricing .col-md-4:first-child .head h5 {
   text-indent: 0;
 }
 
@@ -595,19 +617,21 @@ header {
   font-style: italic;
 }
 
-.pricing .span4 ul {
-  margin: 20px 0;
-}
-
-.pricing .span4 li {
-  margin: 2px auto;
-  padding: 10px 0 10px 20px;
+.pricing .col-md-4 ul {
+  margin: 20px auto;
   width: 70%;
   max-width: 300px;
+  padding: 0;
+}
+
+.pricing .col-md-4 li {
+  margin: 2px 0;
+  padding: 10px 0 10px 20px;
+  width: 100%;
   background-color: #666;
 }
 
-.pricing .span4 p {
+.pricing .col-md-4 p {
   text-align: left;
   font-size: 14px;
   padding: 0;
@@ -717,7 +741,7 @@ header {
   margin: 80px auto;
 }
 
-.about .row-fluid .span8 {
+.about .row .col-md-8 {
   margin: auto;
   float: none;
 }
@@ -757,6 +781,7 @@ header {
   text-align: left;
   display: inline-block;
   margin-right: 5px;
+  font-size: 14px;
 }
 
 .form input {
@@ -879,7 +904,7 @@ header {
   text-align: center;
 }
 
-.faq .row-fluid .span8 {
+.faq .row .col-md-8 {
   margin: auto;
   float: none;
 }
@@ -905,6 +930,117 @@ footer p {
   padding-top: 15px;
   border-top: 1px solid #aaa;
   font-size: 12px;
+}
+
+/** modal dialog styles */
+.modal.small .modal-content {
+  width: 300px;
+}
+
+.modal.big .modal-content {
+  width: 500px;
+}
+
+.modal-header {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-header .cancel {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 16px;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.modal-header .error {
+  color: rgb(240, 74, 74);
+}
+
+.modal-content {
+  background-color: #000;
+  text-align: center;
+  margin: 100px auto;
+}
+
+.modal-body .form-group {
+  text-align: left;
+  height: 35px;
+  padding-top: 12px;
+  border-bottom: 1px solid #444;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.modal-body .form-group label {
+  text-transform: capitalize;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.modal-body .form-group > div {
+  padding: 0;
+}
+
+.modal-body .form-group input {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 20px;
+  text-indent: 5px;
+  background: 0;
+  color: #aaa;
+}
+
+.modal-body .form-group input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.modal-body .progress-bar {
+  text-align: center;
+  width: 100%;
+  background: none;
+}
+
+.modal-body .progress-bar img {
+  width: 40px;
+}
+
+.modal-footer {
+  border: none;
+  text-align: center;
+}
+
+.modal-footer button {
+  max-width: 180px;
+  width: 40%;
+  border: 0;
+  opacity: 1;
+  background: rgba(255,102,0,1);
+  color: #eee;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+.modal-footer button:hover {
+  background: rgba(255,102,0,1);
+  color: #eee;
+}
+
+.modal.small .modal-footer button {
+  font-size: 15px;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 /************************* login page styles *********************************/
@@ -948,34 +1084,61 @@ footer p {
     position: absolute;
     top: 200px;
   }
+
+  .nav > li {
+    margin-left: 10px;
+  }
 }
 
 
 @media only screen and (max-width: 767px) {
 
-  .nav-collapse .nav { margin-top: 20px; }
+  .navbar { margin-bottom: 0;}
 
-  .navbar { margin-bottom: 0 }
-
-  .navbar .btn-navbar .icon-bar {
-    background-color: #f60;
+  .navbar .navbar-collapse {
+    clear: both;
+    padding: 0;
   }
 
-  .nav > li {
+  .navbar-collapse .nav { 
+    width: 100%;
+  }
+
+  .navbar .navbar-btn {
+    margin-top: 5px;
+    margin-left: 10px;
+    float: right;
+  }
+
+  .navbar .navbar-btn .icon-bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin-bottom: 3px;
+    background-color: #f60;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  }
+
+  .navbar .navbar-collapse .nav > li {
     display: block;
     margin: 10px 0;
     width: 100%;
   }
 
-  .nav > li a {
+  .navbar .navbar-collapse .nav > li a {
     width: 90%;
     display: inline-block;
     text-shadow: none !important;
-    color: #eee !important;
+    color: #eee;
   }
 
-  .nav > li a:hover {
-    color: #f60 !important;
+  .navbar .navbar-collapse .nav > li:hover a{
+    color: #f60;
   }
 
   .mapbox .call-to-action {
@@ -991,13 +1154,13 @@ footer p {
     display: none;
   }
 
-  .benefits .items .span3 {
+  .benefits .items .col-md-3 {
     width: 100%;
     margin: 0;
     padding: 15px;
   }
 
-  .benefits .items .span3 p {
+  .benefits .items .col-md-3 p {
     text-align: center;
   }
 
@@ -1009,11 +1172,11 @@ footer p {
     position: absolute;
   }
 
-  .pricing .span4 {
+  .pricing .col-md-4 {
     border: none;
   }
 
-  .pricing .span4:first-child {
+  .pricing .col-md-4:first-child {
     margin-left: 0;
   }
 
