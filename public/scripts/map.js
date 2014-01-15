@@ -121,6 +121,25 @@
       return L.polyline(latlng, polyOption).addTo(this.map);
     }
 
+      // twinkling effects func for a circle
+    Map.prototype.twinkleMarker = function(marker) {
+          var radius = [
+              10, 13, 16, 19,
+              22, 21, 20, 19,
+              18, 17, 16, 15,
+              14, 13, 12, 11];
+          var index = 0;
+
+          var intervalId = setInterval(function() {
+              if (index == (radius.length - 1)) {
+                  clearInterval(intervalId);
+              } else {
+                  index++;
+              }
+              marker.setRadius(radius[index]);
+          }, 100);
+     };
+
     return Map;
 
   };
@@ -209,25 +228,6 @@
         this.addPoint(markerPosition, virtualVenceMarkerOuterOpt);
         this.addPoint(markerPosition, virtualVenceMarkerInnerOpt);
       }
-    };
-
-    // twinkling effects func for a circle
-    MapRender.prototype.twinkleMarker = function(marker) {
-      var radius = [
-        10, 13, 16, 19,
-        22, 21, 20, 19,
-        18, 17, 16, 15,
-        14, 13, 12, 11];
-      var index = 0;
-
-      var intervalId = setInterval(function() {
-        if (index == (radius.length - 1)) {
-          clearInterval(intervalId);
-        } else {
-          index++;
-        }
-        marker.setRadius(radius[index]);
-      }, 100);
     };
 
     // tool functions
@@ -377,6 +377,7 @@
       // update existing marker location
       if (marker) {
         marker.setLatLng([location.latitude, location.longitude]);
+        this.twinkleMarker(marker);
         if (pan) {
           this.map.panTo(marker.getLatLng());
         }
