@@ -36,15 +36,13 @@ angular.module('ten20Angular.controllers').
       // update or add tracker
       for (var i = 0; i < $scope.trackers.length; i++) {
         if ($scope.trackers[i]._id === tracker._id) {
-          // save recent and trips
-          tracker.recent = $scope.trackers[i].recent;
-          tracker.trips = $scope.trackers[i].trips;
           for (var key in tracker) {
-            $scope.trackers[i][[key] = tracker[key];
-          };
+            $scope.trackers[i][key] = tracker[key];
+          }
           newTracker = false;
         }
-      };
+      }
+
       if (newTracker) {
         $scope.trackers.push(tracker);
       }
@@ -98,6 +96,7 @@ angular.module('ten20Angular.controllers').
 
     tracker.trips ? null: tracker.trips = { data:[], destCnt: 0 };
     tracker.trips.destCnt = tracker.trips.data.length + BATCH;
+    tracker.trips.loading = true;
 
     _getOneTrip(tracker);
   };
@@ -121,8 +120,12 @@ angular.module('ten20Angular.controllers').
         // get next trip
         if (trips.data.length < tracker.trips.destCnt) {
           _getOneTrip(tracker);
+        } else {
+          tracker.trips.loading = false;
         }
       }
+    }).error(function() {
+      tracker.trips.loading = false;
     });
   };
 

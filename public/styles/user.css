@@ -480,6 +480,10 @@ tr td,
   border-top: 1px solid #666;
 }
 
+.trip-list > li.active {
+  background-color: #333;
+}
+
 .trip-list > li:last-child {
   border-bottom: 1px solid #666;
 }
@@ -494,6 +498,14 @@ tr td,
 .trip-list > li span.timeslot {
   color: #f60;
   margin-left: 10px;
+}
+
+.trip-load {
+  text-align: center;
+}
+
+.trip-load .btn {
+  text-transform: capitalize;
 }
 
 /* nav styles*/
