@@ -44,6 +44,7 @@ body { margin:0; padding:0; }
   color: #aaa;
   padding: 5px;
   font-size: 10px;
+  cursor: move;
 }
 
 .time-weather a {
