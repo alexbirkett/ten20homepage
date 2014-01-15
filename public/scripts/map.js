@@ -16,6 +16,25 @@
       this.init();
     }
 
+     Map.prototype._tweakMapControlStyles = function() {
+        // tweak map control styles
+        var layerLabel = $('.leaflet-control-layers-base label');
+
+        // bind click
+        layerLabel.on('click', function (e) {
+
+            $(this).parent().children().removeClass('active');
+            $(this).addClass('active');
+
+            if ($(this).is(':last-child')) {
+                $('.leaflet-control-layers-list').addClass('darker');
+            } else {
+                $('.leaflet-control-layers-list').removeClass('darker');
+            }
+        });
+        layerLabel.first().click();
+    }
+
     // user map or home page map
     Map.prototype.getMapType = function () {
       // override in children class
@@ -55,6 +74,8 @@
           this.getMapType === 'UserMap') {
         this.map.dragging.disable();
       }
+
+      this._tweakMapControlStyles();
 
       this.afterInit();
     };
@@ -286,6 +307,8 @@
     }
 
     MapRender.prototype.afterInit = function (argument) {
+      console.log('afterInit');
+
       var self = this;
 
       this.setupVirtualFence();
@@ -294,24 +317,6 @@
       setInterval(function() {
         self.updateNextMarker();
       }, 2000);
-
-      // tweak map control styles
-      var layerLabel = $('.leaflet-control-layers-base label');
-
-      // bind click
-      layerLabel.on('click', function (e) {
-
-        $(this).parent().children().removeClass('active');
-        $(this).addClass('active');
-
-        if ($(this).is(':last-child')) {
-          $('.leaflet-control-layers-list').addClass('darker');
-        } else {
-          $('.leaflet-control-layers-list').removeClass('darker');
-        }
-      });
-
-      layerLabel.first().click();
     }
 
     return MapRender;
