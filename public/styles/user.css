@@ -28,6 +28,13 @@ body { margin:0; padding:0; }
   overflow: hidden;
 }
 
+.user-page h4,
+.user-page h5,
+.user-page h6,
+.user-page span {
+  font-family: 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
+
+}
 
 /* tool box styles */
 .tool-box {
