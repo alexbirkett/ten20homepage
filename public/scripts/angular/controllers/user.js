@@ -25,7 +25,7 @@ angular.module('ten20Angular.controllers').
       var newTracker = true;
 
       // server response time less than One secend
-      if ((new Date().valueOf()) - start < 1000) {
+      if ((new Date().valueOf()) - start < 2000) {
         delay *= 2;
       } else {
         // reset delay
@@ -39,7 +39,9 @@ angular.module('ten20Angular.controllers').
           // save recent and trips
           tracker.recent = $scope.trackers[i].recent;
           tracker.trips = $scope.trackers[i].trips;
-          $scope.trackers[i] = tracker;
+          for (var key in tracker) {
+            $scope.trackers[i][[key] = tracker[key];
+          };
           newTracker = false;
         }
       };
