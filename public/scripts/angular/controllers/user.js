@@ -114,8 +114,8 @@ angular.module('ten20Angular.controllers').
     var before = '';
     var url;
 
-    if (trips.length > 0) {
-      before = '&_id=before$' + trips[trips.length - 1]._id;
+    if (trips.data.length > 0) {
+      before = '&_id=before$' + trips.data[trips.data.length - 1]._id;
     }
 
     url = '/trips?sortBy=_id$desc&limit=1&trackerId=' + tracker._id + before;
