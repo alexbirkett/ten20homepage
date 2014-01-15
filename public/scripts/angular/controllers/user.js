@@ -91,6 +91,7 @@ angular.module('ten20Angular.controllers').
     // prevent load more if user secondly click trip tab
     if (init && tracker.trips &&
         tracker.trips.data.length !==0) {
+      $scope.showTrip(tracker, 0);
       return;
     }
 
@@ -123,9 +124,16 @@ angular.module('ten20Angular.controllers').
         } else {
           tracker.trips.loading = false;
         }
+        tracker.trips.error = '';
+      } else {
+        tracker.trips.loading = false;
+        tracker.trips.error = 'no trips, retry later';
+        $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
       }
-    }).error(function() {
+    }).error(function(data) {
+      tracker.trips.error = data;
       tracker.trips.loading = false;
+      $timeout(function() { tracker.trips.error = ''; }, 5000);
     });
   };
 
