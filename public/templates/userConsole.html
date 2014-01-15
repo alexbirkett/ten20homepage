@@ -64,7 +64,10 @@
                   </li>
                 </ul>
 
-                <button ng-click="loadTrips(tracker)"> load more</button>
+                <div class="trip-load">
+                  <button class="btn btn-default" ng-hide="tracker.trips.loading" ng-click="loadTrips(tracker)">load more</button>
+                  <img  ng-show="tracker.trips.loading" src="/images/loading_bar.gif" alt="" />
+                </div>
 
               </div>
             </tab>
