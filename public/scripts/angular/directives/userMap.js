@@ -40,6 +40,7 @@ angular.module('ten20Angular').
       controller: function($scope, $element, $attrs) {
         // init trackers
         function _initTrackers() {
+          var bounds = [];
           // check whether user has trackers
           if ($scope.trackers.length === 0) {
             return;
@@ -47,35 +48,29 @@ angular.module('ten20Angular').
 
           for (var i = 0; i < $scope.trackers.length; i++) {
             if ($scope.trackers[i].lastMessage.location) {
+              bounds.push([
+                $scope.trackers[i].lastMessage.location.latitude,
+                $scope.trackers[i].lastMessage.location.longitude
+              ]);
               $scope.userMap.updateTracker($scope.trackers[i], true);
             }
           };
+
+          $scope.userMap.map.fitBounds(bounds, {
+            paddingTopLeft: L.point(100, 100),
+            paddingBottomRight: L.point(350, 350)
+          });
         }
 
         // init map
         function _initMap() {
-          var center = {}, params;
+          var params;
 
-          // set center to first locatable tracker 
-          if ($scope.trackers.length !== 0) {
-            for (var i = 0; i < $scope.trackers.length; i++) {
-              if ($scope.trackers[i].lastMessage.location) {
-                center.lat = $scope.trackers[i].lastMessage.location.latitude;
-                center.lng = $scope.trackers[i].lastMessage.location.longitude;
-                break;
-              }
-            };
-          }
           // fallback to hard-code location 
-          if (!center.lat) {
-            center.lat = 52.8009421020332;
-            center.lng = -1.6183757697247896;
-          }
-
           params = {
-            "lat": center.lat,
-            "lng": center.lng,
-            "zoomLevel":14,
+            "lat": 0,
+            "lng": 0,
+            "zoomLevel": 6,
             "zoomControl":true,
             "tile":"alexbirkett.map-t0fodlre",
             "layers":[
@@ -92,9 +87,6 @@ angular.module('ten20Angular').
 
           $scope.userMap = new ten20.UserMap($attrs.id, params);
           
-          // add trackers
-          $timeout(_initTrackers, 500);
-
           // bind map zoom event
           $scope.userMap.map.on('zoomend', function() {
             if ($scope.activeTracker) {
@@ -103,7 +95,8 @@ angular.module('ten20Angular').
           });
         }
 
-        $scope.$on('InitMap', _initMap);
+        _initMap();
+        $scope.$on('InitTrackers', _initTrackers);
         $scope.$on('TrackerUpdate', _updateTracker);
         $scope.$on('FocusTracker', _focusTracker);
         $scope.$on('PathUpdate', _updatePath);
