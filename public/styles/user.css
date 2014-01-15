@@ -466,6 +466,14 @@ tr td,
   left: -10px !important;
 }
 
+.error {
+  text-align: center;
+  margin: 20px auto;
+  font-size: 13px;
+  text-transform: capitalize;
+  color: rgb(235, 61, 61);
+}
+
 .trip-list {
   margin: 10px 0;
   padding: 0;
