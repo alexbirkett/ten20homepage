@@ -484,9 +484,15 @@ tr td,
   font-size: 13px;
   text-transform: capitalize;
   margin: 0 -10px;
-  padding: 10px;
-  padding-left: 20px;
+  padding: 5px;
+  padding-left: 10px;
   border-top: 1px solid #666;
+}
+
+.trip-list > li .header {
+  text-transform: capitalize;
+  display: inline-block;
+  width: 45px;
 }
 
 .trip-list > li.active {

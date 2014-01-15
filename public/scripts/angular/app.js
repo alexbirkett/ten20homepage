@@ -7,4 +7,16 @@ angular.module('ten20Angular', [
   'ten20Angular.services',
   'ngGrid',
   'ui.bootstrap'
-]);
+]).run(function () {
+  // config moment calendar
+  moment.lang('en', {
+    calendar: {
+      lastDay : '[Yesterday at] LT',
+      sameDay : '[Today at] LT',
+      nextDay : '[Tomorrow at] LT',
+      lastWeek : '[Last] dddd [at] LT',
+      nextWeek : 'dddd [at] LT',
+      sameElse : 'L'
+    }
+  });
+});

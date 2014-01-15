@@ -24,4 +24,9 @@ angular.module('ten20Angular.filters', []).
         return t.toTimeString().split(' ')[0];
       }
     }
+  }).
+  filter('tripTime', function() {
+    return function(time, key) {
+      return moment(time).calendar();
+    };
   });
