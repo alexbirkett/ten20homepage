@@ -307,8 +307,6 @@
     }
 
     MapRender.prototype.afterInit = function (argument) {
-      console.log('afterInit');
-
       var self = this;
 
       this.setupVirtualFence();
