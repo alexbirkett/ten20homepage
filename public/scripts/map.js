@@ -373,7 +373,7 @@
       }
     };
 
-    MapRender.prototype._addPath = function(t) {
+    MapRender.prototype._addPath = function(t, fitBounds) {
       var marker = this._findMarker(t);
       var latlngs = [];
       var optsLine = { weight: 2 };
@@ -388,13 +388,15 @@
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
         marker.path.line = this.addPolyline(latlngs, optsLine);
-        this.map.fitBounds(marker.path.line.getBounds());
+        if (fitBounds) {
+          this.map.fitBounds(marker.path.line.getBounds());
+        }
         this._addPathPoints(marker.path, t.path, optsPoint);
       }
     };
 
     // update recent message location to map
-    MapRender.prototype.updatePath = function(t) {
+    MapRender.prototype.updatePath = function(t, fitBounds) {
       var marker = this._findMarker(t);
       var latlngs = _getLineCoordsFromMsg(t.path);
       var optsPoint = { weight: 2, radius: 4 };
@@ -418,10 +420,12 @@
 
         this._clearPathPoints(marker.path);
         marker.path.line.setLatLngs(latlngs);
-        this.map.fitBounds(marker.path.line.getBounds());
+        if (fitBounds) {
+          this.map.fitBounds(marker.path.line.getBounds());
+        }
         this._addPathPoints(marker.path, t.path, optsPoint);
       } else {
-        this._addPath(t);
+        this._addPath(t, fitBounds);
       }
     };
 
