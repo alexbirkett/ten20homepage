@@ -60,8 +60,8 @@
                   <li ng-repeat="item in tracker.trips.data"
                   ng-click="showTrip(tracker, $index)"
                   ng-class="{active : $index === tracker.trips.active}">
-                  <span>time:</span><span class="timeslot">{{item.startTime| timeFormat: 'time'}} - </span>
-                  <span class="timeslot">{{item.endTime| timeFormat: 'time'}}</span>
+                  <h6><span class="header">started</span><span class="timeslot">{{item.startTime | tripTime}}</span></h6>
+                  <h6><span class="header">ended</span><span class="timeslot">{{item.endTime | tripTime}}</span></h6>
                   </li>
                 </ul>
 

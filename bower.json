@@ -16,6 +16,7 @@
     "angular-bootstrap": "0.9.0",
     "jquery": "2.0.3",
     "bootstrap": "3.0.3",
-    "draggable": "1.0.0"
+    "draggable": "1.0.0",
+    "momentjs": "2.5.0"
   }
 }
