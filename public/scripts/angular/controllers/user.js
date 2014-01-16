@@ -156,6 +156,9 @@ angular.module('ten20Angular.controllers').
     // filter out useless messages
     for (var i = 0; i < data.length; i++) {
       if (data[i].message && data[i].message.location) {
+        if (!data[i].message.location.timestamp) {
+          data[i].message.location.timestamp = data[i].receivedTime || data[i].message.receiveTime;
+        }
         validMsg.push(data[i].message.location);
       }
     }
