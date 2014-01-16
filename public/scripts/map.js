@@ -69,9 +69,9 @@
       this.map.setView([this.lat, this.lng], this.zoomLevel);
       this.map.scrollWheelZoom.disable();
 
-      // disable dragging on touch devices and user dashboard
-      if ('ontouchstart' in document.documentElement ||
-          this.getMapType === 'UserMap') {
+      // disable dragging on touch devices of homepage
+      if ('ontouchstart' in document.documentElement &&
+          this.getMapType() === 'HomeMap') {
         this.map.dragging.disable();
       }
 
@@ -515,14 +515,12 @@
     }
 
     function _generatePopup(msg, opts) {
+      var date = msg.timestamp.split('T')[0];
       var time = msg.timestamp.split('T')[1].slice(0, 5);
 
       return '<p><span class="marker" style="background-color:' +
              opts.color +' "></span>' + '<span>' + time + '</span>' +
-             '<span style="color:' + opts.color + '">' +
-              + msg.latitude.toFixed(3) + 
-             '</span><span style="color:' + opts.color + '">' +
-              msg.longitude.toFixed(3) +'</span></p>';
+             '<span>' + date + '</span>';
     }
 
     function _bindEvents(marker) {

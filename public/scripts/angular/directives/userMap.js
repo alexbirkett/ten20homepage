@@ -32,7 +32,8 @@ angular.module('ten20Angular').
 
         // make tool box draggable
          var toolbox = element.find('.tool-box')[0];
-         draggable(toolbox);
+         var handle = element.find('.tool-box .time-weather')[0];
+         draggable(toolbox, handle);
 
       }
     };
