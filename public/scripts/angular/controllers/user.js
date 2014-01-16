@@ -82,11 +82,14 @@ angular.module('ten20Angular.controllers').
   // load recent msg of a tracker
   $scope.recentMsg = function(t) {
 
+    if (t.recent && t.recent.msgs.length !== 0) {
+      return;
+    }
+
     $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
       console.log('------recent_message-----');
       t.recent = t.recent || {};
       t.recent.msgs = _filterValidMsg(data.items);
-      console.log(t.recent.msgs);
       if (t.recent.msgs.length > 1) {
         t.path = t.recent.msgs;
         $scope.$broadcast('PathUpdate', t);
