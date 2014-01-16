@@ -23,6 +23,7 @@ angular.module('ten20Angular.controllers').
     var start = new Date().valueOf();
     $http.get('/message/notify').success(function (tracker) {
       var newTracker = true;
+      var oldPos = {};
 
       // server response time less than One secend
       if ((new Date().valueOf()) - start < 2000) {
@@ -36,9 +37,22 @@ angular.module('ten20Angular.controllers').
       // update or add tracker
       for (var i = 0; i < $scope.trackers.length; i++) {
         if ($scope.trackers[i]._id === tracker._id) {
+          // add point to recent
+          if ($scope.trackers[i].lastMessage.location) {
+            $scope.trackers[i].recent = $scope.trackers[i].recent || {msgs:[]};
+            $scope.trackers[i].recent.msgs.unshift(
+              $scope.trackers[i].lastMessage.location);
+            $scope.trackers[i].recent.msgs.splice(
+              $scope.trackers[i].recent.msgs.length - 1, 1);
+
+            $scope.trackers[i].path = $scope.trackers[i].recent.msgs;
+            $scope.$broadcast('PathUpdate', $scope.trackers[i]);
+          }
+          // override with new info
           for (var key in tracker) {
             $scope.trackers[i][key] = tracker[key];
           }
+
           newTracker = false;
         }
       }
@@ -68,11 +82,14 @@ angular.module('ten20Angular.controllers').
   // load recent msg of a tracker
   $scope.recentMsg = function(t) {
 
+    if (t.recent && t.recent.msgs.length !== 0) {
+      return;
+    }
+
     $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
       console.log('------recent_message-----');
       t.recent = t.recent || {};
       t.recent.msgs = _filterValidMsg(data.items);
-      console.log(t.recent.msgs);
       if (t.recent.msgs.length > 1) {
         t.path = t.recent.msgs;
         $scope.$broadcast('PathUpdate', t);
@@ -112,10 +129,10 @@ angular.module('ten20Angular.controllers').
   function _getOneTrip(tracker) {
     var trips = tracker.trips;
     var before = '';
-    var url;
+    var url, filtered;
 
-    if (trips.length > 0) {
-      before = '&_id=before$' + trips[trips.length - 1]._id;
+    if (trips.data.length > 0) {
+      before = '&_id=before$' + trips.data[trips.data.length - 1]._id;
     }
 
     url = '/trips?sortBy=_id$desc&limit=1&trackerId=' + tracker._id + before;
@@ -123,7 +140,14 @@ angular.module('ten20Angular.controllers').
 
     $http.get(url).success(function (documents) {
       if (documents.items.length > 0) {
-        trips.data.push(_simplifyTripMsg(documents.items[0]));
+        filtered = _simplifyTripMsg(documents.items[0]);
+        if (filtered.messages.length === 0) {
+          tracker.trips.loading = false;
+          tracker.trips.error = 'trips data invalid, retry later';
+          $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
+          return;
+        }
+        trips.data.push(filtered);
         // get next trip
         if (trips.data.length < tracker.trips.destCnt) {
           _getOneTrip(tracker);
@@ -133,7 +157,7 @@ angular.module('ten20Angular.controllers').
         tracker.trips.error = '';
       } else {
         tracker.trips.loading = false;
-        tracker.trips.error = 'no trips, retry later';
+        tracker.trips.error = 'no more trips, retry later';
         $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
       }
     }).error(function(data) {
@@ -155,7 +179,12 @@ angular.module('ten20Angular.controllers').
 
     // filter out useless messages
     for (var i = 0; i < data.length; i++) {
-      if (data[i].message && data[i].message.location) {
+      if (data[i].message && data[i].message.location
+          && data[i].message.location.latitude) {
+        if (!data[i].message.location.timestamp) {
+          data[i].message.location.timestamp = 
+            data[i].receivedTime || data[i].message.receiveTime;
+        }
         validMsg.push(data[i].message.location);
       }
     }

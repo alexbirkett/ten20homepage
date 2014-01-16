@@ -13,10 +13,11 @@ body { margin:0; padding:0; }
 .map-canvas #map {
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: 30px;
   left: 0;
   right: 0;
   background-color: #aaa;
+  z-index: 1;
 }
 
 .user-page {
@@ -28,6 +29,13 @@ body { margin:0; padding:0; }
   overflow: hidden;
 }
 
+.user-page h4,
+.user-page h5,
+.user-page h6,
+.user-page span {
+  font-family: 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
+
+}
 
 /* tool box styles */
 .tool-box {
@@ -44,6 +52,7 @@ body { margin:0; padding:0; }
   color: #aaa;
   padding: 5px;
   font-size: 10px;
+  cursor: move;
 }
 
 .time-weather a {
@@ -64,7 +73,6 @@ body { margin:0; padding:0; }
 .welcome span {
   display: inline-block;
   font-size: 12px;
-  text-transform: capitalize;
   padding-top: 2px;
   padding-bottom: 2px;
   margin-left: 10px;
@@ -472,7 +480,7 @@ tr td,
   margin: 20px auto;
   font-size: 13px;
   text-transform: capitalize;
-  color: rgb(235, 61, 61);
+  color: #f60;
 }
 
 .trip-list {
@@ -484,9 +492,15 @@ tr td,
   font-size: 13px;
   text-transform: capitalize;
   margin: 0 -10px;
-  padding: 10px;
-  padding-left: 20px;
+  padding: 5px;
+  padding-left: 10px;
   border-top: 1px solid #666;
+}
+
+.trip-list > li .header {
+  text-transform: capitalize;
+  display: inline-block;
+  width: 45px;
 }
 
 .trip-list > li.active {
@@ -515,6 +529,13 @@ tr td,
 
 .trip-load .btn {
   text-transform: capitalize;
+  color: #f60;
+  background-image: none;
+  background-color: #eee;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border: 0;
 }
 
 /* nav styles*/
@@ -543,34 +564,29 @@ tr td,
   display: inline-block;
   height: 22px;
   margin-right: 5px;
+  padding: 0 5px;
   font-size: 14px;
   text-align: center;
 }
 
-.bottom-nav li span:before {
-  content: "+";
-  display: inline-block;
-  opacity: 0;
-  width: 22px;
-}
 
 .bottom-nav li:hover span {
-  color: #eee;
-}
-
-.bottom-nav li:hover span:before {
-  opacity: 1;
-  background-image: url(/images/user/menu.png);
+  background-color: #eee;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 0;
 }
 
 .bottom-nav li a {
-  color: #aaa;
+  color: #eee;
   text-transform: capitalize;
+  vertical-align: middle;
 }
 
 .bottom-nav li:hover a {
   text-decoration: none;
-  color: #eee;
+  color: #f60;
 }
 
 .bottom-nav li.active a {
