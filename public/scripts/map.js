@@ -70,10 +70,11 @@
       this.map.scrollWheelZoom.disable();
 
       // disable dragging on touch devices and user dashboard
+      /*
       if ('ontouchstart' in document.documentElement ||
-          this.getMapType === 'UserMap') {
+          this.getMapType() === 'UserMap') {
         this.map.dragging.disable();
-      }
+      } */
 
       this._tweakMapControlStyles();
 
