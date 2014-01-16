@@ -69,12 +69,11 @@
       this.map.setView([this.lat, this.lng], this.zoomLevel);
       this.map.scrollWheelZoom.disable();
 
-      // disable dragging on touch devices and user dashboard
-      /*
-      if ('ontouchstart' in document.documentElement ||
-          this.getMapType() === 'UserMap') {
+      // disable dragging on touch devices of homepage
+      if ('ontouchstart' in document.documentElement &&
+          this.getMapType() === 'HomeMap') {
         this.map.dragging.disable();
-      } */
+      }
 
       this._tweakMapControlStyles();
 
