@@ -23,6 +23,7 @@ angular.module('ten20Angular.controllers').
     var start = new Date().valueOf();
     $http.get('/message/notify').success(function (tracker) {
       var newTracker = true;
+      var oldPos = {};
 
       // server response time less than One secend
       if ((new Date().valueOf()) - start < 2000) {
@@ -36,9 +37,22 @@ angular.module('ten20Angular.controllers').
       // update or add tracker
       for (var i = 0; i < $scope.trackers.length; i++) {
         if ($scope.trackers[i]._id === tracker._id) {
+          // add point to recent
+          if ($scope.trackers[i].lastMessage.location) {
+            $scope.trackers[i].recent = $scope.trackers[i].recent || {msgs:[]};
+            $scope.trackers[i].recent.msgs.unshift(
+              $scope.trackers[i].lastMessage.location);
+            $scope.trackers[i].recent.msgs.splice(
+              $scope.trackers[i].recent.msgs.length - 1, 1);
+
+            $scope.trackers[i].path = $scope.trackers[i].recent.msgs;
+            $scope.$broadcast('PathUpdate', $scope.trackers[i]);
+          }
+          // override with new info
           for (var key in tracker) {
             $scope.trackers[i][key] = tracker[key];
           }
+
           newTracker = false;
         }
       }
