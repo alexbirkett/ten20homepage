@@ -565,34 +565,29 @@ tr td,
   display: inline-block;
   height: 22px;
   margin-right: 5px;
+  padding: 0 5px;
   font-size: 14px;
   text-align: center;
 }
 
-.bottom-nav li span:before {
-  content: "+";
-  display: inline-block;
-  opacity: 0;
-  width: 22px;
-}
 
 .bottom-nav li:hover span {
-  color: #eee;
-}
-
-.bottom-nav li:hover span:before {
-  opacity: 1;
-  background-image: url(/images/user/menu.png);
+  background-color: #eee;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 0;
 }
 
 .bottom-nav li a {
-  color: #aaa;
+  color: #eee;
   text-transform: capitalize;
+  vertical-align: middle;
 }
 
 .bottom-nav li:hover a {
   text-decoration: none;
-  color: #eee;
+  color: #f60;
 }
 
 .bottom-nav li.active a {
