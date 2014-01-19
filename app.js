@@ -49,7 +49,8 @@ var apiEndpoints = [
     { path: '/message' },
     { path: '/reset_password'},
     { path: '/trips'},
-    { path: '/recent_messages'}
+    { path: '/recent_messages'},
+    { path: '/protocols'}
 ];
 
 var proxy = new httpProxy.createProxyServer({target: options.apiUrl });
