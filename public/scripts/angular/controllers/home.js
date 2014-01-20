@@ -10,7 +10,6 @@ angular.module('ten20Angular.controllers').
         method: "POST",
         path: "/contact",
         data: {
-          name: "contact us"
         }
       },
       signin: {
@@ -19,11 +18,10 @@ angular.module('ten20Angular.controllers').
         method: "POST",
         path: "/signin",
         data: {
-          name: "sign in"
         }
       },
       signup: {
-        name: "sign up",
+        title: "sign up",
         tplUrl: "/templates/signupForm.html",
         method: "POST",
         path: "/signup",
