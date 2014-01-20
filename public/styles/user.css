@@ -392,9 +392,13 @@ tr td,
   font-size: 12px;
 }
 
-.current-info h6 span {
-  margin-left: 5px;
+.current-info span{
+  margin-left: 10px;
   color: #f60;
+}
+
+.current-info h6 span{
+  margin-left: 5px;
 }
 
 .tracker-content + .tracker-bottom {
