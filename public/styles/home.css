@@ -585,105 +585,6 @@ header {
   margin: 0;
 }
 
-/* contact section styles */
-.contact {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  display: none;
-}
-
-.contact .form {
-  max-width: 320px;
-  margin: 100px auto;
-  text-align: center;
-  position: relative;
-  background-color: black;
-  padding: 40px 40px 80px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
-
-.contact .form.submitted {
-  padding-bottom: 20px;
-}
-
-.contact .form .cancel {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 16px;
-  padding: 2px 5px;
-}
-
-.contact .form .cancel:hover {
-  color: #d60;
-  cursor: pointer;
-}
-
-.contact .form h3 {
-  margin: 20px 0;
-  text-transform: none;
-  font-size: 14px;
-  letter-spacing: 1px;
-  line-height: 22px;
-  display: none;
-}
-
-.contact .form .btn-ok {
-  display: none;
-}
-
-.contact .form .success {
-  display: none;
-  color: #eee;
-  font-size: 20px;
-}
-
-.contact .form .require,
-.contact .form .error {
-  display: none;
-  color: red;
-  font-size: 20px;
-}
-
-.contact .form .active {
-  display: block;
-}
-
-.contact .form ul {
-  margin: 0;
-  padding: 0;
-  color: #ccc;
-}
-
-.contact .form li {
-  display: block;
-  text-align: left;
-  height: 35px;
-  padding-top: 12px;
-}
-
-.contact .form li.list-text,
-.contact .form li.list-password {
-  border-bottom: 1px solid #444;
-}
-
-.contact .form li.list-checkbox {
-  margin: 25px 0 -30px;
-}
-
-.contact .form li.btn-wrap {
-  text-align: center;
-  margin-top: 20px;
-}
-
 .about {
   margin: 80px auto;
 }
@@ -885,13 +786,20 @@ footer p {
 }
 
 .modal.big .modal-content {
-  width: 500px;
+  width: 400px;
 }
 
 .modal-header {
   border: none;
   margin: 0;
-  padding: 0;
+  padding: 20px 10px 0px 10px;
+}
+
+.modal-header h3 {
+  text-transform: capitalize;
+  padding: 0 30px;
+  font-size: 15px;
+  line-height: 25px;
 }
 
 .modal-header .cancel {
@@ -913,6 +821,10 @@ footer p {
   margin: 100px auto;
 }
 
+.modal-content .modal-body {
+  padding-bottom: 0;
+}
+
 .modal-body .form-group {
   text-align: left;
   height: 35px;
@@ -925,11 +837,16 @@ footer p {
   margin-right: 0;
 }
 
+.modal-body .form-group.no-btm-border {
+  border-bottom: none;
+}
+
 .modal-body .form-group label {
   text-transform: capitalize;
   padding: 0;
   margin: 0;
   text-align: left;
+  font-size: 13px;
 }
 
 .modal-body .form-group > div {
@@ -967,8 +884,8 @@ footer p {
 }
 
 .modal-footer button {
-  max-width: 180px;
-  width: 40%;
+  width: 130px;
+  height: 50px;
   border: 0;
   opacity: 1;
   background: rgba(255,102,0,1);
@@ -976,6 +893,8 @@ footer p {
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
+  border-radius: 30px;
+  font-size: 20px;
 }
 
 
@@ -985,10 +904,61 @@ footer p {
 }
 
 .modal.small .modal-footer button {
+  width: 100px;
+  height: 40px;
   font-size: 15px;
   border-radius: 20px;
   padding: 10px;
+  font-size: 15px;
 }
+
+/************ check box styles ****************/
+label {
+  display: inline;
+}
+.regular-checkbox {
+  display: none;
+}
+.regular-checkbox + label {
+  background-color: #000;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+  padding: 9px !important;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+.regular-checkbox + label:hover,
+.regular-checkbox:checked + label:hover {
+  color: #f60;
+}
+
+.regular-checkbox + label:active,
+.regular-checkbox:checked + label:active {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+.regular-checkbox:checked + label {
+  border: 1px solid #eee;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+  color: #99a1a7;
+}
+.regular-checkbox:checked + label:after {
+  content: '\2714';
+  font-size: 14px;
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  color: #eee;
+}
+.big-checkbox + label {
+  padding: 18px;
+}
+.big-checkbox:checked + label:after {
+  font-size: 28px;
+  left: 6px;
+}
+/****************************/
 
 /************************* login page styles *********************************/
 

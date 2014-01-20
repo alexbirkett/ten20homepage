@@ -53,11 +53,13 @@ angular.module('ten20Angular').
               url: config.ajaxUrl,
               data: config.field?config.src[config.field]:config.src
             }).success(function () {
+              $scope.succ = true;
               $scope.sync = false;
+              $timeout(function() { $scope.succ = '';}, 10000);
             }).error(function(error) {
               $scope.sync = false;
               $scope.error = error;
-              $timeout(function() { $scope.error = '';}, 5000);
+              $timeout(function() { $scope.error = '';}, 4000);
             });
             //$modalInstance.close($scope.data);
           };
