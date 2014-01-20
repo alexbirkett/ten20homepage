@@ -334,10 +334,9 @@
         tracker.lastMessage.location.longitude,
       ];
 
-      var opt = {}, marker;
+      var opt = {color: '#eee', fillColor: '#f60'}, marker;
 
       if (tracker.settings) {
-        opt.color = '#' + tracker.settings.iconColor;
         opt.fillColor = '#' + tracker.settings.iconColor;
       }
 
@@ -388,17 +387,23 @@
       var marker = this._findMarker(t);
       var latlngs = [];
       var optsLine = { weight: 2 };
-      var optsPoint = { weight: 2, radius: 3 };
+      var optsPoint = { 
+        weight: 2, 
+        radius: 3,
+        color: '#eee',
+        fillColor: '#f60'
+      };
 
       if (marker) {
         marker.path = {line:null, points:[]};
         latlngs = _getLineCoordsFromMsg(t.path);
         if (t.settings) {
           optsLine.color = '#' + t.settings.iconColor;
-          optsPoint.color = '#' + t.settings.iconColor;
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
-        this._clearPaths();
+        if (fitBounds) {
+          this._clearPaths();
+        }
         marker.path.line = this.addPolyline(latlngs, optsLine);
         if (fitBounds) {
           this.map.fitBounds(marker.path.line.getBounds());
@@ -430,7 +435,9 @@
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
 
-        this._clearPaths();
+        if (fitBounds) {
+          this._clearPaths();
+        }
         marker.path.line.setLatLngs(latlngs);
         if (fitBounds) {
           this.map.fitBounds(marker.path.line.getBounds());
@@ -444,7 +451,6 @@
 
     MapRender.prototype._addPathPoints = function(path, msgs, opts) {
       var popup, self;
-      var opt = {closeButton: false};
       
       self = this;
 
@@ -461,7 +467,7 @@
             ], opts);
 
         popup = _generatePopup(msg, opts);
-        point.bindPopup(popup, opt);
+        point.bindPopup(popup, {closeButton: false});
         path.points.push(point);
         _bindEvents(point);
       }
@@ -535,7 +541,7 @@
       var time = msg.timestamp.split('T')[1].slice(0, 5);
 
       return '<p><span class="marker" style="background-color:' +
-             opts.color +' "></span>' + '<span>' + time + '</span>' +
+             opts.fillColor +' "></span>' + '<span>' + time + '</span>' +
              '<span>' + date + '</span>';
     }
 
