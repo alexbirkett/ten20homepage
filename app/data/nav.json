@@ -18,9 +18,12 @@
       "scroll": "false"
     },
     {
-      "text": "Contact Us",
-      "link": "#contact-us",
-      "scroll": "false"
+      "modal": true,
+      "id": "contact",
+      "tplUrl": "/templates/contactForm.html",
+      "method": "POST",
+      "path": "/contact",
+      "text": "Contact Us"
     },
     {
       "text": "About Us",

@@ -3,6 +3,9 @@
 /* admin console page controller */
 angular.module('ten20Angular.controllers').
   controller('HomeCtrl', function ($scope) {
+    // form data model
+    $scope.form = {};
+
     $scope.slides = [
       {
         "title": "GOTOP TL-206",
