@@ -8,7 +8,9 @@ mixin itemInfo(item)
       else
         span.price= item.price
         span.postfix /mo
-    a(href=item.url) sign up
+    a(model-form, src-model="form.signup.data." + item.id,
+      tpl-url="{{form.signup.tplUrl}}", method="{{form.signup.method}}",
+      path="{{form.signup.path}}", dialog-class="big") sign up
 
   ul
     each feature in item.features

@@ -61,7 +61,7 @@ module.exports = function (grunt) {
         options: {
           separator: ';',
         },
-        src: ['<%= pkg.src.script %>/angular/*.js', '<%= pkg.src.script %>/angular/controllers/*.js'],
+        src: ['<%= pkg.src.script %>/angular/**/*.js'],
         dest: 'public/build/.temp/angular-all.js'
       }
     },
@@ -121,8 +121,7 @@ module.exports = function (grunt) {
     preprocess : {
       dev: {
         files: {
-          'app/views/partials/build/head.jade':'app/views/partials/head.jade',
-          'app/views/partials/build/angular.jade':'app/views/partials/angular.jade'
+          'app/views/partials/build/head.jade':'app/views/partials/head.jade'
         },
         options: {
           context : {
@@ -132,8 +131,7 @@ module.exports = function (grunt) {
       },
       prod: {
         files: {
-          'app/views/partials/build/head.jade':'app/views/partials/head.jade',
-          'app/views/partials/build/angular.jade':'app/views/partials/angular.jade'
+          'app/views/partials/build/head.jade':'app/views/partials/head.jade'
         },
         options: {
           context : {

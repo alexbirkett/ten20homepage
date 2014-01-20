@@ -44,7 +44,7 @@ body { margin:0; padding:0; }
   right: 5%;
   width: 250px;
   background-color: #333;
-  z-index: 2000;
+  z-index: 100;
 }
 
 .time-weather {
@@ -392,9 +392,13 @@ tr td,
   font-size: 12px;
 }
 
-.current-info h6 span {
-  margin-left: 5px;
+.current-info span{
+  margin-left: 10px;
   color: #f60;
+}
+
+.current-info h6 span{
+  margin-left: 5px;
 }
 
 .tracker-content + .tracker-bottom {
@@ -548,7 +552,7 @@ tr td,
   width: 100%;
   background-color: #333;
   list-style: none;
-  z-index: 2000;
+  z-index: 100;
 }
 
 
@@ -604,7 +608,7 @@ tr td,
   color: #eee;
   margin-left: 2px;
   margin-right: 3px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .leaflet-popup-content p  .marker {
@@ -616,7 +620,7 @@ tr td,
 }
 
 .leaflet-popup-content {
-  min-width: 190px !important;
+  min-width: 200px !important;
   width: auto !important;
   margin: 0;
   padding: 0;

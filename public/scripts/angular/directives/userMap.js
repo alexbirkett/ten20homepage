@@ -42,7 +42,7 @@ angular.module('ten20Angular').
     return {
 			restrict: 'A',
       scope: true,
-      controller: function($scope, $element, $attrs) {
+      controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
         // init trackers
         function _initTrackers() {
           var bounds = [];
@@ -115,13 +115,13 @@ angular.module('ten20Angular').
         }
 
         // show recent or trip msg as path on map for a tracker
-        function _updatePath(e, t) {
+        function _updatePath(e, t, quiet) {
           if (t.path && t.path.length !== 0) {
-            $scope.userMap.updatePath(t, true);
+            $scope.userMap.updatePath(t, quiet);
           }
         }
 
-      },
+      }],
       link: function(scope, elem, attrs) {
         // bind accordion click, set active tracker
       }
