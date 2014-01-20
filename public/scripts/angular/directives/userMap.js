@@ -42,7 +42,7 @@ angular.module('ten20Angular').
     return {
 			restrict: 'A',
       scope: true,
-      controller: function($scope, $element, $attrs) {
+      controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
         // init trackers
         function _initTrackers() {
           var bounds = [];
@@ -121,7 +121,7 @@ angular.module('ten20Angular').
           }
         }
 
-      },
+      }],
       link: function(scope, elem, attrs) {
         // bind accordion click, set active tracker
       }
