@@ -46,7 +46,16 @@ angular.module('ten20Angular').
           $scope.error = '';
           $scope.data = config.src;
 
-          $scope.ok = function () {
+          $scope.formInvalid = false;
+
+          $scope.ok = function (f) {
+
+            // input invalid
+            if (f.$invalid) {
+              $scope.formInvalid = true;
+              return;
+            }
+
             $scope.sync = true;
             $http({
               method: config.ajaxMethod,
