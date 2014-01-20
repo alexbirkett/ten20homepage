@@ -115,9 +115,9 @@ angular.module('ten20Angular').
         }
 
         // show recent or trip msg as path on map for a tracker
-        function _updatePath(e, t) {
+        function _updatePath(e, t, quiet) {
           if (t.path && t.path.length !== 0) {
-            $scope.userMap.updatePath(t, true);
+            $scope.userMap.updatePath(t, quiet);
           }
         }
 

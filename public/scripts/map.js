@@ -398,6 +398,7 @@
           optsPoint.color = '#' + t.settings.iconColor;
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
+        this._clearPaths();
         marker.path.line = this.addPolyline(latlngs, optsLine);
         if (fitBounds) {
           this.map.fitBounds(marker.path.line.getBounds());
@@ -429,7 +430,7 @@
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
 
-        this._clearPathPoints(marker.path);
+        this._clearPaths();
         marker.path.line.setLatLngs(latlngs);
         if (fitBounds) {
           this.map.fitBounds(marker.path.line.getBounds());
@@ -438,6 +439,7 @@
       } else {
         this._addPath(t, fitBounds);
       }
+
     };
 
     MapRender.prototype._addPathPoints = function(path, msgs, opts) {
@@ -491,6 +493,20 @@
       
     };
 
+    // only show path for one tracker at a time
+    MapRender.prototype._clearPaths = function() {
+      for (var i = 0; i < this.markers.length; i++) {
+        if (this.markers[i].path) {
+          if (this.markers[i].path.points) {
+            this._clearPathPoints(this.markers[i].path);
+          }
+          if (this.markers[i].path.line) {
+            this.markers[i].path.line.setLatLngs([]);
+          }
+        }
+      };
+      
+    }
     
     MapRender.prototype._clearPathPoints = function(path) {
       for (var i = 0; i < path.points.length; i++) {

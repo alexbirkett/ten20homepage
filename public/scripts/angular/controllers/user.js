@@ -46,7 +46,7 @@ angular.module('ten20Angular.controllers').
               $scope.trackers[i].recent.msgs.length - 1, 1);
 
             $scope.trackers[i].path = $scope.trackers[i].recent.msgs;
-            $scope.$broadcast('PathUpdate', $scope.trackers[i]);
+            $scope.$broadcast('PathUpdate', $scope.trackers[i], false);
           }
           // override with new info
           for (var key in tracker) {
@@ -92,7 +92,7 @@ angular.module('ten20Angular.controllers').
       t.recent.msgs = _filterValidMsg(data.items);
       if (t.recent.msgs.length > 1) {
         t.path = t.recent.msgs;
-        $scope.$broadcast('PathUpdate', t);
+        $scope.$broadcast('PathUpdate', t, true);
       }
     });
   }
@@ -101,7 +101,7 @@ angular.module('ten20Angular.controllers').
   $scope.showTrip = function(t, index) {
       t.path = t.trips.data[index].messages;
       t.trips.active = index;
-      $scope.$broadcast('PathUpdate', t);
+      $scope.$broadcast('PathUpdate', t, true);
   };
 
   $scope.loadTrips = function (tracker, init) {
