@@ -271,37 +271,23 @@ window.ten20.submitForm = function (postUrl, redirectUrl) {
   });
 }
 
-// carousel start function
 $(function(){
 
-    startCarousel();
+  // scroll effects
+  $('.nav li a').each(function() {
+    var id;
+    var scroll = $(this).attr('scroll');
 
-    // only start non-map carousel
-    function startCarousel() {
-      $('.carousel').each(function() {
-        if ($(this).children('.carousel-map')) {
-          return;
-        } else {
-          $(this).carousel();
-        }
-      });
-    }
+    if (scroll === 'true' && location.pathname === '/') {
+      id = $(this).attr('href').replace('/', '');
+      if ($(id).length != 0) {
+        var offset = $(id).offset().top;
 
-    // scroll effects
-    $('.nav li a').each(function() {
-      var id;
-      var scroll = $(this).attr('scroll');
-
-      if (scroll === 'true' && location.pathname === '/') {
-        id = $(this).attr('href').replace('/', '');
-        if ($(id).length != 0) {
-          var offset = $(id).offset().top;
-
-          $(this).on('click', function (e) {
-            $('body').animate({scrollTop: offset}, 800);
-          });
-        }
+        $(this).on('click', function (e) {
+          $('body').animate({scrollTop: offset}, 800);
+        });
       }
-    });
+    }
+  });
 
 });
