@@ -95,28 +95,7 @@
         {
             "title": "- SUPPORTED HARDWARE / SOFTWARE -",
             "type": "carousel",
-            "name": "supported",
-            "media": "image",
-            "items": [
-                {
-                    "title": "GOTOP TL-206",
-                    "image": "GPS-tracker-2.png",
-                    "text": "Portable GPS tracker from GOTOP Limited",
-                    "link": "http://gotop.cc/index.php/product/Personal%20GPS%20tracker%20TL-206.html"
-                },
-                {
-                    "title": "Xenun TK201-2",
-                    "image": "GPS-tracker-1.png",
-                    "text": "Portable GPS tracker from Xenun",
-                    "link": "http://www.gpstrackerchina.com/p107/GPS-Portable-Tracker-TK201-2/"
-                },
-                {
-                    "title": "GOTOP TL-201",
-                    "image": "GPS-tracker-3.png",
-                    "text": "Portable GPS tracker from GOTOP Limited",
-                    "link": "http://www.gotop.cc/index.php/product/Personal%20GPS%20tracker%20TL-201.html"
-                }
-            ]
+            "name": "supported"
         },
         {
             "type": "pricing",
