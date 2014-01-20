@@ -837,6 +837,14 @@ footer p {
   margin-right: 0;
 }
 
+.modal-body .form-group > div {
+  padding-right: 5px;
+}
+
+.modal-body .show-invalid .form-group .ng-invalid {
+  outline: 1px solid #f60;
+}
+
 .modal-body .form-group.no-btm-border {
   border-bottom: none;
 }
@@ -847,10 +855,6 @@ footer p {
   margin: 0;
   text-align: left;
   font-size: 13px;
-}
-
-.modal-body .form-group > div {
-  padding: 0;
 }
 
 .modal-body .form-group input {
