@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .wrapper
+  .wrapper(ng-controller="HomeCtrl")
     each section in sections
       if section.type == 'nav-bar'
         include partials/nav-bar
@@ -13,7 +13,7 @@ block content
       if section.type == 'list'
         include partials/list
       if section.type == 'carousel'
-        include partials/carousel
+        include partials/carousel.html
       if section.type == 'pricing'
         include partials/pricing
       if section.type == 'form'
