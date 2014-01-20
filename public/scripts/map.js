@@ -411,7 +411,7 @@
     MapRender.prototype.updatePath = function(t, fitBounds) {
       var marker = this._findMarker(t);
       var latlngs = _getLineCoordsFromMsg(t.path);
-      var optsPoint = { weight: 2, radius: 4 };
+      var optsPoint = { weight: 2, radius: 3};
 
       if (latlngs.length === 0) {
         return;
@@ -483,7 +483,7 @@
 
         distPixel = current.distanceTo(prePoint);
 
-        if (distPixel > 40) {
+        if (distPixel > 60) {
           return true;
         } else {
           return false;
@@ -540,12 +540,22 @@
     }
 
     function _bindEvents(marker) {
-      marker.on('mouseover', function() {
+      marker.on('mouseover', deBounce(function() {
         marker.openPopup();
-      });
-      marker.on('mouseout', function() {
+      }, 200));
+      marker.on('mouseout', deBounce(function() {
         marker.closePopup();
-      });
+      }, 500));
+    }
+
+    function deBounce(fn, interval) {
+      var timerId = null;
+
+      return function(e) {
+        console.log(e.type)
+        clearTimeout(timerId);
+        timerId = setTimeout(function() { fn(); timerId = null }, interval);
+      };
     }
     
     return MapRender;
