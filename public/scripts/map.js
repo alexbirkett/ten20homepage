@@ -424,8 +424,8 @@
       // pick a point to show marker
       if (!marker) {
         t.lastMessage.location = t.path[0];
-        this.updateTracker(t, true);
-        this.updatePath(t, true);
+        this.updateTracker(t, fitBounds);
+        this.updatePath(t, fitBounds);
         return;
       }
 
@@ -454,6 +454,7 @@
       
       self = this;
 
+      this._clearPathPoints(path);
       // add msg points
       for (var i = 0; i < msgs.length; i++) {
         if (_comparePixelDist(msgs[i])) {
