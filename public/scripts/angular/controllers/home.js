@@ -4,8 +4,45 @@
 angular.module('ten20Angular.controllers').
   controller('HomeCtrl', function ($scope) {
     // form data model
-    $scope.form = {};
+    $scope.form = {
+      contact: {
+        tplUrl: "/templates/contactForm.html",
+        method: "POST",
+        path: "/contact",
+        data: {
+          name: "contact us"
+        }
+      },
+      signin: {
+        name: "sign in",
+        tplUrl: "/templates/signinForm.html",
+        method: "POST",
+        path: "/signin",
+        data: {
+          name: "sign in"
+        }
+      },
+      signup: {
+        name: "sign up",
+        tplUrl: "/templates/signupForm.html",
+        method: "POST",
+        path: "/signup",
+        data: {
+          free: {
+            type: "free"
+          },
+          family: {
+            type: "family"
+          },
+          enterprise: {
+            type: "enterprise"
+          }
+        }
+      }
+      
+    };
 
+    // slides data 
     $scope.slides = [
       {
         "title": "GOTOP TL-206",
