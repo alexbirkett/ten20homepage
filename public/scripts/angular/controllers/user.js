@@ -26,8 +26,8 @@ angular.module('ten20Angular.controllers').
       var oldPos = {};
 
       // server response time less than One secend
-      if ((new Date().valueOf()) - start < 2000) {
-        delay *= 2;
+      if ((new Date().valueOf()) - start < 5000) {
+        delay *= 5;
       } else {
         // reset delay
         delay = 1;
