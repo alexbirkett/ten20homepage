@@ -8,5 +8,14 @@ header.hidden-xs
         ul.nav
           each nav in section.navLinks
             li
-              a(href=nav.link, class="menu", scroll=nav.scroll)= nav.text
+              - if (nav.modal) {
+                a(class="menu", model-form,
+                  src-model="form." + nav.id + ".data",
+                  tpl-url="{{form." + nav.id + ".tplUrl}}",
+                  method="{{form." + nav.id + ".method}}",
+                  path="{{form." + nav.id + ".path}}",
+                  dialog-class="big")= nav.text
+              - } else {
+                a(href=nav.link, class="menu", scroll=nav.scroll)= nav.text
+              - }
         .clear

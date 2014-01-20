@@ -46,18 +46,29 @@ angular.module('ten20Angular').
           $scope.error = '';
           $scope.data = config.src;
 
-          $scope.ok = function () {
+          $scope.formInvalid = false;
+
+          $scope.ok = function (f) {
+
+            // input invalid
+            if (f.$invalid) {
+              $scope.formInvalid = true;
+              return;
+            }
+
             $scope.sync = true;
             $http({
               method: config.ajaxMethod,
               url: config.ajaxUrl,
               data: config.field?config.src[config.field]:config.src
             }).success(function () {
+              $scope.succ = true;
               $scope.sync = false;
+              $timeout(function() { $scope.succ = '';}, 10000);
             }).error(function(error) {
               $scope.sync = false;
               $scope.error = error;
-              $timeout(function() { $scope.error = '';}, 5000);
+              $timeout(function() { $scope.error = '';}, 4000);
             });
             //$modalInstance.close($scope.data);
           };

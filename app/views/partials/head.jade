@@ -17,6 +17,10 @@ head
   script(src='/components/momentjs/min/moment.min.js')
   script(src='https://dnv9my2eseobd.cloudfront.net/mapbox.js/v1.6.0/mapbox.js')
   script(src='/components/bootstrap/dist/js/bootstrap.min.js')
+  script(src='/components/angular/angular.min.js')
+  script(src='/components/angular-bootstrap/ui-bootstrap.min.js')
+  script(src='/components/angular-bootstrap/ui-bootstrap-tpls.min.js')
+  script(src='/components/ng-grid/ng-grid-2.0.7.min.js')
 
   <!-- @if production=false -->
   link(rel='stylesheet', href='/styles/home.css')
@@ -24,12 +28,21 @@ head
   link(rel='stylesheet', href='/styles/user.css')
   script(src='/scripts/map.js')
   script(src='/scripts/form.js')
+  script(src='/scripts/angular/app.js')
+  script(src='/scripts/angular/services.js')
+  script(src='/scripts/angular/controllers/admin.js')
+  script(src='/scripts/angular/controllers/home.js')
+  script(src='/scripts/angular/controllers/user.js')
+  script(src='/scripts/angular/directives/userMap.js')
+  script(src='/scripts/angular/directives/modalForm.js')
+  script(src='/scripts/angular/filters.js')
   <!-- @endif -->
 
 
   <!-- @if production=true -->
   link(rel='stylesheet', href='/build/all.min.css')
   script(src='/build/home.min.js')
+  script(src='/build/angular-all.min.js')
   <!-- @endif -->
 
   script.

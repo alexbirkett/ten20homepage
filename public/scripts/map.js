@@ -334,10 +334,9 @@
         tracker.lastMessage.location.longitude,
       ];
 
-      var opt = {}, marker;
+      var opt = {color: '#eee', fillColor: '#f60'}, marker;
 
       if (tracker.settings) {
-        opt.color = '#' + tracker.settings.iconColor;
         opt.fillColor = '#' + tracker.settings.iconColor;
       }
 
@@ -388,15 +387,22 @@
       var marker = this._findMarker(t);
       var latlngs = [];
       var optsLine = { weight: 2 };
-      var optsPoint = { weight: 2, radius: 3 };
+      var optsPoint = { 
+        weight: 2, 
+        radius: 3,
+        color: '#eee',
+        fillColor: '#f60'
+      };
 
       if (marker) {
         marker.path = {line:null, points:[]};
         latlngs = _getLineCoordsFromMsg(t.path);
         if (t.settings) {
           optsLine.color = '#' + t.settings.iconColor;
-          optsPoint.color = '#' + t.settings.iconColor;
           optsPoint.fillColor= '#' + t.settings.iconColor;
+        }
+        if (fitBounds) {
+          this._clearPaths();
         }
         marker.path.line = this.addPolyline(latlngs, optsLine);
         if (fitBounds) {
@@ -410,7 +416,7 @@
     MapRender.prototype.updatePath = function(t, fitBounds) {
       var marker = this._findMarker(t);
       var latlngs = _getLineCoordsFromMsg(t.path);
-      var optsPoint = { weight: 2, radius: 4 };
+      var optsPoint = { weight: 2, radius: 3};
 
       if (latlngs.length === 0) {
         return;
@@ -418,8 +424,8 @@
       // pick a point to show marker
       if (!marker) {
         t.lastMessage.location = t.path[0];
-        this.updateTracker(t, true);
-        this.updatePath(t, true);
+        this.updateTracker(t, fitBounds);
+        this.updatePath(t, fitBounds);
         return;
       }
 
@@ -429,7 +435,9 @@
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
 
-        this._clearPathPoints(marker.path);
+        if (fitBounds) {
+          this._clearPaths();
+        }
         marker.path.line.setLatLngs(latlngs);
         if (fitBounds) {
           this.map.fitBounds(marker.path.line.getBounds());
@@ -438,14 +446,15 @@
       } else {
         this._addPath(t, fitBounds);
       }
+
     };
 
     MapRender.prototype._addPathPoints = function(path, msgs, opts) {
       var popup, self;
-      var opt = {closeButton: false};
       
       self = this;
 
+      this._clearPathPoints(path);
       // add msg points
       for (var i = 0; i < msgs.length; i++) {
         if (_comparePixelDist(msgs[i])) {
@@ -459,7 +468,7 @@
             ], opts);
 
         popup = _generatePopup(msg, opts);
-        point.bindPopup(popup, opt);
+        point.bindPopup(popup, {closeButton: false});
         path.points.push(point);
         _bindEvents(point);
       }
@@ -481,7 +490,7 @@
 
         distPixel = current.distanceTo(prePoint);
 
-        if (distPixel > 40) {
+        if (distPixel > 60) {
           return true;
         } else {
           return false;
@@ -491,6 +500,20 @@
       
     };
 
+    // only show path for one tracker at a time
+    MapRender.prototype._clearPaths = function() {
+      for (var i = 0; i < this.markers.length; i++) {
+        if (this.markers[i].path) {
+          if (this.markers[i].path.points) {
+            this._clearPathPoints(this.markers[i].path);
+          }
+          if (this.markers[i].path.line) {
+            this.markers[i].path.line.setLatLngs([]);
+          }
+        }
+      };
+      
+    }
     
     MapRender.prototype._clearPathPoints = function(path) {
       for (var i = 0; i < path.points.length; i++) {
@@ -515,21 +538,29 @@
     }
 
     function _generatePopup(msg, opts) {
-      var date = msg.timestamp.split('T')[0];
-      var time = msg.timestamp.split('T')[1].slice(0, 5);
+      var date = (new Date(msg.timestamp)).toLocaleString();
 
       return '<p><span class="marker" style="background-color:' +
-             opts.color +' "></span>' + '<span>' + time + '</span>' +
-             '<span>' + date + '</span>';
+             opts.fillColor +' "></span>' + '<span>' + date + '</span>';
     }
 
     function _bindEvents(marker) {
-      marker.on('mouseover', function() {
+      marker.on('mouseover', deBounce(function() {
         marker.openPopup();
-      });
-      marker.on('mouseout', function() {
+      }, 200));
+      marker.on('mouseout', deBounce(function() {
         marker.closePopup();
-      });
+      }, 500));
+    }
+
+    function deBounce(fn, interval) {
+      var timerId = null;
+
+      return function(e) {
+        console.log(e.type)
+        clearTimeout(timerId);
+        timerId = setTimeout(function() { fn(); timerId = null }, interval);
+      };
     }
     
     return MapRender;
