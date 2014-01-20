@@ -538,12 +538,10 @@
     }
 
     function _generatePopup(msg, opts) {
-      var date = msg.timestamp.split('T')[0];
-      var time = msg.timestamp.split('T')[1].slice(0, 5);
+      var date = (new Date(msg.timestamp)).toLocaleString();
 
       return '<p><span class="marker" style="background-color:' +
-             opts.fillColor +' "></span>' + '<span>' + time + '</span>' +
-             '<span>' + date + '</span>';
+             opts.fillColor +' "></span>' + '<span>' + date + '</span>';
     }
 
     function _bindEvents(marker) {

@@ -608,7 +608,7 @@ tr td,
   color: #eee;
   margin-left: 2px;
   margin-right: 3px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .leaflet-popup-content p  .marker {
@@ -620,7 +620,7 @@ tr td,
 }
 
 .leaflet-popup-content {
-  min-width: 190px !important;
+  min-width: 200px !important;
   width: auto !important;
   margin: 0;
   padding: 0;
