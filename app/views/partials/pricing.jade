@@ -8,7 +8,9 @@ mixin itemInfo(item)
       else
         span.price= item.price
         span.postfix /mo
-    a sign up
+    a(model-form, src-model="form." + item.id + "",
+      tpl-url="/templates/signupForm.html", method="POST",
+      path="/signup", dialog-class="big") sign up
 
   ul
     each feature in item.features

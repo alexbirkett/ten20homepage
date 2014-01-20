@@ -94,6 +94,7 @@ header {
   padding: 5px 8px;
   display: inline;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .nav > li a:hover {
