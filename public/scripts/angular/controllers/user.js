@@ -86,7 +86,9 @@ angular.module('ten20Angular.controllers').
       return;
     }
 
-    $http.get('/recent_messages?trackerId=' + t._id).success(function(data) {
+    var url = '/recent_messages?sortBy=_id$desc&trackerId=' + t._id;
+    console.log('recent message url ' + url);
+    $http.get(url).success(function(data) {
       console.log('------recent_message-----');
       t.recent = t.recent || {};
       t.recent.msgs = _filterValidMsg(data.items);
