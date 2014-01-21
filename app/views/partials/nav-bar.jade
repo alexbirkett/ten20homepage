@@ -14,7 +14,9 @@ header.hidden-xs
                   tpl-url="{{form." + nav.id + ".tplUrl}}",
                   method="{{form." + nav.id + ".method}}",
                   path="{{form." + nav.id + ".path}}",
-                  dialog-class="big")= nav.text
+                  redirect="{{form." + nav.id + ".redirect}}",
+                  dialog-class="{{form." + nav.id + ".class}}",
+                  )= nav.text
               - } else {
                 a(href=nav.link, class="menu", scroll=nav.scroll)= nav.text
               - }
