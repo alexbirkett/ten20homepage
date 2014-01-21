@@ -655,8 +655,8 @@ tr td,
 .leaflet-popup-tip-container {display: none;}
 
 .leaflet-popup {
-  bottom: -33px !important;
-  left: -20px !important;
+  bottom: -28px !important;
+  left: -18px !important;
 }
 /* styles for smaller pc screens */
 
