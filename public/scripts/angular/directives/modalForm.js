@@ -12,7 +12,8 @@ angular.module('ten20Angular').
         tplUrl: "@",  // modal dialog template url
         method: "@",  // server request method, POST, PUT, etc
         path: "@",   // server request path
-        dialogClass: "@"   // modal dialog width
+        dialogClass: "@",   // modal dialog width
+        redirect: "@"    // redirect on success
       },
       controller: ['$scope', '$modal', function($scope, $modal) {
 
@@ -27,7 +28,8 @@ angular.module('ten20Angular').
                   src: $scope.srcModel,
                   ajaxMethod: $scope.method,
                   ajaxUrl: $scope.path,
-                  field: $scope.requestProp
+                  field: $scope.requestProp,
+                  redirect: $scope.redirect
                 };
               }
             },
@@ -40,7 +42,7 @@ angular.module('ten20Angular').
           });
         };
 
-        var ModalInstanceCtrl = function($scope, $http, $timeout, $modalInstance, config) {
+        var ModalInstanceCtrl = function($scope, $http, $window, $timeout, $modalInstance, config) {
 
           $scope.sync = false;
           $scope.error = '';
@@ -61,14 +63,18 @@ angular.module('ten20Angular').
               method: config.ajaxMethod,
               url: config.ajaxUrl,
               data: config.field?config.src[config.field]:config.src
-            }).success(function () {
-              $scope.succ = true;
-              $scope.sync = false;
-              $timeout(function() { $scope.succ = '';}, 10000);
+            }).success(function() {
+              if (config.redirect) {
+                $window.location.pathname = config.redirect;
+              } else {
+                $scope.succ = true;
+                $scope.sync = false;
+                $timeout(function() { $scope.succ = '';}, 10000);
+              }
             }).error(function(error) {
               $scope.sync = false;
-              $scope.error = error;
-              $timeout(function() { $scope.error = '';}, 4000);
+              $scope.error = error.message;
+              $timeout(function() { $scope.error = '';}, 10000);
             });
             //$modalInstance.close($scope.data);
           };

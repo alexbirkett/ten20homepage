@@ -13,7 +13,6 @@ angular.module('ten20Angular.controllers').
         }
       },
       signin: {
-        name: "sign in",
         tplUrl: "/templates/signinForm.html",
         method: "POST",
         path: "/signin",
@@ -21,7 +20,6 @@ angular.module('ten20Angular.controllers').
         }
       },
       signup: {
-        title: "sign up",
         tplUrl: "/templates/signupForm.html",
         method: "POST",
         path: "/signup",
