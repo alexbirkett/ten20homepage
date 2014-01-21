@@ -490,6 +490,9 @@ tr td,
 .trip-list {
   margin: 10px 0;
   padding: 0;
+  max-height: 210px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .trip-list > li {
