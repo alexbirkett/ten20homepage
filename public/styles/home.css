@@ -464,6 +464,7 @@ header {
 .pricing {
   text-align: center;
   overflow:auto;
+  -webkit-transform-style: preserve-3d;
 }
 
 .pricing h4 {
