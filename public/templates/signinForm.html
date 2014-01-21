@@ -22,6 +22,8 @@
         <input type="password" id="password" class="form-control" ng-model="data.password"  ng-pattern="/\w.*/" required ng-disabled="sync" />
       </div>
     </div>
+
+  <h4 class="progress-bar" ng-show="sync"><img src="/images/loading_bar.gif" alt="" /></h4>
 </div>
 <div class="modal-footer">
   <button class="btn btn-default" ng-hide="sync" ng-click="ok(f)">sign in</button>
