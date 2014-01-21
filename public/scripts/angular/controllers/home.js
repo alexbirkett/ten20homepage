@@ -9,6 +9,7 @@ angular.module('ten20Angular.controllers').
         tplUrl: "/templates/contactForm.html",
         method: "POST",
         path: "/contact",
+        class: "big",
         data: {
         }
       },
@@ -16,6 +17,8 @@ angular.module('ten20Angular.controllers').
         tplUrl: "/templates/signinForm.html",
         method: "POST",
         path: "/signin",
+        class: "small",
+        redirect: "/console",
         data: {
         }
       },
@@ -23,6 +26,8 @@ angular.module('ten20Angular.controllers').
         tplUrl: "/templates/signupForm.html",
         method: "POST",
         path: "/signup",
+        class: "small",
+        redirect: "/console",
         data: {
           free: {
             type: "free"

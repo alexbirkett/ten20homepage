@@ -10,7 +10,8 @@ mixin itemInfo(item)
         span.postfix /mo
     a(model-form, src-model="form.signup.data." + item.id,
       tpl-url="{{form.signup.tplUrl}}", method="{{form.signup.method}}",
-      path="{{form.signup.path}}", dialog-class="small", redirect="/console") sign up
+      path="{{form.signup.path}}", dialog-class="small",
+      redirect="{{form.signup.redirect}}") sign up
 
   ul
     each feature in item.features
