@@ -6,6 +6,7 @@ angular.module('ten20Angular.controllers').
   controller('UserCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
   // init user and trackers information
   $scope.user = {};
+  $scope.trackerLoaded = false;
   $scope.trackers = [];
 
   // get user account info
@@ -15,7 +16,10 @@ angular.module('ten20Angular.controllers').
   // get trackers info
   $http.get('/trackers').success(function(data) {
     $scope.trackers = data.items;
+    $scope.trackerLoaded = true;
     $scope.$broadcast('InitTrackers');
+  }, function() {
+    $scope.trackerLoaded = true;
   });
 
   var delay = 1; // delay seconds for get trip message
