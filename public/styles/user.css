@@ -555,6 +555,22 @@ tr td,
   z-index: 100;
 }
 
+.add-tracker {
+  text-align: center;
+  margin: 10px;
+}
+
+.add-tracker button {
+  background: none;
+  background-color: #333;
+  border: 1px solid #aaa;
+  color: #eee;
+  text-transform: capitalize;
+}
+
+.add-tracker button:hover {
+  color: #f60;
+}
 
 .bottom-nav li {
   display: inline-block;
