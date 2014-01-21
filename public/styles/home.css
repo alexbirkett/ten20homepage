@@ -208,12 +208,12 @@ header {
 
 .leaflet-control-layers .leaflet-control-layers-list {
   display: block;
-  color: #eee;
+  color: #333;
   border: none;
 }
 
 .leaflet-control-layers .leaflet-control-layers-list.darker {
-  color: #333;
+  color: #eee;
 }
 
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
