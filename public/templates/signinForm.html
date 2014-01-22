@@ -1,6 +1,6 @@
 <div class="modal-header">
   <img src="/images/logo.png" alt="" />
-  <h3>welcome back to ten20</h3>
+  <h3 ng-hide="error!=''">welcome back to ten20</h3>
   <h6 class="error" ng-show="error!=''">{{error}}</h6>
   <div class="cancel" ng-click="cancel()">
     <span>X</span>
