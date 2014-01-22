@@ -7,5 +7,12 @@ section.mapbox
     .call-to-action
       h1= section.text[0]
       h2= section.text[1]
-      a.button(href=section.button.link)= section.button.text
-    img.banner(src="/images/" + section.banner)
+      a.button(model-form, src-model="form.contact.data",
+        tpl-url="{{form.contact.tplUrl}}",
+        method="{{form.contact.method}}",
+        path="{{form.contact.path}}",
+        redirect="{{form.contact.redirect}}",
+        dialog-class="{{form.contact.class}}" 
+      ) get started now
+
+    img.banner(src="/images/banner.png")

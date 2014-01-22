@@ -14,11 +14,6 @@
             "type": "call-to-action",
             "name": "call-to-action",
             "text": ["Track the location of people and things", "Supports GPS trackers and mobile apps" ],
-            "button": {
-                "text": "GET STARTED NOW",
-                "link": "#contact-us"
-            },
-            "banner": "banner.png",
             "map": {
               "lat": 51.74,
               "lng": -4.55,
