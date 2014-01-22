@@ -12,13 +12,8 @@ section.list-view
               h1= item.title
             - }
 
-            - if (section.media == "map") {
-              .list-content(id='list-map' + index)
-                script.
-                  $(function() { new ten20.HomeMap('list-map' + '#{index}', !{JSON.stringify(item.map)}); });
-            - } else {
-              .list-content
-                img(src='/images/' + item.image)
-            - }
+            .list-content(id='list-map' + index)
+              script.
+                $(function() { new ten20.HomeMap('list-map' + '#{index}', !{JSON.stringify(item.map)}); });
 
               h2= item.text

@@ -6,24 +6,7 @@
           "file": "nav.json"
         },
         {
-            "type": "call-to-action",
-            "text": ["Get 30% commission for referring customers", "You get paid when we get paid", "Receive monthly payment"],
-            "button": {
-                "text": "ENROLL NOW",
-                "link": "#contact-us"
-            },
-            "banner": "banner.png",
-            "map": {
-                "zoomLevel": 6,
-                "lat": -24.73685,
-                "lng":130.18799,
-                "numberOfTrackers": 5,
-                "zoomControl": true,
-                "showHistory": true,
-                "tile": "alexbirkett.map-t0fodlre",
-                "layers": [ {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"},
-                    { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}]
-            }
+            "type": "call-to-action"
         },
         {
           "file": "benefits.json"
