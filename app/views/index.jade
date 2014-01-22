@@ -2,6 +2,7 @@ extends layout
 
 block content
   .wrapper(ng-controller="HomeCtrl")
+    include partials/cookie.html
     each section in sections
       if section.type == 'nav-bar'
         include partials/nav-bar.html

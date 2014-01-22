@@ -123,7 +123,6 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     configureDryRoutes(admin, app);
 
     // user console
-    app.get('/signup', routes.signup);
     app.get('/console', routes.console);
     // home page
     app.post('/contact', routes.contact);
