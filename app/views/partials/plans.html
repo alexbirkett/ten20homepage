@@ -1,0 +1,34 @@
+<section id="plans" class="pricing">
+<div class="container">
+  <div class="row">
+    <h4>{{plans.title}}</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-4" ng-repeat="item in plans.items" ng-class="{highlight: item.highlighted}">
+      <h3 ng-show="item.highlighted">
+        most popular
+      </h3>
+      <div class="head">
+        <h3>{{item.name}}</h3>
+        <h5>
+          <span class="dollar">$</span>
+          <span class="price">{{item.price}}</span>
+          <span class="postfix" ng-hide="item.proce=='0'">/mo</span>
+        </h5>
+        <a model-form src-model="item.data" 
+          tpl-url="form.signup.tplUrl"
+          method="form.signup.method"
+          path="form.signup.path"
+          dialog-class="form.signup.class"
+          redirect="form.signup.redirect"
+          >sign up</a> 
+      </div>
+
+      <ul>
+        <li ng-repeat="feature in item.features">
+        <p>{{feature}}</p>
+        </li>
+      </ul>
+
+  </div>
+</section>
