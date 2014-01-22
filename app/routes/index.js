@@ -38,15 +38,11 @@ exports.index = function(req, res) {
       }
     };
 
-    if (!model.cookies) {
-      model.cookies = indexModel.cookies;
-    }
-
     if (req.cookies.views) {
-      model.cookies.display = 'hide';
+      model.displayCookie = true;
     } else {
       // set cookie
-      model.cookies.display = 'show';
+      model.displayCookie = false;
       // IE8 doesn't support max-age, so have to fallback to expires, though a bit older 
       if (req.secure) {
         res.cookie('views', '1', { expires: new Date(2030, 1, 1), secure: true});
@@ -71,10 +67,6 @@ exports.contact = function(req, res){
   contactCollection.insert(data, function(error, docs) {
     res.json({error: !!error});
   });
-};
-
-exports.signup = function(req, res) {
-  res.render('signup-hidden', {pageTitle: 'Sign Up | ten20live'});
 };
 
 exports.console = function (req, res) {

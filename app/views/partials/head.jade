@@ -1,8 +1,8 @@
 head
   meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
-  title= pageTitle
-  meta(name='description', content= metaDescription)
-  meta(name='keywords', content= metaKeywords)
+  title(ng-bind="pageTitle")
+  meta(name='description', content="{{metaDescription}}")
+  meta(name='keywords', content="{{metaKeywords}}")
   link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.min.css')
   link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap-theme.min.css')
   link(rel='stylesheet', href='https://dnv9my2eseobd.cloudfront.net/mapbox.js/v1.6.0/mapbox.css')
