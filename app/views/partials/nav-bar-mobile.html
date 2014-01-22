@@ -16,12 +16,12 @@
             <a ng-switch-when="signin" class="menu" model-form
               src-model="form.signin.data" tpl-url="{{form.signin.tplUrl}}"
               path="{{form.signin.path}}" dialog-class="{{form.signin.class}}"
-              redirect="{{form.signin.redirect}}"
+              method="{{form.signin.method}}" redirect="{{form.signin.redirect}}"
               >{{n.text}}</a>
             <a ng-switch-when="contact" class="menu" model-form
               src-model="form.contact.data" tpl-url="{{form.contact.tplUrl}}"
               path="{{form.contact.path}}" dialog-class="{{form.contact.class}}"
-              redirect="{{form.contact.redirect}}"
+              method="{{form.signin.method}}" redirect="{{form.contact.redirect}}"
               >{{n.text}}</a>
             <a ng-switch-default ng-href="{{n.link}}" class="menu" scroll="{{n.scroll}}">{{n.text}}</a>
             </li>
