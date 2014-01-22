@@ -4,8 +4,8 @@ block content
   .wrapper(ng-controller="HomeCtrl")
     each section in sections
       if section.type == 'nav-bar'
-        include partials/nav-bar
-        include partials/nav-bar-mobile
+        include partials/nav-bar.html
+        include partials/nav-bar-mobile.html
       if section.type == 'call-to-action'
         include partials/call-to-action
       if section.type == 'benefits'
@@ -18,8 +18,6 @@ block content
         include partials/plans.html
       if section.type == 'about-us'
         include partials/about.html
-      if section.type == 'faq'
-        include partials/faq
 
   .push
     footer
