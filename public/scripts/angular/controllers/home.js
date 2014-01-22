@@ -219,5 +219,100 @@ angular.module('ten20Angular.controllers').
       ]
     };
 
+    $scope.mapSections = {
+      "homeMasterHead": {
+        "title": "Track the location of people and things", 
+        "subTitle": "Supports GPS trackers and mobile apps",
+        "buttonText": "get started now",
+        "map": {
+          "lat": 51.74,
+          "lng": -4.55,
+          "zoomLevel": 12,
+          "numberOfTrackers": 5,
+          "zoomControl": true,
+          "showTail": true,
+          "layers": [
+            {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"},
+            { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}
+          ]
+        }
+      },
+
+      "partnerMasterHead": {
+        "title": "Get 30% commission for referring customers", 
+        "subTitle":"You get paid when we get paid",
+        "buttonText": "ENROLL NOW",
+        "map": {
+          "zoomLevel": 6,
+          "lat": -24.73685,
+          "lng":130.18799,
+          "numberOfTrackers": 5,
+          "zoomControl": true,
+          "showHistory": true,
+          "tile": "alexbirkett.map-t0fodlre",
+          "layers": [
+            {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"},
+            { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}
+          ]
+        }
+      },
+
+      "feautures": {
+        "title": "- KEY FEATURES -",
+        "items": [
+          {
+            "title": "Real time updates",
+            "image": "map-track.jpg",
+            "text": "See your trackers move around the map in realtime, no need to refresh the page.",
+            "status": "active",
+            "map": {
+              "lat": 52.80113,
+              "lng": -1.63130,
+              "zoomLevel": 16,
+              "restrict": true,
+              "numberOfTrackers": 1,
+              "showTail": false,
+              "followFirstTracker": true,
+              "addVirtualFence": false,
+              "tile": "alexbirkett.map-bugector"
+            }
+          },
+          {
+            "title": "Trip History",
+            "image": "map-path.jpg",
+            "text": "Trip history is stored by Ten20. It's up to you how long you keep your trips for.",
+            "map": {
+              "lat": 32.062472,
+              "lng": 118.778056,
+              "zoomLevel": 15,
+              "restrict": true,
+              "numberOfTrackers": 1,
+              "showTail": true,
+              "followFirstTracker":true,
+              "addVirtualFence": false,
+              "tile": "alexbirkett.map-bugector"
+            }
+          },
+          {
+            "title": "Set your own ", 
+            "subTitle": "virtual fence",
+            "image": "map-fence.jpg",
+            "text": "Get alerts via SMS, email, Facebook or Twitter when tracker enters an area you draw on the map.",
+            "map": {
+              "lat": 59.93245,
+              "lng": 10.79090,
+              "zoomLevel": 13,
+              "restrict": true,
+              "numberOfTrackers": 0,
+              "showTail": false,
+              "followFirstTracker": false,
+              "addVirtualFence":true,
+              "tile": "alexbirkett.map-bugector"
+            }
+          }
+        ]
+      }
+    }
+
   });
 
