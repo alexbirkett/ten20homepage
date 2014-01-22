@@ -1,42 +1,4 @@
 {
   "type": "nav-bar",
-  "logo": "logo.png",
-  "navLinks": [
-    {
-      "text": "Supported hardware",
-      "link": "/#supported",
-      "scroll": "true"
-    },
-    {
-      "text": "Plans",
-      "link": "/#plans",
-      "scroll": "true"
-    },
-    {
-      "text": "Partner program",
-      "link": "/partner",
-      "scroll": "false"
-    },
-    {
-      "modal": true,
-      "id": "contact",
-      "text": "Contact Us"
-    },
-    {
-      "modal": true,
-      "id": "signin",
-      "text": "sign in"
-    },
-    {
-      "text": "About Us",
-      "link": "#about-us",
-      "scroll": "true"
-    },
-    {
-      "text": "FAQ",
-      "link": "/#faq",
-      "scroll": "true"
-    }
-  ]
-
+  "logo": "logo.png"
 }

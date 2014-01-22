@@ -14,12 +14,12 @@ angular.module('ten20Angular.controllers').
         }
       },
       signin: {
-        tplUrl: "/templates/signinForm.html",
-        method: "POST",
-        path: "/signin",
-        class: "small",
-        redirect: "/console",
-        data: {
+        "tplUrl": "/templates/signinForm.html",
+        "method": "POST",
+        "path": "/signin",
+        "class": "small",
+        "redirect": "/console",
+        "data": {
         }
       },
       signup: {
@@ -31,6 +31,46 @@ angular.module('ten20Angular.controllers').
       }
       
     };
+
+    $scope.navsHome = [
+      {
+        "text": "Supported hardware",
+        "link": "/#supported",
+        "scroll": "true"
+      },
+      {
+        "text": "Plans",
+        "link": "/#plans",
+        "scroll": "true"
+      },
+      {
+        "text": "Partner program",
+        "link": "/partner",
+        "scroll": "false"
+      },
+      {
+        "modal": true,
+        "id": "contact",
+        "text": "Contact Us"
+      },
+      {
+        "modal": true,
+        "id": "signin",
+        "text": "sign in"
+      },
+      {
+        "text": "About Us",
+        "link": "#about-us",
+        "scroll": "true"
+      }
+      /*
+      {
+        "text": "FAQ",
+        "link": "/#faq",
+        "scroll": "true"
+      }
+      */
+    ];
 
     // slides data 
     $scope.slides = [
@@ -157,6 +197,24 @@ angular.module('ten20Angular.controllers').
           },
           "highlighted": false,
           "features": ["Great for fleet tracking", "Telephone support", "Real time location", "Trip history", "Virtual fence", "Unlimited number of trackers", "10 logins", "Warm feeling that you're supporting ten20"]
+        }
+      ]
+    };
+
+    $scope.faq = {
+      "name": "- FAQ -",
+      "items": [
+        {
+          "title": "What's ten20?",
+          "text": "to be add"
+        },
+        {
+          "title": "How to get your tracker?",
+          "text": "to be add"
+        },
+        {
+          "title": "How to be a partner?",
+          "text": "to be add"
         }
       ]
     };
