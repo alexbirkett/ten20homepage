@@ -1,0 +1,14 @@
+<section class="list-view">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h4>{{features.title}}</h4>
+          <div class="feature-item" ng-repeat="item in features.items">
+            <h1>{{item.title}}<span>{{item.subTitle}}</span></h1>
+            <div class="list-content" home-map map-data="item.map" id="{{'list-map-' + $index}}"></div>
+            <h2>{{item.text}}</h2>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
