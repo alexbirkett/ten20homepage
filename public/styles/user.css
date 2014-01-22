@@ -490,6 +490,9 @@ tr td,
 .trip-list {
   margin: 10px 0;
   padding: 0;
+  max-height: 210px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .trip-list > li {
@@ -555,6 +558,22 @@ tr td,
   z-index: 100;
 }
 
+.add-tracker {
+  text-align: center;
+  margin: 10px;
+}
+
+.add-tracker button {
+  background: none;
+  background-color: #333;
+  border: 1px solid #aaa;
+  color: #eee;
+  text-transform: capitalize;
+}
+
+.add-tracker button:hover {
+  color: #f60;
+}
 
 .bottom-nav li {
   display: inline-block;
@@ -636,8 +655,8 @@ tr td,
 .leaflet-popup-tip-container {display: none;}
 
 .leaflet-popup {
-  bottom: -33px !important;
-  left: -20px !important;
+  bottom: -28px !important;
+  left: -18px !important;
 }
 /* styles for smaller pc screens */
 

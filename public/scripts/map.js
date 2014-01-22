@@ -388,8 +388,8 @@
       var latlngs = [];
       var optsLine = { weight: 2 };
       var optsPoint = { 
-        weight: 2, 
-        radius: 3,
+        weight: 3, 
+        radius: 5,
         color: '#eee',
         fillColor: '#f60'
       };
@@ -416,7 +416,7 @@
     MapRender.prototype.updatePath = function(t, fitBounds) {
       var marker = this._findMarker(t);
       var latlngs = _getLineCoordsFromMsg(t.path);
-      var optsPoint = { weight: 2, radius: 3};
+      var optsPoint = { weight: 3, radius: 5};
 
       if (latlngs.length === 0) {
         return;
@@ -550,14 +550,13 @@
       }, 200));
       marker.on('mouseout', deBounce(function() {
         marker.closePopup();
-      }, 500));
+      }, 200));
     }
 
     function deBounce(fn, interval) {
       var timerId = null;
 
       return function(e) {
-        console.log(e.type)
         clearTimeout(timerId);
         timerId = setTimeout(function() { fn(); timerId = null }, interval);
       };
