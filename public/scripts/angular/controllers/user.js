@@ -14,10 +14,11 @@ angular.module('ten20Angular.controllers').
     $scope.user = userinfo;
   });
   // get trackers info
-  $http.get('/trackers').success(function(data) {
+  $http.get('/trackers').then(function(data) {
     $scope.trackers = data.items;
     $scope.trackerLoaded = true;
     $scope.$broadcast('InitTrackers');
+    getMessages();
   }, function() {
     $scope.trackerLoaded = true;
   });
@@ -74,7 +75,6 @@ angular.module('ten20Angular.controllers').
     });
   }
 
-  getMessages();
 
   // refresh tracker
   $scope.refreshTracker = function(t) {
