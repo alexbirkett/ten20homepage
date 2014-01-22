@@ -1,0 +1,25 @@
+<header class="hidden-xs">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="/" class="logo"><img src="/images/logo.png"/></a>
+          <ul class="nav">
+              <li ng-repeat="n in navs" ng-switch="n.id">
+                <a ng-switch-when="signin" class="menu" model-form
+                  src-model="form.signin.data" tpl-url="{{form.signin.tplUrl}}"
+                  path="{{form.signin.path}}" dialog-class="{{form.signin.class}}"
+                  method="{{form.signin.method}}" redirect="{{form.signin.redirect}}"
+                  >{{n.text}}</a>
+                <a ng-switch-when="contact" class="menu" model-form
+                  src-model="form.contact.data" tpl-url="{{form.contact.tplUrl}}"
+                  path="{{form.contact.path}}" dialog-class="{{form.contact.class}}"
+                  method="{{form.signin.method}}" redirect="{{form.contact.redirect}}"
+                  >{{n.text}}</a>
+                <a ng-switch-default ng-href="{{n.link}}" class="menu" scroll="{{n.scroll}}">{{n.text}}</a>
+             </li>
+          </ul>
+          <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</header>

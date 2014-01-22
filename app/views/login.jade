@@ -1,26 +1,30 @@
-extends layout-angular
+extends layout
 
 block content
   .login-form.submit-form-container
     .row
-      ..col-md-12
+      .col-md-12
         form.form-horizontal.submit-form
           .form-group
-            a.(href='/')
-              img(src='/images/logo.png')
-              | admin
+            .col-md-8.col-sm-offset-4
+              a.controls(href='/')
+                img(src='/images/logo.png')
+                | admin
 
             h5.alerter login failed!
 
           .form-group
-            label.control-label(for="username") Username
-              input(type="text",id="username",placeholder="user name")
+            label.control-label.col-md-4(for="username") Username
+            .col-md-8
+              input(type="text",id="username")
 
           .form-group
-            label.control-label(for="password") Password
-              input(type="password",id="password", placeholder="Password")
-              br
-              br
+            label.control-label.col-md-4(for="password") Password
+            .col-md-8
+              input(type="password",id="password")
+
+          .form-group
+            .col-md-8.col-sm-offset-4
               button.btn(type="submit") Sign in
       script
         $(function() {
