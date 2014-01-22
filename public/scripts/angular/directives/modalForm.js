@@ -65,6 +65,7 @@ angular.module('ten20Angular').
               data: config.field?config.src[config.field]:config.src
             }).success(function() {
               if (config.redirect) {
+                $window.location.hash = "";
                 $window.location.pathname = config.redirect;
               } else {
                 $scope.succ = true;
