@@ -102,7 +102,33 @@ angular.module('ten20Angular.controllers').
 
 
       ]
-    }
+    };
+
+    $scope.benefits = {
+      "name": "benefits",
+      "items": [
+        {
+          "icon": "secure.png",
+          "title": "Secure",
+          "text": "Uses industry standard encryption techniques. Hosted in Europe. Subject to strict UK data protection laws."
+        },
+        {
+          "icon": "simple.png",
+          "title": "Simple",
+          "text": "Configuring your GPS tracker can be challenging, we provide simple instructions in plain English. Support available."
+        },
+        {
+          "icon": "universal.png",
+          "title": "Universal",
+          "text": "Track people and things with inexpensive GPS tracking devices or mobile phones. Support for handheld and vehicle trackers."
+        },
+        {
+          "icon": "trusted.png",
+          "title": "Trusted",
+          "text": "ten20 (Birkett Enterprise Ltd) has 6 years experience running GPS tracking service with 400,000 registered users."
+        }
+      ]
+    };
 
   });
 
