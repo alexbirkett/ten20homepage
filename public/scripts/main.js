@@ -8,9 +8,9 @@ $(function(){
     if (scroll === 'true' && location.pathname === '/') {
       id = $(this).attr('href').replace('/', '');
       if ($(id).length != 0) {
-        var offset = $(id).offset().top;
 
         $(this).on('click', function (e) {
+          var offset = $(id).offset().top;
           $('body').animate({scrollTop: offset}, 800);
         });
       }
