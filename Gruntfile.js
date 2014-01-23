@@ -103,14 +103,14 @@ module.exports = function (grunt) {
    // watch node process
     watch: {
       dev: {
-        files:  [ 'app/data/*.json', 'app/*/*.js' ],
+        files:  [ 'app/*/*.js' ],
         tasks:  [ 'express:dev' ],
         options: {
           nospawn: true //Without this option specified express won't be reloaded
         }
       },
       prod: {
-        files:  [ 'app/data/*.json', 'app/*/*.js' ],
+        files:  [ 'app/*/*.js' ],
         tasks:  [ 'express:prod' ],
         options: {
           nospawn: true //Without this option specified express won't be reloaded
