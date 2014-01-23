@@ -59,16 +59,18 @@
                   <img src="/images/user/search.png" ng-click="open($event)"/>
                 </div>
 
-                <ul class="trip-list">
-                  <li ng-repeat="item in tracker.trips.data"
-                  ng-click="showTrip(tracker, $index)"
-                  ng-class="{active : $index === tracker.trips.active}">
-                  <h6><span class="header">started</span><span class="timeslot">{{item.startTime | tripTime}}</span></h6>
-                  <h6><span class="header">ended</span><span class="timeslot">{{item.endTime | tripTime}}</span></h6>
-                  </li>
-                </ul>
+                <div class="trip-list">
+                  <ul>
+                    <li ng-repeat="item in tracker.trips.data"
+                    ng-click="showTrip(tracker, $index)"
+                    ng-class="{active : $index === tracker.trips.active}">
+                    <h6><span class="header">started</span><span class="timeslot">{{item.startTime | tripTime}}</span></h6>
+                    <h6><span class="header">ended</span><span class="timeslot">{{item.endTime | tripTime}}</span></h6>
+                    </li>
+                  </ul>
+                  <h6 class="error" ng-show="tracker.trips.error !=''">{{tracker.trips.error}}</h6>
+                </div>
 
-                <h6 class="error" ng-show="tracker.trips.error !=''">{{tracker.trips.error}}</h6>
                 <div class="trip-load">
                   <button class="btn btn-default" ng-hide="tracker.trips.loading || tracker.trips.error !== ''" ng-click="loadTrips(tracker)">more</button>
                   <img  ng-show="tracker.trips.loading" src="/images/loading_bar.gif" alt="" />

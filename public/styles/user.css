@@ -479,14 +479,6 @@ tr td,
   left: -10px !important;
 }
 
-.error {
-  text-align: center;
-  margin: 20px auto;
-  font-size: 13px;
-  text-transform: capitalize;
-  color: #f60;
-}
-
 .trip-list {
   margin: 10px 0;
   padding: 0;
@@ -495,7 +487,12 @@ tr td,
   overflow-x: hidden;
 }
 
-.trip-list > li {
+.trip-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+.trip-list ul > li {
   font-size: 13px;
   text-transform: capitalize;
   margin: 0 -10px;
@@ -504,28 +501,29 @@ tr td,
   border-top: 1px solid #666;
 }
 
-.trip-list > li .header {
+.trip-list ul > li .header {
   text-transform: capitalize;
   display: inline-block;
   width: 45px;
 }
 
-.trip-list > li.active {
+.trip-list ul > li.active {
   background-color: #333;
 }
 
-.trip-list > li:last-child {
+.trip-list ul > li:last-child {
   border-bottom: 1px solid #666;
 }
 
-.trip-list > li img {
-  float: right;
-  margin: -10px;
-  padding: 13px;
-  border-left: 1px solid #666;
+.trip-list .error {
+  text-align: center;
+  margin: 20px auto;
+  font-size: 13px;
+  text-transform: capitalize;
+  color: #f60;
 }
 
-.trip-list > li span.timeslot {
+.trip-list ul > li span.timeslot {
   color: #f60;
   margin-left: 10px;
 }
