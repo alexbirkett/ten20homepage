@@ -1,7 +1,7 @@
 'use strict';
 
 /* admin console page controller */
-angular.module('ten20Angular.controllers', []).
+angular.module('ten20Angular.controllers').
   controller('RootCtrl', function ($scope) {
     // form data model
     $scope.form = {
