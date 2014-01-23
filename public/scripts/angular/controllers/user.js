@@ -80,15 +80,15 @@ angular.module('ten20Angular').
   $scope.refreshTracker = function(t) {
     $scope.activeTracker = t;
     $scope.$broadcast('FocusTracker', t);
-    $scope.recentMsg(t, false);
+    $scope.recentMsg(t);
   };
 
   // load recent msg of a tracker
-  $scope.recentMsg = function(t, focus) {
+  $scope.recentMsg = function(t) {
 
     if (t.recent && t.recent.msgs.length !== 0) {
       t.path = t.recent.msgs;
-      $scope.$broadcast('PathUpdate', t, focus);
+      $scope.$broadcast('PathUpdate', t, true);
       return;
     }
 
