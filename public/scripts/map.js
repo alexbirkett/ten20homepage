@@ -418,6 +418,10 @@
       var latlngs = _getLineCoordsFromMsg(t.path);
       var optsPoint = { weight: 3, radius: 5};
 
+      if (fitBounds) {
+        this._clearPaths();
+      }
+
       if (latlngs.length === 0) {
         return;
       }
@@ -435,9 +439,6 @@
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
 
-        if (fitBounds) {
-          this._clearPaths();
-        }
         marker.path.line.setLatLngs(latlngs);
         if (fitBounds) {
           this.map.fitBounds(marker.path.line.getBounds());
