@@ -21,11 +21,13 @@ angular.module('ten20Angular').
         // bind tracker tab click to update tracker recent or trip
         element.delegate('.nav-tabs a', 'click', function(e) {
           var tracker = $(e.target).parents('.panel').scope().tracker;
-          var infoTab = $(e.target).parent().hasClass('info-tab');
+          var infoTab = $(e.currentTarget).parent().hasClass('info-tab');
 
           if (infoTab) {
+            tracker.tripActive = false;
             scope.recentMsg(tracker);
           } else {
+            tracker.tripActive = true;
             scope.loadTrips(tracker, true);
           }
         });

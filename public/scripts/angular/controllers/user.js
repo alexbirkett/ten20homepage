@@ -50,8 +50,14 @@ angular.module('ten20Angular').
             $scope.trackers[i].recent.msgs.splice(
               $scope.trackers[i].recent.msgs.length - 1, 1);
 
-            $scope.trackers[i].path = $scope.trackers[i].recent.msgs;
-            $scope.$broadcast('PathUpdate', $scope.trackers[i], false);
+            // only update path when active tracker's trip pane is not show
+            if (!$scope.activeTracker ||
+                $scope.activeTracker._id !== $scope.trackers[i]._id ||
+                !$scope.trackers[i].tripActive) {
+
+                  $scope.trackers[i].path = $scope.trackers[i].recent.msgs;
+                  $scope.$broadcast('PathUpdate', $scope.trackers[i], false);
+             }
           }
           // override with new info
           for (var key in tracker) {
