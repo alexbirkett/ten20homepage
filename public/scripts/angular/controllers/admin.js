@@ -1,7 +1,7 @@
 'use strict';
 
 /* admin console page controller */
-angular.module('ten20Angular.controllers', []).
+angular.module('ten20Angular').
   controller('ContactUserCtrl', function ($scope, $http, $timeout) {
 
     $scope.filterOptions = {
