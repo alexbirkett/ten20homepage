@@ -343,6 +343,17 @@
       marker = this.addPoint(latlng, opt);
       marker.trackerId = tracker._id;
 
+      marker.on('click', function() {
+        var panels = $('.tool-box .panel');
+
+        panels.each(function(index, panel) {
+          var scope = $(panel).scope();
+          if (scope.tracker._id === tracker._id) {
+            $(panel).find('.panel-heading a').click();
+          }
+        });
+      });
+
       this.map.addLayer(marker);
       this.markers.push(marker);
       this.map.panTo(marker.getLatLng());
