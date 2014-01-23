@@ -81,12 +81,12 @@ angular.module('ten20Angular').
             "zoomControl":true,
             "layers":[
               {
-                "label":"Satellite",
-                "tileLayer":"alexbirkett.map-t0fodlre"
-              },
-              {
                 "label":"Map",
                 "tileLayer":"alexbirkett.map-bugector"
+              },
+              {
+                "label":"Satellite",
+                "tileLayer":"alexbirkett.map-t0fodlre"
               }
             ]
           };
