@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('ten20Angular.controllers').
+angular.module('ten20Angular').
   controller('UserCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
   // init user and trackers information
   $scope.user = {};
