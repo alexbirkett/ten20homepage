@@ -390,6 +390,9 @@ header {
 /* carousel-view section styles */
 .carousel-view {
   padding: 60px 0;
+  -webkit-transform-style: preserve-3d;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
 }
 
 .carousel-view h4 {
@@ -471,6 +474,8 @@ header {
 .pricing {
   text-align: center;
   overflow:auto;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
 }
 
@@ -596,6 +601,9 @@ header {
 
 .about {
   margin: 80px auto;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
 }
 
 .about .row .col-md-8 {
