@@ -19,7 +19,7 @@
     "express-dry-router": "0.0.1",
     "request": "2.27.x",
     "async": "0.2.9",
-    "http-proxy":  "git://github.com/nodejitsu/node-http-proxy#caronte"
+    "http-proxy": "git://github.com/nodejitsu/node-http-proxy#caronte"
   },
   "devDependencies": {
     "should": "1.2.2",
@@ -48,7 +48,8 @@
     "grunt-bg-shell": "~2.1.0",
     "grunt-shell": "~0.3.1",
     "superagent": "~0.15.4",
-    "mocha": "~1.12.0"
+    "mocha": "~1.12.0",
+    "karma-ng-html2js-preprocessor": "~0.1.0"
   },
   "engines": {
     "node": ">=0.8.0"
