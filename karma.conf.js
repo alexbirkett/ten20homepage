@@ -19,6 +19,7 @@ module.exports = function(config) {
       'public/components/draggable/draggable.js',
       'public/scripts/*.js',
       'public/scripts/**/*.js',
+      'test/lib/**/*.js'
       'test/spec/**/*.js'
     ],
     // list of files to exclude
@@ -43,6 +44,12 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers : ['PhantomJS'],
+
+    // generate js files from html templates
+    preprocessors: {
+      'public/templates/*.html': 'ng-html2js'
+    },
+    
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout : 5000,
