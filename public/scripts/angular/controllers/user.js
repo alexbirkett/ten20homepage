@@ -6,6 +6,7 @@ angular.module('ten20Angular').
   controller('UserCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
   // init user and trackers information
   $scope.user = {};
+  $scope.newTracker = {};
   $scope.trackerLoaded = false;
   $scope.trackers = [];
 

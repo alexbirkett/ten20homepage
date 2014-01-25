@@ -828,6 +828,10 @@ footer p {
   line-height: 25px;
 }
 
+.modal-header .succ {
+  color: #f60;
+}
+
 .modal-header .cancel {
   position: absolute;
   top: 5px;
