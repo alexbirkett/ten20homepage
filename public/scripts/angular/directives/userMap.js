@@ -3,12 +3,17 @@
 /*  user map direcitve */
 
 angular.module('ten20Angular').
-  directive('userConsole', function() {
+  directive('userConsole', ['$window', function($window) {
     return {
 			templateUrl: '/templates/userConsole.html',
 			restrict: 'A',
 			replace: true,
       link: function(scope, element, attrs) {
+        // enable toolbox to off canvas in small screens;
+        scope.toggleMapWidth = function () {
+          element.children('#map').toggleClass('off-canvas');
+          scope.$broadcast('ResizeMap');
+        };
         // bind tracker accordion click to update tracker data
         element.delegate('.panel-heading a', 'click', function(e) {
           var panelScope = $(e.target).parents('.panel').scope();
@@ -33,13 +38,15 @@ angular.module('ten20Angular').
         });
 
         // make tool box draggable
-         var toolbox = element.find('.tool-box')[0];
-         var handle = element.find('.tool-box .time-weather')[0];
-         draggable(toolbox, handle);
-
+        var toolbox = element.find('.tool-box')[0];
+        var handle = element.find('.tool-box .time-weather')[0];
+        // enable drag on big screens
+        if ($window.innerWidth > 767) {
+          draggable(toolbox, handle);
+        }
       }
     };
-  }).
+  }]).
   directive('userMap', function($timeout) {
     return {
 			restrict: 'A',
@@ -106,6 +113,9 @@ angular.module('ten20Angular').
         $scope.$on('TrackerUpdate', _updateTracker);
         $scope.$on('FocusTracker', _focusTracker);
         $scope.$on('PathUpdate', _updatePath);
+        $scope.$on('ResizeMap', function() {
+          $scope.userMap.map.invalidateSize();
+        });
 
         // center map to tracker location
         function _focusTracker(e, t) {
