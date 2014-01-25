@@ -20,6 +20,10 @@ body { margin:0; padding:0; }
   z-index: 1;
 }
 
+.map-canvas #map button {
+  display: none;
+}
+
 .user-page {
   position: absolute;
   top: 0;
@@ -658,3 +662,55 @@ tr td,
 }
 /* styles for smaller pc screens */
 
+@media only screen and (max-width: 767px) {
+  .map-canvas #map {
+    z-index: 101;
+    -webkit-transition: right 300ms;
+    -moz-transition: right 300ms;
+    -o-transition: right 300ms;
+    transition: right 300ms;
+  }
+
+  .map-canvas #map.off-canvas {
+    right: 250px;
+  }
+
+  .map-canvas #map button.btn.btn-default {
+    display: block;
+    top: 5px;
+    right: 10px;
+    padding-top: 8px;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 10px;
+    outline: none;
+    background: rgb(39, 37, 37);
+    z-index: 2000;
+  }
+
+  .map-canvas #map button span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin-bottom: 3px;
+    background-color: #f60;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  }
+
+  .tool-box {
+    position: absolute;
+    top:0;
+    bottom: 30px;
+    right: 0;
+    width: 250px;
+  }
+
+  .leaflet-right .leaflet-control {
+    margin-right: 50px;
+  }
+}
