@@ -1,7 +1,7 @@
 /*global describe, it */
 'use strict';
 
-describe("home controller test", function () {
+describe("partner controller test", function () {
   var ctrl, scope, createController;
 
   beforeEach(module('ten20Angular'));
