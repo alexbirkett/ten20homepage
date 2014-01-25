@@ -177,11 +177,6 @@ module.exports = function (grunt) {
     },
 
     exec: {
-      mocha: {
-        command: 'mocha test/*.js -R spec --timeout 15000',
-        stdout: true,
-        stderr: true
-      },
       mocha_api: {
         command: 'mocha node_modules/ten20api/test/trackers.js -R spec --timeout 15000',
         stdout: true,
@@ -215,9 +210,15 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
       'bgShell',
-      'exec:mocha',
       'exec:mocha_api',
       'karma'
       ]);
 
+  grunt.registerTask('test:angular', [
+      'bgShell',
+      'karma'
+      ]);
+  grunt.registerTask('test:unit', [
+      'karma:unit'
+      ]);
 };
