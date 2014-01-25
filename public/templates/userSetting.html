@@ -6,7 +6,7 @@
   </div>
 </div>
 <div class="modal-body">
-  <form name="f" class="form-horizontal" role="form">
+  <form name="f" class="form-horizontal" role="form" ng-class="{'show-invalid': formInvalid}">
     <div class="form-group">
       <label for="#email" class="col-sm-2 control-label">email:</label>
       <div class="col-sm-10">
@@ -30,5 +30,5 @@
   <h4 class="progress-bar" ng-show="sync"><img src="/images/loading_bar.gif" alt="" /></h4>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-disabled="sync" ng-click="ok()">save</button>
+  <button class="btn btn-default" ng-disabled="sync" ng-click="ok(f)">save</button>
 </div>

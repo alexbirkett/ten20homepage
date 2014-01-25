@@ -95,7 +95,7 @@
     </accordion>
 
     <div class="add-tracker" ng-show="trackerLoaded && trackers.length == 0">
-      <button class="btn btn-default" model-form src-model="tracker" tpl-url="/templates/trackerSetting.html" method="PUT" path="/trackers" dialog-class="small" >add tracker</button>
+      <h3>please add your tracker first.</h3>
     </div>
   </div>
 
@@ -103,6 +103,7 @@
   <ul class="bottom-nav">
     <li><span><a href="/signout">signout</a></span></li>
     <li><span><a model-form src-model="user" tpl-url="/templates/userSetting.html" method="PATCH" path="/users/{{user._id}}" dialog-class="small">my account</a></span></li>
-    <li><span><a href="/#help">help</a></span></li>
+    <li><span><a model-form src-model="newTracker" tpl-url="/templates/newTracker.html" method="PUT" path="/trackers" dialog-class="small">add tracker</a></span></li>
+    <!--<li><span><a href="/#help">help</a></span></li>-->
   </ul>
 </div>
