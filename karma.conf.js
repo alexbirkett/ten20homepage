@@ -11,15 +11,15 @@ module.exports = function(config) {
       'public/components/jquery/jquery.js',
       'public/components/angular/angular.js',
       'public/components/ng-grid/ng-grid-2.0.7.debug.js',
-      'public/components/ng-grid/ng-grid-2.0.7.debug.js',
       'public/components/angular-mocks/angular-mocks.js',
       'public/components/bootstrap/dist/js/bootstrap.js',
       'public/components/angular-bootstrap/ui-bootstrap-tpls.js',
       'public/components/momentjs/moment.js',
       'public/components/draggable/draggable.js',
       'public/scripts/*.js',
+      'public/templates/*.html',
       'public/scripts/**/*.js',
-      'test/lib/**/*.js'
+      'test/lib/**/*.js',
       'test/spec/**/*.js'
     ],
     // list of files to exclude
@@ -45,11 +45,18 @@ module.exports = function(config) {
     // - IE (only Windows)
     browsers : ['PhantomJS'],
 
-    // generate js files from html templates
     preprocessors: {
-      'public/templates/*.html': 'ng-html2js'
+      'public/templates/*.html': ['ng-html2js']
     },
-    
+
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'public',
+
+      // setting this option will create only a single module that contains templates
+      // from all the files, so you can load them all with module('foo')
+      moduleName: 'LoadTpl'
+    },
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout : 5000,
