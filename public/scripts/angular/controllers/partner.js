@@ -1,7 +1,7 @@
 'use strict';
 
 /* admin console page controller */
-angular.module('ten20Angular.controllers').
+angular.module('ten20Angular').
   controller('PartnerCtrl', function ($scope) {
     $scope.navs = [
       {
@@ -21,6 +21,7 @@ angular.module('ten20Angular.controllers').
       },
       {
         "modal": true,
+        "hidden": true,
         "id": "signin",
         "text": "sign in"
       },

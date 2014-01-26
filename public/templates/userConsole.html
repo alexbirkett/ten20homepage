@@ -1,6 +1,12 @@
 <div class="page-wrapper">
   <!-- map render elem -->
-  <div id="map" user-map></div>
+  <div id="map" user-map>
+    <button class="btn btn-default navbar-btn" data-toggle="collapse" data-target=".navbar-collapse" ng-click="toggleMapWidth()">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
   <!-- tool box -->
   <div class="tool-box">
     <!-- general user info --> 
@@ -59,16 +65,18 @@
                   <img src="/images/user/search.png" ng-click="open($event)"/>
                 </div>
 
-                <ul class="trip-list">
-                  <li ng-repeat="item in tracker.trips.data"
-                  ng-click="showTrip(tracker, $index)"
-                  ng-class="{active : $index === tracker.trips.active}">
-                  <h6><span class="header">started</span><span class="timeslot">{{item.startTime | tripTime}}</span></h6>
-                  <h6><span class="header">ended</span><span class="timeslot">{{item.endTime | tripTime}}</span></h6>
-                  </li>
-                </ul>
+                <div class="trip-list">
+                  <ul>
+                    <li ng-repeat="item in tracker.trips.data"
+                    ng-click="showTrip(tracker, $index)"
+                    ng-class="{active : $index === tracker.trips.active}">
+                    <h6><span class="header">started</span><span class="timeslot">{{item.startTime | tripTime}}</span></h6>
+                    <h6><span class="header">ended</span><span class="timeslot">{{item.endTime | tripTime}}</span></h6>
+                    </li>
+                  </ul>
+                  <h6 class="error" ng-show="tracker.trips.error !=''">{{tracker.trips.error}}</h6>
+                </div>
 
-                <h6 class="error" ng-show="tracker.trips.error !=''">{{tracker.trips.error}}</h6>
                 <div class="trip-load">
                   <button class="btn btn-default" ng-hide="tracker.trips.loading || tracker.trips.error !== ''" ng-click="loadTrips(tracker)">more</button>
                   <img  ng-show="tracker.trips.loading" src="/images/loading_bar.gif" alt="" />
@@ -87,7 +95,7 @@
     </accordion>
 
     <div class="add-tracker" ng-show="trackerLoaded && trackers.length == 0">
-      <button class="btn btn-default" model-form src-model="tracker" tpl-url="/templates/trackerSetting.html" method="PUT" path="/trackers" dialog-class="small" >add tracker</button>
+      <h3>please add your tracker first.</h3>
     </div>
   </div>
 
@@ -95,6 +103,7 @@
   <ul class="bottom-nav">
     <li><span><a href="/signout">signout</a></span></li>
     <li><span><a model-form src-model="user" tpl-url="/templates/userSetting.html" method="PATCH" path="/users/{{user._id}}" dialog-class="small">my account</a></span></li>
-    <li><span><a href="/#help">help</a></span></li>
+    <li><span><a model-form src-model="newTracker" tpl-url="/templates/newTracker.html" method="PUT" path="/trackers" dialog-class="small">add tracker</a></span></li>
+    <!--<li><span><a href="/#help">help</a></span></li>-->
   </ul>
 </div>

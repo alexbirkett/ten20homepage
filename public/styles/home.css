@@ -215,6 +215,14 @@ header {
   color: #eee;
 }
 
+.user-page .leaflet-control-layers .leaflet-control-layers-list {
+  color: #eee;
+}
+
+.user-page .leaflet-control-layers .leaflet-control-layers-list.darker {
+  color: #333;
+}
+
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
   position: static;
 }
@@ -382,6 +390,9 @@ header {
 /* carousel-view section styles */
 .carousel-view {
   padding: 60px 0;
+  -webkit-transform-style: preserve-3d;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
 }
 
 .carousel-view h4 {
@@ -463,6 +474,8 @@ header {
 .pricing {
   text-align: center;
   overflow:auto;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
 }
 
@@ -588,6 +601,9 @@ header {
 
 .about {
   margin: 80px auto;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
 }
 
 .about .row .col-md-8 {
@@ -810,6 +826,10 @@ footer p {
   padding: 0 30px;
   font-size: 15px;
   line-height: 25px;
+}
+
+.modal-header .succ {
+  color: #f60;
 }
 
 .modal-header .cancel {

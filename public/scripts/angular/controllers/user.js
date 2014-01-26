@@ -2,10 +2,11 @@
 
 /* Controllers */
 
-angular.module('ten20Angular.controllers').
+angular.module('ten20Angular').
   controller('UserCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
   // init user and trackers information
   $scope.user = {};
+  $scope.newTracker = {};
   $scope.trackerLoaded = false;
   $scope.trackers = [];
 
@@ -50,8 +51,14 @@ angular.module('ten20Angular.controllers').
             $scope.trackers[i].recent.msgs.splice(
               $scope.trackers[i].recent.msgs.length - 1, 1);
 
-            $scope.trackers[i].path = $scope.trackers[i].recent.msgs;
-            $scope.$broadcast('PathUpdate', $scope.trackers[i], false);
+            // only update path when active tracker's trip pane is not show
+            if (!$scope.activeTracker ||
+                $scope.activeTracker._id !== $scope.trackers[i]._id ||
+                !$scope.trackers[i].tripActive) {
+
+                  $scope.trackers[i].path = $scope.trackers[i].recent.msgs;
+                  $scope.$broadcast('PathUpdate', $scope.trackers[i], false);
+             }
           }
           // override with new info
           for (var key in tracker) {
@@ -87,6 +94,8 @@ angular.module('ten20Angular.controllers').
   $scope.recentMsg = function(t) {
 
     if (t.recent && t.recent.msgs.length !== 0) {
+      t.path = t.recent.msgs;
+      $scope.$broadcast('PathUpdate', t, true);
       return;
     }
 

@@ -343,6 +343,17 @@
       marker = this.addPoint(latlng, opt);
       marker.trackerId = tracker._id;
 
+      marker.on('click', function() {
+        var panels = $('.tool-box .panel');
+
+        panels.each(function(index, panel) {
+          var scope = $(panel).scope();
+          if (scope.tracker._id === tracker._id) {
+            $(panel).find('.panel-heading a').click();
+          }
+        });
+      });
+
       this.map.addLayer(marker);
       this.markers.push(marker);
       this.map.panTo(marker.getLatLng());
@@ -418,6 +429,10 @@
       var latlngs = _getLineCoordsFromMsg(t.path);
       var optsPoint = { weight: 3, radius: 5};
 
+      if (fitBounds) {
+        this._clearPaths();
+      }
+
       if (latlngs.length === 0) {
         return;
       }
@@ -435,9 +450,6 @@
           optsPoint.fillColor= '#' + t.settings.iconColor;
         }
 
-        if (fitBounds) {
-          this._clearPaths();
-        }
         marker.path.line.setLatLngs(latlngs);
         if (fitBounds) {
           this.map.fitBounds(marker.path.line.getBounds());
