@@ -739,3 +739,14 @@ tr td,
     margin-right: 50px;
   }
 }
+
+
+@media only screen and (max-width: 385px) {
+  .bottom-nav li {
+    margin: 5px 0 0 0;
+  }
+
+  .bottom-nav li span {
+    font-size: 12px;
+  }
+}
