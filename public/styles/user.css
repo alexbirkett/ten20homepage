@@ -614,22 +614,13 @@ tr td,
 }
 
 
-.bottom-nav li:hover span {
-  background-color: #eee;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  border: 0;
-}
-
 .bottom-nav li a {
   color: #eee;
-  text-transform: capitalize;
   vertical-align: middle;
 }
 
 .bottom-nav li:hover a {
-  text-decoration: none;
+  text-decoration: underline;
   color: #f60;
 }
 
@@ -754,5 +745,6 @@ tr td,
 
   .bottom-nav li span {
     font-size: 12px;
+    margin: 0;
   }
 }
