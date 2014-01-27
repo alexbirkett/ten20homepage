@@ -541,17 +541,31 @@ tr td,
   text-align: center;
 }
 
-.trip-load .btn {
-  text-transform: capitalize;
-  color: #f60;
+.trip-load .trips-btn {
+  color: #fff;
+  width: 200px;
+  text-transform: uppercase;
+  height: 35px;
   background-image: none;
-  background-color: #eee;
+  background-color: #333;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 0;
+  font-size: 10px;
+  box-shadow: 0px 3px #000;
 }
 
+
+.trip-load .trips-btn:hover {
+  background-color: #f60;
+}
+
+.trip-load .trips-btn:active{
+  outline: none;
+  background-color: #f60;
+  box-shadow: none;
+}
 /* nav styles*/
 .bottom-nav {
   position: absolute;
