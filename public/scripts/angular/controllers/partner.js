@@ -19,12 +19,12 @@ angular.module('ten20Angular').
         "id": "contact",
         "text": "Contact Us"
       },
+    /*
       {
         "modal": true,
-        "hidden": true,
         "id": "signin",
         "text": "sign in"
-      },
+      }, */
       {
         "text": "About Us",
         "link": "#about-us",

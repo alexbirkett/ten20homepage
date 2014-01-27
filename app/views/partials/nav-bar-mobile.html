@@ -12,7 +12,7 @@
 
         <div class="navbar-collapse collapse">
           <ul class="nav menu">
-            <li ng-repeat="n in navs" ng-hide="n.hidden" ng-switch="n.id">
+            <li ng-repeat="n in navs" ng-switch="n.id">
             <a ng-switch-when="signin" class="menu" model-form
               src-model="form.signin.data" tpl-url="{{form.signin.tplUrl}}"
               path="{{form.signin.path}}" dialog-class="{{form.signin.class}}"
