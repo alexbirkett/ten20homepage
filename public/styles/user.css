@@ -709,8 +709,14 @@ tr td,
     margin-top: 5px;
     margin-left: 10px;
     outline: none;
-    background: rgb(39, 37, 37);
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    background-repeat: repeat-x;
     z-index: 2000;
+  }
+
+  .map-canvas #map button.btn.btn-default:hover {
+    background-color: #e0e0e0;
+    background-position: 0 -15px;
   }
 
   .map-canvas #map button span {
