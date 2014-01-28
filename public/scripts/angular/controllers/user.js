@@ -16,18 +16,30 @@ angular.module('ten20Angular').
   };
 
   // get user account info
-  $http.get('/user/info').success(function(userinfo) {
-    $scope.user = userinfo;
-  });
+  $scope.init = function() {
+    $http.get('/user/info').success(function(userinfo) {
+      $scope.user = userinfo;
+      initTrackers();
+    }).error(function(data, status, headers, config) {
+      if (status === 401) {
+        angular.element(document.body).find('.bottom-nav .signin').click();
+      }
+    });
+  }
+
   // get trackers info
-  $http.get('/trackers').success(function(data) {
-    $scope.trackers = data.items;
-    $scope.trackerLoaded = true;
-    $scope.$broadcast('InitTrackers');
-    getMessages();
-  }).error(function() {
-    $scope.trackerLoaded = true;
-  });
+  function initTrackers() { 
+    $http.get('/trackers').success(function(data) {
+      $scope.trackers = data.items;
+      $scope.trackerLoaded = true;
+      $scope.$broadcast('InitTrackers');
+      getMessages();
+    }).error(function() {
+      $scope.trackerLoaded = true;
+    });
+  }
+
+  $scope.init();
 
   var delay = 1; // delay seconds for get trip message
   function getMessages() {
