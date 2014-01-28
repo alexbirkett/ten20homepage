@@ -98,11 +98,9 @@ header {
 }
 
 .nav > li a:hover {
-  color: #f60;
+  color: #fff;
   background: none;
   text-decoration: underline;
-  border-radius: 10px;
-  border: none;
 }
 
 .nav > li a.active {
