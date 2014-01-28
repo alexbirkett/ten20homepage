@@ -621,7 +621,7 @@ tr td,
 
 .bottom-nav li:hover a {
   text-decoration: underline;
-  color: #f60;
+  color: #fff;
 }
 
 .bottom-nav li.active a {
