@@ -10,6 +10,11 @@ angular.module('ten20Angular').
   $scope.trackerLoaded = false;
   $scope.trackers = [];
 
+  $scope.addTracker = function() {
+    $scope.trackers.push($scope.newTracker);
+    $scope.newTracker = {};
+  };
+
   // get user account info
   $http.get('/user/info').success(function(userinfo) {
     $scope.user = userinfo;
