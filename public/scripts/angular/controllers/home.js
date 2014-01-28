@@ -26,7 +26,7 @@ angular.module('ten20Angular').
       },
       {
         "modal": true,
-        "hidden": true,
+        "hidden": false,
         "id": "signin",
         "text": "sign in"
       },

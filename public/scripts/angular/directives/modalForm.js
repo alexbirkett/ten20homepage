@@ -13,7 +13,8 @@ angular.module('ten20Angular').
         method: "@",  // server request method, POST, PUT, etc
         path: "@",   // server request path
         dialogClass: "@",   // modal dialog width
-        redirect: "@"    // redirect on success
+        redirect: "@",    // redirect on success
+        callback: "&"   // callback function
       },
       controller: ['$scope', '$modal', function($scope, $modal) {
 
@@ -29,7 +30,8 @@ angular.module('ten20Angular').
                   ajaxMethod: $scope.method,
                   ajaxUrl: $scope.path,
                   field: $scope.requestProp,
-                  redirect: $scope.redirect
+                  redirect: $scope.redirect,
+                  cb: $scope.callback
                 };
               }
             },
@@ -68,6 +70,9 @@ angular.module('ten20Angular').
                 $window.location.hash = "";
                 $window.location.pathname = config.redirect;
               } else {
+                if (config.cb) {
+                  config.cb();
+                }
                 $scope.succ = true;
                 $scope.sync = false;
                 $timeout(function() { $scope.succ = '';}, 10000);
