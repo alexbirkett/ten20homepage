@@ -7,13 +7,14 @@ angular.module('ten20Angular').
     return {
 			restrict: 'A',
       scope: {
-        srcModel: "=", // data model bind to the modal dialog template
+        srcModel: "=?", // data model bind to the modal dialog template
         requestProp: "@", // data field that send to server in srcModel
         tplUrl: "@",  // modal dialog template url
         method: "@",  // server request method, POST, PUT, etc
         path: "@",   // server request path
         dialogClass: "@",   // modal dialog width
         redirect: "@",    // redirect on success
+        close: "@closeOnSuccess",    // redirect on success
         callback: "&"   // callback function
       },
       controller: ['$scope', '$modal', function($scope, $modal) {
@@ -26,12 +27,13 @@ angular.module('ten20Angular').
             resolve: {
               config: function () {
                 return {
-                  src: $scope.srcModel,
+                  src: $scope.srcModel || {},
                   ajaxMethod: $scope.method,
                   ajaxUrl: $scope.path,
                   field: $scope.requestProp,
                   redirect: $scope.redirect,
-                  cb: $scope.callback
+                  cb: $scope.callback,
+                  closeOnSucc: $scope.close
                 };
               }
             },
@@ -73,6 +75,10 @@ angular.module('ten20Angular').
                 if (config.cb) {
                   config.cb();
                 }
+
+                if (config.closeOnSucc) {
+                  $modalInstance.close();
+                }
                 $scope.succ = true;
                 $scope.sync = false;
                 $timeout(function() { $scope.succ = '';}, 10000);
@@ -82,7 +88,6 @@ angular.module('ten20Angular').
               $scope.error = error.message;
               $timeout(function() { $scope.error = '';}, 10000);
             });
-            //$modalInstance.close($scope.data);
           };
 
           $scope.cancel = function () {
