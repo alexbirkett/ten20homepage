@@ -12,7 +12,7 @@ angular.module('ten20Angular').
         // enable toolbox to off canvas in small screens;
         scope.toggleMapWidth = function () {
           element.children('#map').toggleClass('off-canvas');
-          scope.$broadcast('ResizeMap');
+          //scope.$broadcast('ResizeMap');
         };
         // bind tracker accordion click to update tracker data
         element.delegate('.panel-heading a', 'click', function(e) {
@@ -61,7 +61,8 @@ angular.module('ten20Angular').
           }
 
           for (var i = 0; i < $scope.trackers.length; i++) {
-            if ($scope.trackers[i].lastMessage.location) {
+            if ($scope.trackers[i].lastMessage && 
+                $scope.trackers[i].lastMessage.location) {
               bounds.push([
                 $scope.trackers[i].lastMessage.location.latitude,
                 $scope.trackers[i].lastMessage.location.longitude

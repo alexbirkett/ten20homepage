@@ -99,9 +99,8 @@ header {
 
 .nav > li a:hover {
   color: #f60;
-  background-color: #eee;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
+  background: none;
+  text-decoration: underline;
   border-radius: 10px;
   border: none;
 }
