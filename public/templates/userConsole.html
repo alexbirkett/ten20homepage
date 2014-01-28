@@ -104,7 +104,7 @@
     <li style="display:none;" class="signin" model-form tpl-url="/templates/signinForm.html" method="POST" path="/signin" dialog-class="small" callback="init()" close-on-success="true"></li>
     <li><span><a href="/signout">signout</a></span></li>
     <li><span><a model-form src-model="user" tpl-url="/templates/userSetting.html" method="PATCH" path="/users/{{user._id}}" dialog-class="small">my account</a></span></li>
-    <li><span><a model-form src-model="newTracker" tpl-url="/templates/newTracker.html" method="PUT" path="/trackers" dialog-class="small" callback="addTracker()">add tracker</a></span></li>
+    <li><span><a model-form src-model="newTracker" tpl-url="/templates/newTracker.html" method="POST" path="/trackers" dialog-class="small" callback="addTracker()">add tracker</a></span></li>
     <!--<li><span><a href="/#help">help</a></span></li>-->
   </ul>
 </div>
