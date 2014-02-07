@@ -1,0 +1,11 @@
+section
+  div.carousel-view(id="supported")
+    div.container
+      h4 - supported hardware / software -
+      div.jcarousel
+        ul
+          each slide in slides
+            li
+              img(src=slide.image, style="margin:auto;")
+              h1.carousel-caption= slide.title
+              p= slide.text
