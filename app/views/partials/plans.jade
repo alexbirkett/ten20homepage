@@ -5,8 +5,7 @@ section.pricing(id="plans")
     .row
       each item in plans.items
         .col-md-4(ng-class="{highlight: " + item.highlighted + "}")
-          h3(ng-show=item.highlighted)
-            most popular
+          h3(ng-show="" + item.highlighted) most popular
           .head
             h3= item.name
             h5
