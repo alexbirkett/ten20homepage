@@ -17,7 +17,8 @@
     "jquery": "2.0.3",
     "bootstrap": "3.0.3",
     "draggable": "1.0.0",
-    "momentjs": "2.5.0"
+    "momentjs": "2.5.0",
+    "jcarousel": "~0.3.0"
   },
   "resolutions": {
     "angular": "1.2.x"

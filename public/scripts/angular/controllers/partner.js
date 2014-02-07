@@ -33,23 +33,18 @@ angular.module('ten20Angular').
     ];
 
 
-    $scope.masterHead =  {
-      "title": "Get 30% commission for referring customers", 
-      "subTitle":"You get paid when we get paid",
-      "buttonText": "ENROLL NOW",
-      "map": {
-        "zoomLevel": 6,
-        "lat": -24.73685,
-        "lng":130.18799,
-        "numberOfTrackers": 5,
-        "zoomControl": true,
-        "showHistory": true,
-        "tile": "alexbirkett.map-t0fodlre",
-        "layers": [
-        {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"},
-        { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}
-        ]
-      }
+    $scope.masterMap = {
+      "zoomLevel": 6,
+      "lat": -24.73685,
+      "lng":130.18799,
+      "numberOfTrackers": 5,
+      "zoomControl": true,
+      "showHistory": true,
+      "tile": "alexbirkett.map-t0fodlre",
+      "layers": [
+      {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"},
+      { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}
+      ]
     };
 
 });

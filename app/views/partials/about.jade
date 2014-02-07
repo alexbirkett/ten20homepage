@@ -1,0 +1,21 @@
+section.about(id="about-us")
+  .container
+    .row
+      .col-md-12
+        .head
+          h4= about.title
+          h1= about.description
+
+    .row
+      .col-md-8
+        ul.persons
+          each person in about.peoples
+            li
+            .media
+              img.pull-left.img-rounded(src=person.image)
+              .media-body
+                h4= person.name
+                h5= person.title
+                h6= person.location
+                p= person.description
+          

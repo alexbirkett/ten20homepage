@@ -1,0 +1,12 @@
+section.list-view
+  .container
+    .row
+      .col-md-8
+        h4= features.title
+          each item, index in features.items
+            .feature-item
+              h1= item.title 
+                span= item.subTitle
+              .list-content(home-map, map-data="featuresMap[" + index + "]",
+                id="list-map-" + index)
+              h2= item.text
