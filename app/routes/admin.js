@@ -18,12 +18,27 @@ exports.authenticateMiddleware = function(req, res, next) {
 exports.admin =  {
 
     get: function(req, res) {
-        res.render('admin', { pageTitle: 'Admin | ten20live' });
+
+        var model = {
+            head: {
+                title: 'Admin | ten20live'
+            }
+        };
+
+        res.render('admin', model );
 
     },
     login : {
+
+
         get: function (req, res) {
-            res.render('login', {pageTitle: 'Login | ten20live'});
+            var model = {
+                head: {
+                    title: 'Login | ten20live'
+                }
+            };
+
+            res.render('login', model);
         },
         post: function(req, res) {
             var username = req.param('username');
