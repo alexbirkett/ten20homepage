@@ -1,16 +1,22 @@
 extends layout
 
 block content
-  .wrapper(ng-controller="HomeCtrl")
-    include partials/cookie.html
-    include partials/nav-bar.html
-    include partials/nav-bar-mobile.html
-    include partials/call-to-action.html
-    include partials/benefits.html
-    include partials/list.html
-    include partials/carousel.html
-    include partials/plans.html
-    include partials/about.html
+  .wrapper(ng-controller=controller)
+    include partials/cookie.jade
+    include partials/nav-bar.jade
+    include partials/nav-bar-mobile.jade
+    if master
+      include partials/call-to-action.jade
+    if benefits
+      include partials/benefits.jade
+    if features
+      include partials/list.jade
+    if slides
+      include partials/carousel.jade
+    if plans
+      include partials/plans.jade
+    if about
+      include partials/about.jade
 
   .push
     footer

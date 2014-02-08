@@ -3,6 +3,16 @@
  * GET home page.
  */
 var contactCollection;
+var home = require('../config/home');
+var partner = require('../config/partner');
+
+function extend(dst, src) {
+  for (var key in src) {
+    if (src.hasOwnProperty(key)) {
+      dst[key] = src[key];
+    }
+  }
+}
 
 exports.setDb = function(db) {
   contactCollection = db.collection('contact');;
@@ -27,9 +37,11 @@ exports.index = function(req, res) {
   }
 
   if (req.path == "/") {
+    extend(model, home);
     res.render('index', model);
   } else if (req.path == "/partner") {
-    res.render('partner', model);
+    extend(model, partner);
+    res.render('index', model);
   } else {
     res.status(404);
     res.render('404', {pageTitle: 'Page Not Found'});

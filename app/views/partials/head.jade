@@ -1,8 +1,8 @@
 head
   meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
-  title(ng-bind="pageTitle")
-  meta(name='description', content="{{metaDescription}}")
-  meta(name='keywords', content="{{metaKeywords}}")
+  title= head.title
+  meta(name='description', content=head.metaDescription)
+  meta(name='keywords', content=head.metaKeywords)
   link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.min.css')
   link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap-theme.min.css')
   link(rel='stylesheet', href='https://dnv9my2eseobd.cloudfront.net/mapbox.js/v1.6.0/mapbox.css')
@@ -13,6 +13,7 @@ head
   // if lt IE 9
     script(src='/components/html5shiv/dist/html5shiv.js')
   script(src='/components/jquery/jquery.min.js')
+  script(src='/components/jcarousel/dist/jquery.jcarousel.min.js')
   script(src='/components/draggable/draggable.min.js')
   script(src='/components/momentjs/min/moment.min.js')
   script(src='https://dnv9my2eseobd.cloudfront.net/mapbox.js/v1.6.0/mapbox.js')

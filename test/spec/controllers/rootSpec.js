@@ -20,9 +20,6 @@ describe("Root controller test", function () {
     expect(scope.form).toBeDefined();
     expect(scope.form.contact).toBeDefined();
     expect(scope.form.signin.path).toBe('/signin');
-    expect(scope.about).toBeDefined();
-    expect(scope.benefits).toBeDefined();
-    expect(scope.faq).toBeDefined();
   });
 
 });

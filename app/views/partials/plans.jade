@@ -1,0 +1,24 @@
+section.pricing(id="plans")
+  .container
+    .row
+      h4= plans.title
+    .row
+      each item in plans.items
+        .col-md-4(ng-class="{highlight: " + item.highlighted + "}")
+          h3(ng-show="" + item.highlighted) most popular
+          .head
+            h3= item.name
+            h5
+              span.dollar $
+              span.price= item.price
+              span.postfix(ng-hide=item.price+"=='0'") /mo
+            a(model-form,
+              tpl-url="{{form.signup.tplUrl}}",
+              method="{{form.signup.method}}",
+              path="{{form.signup.path}}",
+              dialog-class="{{form.signup.class}}",
+              redirect="{{form.signup.redirect}}") sign up
+          ul
+            each feature in item.features
+              li
+               p= feature
