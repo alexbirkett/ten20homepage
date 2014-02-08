@@ -9,5 +9,6 @@ module.exports = {
     "title": "Track the location of people and things", 
     "subTitle": "Supports GPS trackers and mobile apps",
     "buttonText": "get started now"
-  }
+  },
+  controller: 'HomeCtrl'
 };

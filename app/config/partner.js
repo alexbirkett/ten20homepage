@@ -5,5 +5,6 @@ module.exports = {
     "title": "Get 30% commission for referring customers", 
     "subTitle":"You get paid when we get paid",
     "buttonText": "ENROLL NOW"
-  }
+  },
+  controller: 'PartnerCtrl'
 };
