@@ -76,13 +76,13 @@ $(function(){
       wrap: 'circular',
       transitions: true,
       animation: {
-          duration: 400,
-          easing:   'linear',
-          complete: function() {
-          }
+        duration: 400,
+        easing:   'linear',
+        complete: function() {
+        }
       },
     }).jcarouselAutoscroll({
-      interval: 3000,
+      interval: 5000,
       target: '+=1',
       autostart: true
     });

@@ -18,7 +18,7 @@ describe("partner controller test", function () {
   it("controller init correctly", function () {
     createController();
     expect(scope.navs).toBeDefined();
-    expect(scope.masterHead).toBeDefined();
+    expect(scope.masterMap).toBeDefined();
   });
 
 });

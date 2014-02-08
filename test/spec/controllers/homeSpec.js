@@ -18,10 +18,8 @@ describe("home controller test", function () {
   it("controller init correctly", function () {
     createController();
     expect(scope.navs).toBeDefined();
-    expect(scope.slides).toBeDefined();
-    expect(scope.plans).toBeDefined();
-    expect(scope.masterHead).toBeDefined();
-    expect(scope.features.items.length).toBe(3);
+    expect(scope.masterMap).toBeDefined();
+    expect(scope.featuresMap.length).toBe(3);
   });
 
 });
