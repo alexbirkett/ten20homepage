@@ -25,7 +25,7 @@ angular.module('ten20Angular').
         "text": "Contact Us"
       },
       {
-        "modal": true,
+        "modal": false,
         "link": "/console",
         "text": "sign in"
       },

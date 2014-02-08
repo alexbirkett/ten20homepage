@@ -41,7 +41,7 @@ exports.index = function(req, res) {
     res.render('index', model);
   } else if (req.path == "/partner") {
     extend(model, partner);
-    res.render('partner', model);
+    res.render('index', model);
   } else {
     res.status(404);
     res.render('404', {pageTitle: 'Page Not Found'});
