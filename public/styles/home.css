@@ -384,6 +384,43 @@ header {
   display: inline-block;
 
 }
+
+
+/*
+This is the visible area of you carousel.
+Set a width here to define how much items are visible.
+The width can be either fixed in px or flexible in %.
+Position must be relative!
+*/
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+}
+
+/*
+This is the container of the carousel items.
+You must ensure that the position is relative or absolute and
+that the width is big enough to contain all items.
+*/
+.jcarousel ul {
+    width: 20000em;
+    position: relative;
+
+    /* Optional, required in this case since it's a <ul> element */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+These are the item elements. jCarousel works best, if the items
+have a fixed width and height (but it's not required).
+*/
+.jcarousel li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+    text-align: center;
+}
 /* carousel-view section styles */
 .carousel-view {
   padding: 60px 0;
@@ -392,56 +429,31 @@ header {
   -webkit-backface-visibility: hidden;
 }
 
+.carousel-view .container {
+  position: relative;
+}
+
 .carousel-view h4 {
   text-align: center;
   padding-bottom: 20px;
   color: #eee;
 }
 
-.carousel-view .carousel-inner {
-  text-align: center;
-}
-
-.carousel-view .carousel-inner img {
-  max-width: 70%;
-  margin: auto;
-  padding-top: 50px;
-}
-
-.carousel-view .carousel-inner .item {
-  padding-top: 50px;
-}
-
-.carousel-view .carousel-inner .item.show {
-  display: block;
-}
-
-
-.carousel-view .carousel-inner p {
-  padding-top: 20px;
-}
-
-.carousel-view .carousel-inner .carousel-caption {
-  bottom: auto;
-  top: 0;
-  padding-top: 0;
-  background: none;
-}
-
-.carousel-view .carousel-indicators {
+.jcarousel-pagination {
   position: absolute;
   top: auto;
   left: 50%;
   width: 100px;
   margin-left:-50px;
-  bottom: -45px;
+  bottom: -30px;
 }
 
-.carousel-view .carousel-indicators .active {
+.carousel-view .jcarousel-pagination a.active {
   background-color: #f60;
 }
 
-.carousel-view .carousel-indicators li {
+.carousel-view .jcarousel-pagination a {
+  display: inline-block;
   width: 4px;
   height: 4px;
   margin-left: 20px;
@@ -450,20 +462,26 @@ header {
   border: none;
 }
 
-.carousel-view .carousel-control {
-  border: none;
-  background: none;
+.carousel-view a.controls {
+  display: block;
+  position: absolute;
+  width: 12px;
+  height: 17px;
+  top: 45%;
+  opacity: 0.7;
 }
 
-.carousel-view .carousel-control span:before{
-  display: none;
+.carousel-view a.controls:hover {
+  opacity: 1;
 }
 
-.carousel-view .carousel-control span.icon-next{
+.carousel-view .jcarousel-next {
+  right: 100px;
   background: url(/images/right-arrow.png) no-repeat;
 }
 
-.carousel-view .carousel-control span.icon-prev{
+.carousel-view .jcarousel-prev {
+  left: 100px;
   background: url(/images/left-arrow.png) no-repeat;
 }
 
