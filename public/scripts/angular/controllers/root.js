@@ -31,5 +31,7 @@ angular.module('ten20Angular').
       }
       
     };
+
+  $scope.cookies = "Like most websites Ten20 uses cookies in order to deliver a personalised, responsive service and to improve the site. This is done using simple text files called cookies which sit on your computer. These cookies are completely safe and secure and will never contain any sensitive information.";
 });
 
