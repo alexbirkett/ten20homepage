@@ -126,6 +126,11 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     app.get('/console', routes.console);
     // home page
     app.post('/contact', routes.contact);
+
+    app.get('/features', function(req, res) {
+        res.json({"adFree": true});
+    });
+
     app.get(/\/\w?/, routes.index);
 
     routes.setDb(db);
