@@ -9,8 +9,10 @@ module.exports = function(config) {
   // list of files / patterns to load in the browser
     files : [
       'public/components/jquery/jquery.js',
+      'public/components/hammerjs/hammer.min.js',
       'public/components/jcarousel/dist/jquery.jcarousel.js',
       'public/components/angular/angular.js',
+      'public/components/angular-gestures/gestures.js',
       'public/components/ng-grid/ng-grid-2.0.7.debug.js',
       'public/components/angular-mocks/angular-mocks.js',
       'public/components/bootstrap/dist/js/bootstrap.js',
