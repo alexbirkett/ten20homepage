@@ -59,7 +59,6 @@ exports.contact = function(req, res){
 };
 
 exports.console = function (req, res) {
-
   var model = {
       head: {
           title: "console | ten20live"
