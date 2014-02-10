@@ -10,8 +10,14 @@ angular.module('ten20Angular').
 			replace: true,
       link: function(scope, element, attrs) {
         // enable toolbox to off canvas in small screens;
-        scope.toggleMapWidth = function () {
-          element.children('#map').toggleClass('off-canvas');
+        scope.toggleTB = function(action) {
+          if (action === 'on') {
+            element.children('#map').addClass('off-canvas');
+          } else if (action === 'off') {
+            element.children('#map').removeClass('off-canvas');
+          } else {
+            element.children('#map').toggleClass('off-canvas');
+          }
           //scope.$broadcast('ResizeMap');
         };
         // bind tracker accordion click to update tracker data
