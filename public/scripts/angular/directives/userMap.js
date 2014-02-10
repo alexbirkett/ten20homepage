@@ -68,7 +68,8 @@ angular.module('ten20Angular').
 
           for (var i = 0; i < $scope.trackers.length; i++) {
             if ($scope.trackers[i].lastMessage && 
-                $scope.trackers[i].lastMessage.location) {
+                $scope.trackers[i].lastMessage.location &&
+                $scope.trackers[i].lastMessage.location.latitude) {
               bounds.push([
                 $scope.trackers[i].lastMessage.location.latitude,
                 $scope.trackers[i].lastMessage.location.longitude
@@ -126,11 +127,17 @@ angular.module('ten20Angular').
 
         // center map to tracker location
         function _focusTracker(e, t) {
-          $scope.userMap.updateTracker(t, true);
+          if (t.lastMessage && t.lastMessage.location &&
+              t.lastMessage.location.latitude) {
+                $scope.userMap.updateTracker(t, true);
+          }
         }
 
         function _updateTracker(e, t) {
-          $scope.userMap.updateTracker(t);
+          if (t.lastMessage && t.lastMessage.location &&
+              t.lastMessage.location.latitude) {
+                $scope.userMap.updateTracker(t);
+          }
         }
 
         // show recent or trip msg as path on map for a tracker
