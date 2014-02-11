@@ -10,9 +10,16 @@ angular.module('ten20Angular').
   $scope.trackerLoaded = false;
   $scope.trackers = [];
 
+  // callback for add tracker modal box
   $scope.addTracker = function() {
     $scope.trackers.push($scope.newTracker);
     $scope.newTracker = {};
+  };
+
+  // callback for tracker setting modal box
+  $scope.updateSetting = function(t) {
+    $scope.$broadcast('TrackerUpdate', t);
+    $scope.$broadcast('PathUpdate', t);
   };
 
   // get user account info
@@ -31,6 +38,13 @@ angular.module('ten20Angular').
   function initTrackers() { 
     $http.get('/trackers').success(function(data) {
       $scope.trackers = data.items;
+      // hack icon color format
+      for (var i = 0; i < $scope.trackers.length; i++) {
+        if ($scope.trackers[i].iconColor &&
+            $scope.trackers[i].iconColor.charAt(0) !== '#') {
+          $scope.trackers[i].iconColor = '#' + $scope.trackers[i].iconColor;
+        } 
+      };
       $scope.trackerLoaded = true;
       $scope.$broadcast('InitTrackers');
       getMessages();
@@ -87,6 +101,11 @@ angular.module('ten20Angular').
       }
 
       if (newTracker) {
+        if (newTracker.iconColor &&
+            newTracker.iconColor.charAt(0) !== '#') {
+          newTracker.iconColor = '#' + newTracker.iconColor;
+        } 
+
         $scope.trackers.push(tracker);
       }
 

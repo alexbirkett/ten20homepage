@@ -330,14 +330,14 @@
 
     MapRender.prototype._addTracker = function(tracker) {
       var latlng = [
-        tracker.lastMessage.location.latitude,
-        tracker.lastMessage.location.longitude,
+        tracker.location.latitude,
+        tracker.location.longitude,
       ];
 
       var opt = {color: '#eee', fillColor: '#f60'}, marker;
 
-      if (tracker.settings) {
-        opt.fillColor = '#' + tracker.settings.iconColor;
+      if (tracker.iconColor) {
+        opt.fillColor = tracker.iconColor;
       }
 
       marker = this.addPoint(latlng, opt);
@@ -377,14 +377,15 @@
       var marker, location;
 
       // return if location not available for this tracker
-      if (!tracker.lastMessage || !tracker.lastMessage.location) {return;}
+      if (!tracker.location) {return;}
 
-      location = tracker.lastMessage.location;
+      location = tracker.location;
       // find the tracker marker in existing markers
       marker = this._findMarker(tracker);
       // update existing marker location
       if (marker) {
         marker.setLatLng([location.latitude, location.longitude]);
+        marker.setStyle({fillColor: tracker.iconColor || '#f60'});
         this.twinkleMarker(marker);
         if (pan) {
           this.map.panTo(marker.getLatLng());
@@ -397,7 +398,7 @@
     MapRender.prototype._addPath = function(t, fitBounds) {
       var marker = this._findMarker(t);
       var latlngs = [];
-      var optsLine = { weight: 2 };
+      var optsLine = { weight: 2 , color: '#f60'};
       var optsPoint = { 
         weight: 3, 
         radius: 5,
@@ -408,9 +409,9 @@
       if (marker) {
         marker.path = {line:null, points:[]};
         latlngs = _getLineCoordsFromMsg(t.path);
-        if (t.settings) {
-          optsLine.color = '#' + t.settings.iconColor;
-          optsPoint.fillColor= '#' + t.settings.iconColor;
+        if (t.iconColor) {
+          optsLine.color = t.iconColor;
+          optsPoint.fillColor= t.iconColor;
         }
         if (fitBounds) {
           this._clearPaths();
@@ -427,7 +428,7 @@
     MapRender.prototype.updatePath = function(t, fitBounds) {
       var marker = this._findMarker(t);
       var latlngs = _getLineCoordsFromMsg(t.path);
-      var optsPoint = { weight: 3, radius: 5};
+      var optsPoint = { weight: 3, radius: 5, color: '#eee', fillColor: '#f60'};
 
       if (fitBounds) {
         this._clearPaths();
@@ -438,19 +439,19 @@
       }
       // pick a point to show marker
       if (!marker) {
-        t.lastMessage.location = t.path[0];
+        t.location = t.path[0];
         this.updateTracker(t, fitBounds);
         this.updatePath(t, fitBounds);
         return;
       }
 
       if (marker.path) {
-        if (t.settings) {
-          optsPoint.color = '#' + t.settings.iconColor;
-          optsPoint.fillColor= '#' + t.settings.iconColor;
+        if (t.iconColor) {
+          optsPoint.fillColor= t.iconColor;
         }
 
         marker.path.line.setLatLngs(latlngs);
+        marker.path.line.setStyle({color: t.iconColor || '#f60'});
         if (fitBounds) {
           this.map.fitBounds(marker.path.line.getBounds());
         }
