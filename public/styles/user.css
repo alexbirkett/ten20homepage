@@ -34,7 +34,7 @@ body { margin:0; padding:0; }
 }
 
 .user-page .panel-group {
-  max-height: 600px;
+  max-height: 400px;
   overflow: auto;
 }
 
@@ -675,8 +675,7 @@ tr td,
 @media only screen and (max-width: 767px) {
 
   .user-page .panel-group {
-    max-height: 1600px;
-    overflow: hidden;
+    max-height: 100%;
   }
 
   .map-canvas #map {
@@ -747,4 +746,5 @@ tr td,
     font-size: 12px;
     margin: 0;
   }
+
 }
