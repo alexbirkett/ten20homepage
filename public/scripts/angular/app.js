@@ -6,7 +6,8 @@ angular.module('ten20Angular', [
   'ten20Angular.services',
   'ngGrid',
   'ui.bootstrap',
-  'angular-gestures'
+  'angular-gestures',
+  'colorpicker.module'
 ]).run(function () {
   // config moment calendar
   moment.lang('en', {

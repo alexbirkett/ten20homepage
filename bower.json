@@ -19,7 +19,8 @@
     "draggable": "1.0.0",
     "momentjs": "2.5.0",
     "jcarousel": "~0.3.0",
-    "angular-gestures": "~0.2.1"
+    "angular-gestures": "~0.2.1",
+    "angular-bootstrap-colorpicker": "~3.0.5"
   },
   "resolutions": {
     "angular": "1.2.x"

@@ -17,6 +17,7 @@ module.exports = function(config) {
       'public/components/angular-mocks/angular-mocks.js',
       'public/components/bootstrap/dist/js/bootstrap.js',
       'public/components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'public/components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
       'public/components/momentjs/moment.js',
       'public/components/draggable/draggable.js',
       'public/scripts/*.js',
