@@ -1,4 +1,5 @@
 <div class="modal-header">
+  <img src="/images/logo.png" alt="" />
   <h3>tracker {{data.name}}</h3>
   <h6 class="error" ng-show="error!=''">{{error}}</h6>
   <div class="cancel" ng-click="cancel()">
@@ -8,8 +9,8 @@
 <div class="modal-body">
   <form name="f" class="form-horizontal" role="form" ng-class="{'show-invalid': formInvalid}">
     <div class="form-group">
-      <label for="#icon-color" class="col-sm-2 control-label">color:</label>
-      <div class="col-sm-10">
+      <label for="#icon-color" class="col-xs-2 control-label">icon color:</label>
+      <div class="col-xs-10">
         <input type="text" colorpicker="hex" id="icon-color" class="form-control" ng-model="data.iconColor" ng-disabled="sync" />
       </div>
     </div>

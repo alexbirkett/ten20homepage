@@ -11,58 +11,52 @@
   <form name="f" class="form-horizontal" role="form" ng-class="{'show-invalid': formInvalid}">
 
     <div class="form-group">
-      <label for="#first-name" class="col-sm-4 control-label">first name*</label>
-      <div class="col-sm-8">
-        <input type="text" id="first-name" class="form-control" ng-model="data.firstName" ng-pattern="/\w.*/" required ng-disabled="sync" />
+      <div class="col-xs-12">
+        <input type="text" id="first-name" placeHolder="first name" class="form-control" ng-model="data.firstName" ng-pattern="/\w.*/" required ng-disabled="sync" />
       </div>
     </div>
 
     <div class="form-group">
-      <label for="#last-name" class="col-sm-3 control-label">last name*</label>
-      <div class="col-sm-9">
-        <input type="text" id="last-name" class="form-control" ng-model="data.lastName" ng-pattern="/\w.*/" required ng-disabled="sync" />
+      <div class="col-xs-12">
+        <input type="text" id="last-name" placeHolder="last name" class="form-control" ng-model="data.lastName" ng-pattern="/\w.*/" required ng-disabled="sync" />
       </div>
     </div>
 
     <div class="form-group">
-      <label for="#email" class="col-sm-2 control-label">email*</label>
-      <div class="col-sm-10">
-        <input type="text" id="email" class="form-control" ng-model="data.email"  ng-pattern="/[a-zA-Z0-9]+@[a-zA-Z0-9]+/" required ng-disabled="sync" />
+      <div class="col-xs-12">
+        <input type="text" id="email" placeHolder="email address" class="form-control" ng-model="data.email"  ng-pattern="/[a-zA-Z0-9]+@[a-zA-Z0-9]+/" required ng-disabled="sync" />
       </div>
     </div>
 
     <div class="form-group">
-      <label for="#phone" class="col-sm-2 control-label">phone</label>
-      <div class="col-sm-10">
-        <input type="text" id="phone" class="form-control" ng-model="data.phone"  ng-pattern="/^[-\d]+$/" ng-disabled="sync" />
+      <div class="col-xs-12">
+        <input type="text" id="phone" placeHolder="phone number" class="form-control" ng-model="data.phone"  ng-pattern="/^[-\d]+$/" ng-disabled="sync" />
       </div>
     </div>
 
     <div class="form-group">
-      <label for="#company-name" class="col-sm-5 control-label">company name</label>
-      <div class="col-sm-7">
-        <input type="text" id="company-name" class="form-control" ng-model="data.companyName" ng-pattern="/[\w]+$/" ng-disabled="sync" />
+      <div class="col-xs-12">
+        <input type="text" id="company-name" placeHolder="your company name" class="form-control" ng-model="data.companyName" ng-pattern="/[\w]+$/" ng-disabled="sync" />
       </div>
     </div>
 
     <div class="form-group">
-      <label for="#website" class="col-sm-4 control-label">your website</label>
-      <div class="col-sm-8">
-        <input type="text" id="website" class="form-control" ng-model="data.website" ng-disabled="sync" />
+      <div class="col-xs-12">
+        <input type="text" id="website" placeHolder="your website url" class="form-control" ng-model="data.website" ng-disabled="sync" />
       </div>
     </div>
 
     <div class="form-group no-btm-border">
-      <label class="col-sm-10 control-label">please call me about ten20</label>
-      <div class="col-sm-2">
+      <label class="col-xs-10 control-label">please call me about ten20</label>
+      <div class="col-xs-2">
         <input type="checkbox" id="callme" class="form-control regular-checkbox" ng-model="data.callme" ng-disabled="sync" />
         <label for="callme"></label>
       </div>
     </div>
 
     <div class="form-group no-btm-border">
-      <label class="col-sm-10 control-label">subscribe to partner newsletter</label>
-      <div class="col-sm-2">
+      <label class="col-xs-10 control-label">subscribe to partner newsletter</label>
+      <div class="col-xs-2">
         <input type="checkbox" id="subscribe" class="form-control regular-checkbox" ng-model="data.subscribe" ng-disabled="sync" />
         <label for="subscribe"></label>
       </div>
