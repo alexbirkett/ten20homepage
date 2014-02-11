@@ -67,12 +67,11 @@ angular.module('ten20Angular').
           }
 
           for (var i = 0; i < $scope.trackers.length; i++) {
-            if ($scope.trackers[i].lastMessage && 
-                $scope.trackers[i].lastMessage.location &&
-                $scope.trackers[i].lastMessage.location.latitude) {
+            if ($scope.trackers[i].location &&
+                $scope.trackers[i].location.latitude) {
               bounds.push([
-                $scope.trackers[i].lastMessage.location.latitude,
-                $scope.trackers[i].lastMessage.location.longitude
+                $scope.trackers[i].location.latitude,
+                $scope.trackers[i].location.longitude
               ]);
               $scope.userMap.updateTracker($scope.trackers[i], true);
             }
@@ -127,15 +126,15 @@ angular.module('ten20Angular').
 
         // center map to tracker location
         function _focusTracker(e, t) {
-          if (t.lastMessage && t.lastMessage.location &&
-              t.lastMessage.location.latitude) {
+          if (t.location &&
+              t.location.latitude) {
                 $scope.userMap.updateTracker(t, true);
           }
         }
 
         function _updateTracker(e, t) {
-          if (t.lastMessage && t.lastMessage.location &&
-              t.lastMessage.location.latitude) {
+          if (t.location &&
+              t.location.latitude) {
                 $scope.userMap.updateTracker(t);
           }
         }

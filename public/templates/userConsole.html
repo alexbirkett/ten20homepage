@@ -88,7 +88,7 @@
         </div>
 
         <div class="tracker-bottom">
-          <img src="/images/user/setting.png" model-form src-model="tracker" tpl-url="/templates/trackerSetting.html" method="PATCH" path="/trackers/{{tracker._id}}" dialog-class="small" request-prop="settings"/>
+          <img src="/images/user/setting.png" model-form src-model="tracker" tpl-url="/templates/trackerSetting.html" dialog-class="small" request-prop="settings" callback="updateSetting(tracker)"/>
         </div>
 
       </accordion-group>

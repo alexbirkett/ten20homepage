@@ -62,32 +62,42 @@ angular.module('ten20Angular').
               return;
             }
 
-            $scope.sync = true;
-            $http({
-              method: config.ajaxMethod,
-              url: config.ajaxUrl,
-              data: config.field?config.src[config.field]:config.src
-            }).success(function() {
-              if (config.redirect) {
-                $window.location.hash = "";
-                $window.location.pathname = config.redirect;
-              } else {
-                if (config.cb) {
-                  config.cb();
-                }
+            if (config.ajaxUrl && config.ajaxMethod) {
+              $scope.sync = true;
+              $http({
+                method: config.ajaxMethod,
+                url: config.ajaxUrl,
+                data: config.field?config.src[config.field]:config.src
+              }).success(function() {
+                if (config.redirect) {
+                  $window.location.hash = "";
+                  $window.location.pathname = config.redirect;
+                } else {
+                  if (config.cb) {
+                    config.cb();
+                  }
 
-                if (config.closeOnSucc) {
-                  $modalInstance.close();
+                  if (config.closeOnSucc) {
+                    $modalInstance.close();
+                  }
+                  $scope.succ = true;
+                  $scope.sync = false;
+                  $timeout(function() { $scope.succ = '';}, 10000);
                 }
-                $scope.succ = true;
+              }).error(function(error) {
                 $scope.sync = false;
-                $timeout(function() { $scope.succ = '';}, 10000);
+                $scope.error = error.message;
+                $timeout(function() { $scope.error = '';}, 10000);
+              });
+            } else {
+              if (config.cb) {
+                config.cb();
               }
-            }).error(function(error) {
-              $scope.sync = false;
-              $scope.error = error.message;
-              $timeout(function() { $scope.error = '';}, 10000);
-            });
+
+              if (config.closeOnSucc) {
+                $modalInstance.close();
+              }
+            }
           };
 
           $scope.cancel = function () {
