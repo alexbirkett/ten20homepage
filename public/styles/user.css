@@ -33,6 +33,14 @@ body { margin:0; padding:0; }
   overflow: hidden;
 }
 
+.user-page.ads-desktop {
+  top:90px; 
+}
+
+.user-page.ads-mobile {
+  top:50px; 
+}
+
 .user-page .panel-group {
   max-height: 400px;
   overflow: auto;
@@ -44,6 +52,14 @@ body { margin:0; padding:0; }
 .user-page span {
   font-family: 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
 
+}
+
+.adsbygoogle {
+  width: 100% !important;
+  top: 0;
+  left: 50px;
+  background-color: #333;
+  overflow: hidden;
 }
 
 /* tool box styles */

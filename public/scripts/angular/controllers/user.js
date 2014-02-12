@@ -3,12 +3,47 @@
 /* Controllers */
 
 angular.module('ten20Angular').
-  controller('UserCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+  controller('UserCtrl', ['$scope', '$http', '$timeout', '$window', function ($scope, $http, $timeout, $window) {
   // init user and trackers information
   $scope.user = {};
   $scope.newTracker = {};
   $scope.trackerLoaded = false;
   $scope.trackers = [];
+  $scope.addFree = true; // initially hide ads
+
+  // update features
+  function _getFeature() {
+    $http.get('/features').success(function(data) {
+      if (data.adFree) {
+        $scope.addFree = true;
+      } else {
+        $scope.addFree = false;
+      }
+    }).error(function(error) {
+      $scope.addFree = false;
+    });
+  }
+
+  _getFeature();
+
+  $scope.adsShow = function() {
+    var desktopWin = true;
+    var status = { desktop: false, mobile: false};
+
+    if ($window.innerWidth < 600) {
+      desktopWin = false;
+    }
+
+    if (!$scope.addFee) {
+      if (desktopWin) {
+        status.desktop = true;
+      } else {
+        status.mobile = true;
+      }
+    }
+
+    return status;
+  };
 
   // callback for add tracker modal box
   $scope.addTracker = function() {
