@@ -368,10 +368,6 @@ header {
   color: #f60;
 }
 
-.list-view .col-md-8 img {
-  padding-bottom: 10px;
-}
-
 .list-view .col-md-8 h2 {
   max-width: 600px; 
   margin: 20px auto;
