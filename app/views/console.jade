@@ -2,4 +2,5 @@ extends layout
 
 block content
   section.map-canvas(ng-controller='UserCtrl')
-    div.user-page(user-console)
+    div(google-ads)
+    div.user-page(user-console, ng-class="{'ads-desktop': adsShow().desktop, 'ads-mobile': adsShow().mobile}")
