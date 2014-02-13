@@ -9,18 +9,18 @@ angular.module('ten20Angular').
   $scope.newTracker = {};
   $scope.trackerLoaded = false;
   $scope.trackers = [];
-  $scope.addFree = true; // initially hide ads
+  $scope.adsFree = true; // initially hide ads
 
   // update features
   function _getFeature() {
     $http.get('/features').success(function(data) {
       if (data.adFree) {
-        $scope.addFree = true;
+        $scope.adsFree = true;
       } else {
-        $scope.addFree = false;
+        $scope.adsFree = false;
       }
     }).error(function(error) {
-      $scope.addFree = false;
+      $scope.adsFree = false;
     });
   }
 
@@ -28,15 +28,15 @@ angular.module('ten20Angular').
 
   $scope.adsShow = function() {
     var desktopWin = true;
-    var status = { desktop: false, mobile: false};
+    var status = { desk: false, mobile: false};
 
     if ($window.innerWidth < 600) {
       desktopWin = false;
     }
 
-    if (!$scope.addFee) {
+    if (!$scope.adsFree) {
       if (desktopWin) {
-        status.desktop = true;
+        status.desk = true;
       } else {
         status.mobile = true;
       }
