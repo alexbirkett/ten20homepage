@@ -315,7 +315,7 @@ tr td,
 }
 
 .tracker-content .nav li {
-  width: 125px;
+  width: 50%;
   height: 42px;
   display: inline-block;
   background-color: #333;
