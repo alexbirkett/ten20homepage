@@ -60,9 +60,11 @@ exports.contact = function(req, res){
 
 exports.console = function (req, res) {
   var model = {
-      head: {
-          title: "console | ten20live"
-      }
+    head: {
+      title: "console | ten20live",
+      metaKeywords: home.head.metaKeywords,
+      metaDescription: home.head.metaDescription
+    }
   };
   res.render('console', model);
 };
