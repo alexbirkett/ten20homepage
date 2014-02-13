@@ -857,8 +857,7 @@ footer p {
 }
 
 .modal-content {
-  background-color: #333;
-  opacity: 0.95;
+  background-color:rgba(0,0,0,0.7);
   text-align: center;
   margin: 100px auto;
 }
@@ -905,7 +904,7 @@ footer p {
   margin: 0;
   text-indent: 5px;
   line-height: 30px;
-  background-color: #333;
+  background-color:rgba(0,0,0,0.0);
   border: 1px solid #666;
   color: #aaa;
 }
