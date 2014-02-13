@@ -3,16 +3,58 @@
 /* Controllers */
 
 angular.module('ten20Angular').
-  controller('UserCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+  controller('UserCtrl', ['$scope', '$http', '$timeout', '$window', function ($scope, $http, $timeout, $window) {
   // init user and trackers information
   $scope.user = {};
   $scope.newTracker = {};
   $scope.trackerLoaded = false;
   $scope.trackers = [];
+  $scope.adsFree = true; // initially hide ads
 
+  // update features
+  function _getFeature() {
+    $http.get('/features').success(function(data) {
+      if (data.adFree) {
+        $scope.adsFree = true;
+      } else {
+        $scope.adsFree = false;
+      }
+    }).error(function(error) {
+      $scope.adsFree = false;
+    });
+  }
+
+  _getFeature();
+
+  $scope.adsShow = function() {
+    var desktopWin = true;
+    var status = { desk: false, mobile: false};
+
+    if ($window.innerWidth < 600) {
+      desktopWin = false;
+    }
+
+    if (!$scope.adsFree) {
+      if (desktopWin) {
+        status.desk = true;
+      } else {
+        status.mobile = true;
+      }
+    }
+
+    return status;
+  };
+
+  // callback for add tracker modal box
   $scope.addTracker = function() {
     $scope.trackers.push($scope.newTracker);
     $scope.newTracker = {};
+  };
+
+  // callback for tracker setting modal box
+  $scope.updateSetting = function(t) {
+    $scope.$broadcast('TrackerUpdate', t);
+    $scope.$broadcast('PathUpdate', t);
   };
 
   // get user account info
@@ -31,6 +73,13 @@ angular.module('ten20Angular').
   function initTrackers() { 
     $http.get('/trackers').success(function(data) {
       $scope.trackers = data.items;
+      // hack icon color format
+      for (var i = 0; i < $scope.trackers.length; i++) {
+        if ($scope.trackers[i].iconColor &&
+            $scope.trackers[i].iconColor.charAt(0) !== '#') {
+          $scope.trackers[i].iconColor = '#' + $scope.trackers[i].iconColor;
+        } 
+      };
       $scope.trackerLoaded = true;
       $scope.$broadcast('InitTrackers');
       getMessages();
@@ -87,6 +136,11 @@ angular.module('ten20Angular').
       }
 
       if (newTracker) {
+        if (newTracker.iconColor &&
+            newTracker.iconColor.charAt(0) !== '#') {
+          newTracker.iconColor = '#' + newTracker.iconColor;
+        } 
+
         $scope.trackers.push(tracker);
       }
 

@@ -3,15 +3,21 @@
 /*  user map direcitve */
 
 angular.module('ten20Angular').
-  directive('userConsole', ['$window', function($window) {
+  directive('userConsole', ['$window', '$timeout', function($window, $timeout) {
     return {
 			templateUrl: '/templates/userConsole.html',
 			restrict: 'A',
 			replace: true,
       link: function(scope, element, attrs) {
         // enable toolbox to off canvas in small screens;
-        scope.toggleMapWidth = function () {
-          element.children('#map').toggleClass('off-canvas');
+        scope.toggleTB = function(action) {
+          if (action === 'on') {
+            element.children('#map').addClass('off-canvas');
+          } else if (action === 'off') {
+            element.children('#map').removeClass('off-canvas');
+          } else {
+            element.children('#map').toggleClass('off-canvas');
+          }
           //scope.$broadcast('ResizeMap');
         };
         // bind tracker accordion click to update tracker data
@@ -39,10 +45,17 @@ angular.module('ten20Angular').
 
         // make tool box draggable
         var toolbox = element.find('.tool-box')[0];
-        var handle = element.find('.tool-box .time-weather')[0];
-        // enable drag on big screens
         if ($window.innerWidth > 767) {
-          draggable(toolbox, handle);
+          // enable drag on big screens
+          new Draggabilly(toolbox, {
+            containment: '.user-page',
+            handle: '.time-weather'
+          });
+
+          $timeout(function() {
+            var height = Math.floor(element.height() * 0.8) - 100;
+            $(toolbox).find('.panel-group').css('max-height', height + 'px');
+          }, 1000);
         }
       }
     };
@@ -61,11 +74,11 @@ angular.module('ten20Angular').
           }
 
           for (var i = 0; i < $scope.trackers.length; i++) {
-            if ($scope.trackers[i].lastMessage && 
-                $scope.trackers[i].lastMessage.location) {
+            if ($scope.trackers[i].location &&
+                $scope.trackers[i].location.latitude) {
               bounds.push([
-                $scope.trackers[i].lastMessage.location.latitude,
-                $scope.trackers[i].lastMessage.location.longitude
+                $scope.trackers[i].location.latitude,
+                $scope.trackers[i].location.longitude
               ]);
               $scope.userMap.updateTracker($scope.trackers[i], true);
             }
@@ -87,6 +100,7 @@ angular.module('ten20Angular').
             "lng": 0,
             "zoomLevel": 6,
             "zoomControl":true,
+            "scrollWheelZoom": true,
             "layers":[
               {
                 "label":"Map",
@@ -120,11 +134,17 @@ angular.module('ten20Angular').
 
         // center map to tracker location
         function _focusTracker(e, t) {
-          $scope.userMap.updateTracker(t, true);
+          if (t.location &&
+              t.location.latitude) {
+                $scope.userMap.updateTracker(t, true);
+          }
         }
 
         function _updateTracker(e, t) {
-          $scope.userMap.updateTracker(t);
+          if (t.location &&
+              t.location.latitude) {
+                $scope.userMap.updateTracker(t);
+          }
         }
 
         // show recent or trip msg as path on map for a tracker

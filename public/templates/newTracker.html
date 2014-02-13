@@ -1,4 +1,5 @@
 <div class="modal-header">
+  <img src="/images/logo.png" alt="" />
   <h3>add new tracker</h3>
   <h3 class="succ" ng-show="succ">new tracker added!</h3>
   <h6 class="error" ng-show="error!=''">{{error}}</h6>
@@ -9,16 +10,14 @@
 <div class="modal-body" ng-hide="succ">
   <form name="f" class="form-horizontal" role="form" ng-class="{'show-invalid': formInvalid}">
     <div class="form-group">
-      <label for="#tracker-serial" class="col-sm-3 control-label">serial:</label>
-      <div class="col-sm-9">
-        <input type="text" id="tracker-serial" class="form-control" ng-model="data.serial" ng-disabled="sync" ng-pattern="/\w+/" required/>
+      <div class="col-xs-12">
+        <input type="text" id="tracker-serial" placeHolder="serial number" class="form-control" ng-model="data.serial" ng-disabled="sync" ng-pattern="/\w+/" required/>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="#tracker-name" class="col-sm-3 control-label">name:</label>
-      <div class="col-sm-9">
-        <input type="text" id="tracker-name" class="form-control" ng-model="data.name" ng-disabled="sync" ng-minlength="3" ng-pattern="/\w+/"/>
+      <div class="col-xs-12">
+        <input type="text" id="tracker-name" placeHolder="tracker name" class="form-control" ng-model="data.name" ng-disabled="sync" ng-minlength="3" ng-pattern="/\w+/"/>
       </div>
     </div>
   </form>
