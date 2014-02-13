@@ -655,10 +655,11 @@ tr td,
   font-size: 12px;
 }
 
-.leaflet-popup-content p  .marker {
+.leaflet-popup-content p .marker {
   display: inline-block;
   width: 10px;
   height: 10px;
+  vertical-align: middle;
   margin-right: 5px;
   border-radius: 10px;
 }
@@ -747,6 +748,14 @@ tr td,
 
   .leaflet-right .leaflet-control {
     margin-right: 50px;
+  }
+
+  .leaflet-popup-content {
+    min-width: 220px !important;
+  }
+
+  .leaflet-popup-content p span {
+    font-size: 8px;
   }
 }
 
