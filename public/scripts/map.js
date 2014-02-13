@@ -75,6 +75,7 @@
       if ('ontouchstart' in document.documentElement &&
           this.getMapType() === 'HomeMap') {
         this.map.dragging.disable();
+        this.map.tap.disable();
       }
 
       this._tweakMapControlStyles();
