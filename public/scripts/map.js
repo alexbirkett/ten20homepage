@@ -403,8 +403,8 @@
       var latlngs = [];
       var optsLine = { weight: 2 , color: '#f60'};
       var optsPoint = { 
-        weight: 3, 
-        radius: 5,
+        weight: 5, 
+        radius: 7,
         color: '#eee',
         fillColor: '#f60'
       };
