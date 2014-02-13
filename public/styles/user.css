@@ -684,6 +684,21 @@ tr td,
   bottom: -28px !important;
   left: -18px !important;
 }
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(120,120,120,0.9); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(250,250,250,0.9); 
+}
 /* styles for smaller pc screens */
 
 @media only screen and (max-width: 767px) {
