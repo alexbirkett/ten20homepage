@@ -49,7 +49,10 @@
       L.mapbox.config.HTTPS_URLS = [ 'https://dnv9my2eseobd.cloudfront.net/v3/' ];
       L.mapbox.config.FORCE_HTTPS = true;
       // create map
-      this.map = L.mapbox.map(this.mapDiv, this.tile, { zoomControl: this.zoomControl});
+      this.map = L.mapbox.map(this.mapDiv, this.tile, { 
+        scrollWheelZoom: this.scrollWheelZoom || false,
+        zoomControl: this.zoomControl
+      });
       // add layers to map
       if(this.layers) {
         for (var i = 0; i < this.layers.length; i++) {
@@ -67,7 +70,6 @@
       }
       // set map geometry
       this.map.setView([this.lat, this.lng], this.zoomLevel);
-      this.map.scrollWheelZoom.disable();
 
       // disable dragging on touch devices of homepage
       if ('ontouchstart' in document.documentElement &&
