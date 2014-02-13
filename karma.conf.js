@@ -19,7 +19,7 @@ module.exports = function(config) {
       'public/components/angular-bootstrap/ui-bootstrap-tpls.js',
       'public/components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
       'public/components/momentjs/moment.js',
-      'public/components/draggable/draggable.js',
+      'public/components/drag-plugin/index.js',
       'public/scripts/*.js',
       'public/templates/*.html',
       'public/scripts/**/*.js',

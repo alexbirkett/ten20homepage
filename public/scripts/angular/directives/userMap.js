@@ -45,10 +45,12 @@ angular.module('ten20Angular').
 
         // make tool box draggable
         var toolbox = element.find('.tool-box')[0];
-        var handle = element.find('.tool-box .time-weather')[0];
         // enable drag on big screens
         if ($window.innerWidth > 767) {
-          draggable(toolbox, handle);
+          new Draggabilly(toolbox, {
+            containment: '.user-page',
+            handle: '.time-weather'
+          });
         }
       }
     };
