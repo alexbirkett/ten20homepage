@@ -17,7 +17,7 @@ angular.module('ten20Angular', [
       nextDay : '[Tomorrow at] LT',
       lastWeek : '[Last] dddd [at] LT',
       nextWeek : 'dddd [at] LT',
-      sameElse : 'L'
+      sameElse : 'YYYY-MM-DD LT'
     }
   });
 });
