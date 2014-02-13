@@ -5,7 +5,9 @@ angular.module('ten20Angular', [
   'ten20Angular.filters',
   'ten20Angular.services',
   'ngGrid',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angular-gestures',
+  'colorpicker.module'
 ]).run(function () {
   // config moment calendar
   moment.lang('en', {
@@ -15,7 +17,7 @@ angular.module('ten20Angular', [
       nextDay : '[Tomorrow at] LT',
       lastWeek : '[Last] dddd [at] LT',
       nextWeek : 'dddd [at] LT',
-      sameElse : 'L'
+      sameElse : 'YYYY-MM-DD LT'
     }
   });
 });

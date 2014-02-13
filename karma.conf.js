@@ -9,14 +9,17 @@ module.exports = function(config) {
   // list of files / patterns to load in the browser
     files : [
       'public/components/jquery/jquery.js',
+      'public/components/hammerjs/hammer.min.js',
       'public/components/jcarousel/dist/jquery.jcarousel.js',
       'public/components/angular/angular.js',
+      'public/components/angular-gestures/gestures.js',
       'public/components/ng-grid/ng-grid-2.0.7.debug.js',
       'public/components/angular-mocks/angular-mocks.js',
       'public/components/bootstrap/dist/js/bootstrap.js',
       'public/components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'public/components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
       'public/components/momentjs/moment.js',
-      'public/components/draggable/draggable.js',
+      'public/components/drag-plugin/index.js',
       'public/scripts/*.js',
       'public/templates/*.html',
       'public/scripts/**/*.js',
