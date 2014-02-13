@@ -1189,6 +1189,17 @@ label {
 
   .about li .media>.pull-left {
     margin: auto;
+    max-width: 30%;
+  }
+
+  .about .media,
+  .about .media-body {
+    overflow: visible;
+  }
+
+  .about .media-body p {
+    margin-top: 20px;
+    text-align: left;
   }
 }
 

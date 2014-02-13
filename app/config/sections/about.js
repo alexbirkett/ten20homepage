@@ -21,7 +21,7 @@ module.exports = {
     {
       "name": "Liu XiaoLei",
       "title": "Developer",
-      "description": "XiaoLei is a a software engineer contracted to work on ten20. We love XiaoLei's talent, attitude and work ethic. XiaoLei is a fan of unix philosophy of simplicity. He is experienced on front-end technologies and the node.js framework.",
+      "description": "XiaoLei is a a software engineer contracted to work on ten20. We love XiaoLei's talent, attitude and work ethic.",
       "location": "Nanjing, China",
       "image": "https://s.gravatar.com/avatar/034820503911819b94f9e3e96a6ef8bd?s=150"
     },
