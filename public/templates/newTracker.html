@@ -11,13 +11,13 @@
   <form name="f" class="form-horizontal" role="form" ng-class="{'show-invalid': formInvalid}">
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="text" id="tracker-serial" placeHolder="serial number" class="form-control" ng-model="data.serial" ng-disabled="sync" ng-pattern="/\w+/" required/>
+        <input type="text" id="tracker-serial" placeHolder="Tracker id / IMEI" class="form-control" ng-model="data.serial" ng-disabled="sync" ng-pattern="/\w+/" required/>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-xs-12">
-        <input type="text" id="tracker-name" placeHolder="tracker name" class="form-control" ng-model="data.name" ng-disabled="sync" ng-minlength="3" ng-pattern="/\w+/"/>
+        <input type="text" id="tracker-name" placeHolder="Tracker name" class="form-control" ng-model="data.name" ng-disabled="sync" ng-minlength="3" ng-pattern="/\w+/"/>
       </div>
     </div>
   </form>
