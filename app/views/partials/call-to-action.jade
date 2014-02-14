@@ -3,11 +3,11 @@ section.mapbox
     .call-to-action
       h1= master.title
       h2= master.subTitle
-      a.button(model-form src-model="form.contact.data"
-        tpl-url="{{form.contact.tplUrl}}"
-        method="{{form.contact.method}}"
-        path="{{form.contact.path}}"
-        redirect="{{form.contact.redirect}}"
-        dialog-class="{{form.contact.class}}")= master.buttonText
+      a.button(model-form src-model="form.signup.data"
+        tpl-url="{{form.signup.tplUrl}}"
+        method="{{form.signup.method}}"
+        path="{{form.signup.path}}"
+        redirect="{{form.signup.redirect}}"
+        dialog-class="{{form.signup.class}}")= master.buttonText
 
     img.banner(src="/images/banner.png")
