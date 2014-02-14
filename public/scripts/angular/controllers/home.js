@@ -10,16 +10,6 @@ angular.module('ten20Angular').
         "scroll": "true"
       },
       {
-        "text": "Plans",
-        "link": "/#plans",
-        "scroll": "true"
-      },
-      {
-        "text": "Partner program",
-        "link": "/partner",
-        "scroll": "false"
-      },
-      {
         "modal": true,
         "id": "contact",
         "text": "Contact Us"
