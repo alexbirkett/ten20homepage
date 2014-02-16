@@ -844,7 +844,7 @@ footer p {
 }
 
 .modal-header h3 {
-  text-transform: capitalize;
+  text-transform: none;
   padding: 0 30px;
   font-size: 15px;
   line-height: 25px;
