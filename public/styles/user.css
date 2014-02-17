@@ -509,7 +509,7 @@ tr td,
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .search input[type="text"]:focus {
