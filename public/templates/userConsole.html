@@ -61,8 +61,20 @@
               <div class="date-select">
 
                 <div class="search">
-                  <input type="text" ng-bind="tracker.trip.search" show-weeks="false" datepicker-popup="dd-MMMM-yyyy" ng-model="tracker.trip.search" show-button-bar="false" close-text="Close" placeholder="Search date or place"/>
-                  <img src="/images/user/search.png" ng-click="open($event)"/>
+
+                  <div class="dropdown">
+                    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                      <div class="input-append">
+                        <input type="text" class="input-large" data-ng-model="tracker.trip.search">
+                        <img src="/images/user/search.png"/>
+                      </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                      <datetimepicker data-ng-model="tracker.trip.search" 
+                      data-on-set-time="onTripTimeSet"
+                      data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+                    </ul>
+                  </div>
                 </div>
 
                 <div class="trip-list">

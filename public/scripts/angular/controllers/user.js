@@ -183,6 +183,9 @@ angular.module('ten20Angular').
     });
   }
   
+  $scope.onTripTimeSet = function(newOne, oldOne) {
+  };
+
   // load trips of at tracker
   $scope.showTrip = function(t, index) {
       t.path = t.trips.data[index].messages;
