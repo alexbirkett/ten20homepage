@@ -65,12 +65,12 @@
                   <div class="dropdown">
                     <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                       <div class="input-append">
-                        <input type="text" class="input-large" data-ng-model="tracker.trip.search">
+                        <input type="text" class="input-large" value="{{tracker.tripSearch | date:'yyyy-MM-dd HH:mm:ss Z'}}" ng-bind="tracker.tripSearch">
                         <img src="/images/user/search.png"/>
                       </div>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                      <datetimepicker data-ng-model="tracker.trip.search" 
+                      <datetimepicker data-ng-model="tracker.tripSearch" 
                       data-on-set-time="onTripTimeSet"
                       data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
                     </ul>
