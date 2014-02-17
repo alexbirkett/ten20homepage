@@ -137,23 +137,39 @@ body { margin:0; padding:0; }
   color: #eee;
 }
 
-.dropdown-menu .glyphicon.glyphicon-chevron-right {
+.dropdown-menu .glyphicon.glyphicon-arrow-right {
   display: inline-block;
   width: 20px;
   height: 20px;
   background-image: url("/images/user/calendar-right.png");
 }
 
-.dropdown-menu .glyphicon.glyphicon-chevron-left {
+.dropdown-menu .glyphicon.glyphicon-arrow-left {
   display: inline-block;
   width: 20px;
   height: 20px;
   background-image: url("/images/user/calendar-left.png");
 }
 
-.glyphicon.glyphicon-chevron-right:before, 
-.glyphicon.glyphicon-chevron-left:before {
+.glyphicon.glyphicon-arrow-right:before, 
+.glyphicon.glyphicon-arrow-left:before {
   display: none;
+}
+
+.datetimepicker thead tr:first-child th:hover {
+  background:none;
+}
+
+.datetimepicker table tr td span:hover,
+.datetimepicker table tr td.day:hover {
+  color: #f60;
+  background-image: none !important;
+}
+
+.datetimepicker table tr td.active,
+.datetimepicker table tr td span.active {
+  background-color: #F60 !important;
+  background-image: none !important;
 }
 
 tr td,
@@ -477,22 +493,23 @@ tr td,
 }
 
 .search img {
-  margin: auto 10px auto 15px;
+  margin: 8px 10px 0 0;
+  float: right;
 }
 
 .search input[type="text"] {
   color: #eee;
   background: none;
-  width: 130px;
+  width: 160px;
   margin: auto;
-  padding: 8px;
+  padding: 8px 0;
   border: none;
   outline: none;
   background-color: #333;
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .search input[type="text"]:focus {
