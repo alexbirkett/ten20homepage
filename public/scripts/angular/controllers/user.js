@@ -184,6 +184,41 @@ angular.module('ten20Angular').
   }
   
   $scope.onTripTimeSet = function(newOne, oldOne) {
+    var date, 
+        url = '/trips?limit=1&sortBy=_id$asc&trackerId=' + 
+          $scope.activeTracker._id,
+        tracker = $scope.activeTracker;
+
+    tracker.trips.error = '';
+    tracker.trips.loading = true;
+    tracker.trips.data = [];
+
+    date = moment(tracker.trips.search).toISOString();
+    url += '&endTime=after$date:' + date;
+    url += '&startTime=before$date:' + date;
+
+    $http.get(url).success(function (documents) {
+      if (documents.items.length > 0) {
+        filtered = _simplifyTripMsg(documents.items[0]);
+        if (filtered.messages.length === 0) {
+          tracker.trips.loading = false;
+          tracker.trips.error = 'trips data invalid';
+          $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
+          return;
+        }
+        trips.data.push(filtered);
+        tracker.trips.loading = false;
+        tracker.trips.error = '';
+      } else {
+        tracker.trips.loading = false;
+        tracker.trips.error = 'no trip data at this time';
+        $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
+      }
+    }).error(function(data) {
+      tracker.trips.error = data;
+      tracker.trips.loading = false;
+      $timeout(function() { tracker.trips.error = ''; }, 5000);
+    });
   };
 
   // load trips of at tracker
@@ -196,8 +231,12 @@ angular.module('ten20Angular').
   $scope.loadTrips = function (tracker, init) {
     var BATCH = 3; // load trip counts per time
 
+    if (tracker.trips && tracker.trips.search !== '') {
+      return;
+    }
+
     if (tracker.trips && tracker.trips.error !== '') {
-      return false;
+      return;
     }
 
     // prevent load more if user secondly click trip tab
@@ -207,9 +246,10 @@ angular.module('ten20Angular').
       return;
     }
 
-    tracker.trips ? null: tracker.trips = { data:[], destCnt: 0, error: '' };
+    tracker.trips ? null: tracker.trips = { data:[], destCnt: 0, error: '' , search: ''};
     tracker.trips.destCnt = tracker.trips.data.length + BATCH;
     tracker.trips.loading = true;
+    tracker.trips.error = '';
 
     _getOneTrip(tracker);
   };
@@ -225,7 +265,6 @@ angular.module('ten20Angular').
     }
 
     url = '/trips?sortBy=_id$desc&limit=1&trackerId=' + tracker._id + before;
-    console.log(url);
 
     $http.get(url).success(function (documents) {
       if (documents.items.length > 0) {
