@@ -17,6 +17,7 @@ module.exports = function(config) {
       'public/components/angular-mocks/angular-mocks.js',
       'public/components/bootstrap/dist/js/bootstrap.js',
       'public/components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'public/components/angular-ui-utils/keypress.js',
       'public/components/momentjs/moment.js',
       'public/components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
       'public/components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
