@@ -21,7 +21,8 @@
     "angular-gestures": "~0.2.1",
     "angular-bootstrap-colorpicker": "~3.0.5",
     "drag-plugin": "http://draggabilly.desandro.com/draggabilly.pkgd.min.js",
-    "angular-bootstrap-datetimepicker": "~0.2.2"
+    "angular-bootstrap-datetimepicker": "~0.2.2",
+    "angular-ui-utils": "keypress-0.1.0"
   },
   "resolutions": {
     "angular": "1.2.x"

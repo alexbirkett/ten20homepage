@@ -65,6 +65,6 @@
   <h4 class="progress-bar" ng-show="sync"><img src="/images/loading_bar.gif" alt="" /></h4>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-hide="sync || succ" ng-click="ok(f)">send</button>
-  <button class="btn btn-default" ng-show="succ" ng-click="cancel()">ok</button>
+  <button class="btn btn-default" ng-hide="sync || succ" ng-click="ok(f)" ui-keypress="{13:'ok(f)'}">send</button>
+  <button class="btn btn-default" ng-show="succ" ui-keypress="{13:'cancel()'}" ng-click="cancel()">ok</button>
 </div>

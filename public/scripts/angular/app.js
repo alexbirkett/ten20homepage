@@ -8,7 +8,8 @@ angular.module('ten20Angular', [
   'ui.bootstrap',
   'angular-gestures',
   'colorpicker.module',
-  'ui.bootstrap.datetimepicker'
+  'ui.bootstrap.datetimepicker',
+  'ui.keypress'
 ]).run(function () {
   // config moment calendar
   moment.lang('en', {
