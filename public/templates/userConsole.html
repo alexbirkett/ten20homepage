@@ -65,12 +65,12 @@
                   <div class="dropdown">
                     <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                       <div class="input-append">
-                        <input type="text" class="input-large" value="{{tracker.tripSearch | date:'yyyy-MM-dd HH:mm:ss Z'}}" ng-bind="tracker.tripSearch">
+                        <input type="text" class="input-large" ng-model="tracker.trips.search">
                         <img src="/images/user/search.png"/>
                       </div>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                      <datetimepicker data-ng-model="tracker.tripSearch" 
+                      <datetimepicker data-ng-model="tracker.trips.search" 
                       data-on-set-time="onTripTimeSet"
                       data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
                     </ul>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="trip-load">
-                  <button class="trips-btn" ng-hide="tracker.trips.loading || tracker.trips.error !== ''" ng-click="loadTrips(tracker)">show more trips</button>
+                  <button class="trips-btn" ng-hide="tracker.trips.loading || tracker.trips.error !== '' || tracker.trips.search !== ''" ng-click="loadTrips(tracker)">show more trips</button>
                   <img  ng-show="tracker.trips.loading" src="/images/loading_bar.gif" alt="" />
                 </div>
 
