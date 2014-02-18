@@ -3,7 +3,7 @@
 /*  user map direcitve */
 
 angular.module('ten20Angular').
-  directive('userConsole', ['$window', function($window) {
+  directive('userConsole', ['$window', '$timeout', function($window, $timeout) {
     return {
 			templateUrl: '/templates/userConsole.html',
 			restrict: 'A',
@@ -50,7 +50,7 @@ angular.module('ten20Angular').
             timerId = $timeout(function() {
               var height = Math.floor(element.height() * 0.8) - 100;
               $(toolbox).find('.panel-group').css('max-height', height + 'px');
-            }, 400);
+            }, 100);
           }
         }
         // make tool box draggable
@@ -64,7 +64,7 @@ angular.module('ten20Angular').
 
           _setToolBoxHeight()();
 
-          scope.$watch(function() { return element.height();} , function() {
+          angular.element($window).on('resize', function() {
             _setToolBoxHeight()();
           });
         }
