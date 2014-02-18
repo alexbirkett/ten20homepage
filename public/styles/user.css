@@ -86,6 +86,7 @@ body { margin:0; padding:0; }
 }
 
 .welcome {
+  width: 100%;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 8px;
@@ -93,18 +94,18 @@ body { margin:0; padding:0; }
 
 .welcome img {
   width: 20%;
+  float: none;
+  margin-top: -5px;
 }
 
-.welcome span {
-  display: inline-block;
+.welcome  h6 {
+  margin: 0;
+  margin-top: 3px;
+  width: 70%;
+  text-align: right;
   font-size: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  margin-left: 10px;
-}
-
-.welcome span.info {
-  margin-left: 60px;
+  text-transform: capitalize;
+  float: right;
 }
 
 /* calendar styles */
