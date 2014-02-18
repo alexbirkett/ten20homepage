@@ -17,7 +17,8 @@ module.exports = {
     {
       "text": "Plans",
       "link": "/#plans",
-      "scroll": "true"
+      "scroll": "true",
+      "hidden": "true"
     },
     {
       "modal": true,
