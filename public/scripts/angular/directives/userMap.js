@@ -3,7 +3,7 @@
 /*  user map direcitve */
 
 angular.module('ten20Angular').
-  directive('userConsole', ['$window', function($window) {
+  directive('userConsole', ['$window', '$timeout', function($window, $timeout) {
     return {
 			templateUrl: '/templates/userConsole.html',
 			restrict: 'A',
@@ -43,6 +43,16 @@ angular.module('ten20Angular').
           }
         });
 
+        function _setToolBoxHeight() {
+          var timerId = null;
+          return function() {
+            $timeout.cancel(timerId);
+            timerId = $timeout(function() {
+              var height = Math.floor(element.height() * 0.8) - 100;
+              $(toolbox).find('.panel-group').css('max-height', height + 'px');
+            }, 100);
+          }
+        }
         // make tool box draggable
         var toolbox = element.find('.tool-box')[0];
         // enable drag on big screens
@@ -50,6 +60,12 @@ angular.module('ten20Angular').
           new Draggabilly(toolbox, {
             containment: '.user-page',
             handle: '.time-weather'
+          });
+
+          _setToolBoxHeight()();
+
+          angular.element($window).on('resize', function() {
+            _setToolBoxHeight()();
           });
         }
       }
@@ -113,7 +129,7 @@ angular.module('ten20Angular').
           // bind map zoom event
           $scope.userMap.map.on('zoomend', function() {
             if ($scope.activeTracker) {
-              $scope.userMap.updatePath($scope.activeTracker, false);
+              _updatePath(null, $scope.activeTracker, false);
             }
           });
         }

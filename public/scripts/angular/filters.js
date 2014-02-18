@@ -23,6 +23,10 @@ angular.module('ten20Angular.filters', []).
       if (key === 'time') {
         return t.toTimeString().split(' ')[0];
       }
+
+      if (key === 'from') {
+        return moment(t).fromNow();
+      }
     }
   }).
   filter('tripTime', function() {

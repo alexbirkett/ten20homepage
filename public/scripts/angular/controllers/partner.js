@@ -3,35 +3,6 @@
 /* admin console page controller */
 angular.module('ten20Angular').
   controller('PartnerCtrl', function ($scope) {
-    $scope.navs = [
-      {
-        "text": "Supported hardware",
-        "link": "/#supported",
-        "scroll": "true"
-      },
-      {
-        "text": "Plans",
-        "link": "/#plans",
-        "scroll": "true"
-      },
-      {
-        "modal": true,
-        "id": "contact",
-        "text": "Contact Us"
-      },
-      {
-        "modal": true,
-        "hidden": true,
-        "id": "signin",
-        "text": "sign in"
-      },
-      {
-        "text": "About Us",
-        "link": "#about-us",
-        "scroll": "true"
-      }
-    ];
-
 
     $scope.masterMap = {
       "zoomLevel": 6,
