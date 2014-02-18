@@ -7,5 +7,31 @@ module.exports = {
     "buttonText": "ENROLL NOW"
   },
   about: require('./sections/about'),
-  controller: 'PartnerCtrl'
+  controller: 'PartnerCtrl',
+  navs: [
+    {
+      "text": "Supported hardware",
+      "link": "/#supported",
+      "scroll": "true"
+    },
+    {
+      "text": "Plans",
+      "link": "/#plans",
+      "scroll": "true"
+    },
+    {
+      "modal": true,
+      "id": "contact",
+      "text": "Contact Us"
+    },
+    {
+      "link": "/console",
+      "text": "sign in"
+    },
+    {
+      "text": "About Us",
+      "link": "#about-us",
+      "scroll": "true"
+    }
+  ]
 };

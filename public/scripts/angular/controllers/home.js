@@ -3,45 +3,6 @@
 /* admin console page controller */
 angular.module('ten20Angular').
   controller('HomeCtrl', function ($scope) {
-    $scope.navs = [
-      {
-        "text": "Supported hardware",
-        "link": "/#supported",
-        "scroll": "true"
-      },
-      {
-        "text": "Plans",
-        "link": "/#plans",
-        "scroll": "true"
-      },
-      {
-        "text": "Partner program",
-        "link": "/partner",
-        "scroll": "false"
-      },
-      {
-        "modal": true,
-        "id": "contact",
-        "text": "Contact Us"
-      },
-      {
-        "modal": false,
-        "link": "/console",
-        "text": "sign in"
-      },
-      {
-        "text": "About Us",
-        "link": "#about-us",
-        "scroll": "true"
-      }
-      /*
-      {
-        "text": "FAQ",
-        "link": "/#faq",
-        "scroll": "true"
-      }
-      */
-    ];
 
     $scope.masterMap = {
       "lat": 51.74,

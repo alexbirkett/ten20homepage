@@ -5,17 +5,13 @@ header.hidden-xs
         a.logo(href="/")
           img(src="/images/logo.png")
         ul.nav
-          li(ng-repeat="n in navs",ng-hide="n.hidden",ng-switch="n.id")
-            a.menu(ng-switch-when="signin",model-form,
-              src-model="form.signin.data",tpl-url="{{form.signin.tplUrl}}",
-              path="{{form.signin.path}}",dialog-class="{{form.signin.class}}",
-              method="{{form.signin.method}}",redirect="{{form.signin.redirect}}",
-              ng-bind="n.text")
-            a.menu(ng-switch-when="contact", model-form,
-              src-model="form.contact.data",tpl-url="{{form.contact.tplUrl}}",
-              path="{{form.contact.path}}",dialog-class="{{form.contact.class}}",
-              method="{{form.signin.method}}",redirect="{{form.contact.redirect}}",
-              ng-bind="n.text")
-            a.menu(ng-switch-default, ng-href="{{n.link}}", scroll="{{n.scroll}}",
-              ng-bind="n.text")
+          each n in navs
+            li(ng-hide=n.hidden)
+              if n.modal
+                a.menu(model-form,src-model="form." + n.id + ".data",
+                  tpl-url="{{form." + n.id + ".tplUrl}}",path="{{form." + n.id + ".path}}",
+                  dialog-class="{{form." + n.id + ".class}}",method="{{form." + n.id + ".method}}",
+                  redirect="{{form." + n.id + ".redirect}}")= n.text
+              else
+                a.menu(href=n.link, scroll=n.scroll)= n.text
         .clear
