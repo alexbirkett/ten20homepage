@@ -1209,6 +1209,10 @@ label {
     margin-top: 20px;
     text-align: left;
   }
+
+  .modal-content {
+    margin: 30px auto;
+  }
 }
 
 /* iphone width mobile styles */
