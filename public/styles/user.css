@@ -430,7 +430,6 @@ tr td,
 }
 
 .current-info h6 {
-  text-transform: capitalize;
   font-family: 'AvenirNextLTW01-Regular';
   font-size: 12px;
 }

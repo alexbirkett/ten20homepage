@@ -129,7 +129,7 @@ angular.module('ten20Angular').
           // bind map zoom event
           $scope.userMap.map.on('zoomend', function() {
             if ($scope.activeTracker) {
-              $scope.userMap.updatePath($scope.activeTracker, false);
+              _updatePath(null, $scope.activeTracker, false);
             }
           });
         }
