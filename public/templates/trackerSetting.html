@@ -1,6 +1,6 @@
 <div class="modal-header">
   <img src="/images/logo.png" alt="" />
-  <h3>tracker {{data.name}} <span title="delete tracker" class="glyphicon glyphicon-trash"></span></h3>
+  <h3>tracker {{data.name}} <span title="delete tracker" class="glyphicon glyphicon-trash" ng-click="deleteTracker(data)"></span></h3>
   <h6 class="error" ng-show="error!=''">{{error}}</h6>
   <div class="cancel" ng-click="cancel()">
     <span>X</span>
@@ -19,5 +19,5 @@
   <h4 class="progress-bar" ng-show="sync"><img src="/images/loading_bar.gif" alt="" /></h4>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-hide="sync" ui-keypress="{13:'ok(f)'}" ng-click="ok(f)">save</button>
+  <button class="btn btn-default" ng-hide="sync" ui-keypress="{13:'ok()'}" ng-click="ok()">save</button>
 </div>

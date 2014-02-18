@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <img src="/images/logo.png" alt="" />
+  <h3> Are you sure to DELETE {{t.name}}</h3>
+  <div class="cancel" ng-click="cancel()">
+    <span>X</span>
+  </div>
+</div>
+<div class="modal-body">
+  <p>after delete, all the data related to the tracker will also be deleted. And can not be recovered.</p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default"ng-click="ok()">Delete</button>
+  <button class="btn btn-default"ng-click="cancel()">Cancel</button>
+</div>
