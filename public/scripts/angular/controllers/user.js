@@ -132,10 +132,13 @@ angular.module('ten20Angular').
       $scope.trackers = data.items;
       // hack icon color format
       for (var i = 0; i < $scope.trackers.length; i++) {
-        if ($scope.trackers[i].iconColor &&
-            $scope.trackers[i].iconColor.charAt(0) !== '#') {
-          $scope.trackers[i].iconColor = '#' + $scope.trackers[i].iconColor;
-        } 
+        if ($scope.trackers[i].iconColor) {
+          if ($scope.trackers[i].iconColor.charAt(0) !== '#') {
+            $scope.trackers[i].iconColor = '#' + $scope.trackers[i].iconColor;
+          }
+        } else {
+          $scope.trackers[i].iconColor = '#ff6600';
+        }
       };
       $scope.trackerLoaded = true;
       $scope.$broadcast('InitTrackers');
@@ -193,10 +196,13 @@ angular.module('ten20Angular').
       }
 
       if (newTracker) {
-        if (newTracker.iconColor &&
-            newTracker.iconColor.charAt(0) !== '#') {
-          newTracker.iconColor = '#' + newTracker.iconColor;
-        } 
+        if (newTracker.iconColor) {
+          if ( newTracker.iconColor.charAt(0) !== '#') {
+            newTracker.iconColor = '#' + newTracker.iconColor;
+          }
+        } else {
+          newTracker.iconColor = '#ff6600';
+        }
 
         $scope.trackers.push(tracker);
       }
