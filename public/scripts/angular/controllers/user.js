@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('ten20Angular').
-  controller('UserCtrl', ['$scope', '$http', '$timeout', '$window', function ($scope, $http, $timeout, $window) {
+  controller('UserCtrl', ['$scope', '$http', '$timeout', '$window', '$modal', function ($scope, $http, $timeout, $window, $modal) {
   // init user and trackers information
   $scope.user = {};
   $scope.newTracker = {};
@@ -52,9 +52,66 @@ angular.module('ten20Angular').
   };
 
   // callback for tracker setting modal box
-  $scope.updateSetting = function(t) {
+  function updateSetting(t) {
     $scope.$broadcast('TrackerUpdate', t);
     $scope.$broadcast('PathUpdate', t);
+  };
+
+  function deleteTracker(t) {
+    for (var i = 0; i < $scope.trackers.length; i++) {
+      if ($scope.trackers[i]._id === t._id) {
+        $scope.trackers.splice(i, 1);
+        $http.delete('/tracker/' + t._id);
+      }
+    };
+  }
+
+  $scope.openSetting = function(t) {
+
+    var SettingCtrl = function($scope, $modalInstance) {
+      var setInstance = $modalInstance;
+      $scope.data = t;
+
+      $scope.ok = function() {
+        updateSetting($scope.data);
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+       
+      $scope.deleteTracker = function(tracker) {
+
+        var DeleteCtrl = function($scope, $modalInstance) {
+          $scope.t = tracker;
+
+          $scope.ok = function() {
+            deleteTracker(tracker);
+            $modalInstance.close();
+            setInstance.close();
+          };
+
+          $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+          };
+
+        };
+
+        var deleteModal = $modal.open({
+          templateUrl: '/templates/deleteTracker.html',
+          controller: DeleteCtrl,
+          windowClass: 'small'
+        });
+
+      };
+    };
+
+    var setModal = $modal.open({
+      templateUrl: '/templates/trackerSetting.html',
+      controller: SettingCtrl,
+      windowClass: 'small'
+    });
+
   };
 
   // get user account info

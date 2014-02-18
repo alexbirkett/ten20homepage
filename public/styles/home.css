@@ -877,6 +877,14 @@ footer p {
   margin-right: 0;
 }
 
+.modal-body {
+  padding-top: 0;
+}
+
+.modal-body p {
+  font-size: 13px;
+}
+
 .modal-body .form-group > div {
   padding-right: 5px;
 }
