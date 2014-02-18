@@ -25,6 +25,18 @@ body {
   height: 100%;
 }
 
+a {
+    text-decoration:none;
+    color: #eee;
+}
+
+a:hover {
+    color: #fff;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 h1 {
   font: 400 36px/54px 'AvenirNextLTW01-Regular', sans-serif;
   letter-spacing: 3px;
@@ -98,7 +110,6 @@ header {
 }
 
 .nav > li a:hover {
-  color: #fff;
   background: none;
   text-decoration: underline;
 }
@@ -833,7 +844,7 @@ footer p {
 }
 
 .modal-header h3 {
-  text-transform: capitalize;
+  text-transform: none;
   padding: 0 30px;
   font-size: 15px;
   line-height: 25px;
@@ -857,8 +868,7 @@ footer p {
 }
 
 .modal-content {
-  background-color: #333;
-  opacity: 0.95;
+  background-color:rgba(0,0,0,0.7);
   text-align: center;
   margin: 100px auto;
 }
@@ -913,7 +923,7 @@ footer p {
   margin: 0;
   text-indent: 5px;
   line-height: 30px;
-  background-color: #333;
+  background-color:rgba(0,0,0,0.0);
   border: 1px solid #666;
   color: #aaa;
 }
