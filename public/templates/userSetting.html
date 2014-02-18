@@ -28,5 +28,5 @@
   <h4 class="progress-bar" ng-show="sync"><img src="/images/loading_bar.gif" alt="" /></h4>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-disabled="sync" ng-click="ok(f)">save</button>
+  <button class="btn btn-default" ng-disabled="sync" ui-keypress="{13:'ok(f)'}" ng-click="ok(f)">save</button>
 </div>
