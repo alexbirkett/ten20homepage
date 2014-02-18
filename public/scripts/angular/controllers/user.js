@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('ten20Angular').
-  controller('UserCtrl', ['$scope', '$http', '$timeout', '$window', function ($scope, $http, $timeout, $window) {
+  controller('UserCtrl', ['$scope', '$http', '$timeout', '$window', '$modal', function ($scope, $http, $timeout, $window, $modal) {
   // init user and trackers information
   $scope.user = {};
   $scope.newTracker = {};
@@ -23,8 +23,6 @@ angular.module('ten20Angular').
       $scope.adsFree = false;
     });
   }
-
-  _getFeature();
 
   $scope.adsShow = function() {
     var desktopWin = true;
@@ -52,15 +50,73 @@ angular.module('ten20Angular').
   };
 
   // callback for tracker setting modal box
-  $scope.updateSetting = function(t) {
+  function updateSetting(t) {
     $scope.$broadcast('TrackerUpdate', t);
     $scope.$broadcast('PathUpdate', t);
+  };
+
+  function deleteTracker(t) {
+    for (var i = 0; i < $scope.trackers.length; i++) {
+      if ($scope.trackers[i]._id === t._id) {
+        $scope.trackers.splice(i, 1);
+        $http.delete('/tracker/' + t._id);
+      }
+    };
+  }
+
+  $scope.openSetting = function(t) {
+
+    var SettingCtrl = function($scope, $modalInstance) {
+      var setInstance = $modalInstance;
+      $scope.data = t;
+
+      $scope.ok = function() {
+        updateSetting($scope.data);
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+       
+      $scope.deleteTracker = function(tracker) {
+
+        var DeleteCtrl = function($scope, $modalInstance) {
+          $scope.t = tracker;
+
+          $scope.ok = function() {
+            deleteTracker(tracker);
+            $modalInstance.close();
+            setInstance.close();
+          };
+
+          $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+          };
+
+        };
+
+        var deleteModal = $modal.open({
+          templateUrl: '/templates/deleteTracker.html',
+          controller: DeleteCtrl,
+          windowClass: 'small'
+        });
+
+      };
+    };
+
+    var setModal = $modal.open({
+      templateUrl: '/templates/trackerSetting.html',
+      controller: SettingCtrl,
+      windowClass: 'small'
+    });
+
   };
 
   // get user account info
   $scope.init = function() {
     $http.get('/user/info').success(function(userinfo) {
       $scope.user = userinfo;
+      _getFeature();
       initTrackers();
     }).error(function(data, status, headers, config) {
       if (status === 401) {
@@ -75,10 +131,13 @@ angular.module('ten20Angular').
       $scope.trackers = data.items;
       // hack icon color format
       for (var i = 0; i < $scope.trackers.length; i++) {
-        if ($scope.trackers[i].iconColor &&
-            $scope.trackers[i].iconColor.charAt(0) !== '#') {
-          $scope.trackers[i].iconColor = '#' + $scope.trackers[i].iconColor;
-        } 
+        if ($scope.trackers[i].iconColor) {
+          if ($scope.trackers[i].iconColor.charAt(0) !== '#') {
+            $scope.trackers[i].iconColor = '#' + $scope.trackers[i].iconColor;
+          }
+        } else {
+          $scope.trackers[i].iconColor = '#ff6600';
+        }
       };
       $scope.trackerLoaded = true;
       $scope.$broadcast('InitTrackers');
@@ -136,10 +195,13 @@ angular.module('ten20Angular').
       }
 
       if (newTracker) {
-        if (newTracker.iconColor &&
-            newTracker.iconColor.charAt(0) !== '#') {
-          newTracker.iconColor = '#' + newTracker.iconColor;
-        } 
+        if (newTracker.iconColor) {
+          if ( newTracker.iconColor.charAt(0) !== '#') {
+            newTracker.iconColor = '#' + newTracker.iconColor;
+          }
+        } else {
+          newTracker.iconColor = '#ff6600';
+        }
 
         $scope.trackers.push(tracker);
       }
@@ -183,6 +245,44 @@ angular.module('ten20Angular').
     });
   }
   
+  $scope.onTripTimeSet = function(newOne, oldOne) {
+    var date, 
+        url = '/trips?limit=1&sortBy=_id$asc&trackerId=' + 
+          $scope.activeTracker._id,
+        tracker = $scope.activeTracker;
+
+    tracker.trips.error = '';
+    tracker.trips.loading = true;
+    tracker.trips.data = [];
+
+    date = moment(tracker.trips.search).toISOString();
+    url += '&endTime=after$date:' + date;
+    url += '&startTime=before$date:' + date;
+
+    $http.get(url).success(function (documents) {
+      if (documents.items.length > 0) {
+        filtered = _simplifyTripMsg(documents.items[0]);
+        if (filtered.messages.length === 0) {
+          tracker.trips.loading = false;
+          tracker.trips.error = 'trips data invalid';
+          $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
+          return;
+        }
+        trips.data.push(filtered);
+        tracker.trips.loading = false;
+        tracker.trips.error = '';
+      } else {
+        tracker.trips.loading = false;
+        tracker.trips.error = 'no trip data at this time';
+        $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
+      }
+    }).error(function(data) {
+      tracker.trips.error = data;
+      tracker.trips.loading = false;
+      $timeout(function() { tracker.trips.error = ''; }, 5000);
+    });
+  };
+
   // load trips of at tracker
   $scope.showTrip = function(t, index) {
       t.path = t.trips.data[index].messages;
@@ -193,8 +293,12 @@ angular.module('ten20Angular').
   $scope.loadTrips = function (tracker, init) {
     var BATCH = 3; // load trip counts per time
 
+    if (tracker.trips && tracker.trips.search !== '') {
+      return;
+    }
+
     if (tracker.trips && tracker.trips.error !== '') {
-      return false;
+      return;
     }
 
     // prevent load more if user secondly click trip tab
@@ -204,9 +308,10 @@ angular.module('ten20Angular').
       return;
     }
 
-    tracker.trips ? null: tracker.trips = { data:[], destCnt: 0, error: '' };
+    tracker.trips ? null: tracker.trips = { data:[], destCnt: 0, error: '' , search: ''};
     tracker.trips.destCnt = tracker.trips.data.length + BATCH;
     tracker.trips.loading = true;
+    tracker.trips.error = '';
 
     _getOneTrip(tracker);
   };
@@ -222,7 +327,6 @@ angular.module('ten20Angular').
     }
 
     url = '/trips?sortBy=_id$desc&limit=1&trackerId=' + tracker._id + before;
-    console.log(url);
 
     $http.get(url).success(function (documents) {
       if (documents.items.length > 0) {

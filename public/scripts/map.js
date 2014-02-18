@@ -403,7 +403,7 @@
       var latlngs = [];
       var optsLine = { weight: 2 , color: '#f60'};
       var optsPoint = { 
-        weight: 5, 
+        weight: 6, 
         radius: 7,
         color: '#eee',
         fillColor: '#f60'
@@ -431,7 +431,7 @@
     MapRender.prototype.updatePath = function(t, fitBounds) {
       var marker = this._findMarker(t);
       var latlngs = _getLineCoordsFromMsg(t.path);
-      var optsPoint = { weight: 3, radius: 5, color: '#eee', fillColor: '#f60'};
+      var optsPoint = { weight: 6, radius: 7, color: '#eee', fillColor: '#f60'};
 
       if (fitBounds) {
         this._clearPaths();
