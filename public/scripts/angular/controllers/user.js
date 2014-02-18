@@ -24,8 +24,6 @@ angular.module('ten20Angular').
     });
   }
 
-  _getFeature();
-
   $scope.adsShow = function() {
     var desktopWin = true;
     var status = { desk: false, mobile: false};
@@ -118,6 +116,7 @@ angular.module('ten20Angular').
   $scope.init = function() {
     $http.get('/user/info').success(function(userinfo) {
       $scope.user = userinfo;
+      _getFeature();
       initTrackers();
     }).error(function(data, status, headers, config) {
       if (status === 401) {
