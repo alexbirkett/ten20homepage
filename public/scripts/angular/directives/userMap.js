@@ -43,6 +43,16 @@ angular.module('ten20Angular').
           }
         });
 
+        function _setToolBoxHeight() {
+          var timerId = null;
+          return function() {
+            $timeout.cancel(timerId);
+            timerId = $timeout(function() {
+              var height = Math.floor(element.height() * 0.8) - 100;
+              $(toolbox).find('.panel-group').css('max-height', height + 'px');
+            }, 400);
+          }
+        }
         // make tool box draggable
         var toolbox = element.find('.tool-box')[0];
         if ($window.innerWidth > 767) {
@@ -52,10 +62,11 @@ angular.module('ten20Angular').
             handle: '.time-weather'
           });
 
-          $timeout(function() {
-            var height = Math.floor(element.height() * 0.8) - 100;
-            $(toolbox).find('.panel-group').css('max-height', height + 'px');
-          }, 1000);
+          _setToolBoxHeight()();
+
+          scope.$watch(function() { return element.height();} , function() {
+            _setToolBoxHeight()();
+          });
         }
       }
     };

@@ -727,6 +727,11 @@ tr td,
     max-height: 100%;
   }
 
+  .panel-heading .panel-title {
+    height: 20px;
+    font-size: 30px;
+  }
+
   .map-canvas #map {
     z-index: 101;
     -webkit-transition: right 300ms;
