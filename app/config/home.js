@@ -3,7 +3,6 @@ module.exports = {
   benefits: require('./sections/benefits'),
   features: require('./sections/features'),
   slides: require('./sections/supported-hardware'),
-  plans: require('./sections/plans'),
   about: require('./sections/about'),
   faq: require('./sections/faq'),
   controller: 'HomeCtrl',

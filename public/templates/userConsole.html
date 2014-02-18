@@ -106,7 +106,7 @@
     </accordion>
 
     <div class="add-tracker" ng-show="trackerLoaded && trackers.length == 0">
-      <h3>please add your tracker first.</h3>
+        <h3><a model-form src-model="newTracker" tpl-url="/templates/newTracker.html" method="POST" path="/trackers" dialog-class="small" callback="addTracker()">add tracker</a></h3>
     </div>
   </div>
 
