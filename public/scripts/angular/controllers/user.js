@@ -95,7 +95,7 @@ angular.module('ten20Angular').
           $scope.t = tracker;
 
           $scope.ok = function() {
-            deleteTracker(tracker);
+            deleteTracker(t);
             $modalInstance.close();
             setInstance.close();
           };
