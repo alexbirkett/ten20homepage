@@ -66,7 +66,7 @@ angular.module('ten20Angular').
     for (var i = 0; i < $scope.trackers.length; i++) {
       if ($scope.trackers[i]._id === t._id) {
         $scope.trackers.splice(i, 1);
-        $http.delete('/tracker/' + t._id);
+        $http.delete('/trackers/' + t._id);
       }
     };
   }
