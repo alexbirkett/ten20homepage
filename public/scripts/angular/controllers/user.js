@@ -53,6 +53,13 @@ angular.module('ten20Angular').
   function updateSetting(t) {
     $scope.$broadcast('TrackerUpdate', t);
     $scope.$broadcast('PathUpdate', t);
+    $http({ 
+      method: 'PATCH', 
+      url: '/trackers/'+t._id, 
+      data: {
+        iconColor: t.iconColor
+      }
+    });
   };
 
   function deleteTracker(t) {
@@ -72,6 +79,7 @@ angular.module('ten20Angular').
 
       $scope.ok = function() {
         updateSetting($scope.data);
+        $modalInstance.close();
       };
 
       $scope.cancel = function () {
