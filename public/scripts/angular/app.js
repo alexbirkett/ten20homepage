@@ -10,7 +10,11 @@ angular.module('ten20Angular', [
   'colorpicker.module',
   'ui.bootstrap.datetimepicker',
   'ui.keypress'
-]).run(function () {
+]).config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.patch = {
+        'Content-Type': 'application/json;charset=utf-8'
+    }
+}]).run(function () {
   // config moment calendar
   moment.lang('en', {
     calendar: {
