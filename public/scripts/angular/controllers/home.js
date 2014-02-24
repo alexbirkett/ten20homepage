@@ -39,17 +39,6 @@ angular.module('ten20Angular').
         "followFirstTracker":true,
         "addVirtualFence": false,
         "tile": "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
-      },
-      {
-        "lat": 59.93245,
-        "lng": 10.79090,
-        "zoomLevel": 13,
-        "restrict": true,
-        "numberOfTrackers": 0,
-        "showTail": false,
-        "followFirstTracker": false,
-        "addVirtualFence":true,
-        "tile": "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
       }
     ];
 
