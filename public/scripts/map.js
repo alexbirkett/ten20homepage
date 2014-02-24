@@ -46,26 +46,22 @@
       var tileLayers = {};
 
       // config mapbox
-      L.mapbox.config.HTTPS_URLS = [ 'https://dnv9my2eseobd.cloudfront.net/v3/' ];
-      L.mapbox.config.FORCE_HTTPS = true;
       // create map
-      this.map = L.mapbox.map(this.mapDiv, this.tile, { 
+      this.map = L.map(this.mapDiv, {
         scrollWheelZoom: this.scrollWheelZoom || false,
-        zoomControl: this.zoomControl
+        zoomControl: this.zoomControl,
+        attributionControl: false
       });
       // add layers to map
-      if(this.layers) {
+
+      if (this.tile) {
+          L.tileLayer(this.tile).addTo(this.map);
+      } else if(this.layers) {
         for (var i = 0; i < this.layers.length; i++) {
           var layer = this.layers[i];
-          tileLayers[layer.label] = L.mapbox.tileLayer(layer.tileLayer);
+          tileLayers[layer.label] = L.tileLayer(layer.tileLayer);
         }
-
-        if (!this.tile) {
-            // Add first layer to map
-            tileLayers[this.layers[0].label].addTo(this.map);
-        }
-
-
+        tileLayers[this.layers[0].label].addTo(this.map);
         L.control.layers(tileLayers).addTo(this.map);
       }
       // set map geometry
