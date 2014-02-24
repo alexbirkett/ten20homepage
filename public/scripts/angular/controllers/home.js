@@ -30,8 +30,8 @@ angular.module('ten20Angular').
         "tile": "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
       },
       {
-        "lat": 32.062472,
-        "lng": 118.778056,
+        "lat": 52.80113,
+        "lng": -1.63130,
         "zoomLevel": 15,
         "restrict": true,
         "numberOfTrackers": 1,
