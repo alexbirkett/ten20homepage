@@ -12,8 +12,8 @@ angular.module('ten20Angular').
       "zoomControl": true,
       "showTail": true,
       "layers": [
-      {"label": "Satellite",  "tileLayer": "alexbirkett.map-t0fodlre"},
-      { "label": "Map", "tileLayer": "alexbirkett.map-bugector"}
+      {"label": "Satellite",  "tileLayer": "https://api.tiles.mapbox.com/v3/alexbirkett.map-t0fodlre/{z}/{x}/{y}.png"},
+      { "label": "Map", "tileLayer": "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"}
       ]
     };
 
@@ -27,7 +27,7 @@ angular.module('ten20Angular').
         "showTail": false,
         "followFirstTracker": true,
         "addVirtualFence": false,
-        "tile": "alexbirkett.map-bugector"
+        "tile": "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
       },
       {
         "lat": 32.062472,
@@ -38,7 +38,7 @@ angular.module('ten20Angular').
         "showTail": true,
         "followFirstTracker":true,
         "addVirtualFence": false,
-        "tile": "alexbirkett.map-bugector"
+        "tile": "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
       },
       {
         "lat": 59.93245,
@@ -49,7 +49,7 @@ angular.module('ten20Angular').
         "showTail": false,
         "followFirstTracker": false,
         "addVirtualFence":true,
-        "tile": "alexbirkett.map-bugector"
+        "tile": "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
       }
     ];
 
