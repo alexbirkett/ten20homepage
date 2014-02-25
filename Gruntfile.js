@@ -73,9 +73,10 @@ module.exports = function (grunt) {
           '<%= pkg.src.lib %>/angular/angular.min.js',
           '<%= pkg.src.lib %>/angular-gestures/gestures.min.js',
           '<%= pkg.src.lib %>/angular-bootstrap/ui-bootstrap.min.js',
+          '<%= pkg.src.lib %>/angular-bootstrap/ui-bootstrap-tpls.min.js',
           '<%= pkg.src.lib %>/angular-ui-utils/keypress.min.js',
-          '<%= pkg.src.lib %>/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js',
           '<%= pkg.src.lib %>/ng-grid/ng-grid-2.0.7.min.js',
+          '<%= pkg.src.lib %>/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js',
           '<%= pkg.src.lib %>/angular-bootstrap-datetimepicker/src/js/datetimepicker.min.js',
         ],
         dest: '<%= pkg.src.build %>/lib.js'
