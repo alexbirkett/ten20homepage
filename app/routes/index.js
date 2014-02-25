@@ -44,7 +44,10 @@ exports.index = function(req, res) {
     res.render('index', model);
   } else {
     res.status(404);
-    res.render('404', {pageTitle: 'Page Not Found'});
+    res.render('404', {
+        head: { title: 'Page Not Found'}
+      }
+    );
   }
 };
 
