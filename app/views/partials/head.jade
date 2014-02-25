@@ -3,17 +3,21 @@ head
   title= head.title
   meta(name='description', content=head.metaDescription)
   meta(name='keywords', content=head.metaKeywords)
+
+  <!-- @if production=false -->
   link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.min.css')
   link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap-theme.min.css')
   link(rel='stylesheet', href='/components/leaflet-dist/leaflet.css')
   link(rel='stylesheet', href='/components/ng-grid/ng-grid.min.css')
   link(rel='stylesheet', href='/components/angular-bootstrap-colorpicker/css/colorpicker.css')
   link(rel='stylesheet', href='/components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css')
-  // if lte IE 8
-    link(rel='stylesheet', href='https://dnv9my2eseobd.cloudfront.net/mapbox.js/v1.6.0/mapbox.ie.css')
+
+  link(rel='stylesheet', href='/styles/home.css')
+  link(rel='stylesheet', href='/styles/admin.css')
+  link(rel='stylesheet', href='/styles/user.css')
+
   script(src='/components/css3-query/css3-mediaqueries.js')
-  // if lt IE 9
-    script(src='/components/html5shiv/dist/html5shiv.js')
+  script(src='/components/html5shiv/dist/html5shiv.js')
   script(src='/components/jquery/jquery.min.js')
   script(src='/components/hammerjs/hammer.min.js')
   script(src='/components/jcarousel/dist/jquery.jcarousel.min.js')
@@ -21,6 +25,7 @@ head
   script(src='/components/momentjs/min/moment.min.js')
   script(src='/components/leaflet-dist/leaflet.js')
   script(src='/components/bootstrap/dist/js/bootstrap.min.js')
+
   script(src='/components/angular/angular.min.js')
   script(src='/components/angular-gestures/gestures.min.js')
   script(src='/components/angular-bootstrap/ui-bootstrap.min.js')
@@ -30,10 +35,6 @@ head
   script(src='/components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js')
   script(src='/components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js')
 
-  <!-- @if production=false -->
-  link(rel='stylesheet', href='/styles/home.css')
-  link(rel='stylesheet', href='/styles/admin.css')
-  link(rel='stylesheet', href='/styles/user.css')
   script(src='/scripts/map.js')
   script(src='/scripts/main.js')
   script(src='/scripts/angular/app.js')
@@ -52,9 +53,10 @@ head
 
 
   <!-- @if production=true -->
-  link(rel='stylesheet', href='/build/all.min.css')
-  script(src='/build/home.min.js')
-  script(src='/build/angular-all.min.js')
+  link(rel='stylesheet', href='/build/lib.min.css')
+  link(rel='stylesheet', href='/build/app.min.css')
+  script(src='/build/lib.js')
+  script(src='/build/app.min.js')
   <!-- @endif -->
 
   script.

@@ -4,8 +4,10 @@
   "private": true,
   "src": {
     "script": "public/scripts",
+    "lib": "public/components",
     "css": "public/styles",
-    "image": "public/images"
+    "image": "public/images",
+    "build": "public/build"
   },
   "dependencies": {
     "express": "3.2.6",
