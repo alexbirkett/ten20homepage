@@ -190,6 +190,7 @@ header {
   line-height: 36px;
   text-indent: 2px;
   text-align: center;
+  opacity: .75;
 }
 
 .leaflet-bar a:hover {
@@ -206,6 +207,11 @@ header {
 
 .leaflet-bar, .leaflet-touch .leaflet-bar {
   border: none;
+}
+
+.leaflet-bar a.leaflet-disabled {
+    background-color: #333;
+    color: #CCC;
 }
 
 .leaflet-control-container .leaflet-control-layers,
