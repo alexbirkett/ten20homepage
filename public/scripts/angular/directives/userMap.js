@@ -114,11 +114,11 @@ angular.module('ten20Angular').
             "scrollWheelZoom": true,
             "layers":[
               {
-                "label":"Satellite",
+                "label":"Map",
                 "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-t0fodlre/{z}/{x}/{y}.png"
               },
               {
-                "label":"Map",
+                "label":"Satellite",
                 "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
               }
             ]
