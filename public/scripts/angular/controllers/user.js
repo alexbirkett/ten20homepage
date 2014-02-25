@@ -254,7 +254,7 @@ angular.module('ten20Angular').
   }
   
   $scope.onTripTimeSet = function(newOne, oldOne) {
-    var date, 
+    var date, filtered, 
         url = '/trips?limit=1&sortBy=_id$asc&trackerId=' + 
           $scope.activeTracker._id,
         tracker = $scope.activeTracker;
@@ -263,7 +263,9 @@ angular.module('ten20Angular').
     tracker.trips.loading = true;
     tracker.trips.data = [];
 
-    date = moment(tracker.trips.search.toString()).toISOString();
+    console.log(tracker.trips.search);
+
+    date = moment(tracker.trips.search).toISOString();
     url += '&endTime=after$date:' + date;
     url += '&startTime=before$date:' + date;
 
@@ -276,7 +278,7 @@ angular.module('ten20Angular').
           $timeout(function() { tracker.trips.error = ''; }, 10 * 1000);
           return;
         }
-        trips.data.push(filtered);
+        tracker.trips.data.push(filtered);
         tracker.trips.loading = false;
         tracker.trips.error = '';
       } else {
