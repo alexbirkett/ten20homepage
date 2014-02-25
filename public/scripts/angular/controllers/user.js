@@ -50,15 +50,12 @@ angular.module('ten20Angular').
   };
 
   // callback for tracker setting modal box
-  function updateSetting(t) {
-    $scope.$broadcast('TrackerUpdate', t);
-    $scope.$broadcast('PathUpdate', t);
+  function updateSetting(id, data) {
+
     $http({ 
       method: 'PATCH', 
-      url: '/trackers/'+t._id, 
-      data: {
-        iconColor: t.iconColor
-      }
+      url: '/trackers/'+id,
+      data: data
     });
   };
 
@@ -66,7 +63,7 @@ angular.module('ten20Angular').
     for (var i = 0; i < $scope.trackers.length; i++) {
       if ($scope.trackers[i]._id === t._id) {
         $scope.trackers.splice(i, 1);
-        $http.delete('/tracker/' + t._id);
+        $http.delete('/trackers/' + t._id);
       }
     };
   }
@@ -75,10 +72,16 @@ angular.module('ten20Angular').
 
     var SettingCtrl = function($scope, $modalInstance) {
       var setInstance = $modalInstance;
-      $scope.data = t;
+      $scope.data = {
+          iconColor: t.iconColor,
+          name: t.name
+      };
 
       $scope.ok = function() {
-        updateSetting($scope.data);
+        jQuery.extend(t, $scope.data);
+        $scope.$broadcast('TrackerUpdate', t);
+        $scope.$broadcast('PathUpdate', t);
+        updateSetting(t._id, $scope.data);
         $modalInstance.close();
       };
 
@@ -92,7 +95,7 @@ angular.module('ten20Angular').
           $scope.t = tracker;
 
           $scope.ok = function() {
-            deleteTracker(tracker);
+            deleteTracker(t);
             $modalInstance.close();
             setInstance.close();
           };
