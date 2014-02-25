@@ -113,14 +113,15 @@ angular.module('ten20Angular').
             "zoomControl":true,
             "scrollWheelZoom": true,
             "layers":[
-              {
-                "label":"Map",
-                "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-t0fodlre/{z}/{x}/{y}.png"
-              },
-              {
-                "label":"Satellite",
-                "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
-              }
+
+                {
+                    "label":"Map",
+                    "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
+                },
+                {
+                    "label":"Satellite",
+                    "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-t0fodlre/{z}/{x}/{y}.png"
+                },
             ]
           };
 
