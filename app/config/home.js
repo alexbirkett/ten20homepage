@@ -14,19 +14,8 @@ module.exports = {
   navs: [
       {
         "text": "Supported hardware",
-        "link": "/#supported",
+        "link": "#supported",
         "scroll": "true"
-      },
-      {
-        "text": "Plans",
-        "link": "/#plans",
-        "scroll": "true",
-        "hidden": "true"
-      },
-      {
-        "text": "Partner program",
-        "link": "/partner",
-        "scroll": "false"
       },
       {
         "modal": true,
@@ -42,12 +31,5 @@ module.exports = {
         "link": "#about-us",
         "scroll": "true"
       }
-      /*
-      {
-        "text": "FAQ",
-        "link": "/#faq",
-        "scroll": "true"
-      }
-      */
     ]
 };
