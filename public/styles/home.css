@@ -157,9 +157,11 @@ header {
 }
 
 
+
 /* map controls */
 .leaflet-bar {
   background: none;
+  box-shadow: none;
 }
 
 .leaflet-bar a:first-child {
@@ -174,7 +176,6 @@ header {
   border-bottom-left-radius: 15px;
   -webkit-border-bottom-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  border-bottom: none;
 }
 
 .leaflet-bar a {
@@ -192,6 +193,12 @@ header {
 }
 
 .leaflet-bar a:hover {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 36px;
+  text-indent: 2px;
   background-color: #333;
   border-bottom-color: #aaa;
   color: #f60;
@@ -223,14 +230,6 @@ header {
   color: #eee;
 }
 
-.user-page .leaflet-control-layers .leaflet-control-layers-list {
-  color: #eee;
-}
-
-.user-page .leaflet-control-layers .leaflet-control-layers-list.darker {
-  color: #333;
-}
-
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
   position: static;
 }
@@ -254,7 +253,7 @@ header {
   background: none;
   -webkit-border-radius: 0;
   border-radius: 0;
-}
+} 
 
 .leaflet-container h1 {
   font-size:36px;
