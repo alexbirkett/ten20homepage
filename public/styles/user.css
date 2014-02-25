@@ -573,7 +573,7 @@ tr td,
   text-align: center;
 }
 
-.trip-load .trips-btn {
+.trips-btn {
   color: #fff;
   width: 200px;
   text-transform: uppercase;
@@ -589,11 +589,11 @@ tr td,
 }
 
 
-.trip-load .trips-btn:hover {
+.trips-btn:hover {
   background-color: #f60;
 }
 
-.trip-load .trips-btn:active{
+.trips-btn:active{
   outline: none;
   background-color: #f60;
   box-shadow: none;
