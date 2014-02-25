@@ -230,14 +230,6 @@ header {
   color: #eee;
 }
 
-.user-page .leaflet-control-layers .leaflet-control-layers-list {
-  color: #eee;
-}
-
-.user-page .leaflet-control-layers .leaflet-control-layers-list.darker {
-  color: #333;
-}
-
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
   position: static;
 }
