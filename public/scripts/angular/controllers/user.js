@@ -378,21 +378,19 @@ angular.module('ten20Angular').
   }
 
   function _filterValidMsg(data) {
-    var validMsg = [];
+    var validMessages = [];
 
     // filter out useless messages
     for (var i = 0; i < data.length; i++) {
-      if (data[i].message && data[i].message.location
-          && data[i].message.location.latitude) {
-        if (!data[i].message.location.timestamp) {
-          data[i].message.location.timestamp = 
-            data[i].receivedTime || data[i].message.receiveTime;
-        }
-        validMsg.push(data[i].message.location);
-      }
+       var message = data[i].message;
+       if (message) {
+           var location = message.location;
+           if (location && location.latitude && location.longitude) {
+               validMessages.push(location);
+           }
+       }
     }
-
-    return validMsg;
+    return validMessages;
   }
 
 }]);
