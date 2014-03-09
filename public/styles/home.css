@@ -182,7 +182,7 @@ header {
   background-color: #333;
   background-image: none;
   color: #CCC;
-  border-bottom: 2px solid #aaa;
+  border-bottom: 1px solid #aaa;
   width: 36px;
   height: 36px;
   font-size: 18px;
@@ -203,6 +203,10 @@ header {
   background-color: #333;
   border-bottom-color: #aaa;
   color: #f60;
+}
+
+.leaflet-bar a:first-child:hover {
+  border-bottom: 1px solid #aaa;
 }
 
 .leaflet-bar, .leaflet-touch .leaflet-bar {
