@@ -74,7 +74,8 @@ angular.module('ten20Angular').
       var setInstance = $modalInstance;
       $scope.data = {
           iconColor: t.iconColor,
-          name: t.name
+          name: t.name,
+          serial: t.serial
       };
 
       $scope.ok = function() {

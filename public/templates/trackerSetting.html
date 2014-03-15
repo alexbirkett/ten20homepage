@@ -1,33 +1,40 @@
 <div class="modal-header">
-  <img src="/images/logo.png" alt="" />
-  <h6 class="error" ng-show="error!=''">{{error}}</h6>
-  <div class="cancel" ng-click="cancel()">
-    <span>X</span>
-  </div>
+    <img src="/images/logo.png" alt=""/>
+    <h6 class="error" ng-show="error!=''">{{error}}</h6>
+
+    <div class="cancel" ng-click="cancel()">
+        <span>X</span>
+    </div>
 </div>
 <div class="modal-body">
-  <form name="f" class="form-horizontal" role="form" ng-class="{'show-invalid': formInvalid}">
-    <div class="form-group">
+    <form name="f" class="form-horizontal" role="form" ng-class="{'show-invalid': formInvalid}">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <input type="text" id="tracker-name" placeHolder="Tracker name" class="form-control"
+                       ng-model="data.name" ng-disabled="sync" ng-minlength="3" ng-pattern="/\w+/"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <input type="text" id="tracker-serial" placeHolder="Tracker id / IMEI" class="form-control"
+                       ng-model="data.serial" ng-disabled="sync" ng-pattern="/\w+/" required/>
+            </div>
+        </div>
+        <div class="form-group">
 
+            <label for="#icon-color" class="col-xs-2 control-label">icon color:</label>
 
-    <div class="col-xs-12">
-        <input type="text" id="tracker-name" placeHolder="Tracker name" class="form-control" ng-model="data.name" ng-disabled="sync" ng-minlength="3" ng-pattern="/\w+/"/>
-    </div>
+            <div class="col-xs-10">
+                <input type="text" colorpicker="hex" id="icon-color" class="form-control" ng-model="data.iconColor"
+                       ng-disabled="sync"/>
+                <span style="float:right;margin-top:-32px;margin-right:10px;border-radius:5px;width:50px;height:25px;z-index:-10;background-color:{{data.iconColor}};"></span>
+            </div>
+        </div>
 
-    </div>
-      <div class="form-group">
-
-      <label for="#icon-color" class="col-xs-2 control-label">icon color:</label>
-      <div class="col-xs-10">
-          <input type="text" colorpicker="hex" id="icon-color" class="form-control" ng-model="data.iconColor" ng-disabled="sync" />
-          <span style="float:right;margin-top:-32px;margin-right:10px;border-radius:5px;width:50px;height:25px;z-index:-10;background-color:{{data.iconColor}};"></span>
-      </div>
-          </div>
-
-  </form>
+    </form>
     <button class="trips-btn" ng-click="deleteTracker(data)">Delete Tracker</button>
-  <h4 class="progress-bar" ng-show="sync"><img src="/images/loading_bar.gif" alt="" /></h4>
+    <h4 class="progress-bar" ng-show="sync"><img src="/images/loading_bar.gif" alt=""/></h4>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-hide="sync" ui-keypress="{13:'ok()'}" ng-click="ok()">save</button>
+    <button class="btn btn-default" ng-hide="sync" ui-keypress="{13:'ok()'}" ng-click="ok()">save</button>
 </div>
