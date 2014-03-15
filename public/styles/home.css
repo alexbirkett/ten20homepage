@@ -1138,10 +1138,6 @@ label {
     color: #eee;
   }
 
-  .navbar .navbar-collapse .nav > li:hover a{
-    color: #f60;
-  }
-
   .mapbox .call-to-action {
     position: absolute;
     top: 150px;
