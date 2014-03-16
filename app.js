@@ -128,7 +128,7 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     app.post('/contact', routes.contact);
 
     app.get('/features', function(req, res) {
-        res.json({"adFree": false});
+        res.json({"adFree": true});
     });
 
     app.get(/\/\w?/, routes.index);
