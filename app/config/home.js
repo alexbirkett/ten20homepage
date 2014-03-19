@@ -9,7 +9,7 @@ module.exports = {
   master: {
     "title": "Track the location of people and things", 
     "subTitle": "Supports GPS trackers and mobile apps",
-    "buttonText": "get started now"
+    "buttonText": "Sign up now"
   },
   navs: [
       {
