@@ -131,6 +131,10 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         res.json({"adFree": true});
     });
 
+    app.post('/sms', function(req, res) {
+        console.log(req.body);
+        res.json({});
+    });
     app.get(/\/\w?/, routes.index);
 
     routes.setDb(db);
