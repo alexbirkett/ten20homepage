@@ -176,7 +176,6 @@ angular.module('ten20Angular').
         delay = 1;
       }
 
-      console.log(tracker.name + ' udpated');
       // update or add tracker
       for (var i = 0; i < $scope.trackers.length; i++) {
         if ($scope.trackers[i]._id === tracker._id) {
@@ -393,6 +392,11 @@ angular.module('ten20Angular').
     }
     return validMessages;
   }
+
+  $scope.signout = function() {
+      $window.localStorage.token = undefined;
+      $window.location = '/'; //("http://ten20live.com/");
+  };
 
 }]);
 
