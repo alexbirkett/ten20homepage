@@ -44,7 +44,7 @@ var apiEndpoints = [
     { path: '/trackers' },
     { path: '/signup', method: 'POST' },
     { path: '/user'},
-    { path: '/signin' },
+    { path: '/authenticate' },
     { path: '/signout'},
     { path: '/message' },
     { path: '/reset_password'},

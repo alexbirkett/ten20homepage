@@ -10,8 +10,26 @@ angular.module('ten20Angular', [
   'colorpicker.module',
   'ui.bootstrap.datetimepicker',
   'ui.keypress'
-]).config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.headers.patch = {
+]).factory('authInterceptor', function ($rootScope, $q, $window) {
+    return {
+        request: function (config) {
+            config.headers = config.headers || {};
+            console.log('sending ' + $window.localStorage.token);
+            if ($window.localStorage.token) {
+                config.headers.Authorization = 'Bearer ' + $window.localStorage.token;
+            }
+            return config;
+        },
+        response: function (response) {
+            if (response.status === 401) {
+                // handle the case where the user is not authenticated
+            }
+            return response || $q.when(response);
+        }
+    };
+}).config(['$httpProvider', function($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+        $httpProvider.defaults.headers.patch = {
         'Content-Type': 'application/json;charset=utf-8'
     }
 }]).run(function () {

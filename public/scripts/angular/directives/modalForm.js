@@ -68,7 +68,11 @@ angular.module('ten20Angular').
                 method: config.ajaxMethod,
                 url: config.ajaxUrl,
                 data: config.field?config.src[config.field]:config.src
-              }).success(function() {
+              }).success(function(data, status, headers, cfg) {
+                if (data.token) {
+                    // TODO refactor out of form
+                    $window.localStorage.token = data.token;
+                }
                 if (config.redirect) {
                   $window.location.hash = "";
                   $window.location.pathname = config.redirect;
