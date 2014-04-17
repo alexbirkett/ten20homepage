@@ -922,13 +922,15 @@ footer p {
 .modal-body .form-group input {
   display: block;
   height: 40px;
-  padding: 10px;
   margin: 0;
-  text-indent: 5px;
   line-height: 30px;
   background-color:rgba(0,0,0,0.0);
   border: 1px solid #666;
   color: #aaa;
+}
+
+.modal-body .form-group input[type="password"] {
+  line-height: 25px;
 }
 
 .modal-body .form-group input:focus {
