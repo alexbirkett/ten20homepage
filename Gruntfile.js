@@ -63,7 +63,7 @@ module.exports = function (grunt) {
         src: [
           '<%= pkg.src.lib %>/css3-query/css3-mediaqueries.min.js',
           '<%= pkg.src.lib %>/html5shiv/dist/html5shiv.js',
-          '<%= pkg.src.lib %>/jquery/jquery.min.js',
+          '<%= pkg.src.lib %>/jquery/dist/jquery.min.js',
           '<%= pkg.src.lib %>/hammerjs/hammer.min.js',
           '<%= pkg.src.lib %>/jcarousel/dist/jquery.jcarousel.min.js',
           '<%= pkg.src.lib %>/drag-plugin/index.js',
