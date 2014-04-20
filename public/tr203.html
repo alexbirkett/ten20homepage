@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title></title>
+    <script type="text/javascript"
+            src="/components/angular/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="Tr203Controller">
+
+    <h1><a href="http://www.globalsat.com.tw/products-page.php?menu=4&gs_en_product_id=3&gs_en_product_cnt_id=23">GlobalSat TR-203</a> config</h1>
+
+    <p>You will need:</p>
+    <ul>
+        <li>A <a href="http://www.globalsat.com.tw/products-page.php?menu=4&gs_en_product_id=3&gs_en_product_cnt_id=23">GlobalSat TR-203</a> tracker</li>
+        <li>A SIM card that supports SMS (for configuration) and data</li>
+    </ul>
+
+    <p>Before you start:</p>
+    <ul>
+        <li>Insert SIM card in a mobile phone and power on</li>
+        <li>Check that SIM card does not have a PIN code enabled</li>
+        <li>If PIN code is enabled, turn off using mobile phone (this is phone dependent, search around in setting on phone)</li>
+        <li>Create an account on ten20live and add the tracker - be sure to enter IMEI correctly</li>
+    </ul>
+    <p>Enter the details for your Tracker / SIM card:</p>
+    <table>
+        <tr>
+            <td>Tracker IMEI</td><td><input type="text" ng-model="imei" ng-change="compute()" /></td>
+        </tr>
+        <tr>
+            <td>SIM APN</td><td> <input type="text" ng-model="apn" ng-change="compute()"/></td>
+        </tr>
+        <tr>
+            <td>SIM APN username (not required by all network operators)</td><td> <input type="text" ng-model="username" ng-change="compute()"/></td>
+        </tr>
+        <tr>
+            <td>SIM APN password (not required by all network operators)</td><td> <input type="text" ng-model="password" ng-change="compute()"/></td>
+        </tr>
+        <tr>
+            <td>Desired Update Interval (seconds)</td><td><input type="text" ng-model="interval" ng-change="compute()"/></td>
+        </tr>
+    </table>
+
+    <p>Messages are case sensitive and need to be exactly correct. Copy and paste are your friends!</p>
+
+    <p>Using a different phone, send two messages to the SIM card in the tracker:</p>
+
+    <p>The first SMS message:</p>
+    <p style="font-family: Courier New, monospace">{{ messsage1 }} </p>
+
+    <p>The second SMS message:</p>
+    <p style="font-family: Courier New, monospace">{{ messsage2 }} </p>
+
+</div>
+<script type="text/javascript">
+    function Tr203Controller($scope) {
+
+        var prependZeros = function (number, desiredStringLength, base) {
+            if (base === undefined) {
+                base = 10;
+            }
+            var numberAsString = number.toString(base);
+            var numberOfZerosToPrepend = desiredStringLength - numberAsString.length;
+            if (numberOfZerosToPrepend < 0) {
+                throw new Error("number too big");
+            }
+
+            for (var i = 0; i < numberOfZerosToPrepend; i++) {
+                numberAsString = "0" + numberAsString;
+            }
+            return numberAsString;
+        };
+
+        var calculateNemaChecksum = function(buffer) {
+            var checksum = 0;
+
+            var getCharCode;
+
+
+            // assume String object or literal
+            getCharCode = function(position) {
+                return buffer.charCodeAt(position);
+            };
+            for (var i = 0; i < buffer.length; i++) {
+                checksum = checksum ^ getCharCode(i);
+            }
+
+            var checksumAsHexString = prependZeros(checksum, 2, 16);
+
+            return checksumAsHexString;
+        };
+
+        var calculateMessageWithChecksum = function(message) {
+            return '$' + message + '*' + calculateNemaChecksum(message) + '!';
+        };
+
+        $scope.interval = 60;
+
+        var getKeyAndValueOnlyIfValueExists = function(key, value) {
+            var keyAndValue = '';
+            if (value && value.length > 0) {
+                keyAndValue = ',' + key + '=' + value;
+            }
+            return keyAndValue;
+        };
+        $scope.compute = function() {
+            var message1 = 'GSS,' + $scope.imei + ',3,0,D1=' + $scope.apn + getKeyAndValueOnlyIfValueExists('D2', $scope.username) + getKeyAndValueOnlyIfValueExists('D3', $scope.password) + ',E0=176.58.124.210,E1=1337';
+            $scope.messsage1 = calculateMessageWithChecksum(message1);
+
+            var message2 = 'GSC,' + $scope.imei + ',M3(Q0='+ $scope.interval + ',Q2=02)';
+            $scope.messsage2 = calculateMessageWithChecksum(message2);
+
+        };
+    }
+</script>
+</body>
+</html>
