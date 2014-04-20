@@ -74,7 +74,8 @@ angular.module('ten20Angular').
       var setInstance = $modalInstance;
       $scope.data = {
           iconColor: t.iconColor,
-          name: t.name
+          name: t.name,
+          serial: t.serial
       };
 
       $scope.ok = function() {
@@ -175,7 +176,6 @@ angular.module('ten20Angular').
         delay = 1;
       }
 
-      console.log(tracker.name + ' udpated');
       // update or add tracker
       for (var i = 0; i < $scope.trackers.length; i++) {
         if ($scope.trackers[i]._id === tracker._id) {
@@ -376,22 +376,25 @@ angular.module('ten20Angular').
   }
 
   function _filterValidMsg(data) {
-    var validMsg = [];
+    var validMessages = [];
 
     // filter out useless messages
     for (var i = 0; i < data.length; i++) {
-      if (data[i].message && data[i].message.location
-          && data[i].message.location.latitude) {
-        if (!data[i].message.location.timestamp) {
-          data[i].message.location.timestamp = 
-            data[i].receivedTime || data[i].message.receiveTime;
-        }
-        validMsg.push(data[i].message.location);
-      }
+       var message = data[i].message;
+       if (message) {
+           var location = message.location;
+           if (location && location.latitude && location.longitude) {
+               validMessages.push(location);
+           }
+       }
     }
-
-    return validMsg;
+    return validMessages;
   }
+
+  $scope.signout = function() {
+      $window.localStorage.token = undefined;
+      $window.location = '/'; //("http://ten20live.com/");
+  };
 
 }]);
 

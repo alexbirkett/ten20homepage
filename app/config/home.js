@@ -9,24 +9,13 @@ module.exports = {
   master: {
     "title": "Track the location of people and things", 
     "subTitle": "Supports GPS trackers and mobile apps",
-    "buttonText": "get started now"
+    "buttonText": "Sign up now"
   },
   navs: [
       {
         "text": "Supported hardware",
-        "link": "/#supported",
+        "link": "#supported",
         "scroll": "true"
-      },
-      {
-        "text": "Plans",
-        "link": "/#plans",
-        "scroll": "true",
-        "hidden": "true"
-      },
-      {
-        "text": "Partner program",
-        "link": "/partner",
-        "scroll": "false"
       },
       {
         "modal": true,
@@ -38,16 +27,14 @@ module.exports = {
         "text": "sign in"
       },
       {
+          "text": "Subreddit forum",
+          "link": "http://www.reddit.com/r/ten20/",
+          "scroll": "false"
+      },
+      {
         "text": "About Us",
         "link": "#about-us",
         "scroll": "true"
       }
-      /*
-      {
-        "text": "FAQ",
-        "link": "/#faq",
-        "scroll": "true"
-      }
-      */
     ]
 };

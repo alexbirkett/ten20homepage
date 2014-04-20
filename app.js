@@ -44,7 +44,7 @@ var apiEndpoints = [
     { path: '/trackers' },
     { path: '/signup', method: 'POST' },
     { path: '/user'},
-    { path: '/signin' },
+    { path: '/authenticate' },
     { path: '/signout'},
     { path: '/message' },
     { path: '/reset_password'},
@@ -128,9 +128,13 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     app.post('/contact', routes.contact);
 
     app.get('/features', function(req, res) {
-        res.json({"adFree": false});
+        res.json({"adFree": true});
     });
 
+    app.post('/sms', function(req, res) {
+        console.log(req.body);
+        res.json({});
+    });
     app.get(/\/\w?/, routes.index);
 
     routes.setDb(db);

@@ -190,6 +190,7 @@ header {
   line-height: 36px;
   text-indent: 2px;
   text-align: center;
+  opacity: .75;
 }
 
 .leaflet-bar a:hover {
@@ -212,6 +213,11 @@ header {
   border: none;
 }
 
+.leaflet-bar a.leaflet-disabled {
+    background-color: #333;
+    color: #CCC;
+}
+
 .leaflet-control-container .leaflet-control-layers,
 .leaflet-control-layers-expanded {
   padding: 0;
@@ -232,6 +238,14 @@ header {
 
 .leaflet-control-layers .leaflet-control-layers-list.darker {
   color: #eee;
+}
+
+.user-page .leaflet-control-layers .leaflet-control-layers-list {
+  color: #eee;
+}
+
+.user-page .leaflet-control-layers .leaflet-control-layers-list.darker {
+  color: #333;
 }
 
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
@@ -1124,10 +1138,6 @@ label {
     display: inline-block;
     text-shadow: none !important;
     color: #eee;
-  }
-
-  .navbar .navbar-collapse .nav > li:hover a{
-    color: #f60;
   }
 
   .mapbox .call-to-action {
