@@ -566,6 +566,7 @@ tr td,
 .trip-list ul > li span.timeslot {
   color: #f60;
   margin-left: 10px;
+  font-size: smaller;
   text-transform: initial;
 }
 
