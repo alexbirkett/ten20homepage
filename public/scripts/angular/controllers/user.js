@@ -266,9 +266,7 @@ angular.module('ten20Angular').
     tracker.trips.loading = true;
     tracker.trips.data = [];
 
-    console.log(tracker.trips.search);
-
-    date = moment(tracker.trips.search).toISOString();
+    date = moment(newOne).toISOString();
     url += '&endTime=after$date:' + date;
     url += '&startTime=before$date:' + date;
 
