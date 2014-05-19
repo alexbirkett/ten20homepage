@@ -1,6 +1,7 @@
 //require('ten20location.io'); // start ten20 LocationIO adapter
 
 var express = require('express'),
+    Poet = require('poet'),
     http = require('http'),
     https = require('https'),
     connect = require('connect')
@@ -11,6 +12,16 @@ var express = require('express'),
     MongoClient = require('mongodb').MongoClient,
     httpProxy = require('http-proxy');
 
+
+var poet = Poet(app, {
+  posts: './_posts/',
+  postsPerPage: 5,
+  metaFormat: 'json'
+});
+
+poet.init().then(function () {
+  // ready to go!
+});
 
 // redis connection detect
 var redis = new RedisStore();
