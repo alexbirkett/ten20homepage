@@ -26,7 +26,7 @@ module.exports = {
       },
       {
         "text": "About Us",
-        "link": "#about-us",
+        "link": "/#about-us",
         "scroll": "true"
       }
     ]

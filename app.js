@@ -18,9 +18,6 @@ var express = require('express'),
 var redis = new RedisStore();
 var app = module.exports = express();
 
-// init poet routes and configs
-poet(app);
-
 redis.client.on('error', function() {
   console.error('connect to redis failed, app exits!');
   process.exit(0);
@@ -122,6 +119,9 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         app.use(express.errorHandler());
     }
 
+    // init poet routes and configs
+    poet(app);
+
     // user console
     app.get('/console', routes.console);
     // home page
@@ -135,9 +135,9 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         console.log(req.body);
         res.json({});
     });
+
     app.get(/\/\w?/, routes.index);
 
     routes.setDb(db);
 
-    console.log(app.routes);
 });
