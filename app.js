@@ -1,11 +1,11 @@
 //require('ten20location.io'); // start ten20 LocationIO adapter
 
 var express = require('express'),
-    Poet = require('poet'),
     http = require('http'),
     https = require('https'),
     connect = require('connect')
     routes = require('./app/routes'),
+    poet = require('./app/routes/poet'),
     options = require('./app/http-options'),
     configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express),
@@ -13,19 +13,13 @@ var express = require('express'),
     httpProxy = require('http-proxy');
 
 
-var poet = Poet(app, {
-  posts: './_posts/',
-  postsPerPage: 5,
-  metaFormat: 'json'
-});
-
-poet.init().then(function () {
-  // ready to go!
-});
 
 // redis connection detect
 var redis = new RedisStore();
 var app = module.exports = express();
+
+// init poet routes and configs
+poet(app);
 
 redis.client.on('error', function() {
   console.error('connect to redis failed, app exits!');
@@ -144,4 +138,6 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     app.get(/\/\w?/, routes.index);
 
     routes.setDb(db);
+
+    console.log(app.routes);
 });
