@@ -5,7 +5,6 @@ var express = require('express'),
     https = require('https'),
     connect = require('connect')
     routes = require('./app/routes'),
-    admin = require('./app/routes/admin'),
     options = require('./app/http-options'),
     configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express),
@@ -118,9 +117,6 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         app.use(express.errorHandler());
     }
 
-    // admin console
-    configureDryRoutes(admin, app);
-
     // user console
     app.get('/console', routes.console);
     // home page
@@ -137,6 +133,4 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     app.get(/\/\w?/, routes.index);
 
     routes.setDb(db);
-    admin.setDb(db);
-
 });
