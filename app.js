@@ -108,7 +108,6 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     }));
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/favicon.ico'));
-    app.use('/admin', admin.authenticateMiddleware);
     app.use(app.router);
 
     if ('development' == app.get('env')) {
