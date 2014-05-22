@@ -13,8 +13,11 @@ Jumps in your middleware and extends route requests with references
 
 ## Methods ##
 
+<!--more-->
+
 `reqExtend([namespace,] object [, force]);`
 Merges `object`'s keys and values with a routes request variable, which optionally can be contained under a property of `namespace`. `force` defaults to true, and controls whether or not `object` values should overwrite properties already on the request variable.
+
 
 ## Usage ##
 
