@@ -51,5 +51,7 @@ module.exports = function (app) {
   }).init(function (err, poet) {
     console.log('poet init: ', err || 'successful'); 
   });
+
+  return poet;
 }
 
