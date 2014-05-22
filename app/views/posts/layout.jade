@@ -11,12 +11,17 @@ html(ng-app="ten20Angular")
             .col-md-8
               block content
             .col-md-4
+              .blog-search.input-group
+                input.form-control(type="text")
+                span.input-group-btn
+                  button.btn.btn-default(type="button")
+                    span.glyphicon.glyphicon-search
+
               ul.nav.nav-pills.nav-stacked
-                // 
-                  li.nav-header categories
-                  - each cat in getCategories()
+                li.nav-header recent posts
+                  - each post in getPosts(0, 5)
                     li
-                      a(href=categoryURL(cat)) #{cat}
+                      a(href=post.url) #{post.title}
                 li.nav-header tags
                 - each tag in getTags()
                   li
