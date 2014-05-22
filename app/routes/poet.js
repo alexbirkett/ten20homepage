@@ -40,6 +40,14 @@ module.exports = function (app) {
     }
   });
 
+  poet.addRoute('/blogs/page/:page', function (req, res) {
+    var page = req.params.page,
+        lastPost = page * 3;
+    blogModel.posts = poet.helpers.getPosts(lastPost - 3, lastPost);
+    blogModel.page = page;
+    res.render('posts/page', blogModel);
+  });
+  
   poet.addRoute('/blogs/category/:category', function (req, res, next) {
     var posts = poet.helpers.postsWithCategory(req.params.category);
     if (posts) {
