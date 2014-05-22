@@ -96,3 +96,11 @@
 .blog-search input {
   background-color: #FFF;
 }
+
+.nav-header a.pull-right {
+  margin-top: -8px;
+}
+
+.nav-header a.pull-right img {
+  width: 23px;
+}

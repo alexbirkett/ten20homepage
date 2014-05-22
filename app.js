@@ -122,10 +122,10 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     // init poet routes and configs
     var poetInst = poet(app);
 
-    app.get('/blogs/rss', function (req, res) {
+    app.get('/blog-rss', function (req, res) {
       // Only get the latest posts
       var posts = poetInst.helpers.getPosts(0, 7);
-      res.setHeader('Content-Type', 'application/rss+xml');
+      res.setHeader('Content-Type', 'text/rss+xml');
       res.render('posts/rss', { posts: posts });
     });
     // user console
