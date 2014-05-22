@@ -5,6 +5,7 @@
   position: relative;
   margin: 0 auto -50px;
   background-color: #eee;
+  padding-bottom: 50px;
 }
 
 .blog-wrapper header,
@@ -103,4 +104,9 @@
 
 .nav-header a.pull-right img {
   width: 23px;
+}
+
+.pagination>.active>a {
+  background-color: #f60;
+  border-color: #f60;
 }
