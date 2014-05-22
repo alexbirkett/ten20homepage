@@ -1,8 +1,26 @@
+.blog-wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  position: relative;
+  margin: 0 auto -50px;
+  background-color: #eee;
+}
+
+.blog-wrapper header,
+.blog-wrapper + .push {
+  background-color: #272727;
+  position: relative;
+}
+
+.blog-content {
+  color: #333;
+}
+
 .nav.nav-pills.nav-stacked li {
   display: block;
   margin-left: 10px;
 }
-
 
 .nav.nav-pills.nav-stacked li.nav-header {
   margin-left: 0;

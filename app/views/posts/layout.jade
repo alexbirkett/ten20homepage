@@ -2,21 +2,25 @@ doctype 5
 html(ng-app="ten20Angular")
   include ../partials/build/head
   body(ng-controller="RootCtrl")
-    .wrapper
+    .blog-wrapper
       include ../partials/nav-bar.jade
       include ../partials/nav-bar-mobile.jade
-      .container
-        .row
-          .col-md-8
-            block content
-          .col-md-4
-            ul.nav.nav-pills.nav-stacked
-              // 
-                li.nav-header categories
-                - each cat in getCategories()
+      .blog-content
+        .container
+          .row
+            .col-md-8
+              block content
+            .col-md-4
+              ul.nav.nav-pills.nav-stacked
+                // 
+                  li.nav-header categories
+                  - each cat in getCategories()
+                    li
+                      a(href=categoryURL(cat)) #{cat}
+                li.nav-header tags
+                - each tag in getTags()
                   li
-                    a(href=categoryURL(cat)) #{cat}
-              li.nav-header tags
-              - each tag in getTags()
-                li
-                  a(href=tagURL(tag)) #{tag}
+                    a(href=tagURL(tag)) #{tag}
+    .push
+      footer
+        p Copyright (c) 2013-2014 Birkett Enterprise Ltd
