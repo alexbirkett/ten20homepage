@@ -2,7 +2,6 @@
 /*
  * GET home page.
  */
-var contactCollection;
 var home = require('../config/home');
 var partner = require('../config/partner');
 
@@ -13,10 +12,6 @@ function extend(dst, src) {
     }
   }
 }
-
-exports.setDb = function(db) {
-  contactCollection = db.collection('contact');;
-};
 
 exports.index = function(req, res) {
   var model = {};
@@ -49,16 +44,6 @@ exports.index = function(req, res) {
       }
     );
   }
-};
-
-exports.contact = function(req, res){
-  var data = req.body;
-
-  data.date = (new Date()).toDateString();
-
-  contactCollection.insert(data, function(error, docs) {
-    res.json({error: !!error});
-  });
 };
 
 exports.console = function (req, res) {

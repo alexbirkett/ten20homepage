@@ -9,7 +9,6 @@ var express = require('express'),
     options = require('./app/http-options'),
     configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express),
-    MongoClient = require('mongodb').MongoClient,
     httpProxy = require('http-proxy');
 
 
@@ -73,77 +72,59 @@ function forwardApiRequest(req, res, next) {
     }
 };
 
-var dbName = 'development' === app.get('env') ? 'ten20homeDevelopment' : 'ten20home';
+var server = require('http').createServer(app).listen(options.http.port);
+console.log('http listening on ' + options.http.port);
 
-MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
+if (options.https) {
+    server = https.createServer(options.https, app).listen(options.https.port);
+    console.log('https listening on ' + options.https.port);
+}
 
-    if(err) {
-        console.error('connect to mongodb failed, app exits!');
-        process.exit(0);
-    }
-
-    var server = require('http').createServer(app).listen(options.http.port);
-    console.log('http listening on ' + options.http.port);
-
-    if (options.https) {
-        server = https.createServer(options.https, app).listen(options.https.port);
-        console.log('https listening on ' + options.https.port);
-    }
-
-    app.set('views', __dirname + '/app/views');
-    app.set('view engine', 'jade');
-    app.use(removeWWW);
-    if (options.https) {
-      app.use(requireHTTPS);
-    }
-    app.use(forwardApiRequest);
-    app.use(connect.compress());
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
+app.set('views', __dirname + '/app/views');
+app.set('view engine', 'jade');
+app.use(removeWWW);
+if (options.https) {
+  app.use(requireHTTPS);
+}
+app.use(forwardApiRequest);
+app.use(connect.compress());
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
     app.use(express.cookieParser('&*(j#$84nui$%'));
     app.use(express.session({
         store: redis,
         secret: '1234567890QWERTY',
         key: 'hs'
     }));
-    app.use(express.static(__dirname + '/public'));
-    app.use(express.favicon(__dirname + '/public/favicon.ico'));
-    app.use(app.router);
+app.use(express.static(__dirname + '/public'));
+app.use(express.favicon(__dirname + '/public/favicon.ico'));
+app.use(app.router);
 
-    if ('development' == app.get('env')) {
-        app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-    }
+if ('development' == app.get('env')) {
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+}
 
-    if ('production' == app.get('env')) {
-        app.use(express.errorHandler());
-    }
+if ('production' == app.get('env')) {
+    app.use(express.errorHandler());
+}
 
-    // init poet routes and configs
-    var poetInst = poet(app);
+// init poet routes and configs
+var poetInst = poet(app);
 
-    app.get('/blog-rss', function (req, res) {
-      // Only get the latest posts
-      var posts = poetInst.helpers.getPosts(0, 7);
-      res.setHeader('Content-Type', 'text/rss+xml');
-      res.render('posts/rss', { posts: posts });
-    });
-    // user console
-    app.get('/console', routes.console);
-    // home page
-    app.post('/contact', routes.contact);
-
-    app.get('/features', function(req, res) {
-        res.json({"adFree": true});
-    });
-
-    app.post('/sms', function(req, res) {
-        console.log(req.body);
-        res.json({});
-    });
-
-    app.get(/\/\w?/, routes.index);
-
-    routes.setDb(db);
-
+app.get('/blog-rss', function (req, res) {
+  // Only get the latest posts
+  var posts = poetInst.helpers.getPosts(0, 7);
+  res.setHeader('Content-Type', 'text/rss+xml');
+  res.render('posts/rss', { posts: posts });
 });
+// user console
+app.get('/console', routes.console);
+
+app.get('/features', function(req, res) {
+    res.json({"adFree": true});
+});
+
+app.get(/\/\w?/, routes.index);
+
+
