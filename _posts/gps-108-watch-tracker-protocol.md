@@ -11,7 +11,7 @@ Sending messages from the server to the watch is not possible (it’s configurab
 
 This protocol is supported by ten20
 
-[GPS108 Watch tacker GPRS PROTOCOL](http://location.io/files/2013/05/GPS108-Watch-tacker-GPRS-PROTOCOL.doc)
+[GPS108 Watch tacker GPRS PROTOCOL](../protocol_docs/GPS108-Watch-tacker-GPRS-PROTOCOL.doc)
 
 #Example message
 
