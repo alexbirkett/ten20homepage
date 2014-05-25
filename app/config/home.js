@@ -18,8 +18,13 @@ module.exports = {
         "scroll": "true"
       },
       {
+          "modal": true,
+          "id": "signup",
+          "text": "Sign up"
+      },
+      {
         "link": "/console",
-        "text": "sign in"
+        "text": "Sign in"
       },
       {
         "link": "/docs",
