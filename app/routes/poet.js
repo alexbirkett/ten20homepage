@@ -1,6 +1,6 @@
 var path = require('path');
 var Poet = require('poet');
-var blogModel = require('../config/blog');
+var blogModel = require('../config/docs');
 
 module.exports = function (app) {
   // init config
@@ -10,7 +10,7 @@ module.exports = function (app) {
     metaFormat: 'json'
   });
 
-  poet.addRoute('/blogs', function (req, res, next) {
+  poet.addRoute('/docs', function (req, res, next) {
     var posts = poet.helpers.getPosts();
     if (posts.length) {
       blogModel.posts = posts;
@@ -20,7 +20,7 @@ module.exports = function (app) {
     }
   });
 
-  poet.addRoute('/blogs/:post', function (req, res, next) {
+  poet.addRoute('/docs/:post', function (req, res, next) {
     var post = poet.helpers.getPost(req.params.post);
     if (post) {
       blogModel.post = post;
@@ -30,7 +30,7 @@ module.exports = function (app) {
     }
   });
 
-  poet.addRoute('/blogs/tag/:tag', function (req, res, next) {
+  poet.addRoute('/docs/tag/:tag', function (req, res, next) {
     var posts = poet.helpers.postsWithTag(req.params.tag);
     if (posts) {
       blogModel.posts = posts;
@@ -40,7 +40,7 @@ module.exports = function (app) {
     }
   });
 
-  poet.addRoute('/blogs/page/:page', function (req, res) {
+  poet.addRoute('/docs/page/:page', function (req, res) {
     var page = req.params.page,
         lastPost = page * 3;
     blogModel.posts = poet.helpers.getPosts(lastPost - 3, lastPost);
@@ -48,7 +48,7 @@ module.exports = function (app) {
     res.render('posts/page', blogModel);
   });
   
-  poet.addRoute('/blogs/category/:category', function (req, res, next) {
+  poet.addRoute('/docs/category/:category', function (req, res, next) {
     var posts = poet.helpers.postsWithCategory(req.params.category);
     if (posts) {
       blogModel.posts = posts;

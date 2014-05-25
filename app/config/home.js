@@ -22,8 +22,8 @@ module.exports = {
         "text": "sign in"
       },
       {
-        "link": "/blogs",
-        "text": "blogs"
+        "link": "/docs",
+        "text": "Documentation"
       },
       {
           "text": "Subreddit forum",
