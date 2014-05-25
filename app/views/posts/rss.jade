@@ -1,0 +1,18 @@
+doctype xml
+rss(version='2.0', xmlns:atom='http://www.w3.org/2005/Atom')
+  channel
+    title ten20 blogs rss
+    link https://ten20live.com
+    description GPS tracker service blogger rss
+    atom:link(href='https://ten20live.com/blog-rss', rel='self', type='application/rss+xml')
+    each post in posts
+      - var fullUrl = 'https://ten20live.com/' + post.url
+      item
+        title= post.title
+        link= fullUrl
+        description
+          | <![CDATA[
+          | !{post.preview}
+          | ]]>
+        pubDate= post.date.toUTCString()
+        guid= fullUrl

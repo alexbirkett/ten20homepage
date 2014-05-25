@@ -30,6 +30,10 @@ module.exports = {
       "text": "sign in"
     },
     {
+      "link": "/blogs",
+      "text": "blogs"
+    },
+    {
       "text": "About Us",
       "link": "#about-us",
       "scroll": "true"

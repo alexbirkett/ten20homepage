@@ -5,12 +5,13 @@ var express = require('express'),
     https = require('https'),
     connect = require('connect')
     routes = require('./app/routes'),
-    admin = require('./app/routes/admin'),
+    poet = require('./app/routes/poet'),
     options = require('./app/http-options'),
     configureDryRoutes = require('express-dry-router'),
     RedisStore = require('connect-redis')(express),
     MongoClient = require('mongodb').MongoClient,
     httpProxy = require('http-proxy');
+
 
 
 // redis connection detect
@@ -108,7 +109,6 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
     }));
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/favicon.ico'));
-    app.use('/admin', admin.authenticateMiddleware);
     app.use(app.router);
 
     if ('development' == app.get('env')) {
@@ -119,9 +119,15 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         app.use(express.errorHandler());
     }
 
-    // admin console
-    configureDryRoutes(admin, app);
+    // init poet routes and configs
+    var poetInst = poet(app);
 
+    app.get('/blog-rss', function (req, res) {
+      // Only get the latest posts
+      var posts = poetInst.helpers.getPosts(0, 7);
+      res.setHeader('Content-Type', 'text/rss+xml');
+      res.render('posts/rss', { posts: posts });
+    });
     // user console
     app.get('/console', routes.console);
     // home page
@@ -135,9 +141,9 @@ MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
         console.log(req.body);
         res.json({});
     });
+
     app.get(/\/\w?/, routes.index);
 
     routes.setDb(db);
-    admin.setDb(db);
 
 });
