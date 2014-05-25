@@ -27,10 +27,6 @@ module.exports = {
         "text": "Sign in"
       },
       {
-        "link": "/docs",
-        "text": "Documentation"
-      },
-      {
           "text": "Subreddit forum",
           "link": "http://www.reddit.com/r/ten20/",
           "scroll": "false"
