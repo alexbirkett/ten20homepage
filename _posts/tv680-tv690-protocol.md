@@ -1,6 +1,6 @@
 {{{
     "title"    : "TV680 / TV690 Protocol",
-    "tags"     : [ "TV-680", "TV690" ],
+    "tags"     : [ "TV-680", "TV-690", "GoTop" ],
     "category" : "protocols",
     "date"     : "05-31-2013"
 }}}
@@ -12,5 +12,5 @@ Not currently supported by ten20
 
 This protocol may have enough in common with the GPS-108 protocol to share a protocol module.
 
-[Protocol Document](http://location.io/files/2013/05/TV680-GPRS-Communication-Protocol.pdf)
+[Protocol Document](../protocol_docs/TV680-GPRS-Communication-Protocol.pdf)
 
