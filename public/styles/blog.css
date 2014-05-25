@@ -1,0 +1,116 @@
+.blog-wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  position: relative;
+  margin: 0 auto -50px;
+  background-color: #eee;
+  padding-bottom: 50px;
+}
+
+.blog-wrapper header,
+.blog-wrapper + .push {
+  background-color: #272727;
+  position: relative;
+}
+
+.blog-content {
+  color: #333;
+}
+
+.blog-content .row {
+  padding-top: 20px;
+}
+
+.blog-content .row .col-md-4 {
+  margin-top: 30px;
+}
+
+.nav.nav-pills.nav-stacked {
+  float: none;
+}
+
+.nav.nav-pills.nav-stacked li {
+  display: block;
+  margin-left: 10px;
+}
+
+
+.nav.nav-pills.nav-stacked li a {
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  text-decoration: underline;
+  display: inline;
+  cursor: pointer;
+}
+
+.nav.nav-pills.nav-stacked li.nav-header {
+  color: #7C7A7A;
+  margin-left: 0;
+  font-size: 20px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #aaa;
+  margin: 30px 0 10px;
+  padding: 5px 0;
+}
+
+.col-md-8 > .post {
+  margin-bottom: 50px;
+}
+
+.post h1 a {
+  color: #555;
+  font: 400 30px/40px 'AvenirNextLTW01-Regular', sans-serif;
+  text-decoration: none;
+}
+
+.post .date {
+  font: 400 15px/25px arial;
+  color: #aaa;
+}
+
+.post .content {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.content p a[href^="/blogs/"] {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #bbb;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.blog-search input {
+  background-color: #FFF;
+}
+
+.nav-header a.pull-right {
+  margin-top: -8px;
+}
+
+.nav-header a.pull-right img {
+  width: 23px;
+}
+
+.pagination>.active>a {
+  background-color: #f60;
+  border-color: #f60;
+}

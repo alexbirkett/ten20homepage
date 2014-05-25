@@ -21,7 +21,8 @@
     "express-dry-router": "0.0.1",
     "request": "2.27.x",
     "async": "0.2.9",
-    "http-proxy": "git://github.com/nodejitsu/node-http-proxy#caronte"
+    "http-proxy": "git://github.com/nodejitsu/node-http-proxy#caronte",
+    "poet": "~1.0.1"
   },
   "devDependencies": {
     "should": "1.2.2",
