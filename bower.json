@@ -23,7 +23,8 @@
     "drag-plugin": "http://draggabilly.desandro.com/draggabilly.pkgd.min.js",
     "angular-bootstrap-datetimepicker": "~0.2.2",
     "angular-ui-utils": "keypress-0.1.0",
-    "leaflet-dist": "0.7.2"
+    "leaflet-dist": "0.7.2",
+    "hammerjs": "1.1.2"
   },
   "resolutions": {
     "angular": "1.2.x",
