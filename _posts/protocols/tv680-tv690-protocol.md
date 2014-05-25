@@ -1,6 +1,6 @@
 {{{
     "title"    : "TV680 / TV690 Protocol",
-    "tags"     : [ "TV-680", "TV-690", "GoTop" ],
+    "tags"     : [ "TV-680", "TV-690", "gotop" ],
     "category" : "protocols",
     "date"     : "05-31-2013"
 }}}
