@@ -5,7 +5,7 @@ var blogModel = require('../config/docs');
 module.exports = function (app) {
   // init config
   var poet = Poet(app, {
-    posts: path.normalize('./_posts/'),
+    posts: path.normalize(__dirname + '../../../_posts/'),
     postsPerPage: 5,
     metaFormat: 'json'
   });
