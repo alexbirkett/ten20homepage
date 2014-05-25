@@ -1,6 +1,6 @@
 {{{
     "title"    : "Gotop TL-201",
-    "tags"     : [ "Gotop", "TL-201"],
+    "tags"     : [ "gotop", "TL-201"],
     "category" : "trackers",
     "date"     : "11-26-2012"
 }}}
