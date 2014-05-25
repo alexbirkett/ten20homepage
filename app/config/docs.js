@@ -7,17 +7,12 @@ module.exports = {
         "scroll": "true"
       },
       {
-        "modal": true,
-        "id": "contact",
-        "text": "Contact Us"
-      },
-      {
         "link": "/console",
         "text": "sign in"
       },
       {
-        "link": "/blogs",
-        "text": "blogs"
+        "link": "/docs",
+        "text": "Documentation"
       },
       {
           "text": "Subreddit forum",
