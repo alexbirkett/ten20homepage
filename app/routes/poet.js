@@ -11,13 +11,7 @@ module.exports = function (app) {
   });
 
   poet.addRoute('/blogs', function (req, res, next) {
-    var posts = poet.helpers.getPosts();
-    if (posts.length) {
-      blogModel.posts = posts;
-      res.render('posts/index', blogModel);
-    } else {
-      res.send(404);
-    }
+    res.render('posts/index', blogModel);
   });
 
   poet.addRoute('/blogs/:post', function (req, res, next) {
@@ -48,6 +42,7 @@ module.exports = function (app) {
     res.render('posts/page', blogModel);
   });
   
+  
   poet.addRoute('/blogs/category/:category', function (req, res, next) {
     var posts = poet.helpers.postsWithCategory(req.params.category);
     if (posts) {
@@ -62,6 +57,28 @@ module.exports = function (app) {
 
   poet.watch();
 
-  return poet;
+  // rss route for poet
+  app.get('/blog-rss', function (req, res) {
+    // Only get the latest posts
+    var posts = poet.helpers.getPosts(0, 7);
+    res.setHeader('Content-Type', 'text/rss+xml');
+    res.render('posts/rss', { posts: posts });
+  });
+
+  app.get('/blogs/search/:key', function (req, res) {
+    var key = req.params.key;
+    var posts = poet.helpers.getPosts();
+
+    blogModel.posts = [];
+
+    posts.forEach(function(post) {
+      if (post.title.indexOf(key) !== -1) {
+        blogModel.posts.push(post);
+      }
+    });
+
+    blogModel.key = key;
+    res.render('posts/search', blogModel);
+  });
 }
 
