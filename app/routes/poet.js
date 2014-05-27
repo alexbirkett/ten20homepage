@@ -72,7 +72,8 @@ module.exports = function (app) {
     blogModel.posts = [];
 
     posts.forEach(function(post) {
-      if (post.title.indexOf(key) !== -1) {
+      title = post.title.toLowerCase();
+      if (title.indexOf(key.toLowerCase()) !== -1) {
         blogModel.posts.push(post);
       }
     });

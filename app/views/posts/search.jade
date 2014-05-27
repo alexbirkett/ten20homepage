@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h2
+    | search results for&nbsp;
+    em.text-danger
+      strong= key
+  - each post in posts
+    include includes/postSnippet
