@@ -14,6 +14,10 @@
   position: relative;
 }
 
+.blog-wrapper .search-title {
+  font-size: 25px;
+}
+
 .blog-content {
   color: #333;
 }
