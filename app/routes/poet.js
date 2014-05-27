@@ -60,6 +60,8 @@ module.exports = function (app) {
     console.log('poet init: ', err || 'successful'); 
   });
 
+  poet.watch();
+
   return poet;
 }
 
