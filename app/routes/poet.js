@@ -65,8 +65,8 @@ module.exports = function (app) {
     res.render('posts/rss', { posts: posts });
   });
 
-  app.get('/blogs/search/:key', function (req, res) {
-    var key = req.params.key;
+  app.get('/blogs-search', function (req, res) {
+    var key = req.query.key;
     var posts = poet.helpers.getPosts();
 
     blogModel.posts = [];
