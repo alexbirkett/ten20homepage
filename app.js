@@ -8,19 +8,9 @@ var express = require('express'),
     poet = require('./app/routes/poet'),
     options = require('./app/http-options'),
     configureDryRoutes = require('express-dry-router'),
-    RedisStore = require('connect-redis')(express),
     httpProxy = require('http-proxy');
 
-
-
-// redis connection detect
-var redis = new RedisStore();
 var app = module.exports = express();
-
-redis.client.on('error', function() {
-  console.error('connect to redis failed, app exits!');
-  process.exit(0);
-});
 
 // Configuration
 function removeWWW(req, res, next) {
@@ -91,12 +81,7 @@ app.use(connect.compress());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-    app.use(express.cookieParser('&*(j#$84nui$%'));
-    app.use(express.session({
-        store: redis,
-        secret: '1234567890QWERTY',
-        key: 'hs'
-    }));
+app.use(express.cookieParser());
 app.use(express.static(__dirname + '/public'));
 app.use(express.favicon(__dirname + '/public/favicon.ico'));
 app.use(app.router);
