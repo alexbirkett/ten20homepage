@@ -17,17 +17,19 @@ exports.index = function(req, res) {
   var model = {};
 
   // set cookies
-  if (req.cookies.views) {
-    model.displayCookie = true;
+  if (req.cookies.cookieWarningDisplayed) {
+      model.hideCookieWarning = true;
   } else {
     // set cookie
-    model.displayCookie = false;
+    model.hideCookieWarning = false;
     // IE8 doesn't support max-age, so have to fallback to expires,
-    // though a bit older 
+    // though a bit older
+    var expires = new Date();
+    expires.setDate(expires.getDate() + 2 * 365);
     if (req.secure) {
-      res.cookie('views', '1', { expires: new Date(2030, 1, 1), secure: true});
+      res.cookie('cookieWarningDisplayed', '1', { expires: expires, secure: true});
     } else {
-      res.cookie('views', '1', { expires: new Date(2030, 1, 1)});
+      res.cookie('cookieWarningDisplayed', '1', { expires: expires});
     }
   }
 
