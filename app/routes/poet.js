@@ -34,6 +34,7 @@ module.exports = function (app) {
     var posts = poet.helpers.postsWithTag(req.params.tag);
     if (posts) {
       blogModel.posts = posts;
+      blogModel.tag = req.params.tag;
       res.render('posts/tag', blogModel);
     } else {
       res.send(404);
