@@ -18,17 +18,13 @@ module.exports = {
         "scroll": "true"
       },
       {
-        "modal": true,
-        "id": "contact",
-        "text": "Contact Us"
+          "modal": true,
+          "id": "signup",
+          "text": "Sign up"
       },
       {
         "link": "/console",
-        "text": "sign in"
-      },
-      {
-        "link": "/blogs",
-        "text": "blogs"
+        "text": "Sign in"
       },
       {
           "text": "Subreddit forum",

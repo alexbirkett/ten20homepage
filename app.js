@@ -8,20 +8,9 @@ var express = require('express'),
     poet = require('./app/routes/poet'),
     options = require('./app/http-options'),
     configureDryRoutes = require('express-dry-router'),
-    RedisStore = require('connect-redis')(express),
-    MongoClient = require('mongodb').MongoClient,
     httpProxy = require('http-proxy');
 
-
-
-// redis connection detect
-var redis = new RedisStore();
 var app = module.exports = express();
-
-redis.client.on('error', function() {
-  console.error('connect to redis failed, app exits!');
-  process.exit(0);
-});
 
 // Configuration
 function removeWWW(req, res, next) {
@@ -73,71 +62,48 @@ function forwardApiRequest(req, res, next) {
     }
 };
 
-var dbName = 'development' === app.get('env') ? 'ten20homeDevelopment' : 'ten20home';
+var server = require('http').createServer(app).listen(options.http.port);
+console.log('http listening on ' + options.http.port);
 
-MongoClient.connect('mongodb://localhost/' + dbName, function(err, db) {
+if (options.https) {
+    server = https.createServer(options.https, app).listen(options.https.port);
+    console.log('https listening on ' + options.https.port);
+}
 
-    if(err) {
-        console.error('connect to mongodb failed, app exits!');
-        process.exit(0);
-    }
+app.set('views', __dirname + '/app/views');
+app.set('view engine', 'jade');
+app.use(removeWWW);
+if (options.https) {
+  app.use(requireHTTPS);
+}
+app.use(forwardApiRequest);
+app.use(connect.compress());
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.static(__dirname + '/public'));
+app.use(express.favicon(__dirname + '/public/favicon.ico'));
+app.use(app.router);
 
-    var server = require('http').createServer(app).listen(options.http.port);
-    console.log('http listening on ' + options.http.port);
+if ('development' == app.get('env')) {
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+}
 
-    if (options.https) {
-        server = https.createServer(options.https, app).listen(options.https.port);
-        console.log('https listening on ' + options.https.port);
-    }
+if ('production' == app.get('env')) {
+    app.use(express.errorHandler());
+}
 
-    app.set('views', __dirname + '/app/views');
-    app.set('view engine', 'jade');
-    app.use(removeWWW);
-    if (options.https) {
-      app.use(requireHTTPS);
-    }
-    app.use(forwardApiRequest);
-    app.use(connect.compress());
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(express.cookieParser('&*(j#$84nui$%'));
-    app.use(express.session({
-        store: redis,
-        secret: '1234567890QWERTY',
-        key: 'hs'
-    }));
-    app.use(express.static(__dirname + '/public'));
-    app.use(express.favicon(__dirname + '/public/favicon.ico'));
-    app.use(app.router);
+// init poet routes and configs
+poet(app);
 
-    if ('development' == app.get('env')) {
-        app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-    }
+// user console
+app.get('/console', routes.console);
 
-    if ('production' == app.get('env')) {
-        app.use(express.errorHandler());
-    }
-
-    // init poet routes and configs
-    poet(app);
-
-    // user console
-    app.get('/console', routes.console);
-    // home page
-    app.post('/contact', routes.contact);
-
-    app.get('/features', function(req, res) {
-        res.json({"adFree": true});
-    });
-
-    app.post('/sms', function(req, res) {
-        console.log(req.body);
-        res.json({});
-    });
-
-    app.get(/\/\w?/, routes.index);
-
-    routes.setDb(db);
-
+app.get('/features', function(req, res) {
+    res.json({"adFree": true});
 });
+
+app.get(/\/\w?/, routes.index);
+
+
