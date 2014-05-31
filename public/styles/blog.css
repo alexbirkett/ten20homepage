@@ -14,8 +14,16 @@
   position: relative;
 }
 
+.blog-wrapper .search-title {
+  font-size: 25px;
+}
+
 .blog-content {
   color: #333;
+}
+
+.blog-content a {
+  color: #428bca;
 }
 
 .blog-content .row {
@@ -24,6 +32,7 @@
 
 .blog-content .row .col-md-4 {
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .nav.nav-pills.nav-stacked {
@@ -85,6 +94,7 @@
   cursor: pointer;
   text-decoration: none;
   background-color: #bbb;
+  color: #eee;
   border: 1px solid transparent;
   white-space: nowrap;
   padding: 6px 12px;
