@@ -130,10 +130,6 @@ angular.module('ten20Angular').
       $scope.user = userinfo;
       _getFeature();
       initTrackers();
-    }).error(function(data, status, headers, config) {
-      if (status === 401) {
-        angular.element(document.body).find('.bottom-nav .signin').click();
-      }
     });
   }
 

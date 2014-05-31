@@ -13,17 +13,29 @@ angular.module('ten20Angular', [
     return {
         request: function (config) {
             config.headers = config.headers || {};
-            console.log('sending ' + $window.localStorage.token);
-            if ($window.localStorage.token) {
-                config.headers.Authorization = 'Bearer ' + $window.localStorage.token;
+            var token = $window.localStorage.token;
+            if (token) {
+                config.headers.Authorization = 'Bearer ' + token;
             }
             return config;
         },
         response: function (response) {
-            if (response.status === 401) {
-                // handle the case where the user is not authenticated
+            if (response.config &&
+                response.config.url == "/authenticate" &&
+                response.data &&
+                response.data.token) {
+                $window.localStorage.token = response.data.token
             }
             return response || $q.when(response);
+        },
+        responseError: function(rejection) {
+             if (rejection.status === 401) {
+                   setTimeout(function() {
+                     console.log('clicking signin');
+                     angular.element(document.body).find('.bottom-nav .signin').click();
+                 }, 100);
+            }
+            return $q.reject(rejection);
         }
     };
 }).config(['$httpProvider', function($httpProvider) {
