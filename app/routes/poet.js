@@ -34,6 +34,7 @@ module.exports = function (app) {
     var posts = poet.helpers.postsWithTag(req.params.tag);
     if (posts) {
       blogModel.posts = posts;
+      blogModel.tag = req.params.tag;
       res.render('posts/tag', blogModel);
     } else {
       res.send(404);
@@ -60,6 +61,31 @@ module.exports = function (app) {
     console.log('poet init: ', err || 'successful'); 
   });
 
-  return poet;
+  poet.watch();
+
+  // rss route for poet
+  app.get('/blog-rss', function (req, res) {
+    // Only get the latest posts
+    var posts = poet.helpers.getPosts(0, 7);
+    res.setHeader('Content-Type', 'text/rss+xml');
+    res.render('posts/rss', { posts: posts });
+  });
+
+  app.get('/blogs-search', function (req, res) {
+    var key = req.query.key;
+    var posts = poet.helpers.getPosts();
+
+    blogModel.posts = [];
+
+    posts.forEach(function(post) {
+      title = post.title.toLowerCase();
+      if (title.indexOf(key.toLowerCase()) !== -1) {
+        blogModel.posts.push(post);
+      }
+    });
+
+    blogModel.key = key;
+    res.render('posts/search', blogModel);
+  });
 }
 

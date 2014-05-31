@@ -1,7 +1,9 @@
 extends layout
 
 block content
-  h3
-    a(href=tagUrl(tag)) posts tagged: #{tag}
+  h2.search-title
+    | search results for&nbsp;
+    em.text-danger
+      strong= key
   - each post in posts
     include includes/postSnippet

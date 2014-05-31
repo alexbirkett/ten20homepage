@@ -11,11 +11,12 @@ html(ng-app="ten20Angular")
             .col-md-8
               block content
             .col-md-4
-              .blog-search.input-group
-                input.form-control(type="text")
-                span.input-group-btn
-                  button.btn.btn-default(type="button")
-                    span.glyphicon.glyphicon-search
+              form(action="/blogs-search")
+                .blog-search.input-group
+                  input.form-control(type="text", name="key")
+                  span.input-group-btn
+                    input.btn.btn-default(type="submit", value="Go")
+                      span.glyphicon.glyphicon-search
 
               ul.nav.nav-pills.nav-stacked
                 li.nav-header recent posts
