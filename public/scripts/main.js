@@ -17,6 +17,14 @@ $(function(){
     }
   });
 
+  var id = location.hash;
+  if ($(id).length) {
+    var offset = $(id).offset().top;
+    setTimeout(function() {
+      $('a[href="' + id + '"]').click();
+    }, 0);
+  }
+
   // init carousel
   $('.jcarousel')
     .on('jcarousel:create jcarousel:reload', function() {
