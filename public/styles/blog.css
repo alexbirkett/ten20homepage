@@ -97,6 +97,10 @@
   margin-top: 10px;
 }
 
+.post .content ul {
+  list-style: initial;
+}
+
 .content p a[href^="/blogs/"] {
   display: inline-block;
   margin-bottom: 0;
