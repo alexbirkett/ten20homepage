@@ -97,6 +97,23 @@
   margin-top: 10px;
 }
 
+.post .content h1 {
+  font: 400 35px/45px 'AvenirNextLTW01-Regular', sans-serif;
+}
+
+.post .content h2 {
+  font: 400 25px/35px 'AvenirNextLTW01-Regular', sans-serif;
+}
+
+.post .content h3 {
+  font: 400 20px/30px 'AvenirNextLTW01-Regular', sans-serif;
+}
+
+.post .content h4,
+.post .content h5 {
+  font: 400 18px/25px 'AvenirNextLTW01-Regular', sans-serif;
+}
+
 .post .content ul {
   list-style: initial;
 }
