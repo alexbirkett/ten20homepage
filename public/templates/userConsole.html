@@ -106,7 +106,12 @@
     </accordion>
 
     <div class="add-tracker" ng-show="trackerLoaded && trackers.length == 0">
+        <p>Thanks for registering with ten20! To get started you can either:</p>
+        <h3><a href="https://rink.hockeyapp.net/apps/3f7ef8dc87d197b81fb86ff41dcc1314">
+            Get Phonelocator tracker app
+        </a></h3>
         <h3><a model-form src-model="newTracker" tpl-url="/templates/newTracker.html" method="POST" path="/trackers" dialog-class="small" callback="addTracker()">add tracker</a></h3>
+
     </div>
   </div>
 
