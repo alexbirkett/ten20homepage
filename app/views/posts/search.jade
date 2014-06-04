@@ -2,8 +2,10 @@ extends layout
 
 block content
   h2.search-title
-    | search results for&nbsp;
+    span search results:&nbsp;
+    = posts.length + ' articles for '
     em.text-danger
       strong= key
   - each post in posts
     include includes/postSnippet
+
