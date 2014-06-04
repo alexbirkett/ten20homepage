@@ -17,7 +17,10 @@ angular.module('ten20Angular').
       method: 'POST',
       path: '/authenticate',
       dialogClass: 'small',
-      close: 'true'
+      close: 'true',
+      callback: function() {
+          init();
+      }
     })();
   });
 
@@ -135,7 +138,7 @@ angular.module('ten20Angular').
   };
 
   // get user account info
-  $scope.init = function() {
+  var init = function() {
     $http.get('/user/info').success(function(userinfo) {
       $scope.user = userinfo;
       _getFeature();
@@ -165,7 +168,7 @@ angular.module('ten20Angular').
     });
   }
 
-  $scope.init();
+  init();
 
   var delay = 1; // delay seconds for get trip message
   function getMessages() {
