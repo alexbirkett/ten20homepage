@@ -3,13 +3,23 @@
 /* Controllers */
 
 angular.module('ten20Angular').
-  controller('UserCtrl', ['$scope', '$http', '$timeout', '$window', '$modal', function ($scope, $http, $timeout, $window, $modal) {
+  controller('UserCtrl', ['$scope', '$http', '$timeout', '$window', '$modal', 'formService', function ($scope, $http, $timeout, $window, $modal, formService) {
   // init user and trackers information
   $scope.user = {};
   $scope.newTracker = {};
   $scope.trackerLoaded = false;
   $scope.trackers = [];
   $scope.adsFree = true; // initially hide ads
+
+  $scope.$on('UNAUTHORIZED', function() {
+    formService({
+      tplUrl: '/templates/signinForm.html',
+      method: 'POST',
+      path: '/authenticate',
+      dialogClass: 'small',
+      close: 'true'
+    })();
+  });
 
   // update features
   function _getFeature() {

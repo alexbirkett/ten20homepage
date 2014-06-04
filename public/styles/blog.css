@@ -16,6 +16,8 @@
 
 .blog-wrapper .search-title {
   font-size: 25px;
+  color: #f60;
+  font-style: italic;
 }
 
 .blog-content {
@@ -44,6 +46,16 @@
   margin-left: 10px;
 }
 
+.nav.nav-pills.nav-stacked li.tag {
+  display: inline-block;
+  background: #ddd;
+  margin-bottom: 5px;
+}
+
+.nav.nav-pills.nav-stacked li.tag a {
+  color: #333;
+  text-decoration: none;
+}
 
 .nav.nav-pills.nav-stacked li a {
   color: #333;
@@ -55,7 +67,7 @@
   cursor: pointer;
 }
 
-.nav.nav-pills.nav-stacked li.nav-header {
+.col-md-4 .nav-header {
   color: #7C7A7A;
   margin-left: 0;
   font-size: 20px;
@@ -83,6 +95,37 @@
 .post .content {
   font-size: 16px;
   margin-top: 10px;
+}
+
+.post .content h1 {
+  font: 400 35px/45px 'AvenirNextLTW01-Regular', sans-serif;
+}
+
+.post .content h2 {
+  font: 400 25px/35px 'AvenirNextLTW01-Regular', sans-serif;
+}
+
+.post .content h3 {
+  font: 400 20px/30px 'AvenirNextLTW01-Regular', sans-serif;
+}
+
+.post .content h4,
+.post .content h5 {
+  font: 400 18px/25px 'AvenirNextLTW01-Regular', sans-serif;
+}
+
+.post .content ul {
+  list-style: initial;
+}
+.post .content th,
+.post .content td {
+  text-align: center;
+  border: 1px solid #555;
+}
+
+.post .content th {
+  font-family: sans-serif;
+  font-weight: bold;
 }
 
 .content p a[href^="/blogs/"] {
@@ -113,7 +156,7 @@
 }
 
 .nav-header a.pull-right {
-  margin-top: -8px;
+  margin-top: -4px;
 }
 
 .nav-header a.pull-right img {
