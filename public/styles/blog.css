@@ -82,11 +82,11 @@
   margin-bottom: 50px;
 }
 
-.post h1 a {
+.post h1 a, .post h1 a:hover {
   font: 400 35px/45px 'AvenirNextLTW01-Regular', sans-serif;
   text-decoration: none;
   text-transform:uppercase;
-
+  color: #333
 }
 
 .post .date {
