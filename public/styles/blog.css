@@ -24,7 +24,7 @@
   color: #333;
 }
 
-.blog-content a {
+.blog-content a, .blog-content a:hover {
   color: #333;
   text-decoration: underline
 }
@@ -82,7 +82,7 @@
   margin-bottom: 50px;
 }
 
-.post h1 a, .post h1 a:hover {
+.post h1 a {
   font: 400 35px/45px 'AvenirNextLTW01-Regular', sans-serif;
   text-decoration: none;
   text-transform:uppercase;
