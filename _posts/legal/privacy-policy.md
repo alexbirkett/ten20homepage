@@ -78,7 +78,7 @@ ten20live.com uses cookies in several places – we’ve listed each of them bel
 
 Cookies set by ten20 website
 
-| Name | Purpose | Typical content | Expires |
+| Name | Purpose | Expires |
 | :---- | --------| --------------- | ------- |
 | cookieWarningDisplayed | Used to determine if a cookie warning message has been displayed to user | 2 years |
 | _ga | Used by [Google analytics](https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage)  to distinguish users | 2 years |
@@ -90,7 +90,7 @@ These are cookies found in other companies’ internet tools which we are using 
 We use a number of suppliers who may also set cookies on their websites’ on its behalf. Birkett Enterprise Ltd does not control the dissemination of these cookies. You should check the third party websites for more information about these.
 
 
-| Provider | Name  More info |
+| Provider | Name  | More info |
 | ------   | :---- | -------- |
 | Google | NNID, PREF | [Google Privacy Policy](http://www.google.com/intl/en_uk/policies/privacy/)
 
