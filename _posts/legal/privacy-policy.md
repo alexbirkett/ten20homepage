@@ -5,8 +5,6 @@
     "date"     : "05-29-2014"
 }}}
 
-# ten20live Privacy Policy
-
 #Our Commitment
 
 Birkett Enterprise Ltd is committed to protecting your privacy.  We do not sell, trade, or rent your personal information to others.
