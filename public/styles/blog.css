@@ -25,7 +25,8 @@
 }
 
 .blog-content a {
-  color: #428bca;
+  color: #333;
+  text-decoration: underline
 }
 
 .blog-content .row {
@@ -82,9 +83,10 @@
 }
 
 .post h1 a {
-  color: #555;
-  font: 400 30px/40px 'AvenirNextLTW01-Regular', sans-serif;
+  font: 400 35px/45px 'AvenirNextLTW01-Regular', sans-serif;
   text-decoration: none;
+  text-transform:uppercase;
+
 }
 
 .post .date {
@@ -98,7 +100,7 @@
 }
 
 .post .content h1 {
-  font: 400 35px/45px 'AvenirNextLTW01-Regular', sans-serif;
+  font: 400 30px/40px 'AvenirNextLTW01-Regular', sans-serif;
 }
 
 .post .content h2 {
@@ -162,8 +164,11 @@
 .nav-header a.pull-right img {
   width: 23px;
 }
+.pagination>.active>a, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    background-color: #f60;
+    border-color: #f60;
+}
 
-.pagination>.active>a {
-  background-color: #f60;
-  border-color: #f60;
+.pagination>li>a, .pagination>li>span {
+    color: #333
 }
