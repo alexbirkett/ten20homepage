@@ -84,12 +84,6 @@ angular.module('ten20Angular.services', []).factory('formService', ['$modal', '$
       },
       windowClass: params.dialogClass
     });
-
-    modalInstance.result.then(function (data) {
-      $scope.submitData = data;
-    }, function () {
-      $log.info('modal dismissed.');
-    });
   };
 
   return function(params) {

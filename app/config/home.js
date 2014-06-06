@@ -11,30 +11,5 @@ module.exports = {
     "subTitle": "Supports GPS trackers and mobile apps",
     "buttonText": "Sign up now"
   },
-  navs: [
-      {
-        "text": "Supported hardware",
-        "link": "#supported",
-        "scroll": "true"
-      },
-      {
-          "modal": true,
-          "id": "signup",
-          "text": "Sign up"
-      },
-      {
-        "link": "/console",
-        "text": "Sign in"
-      },
-      {
-          "text": "Subreddit forum",
-          "link": "http://www.reddit.com/r/ten20/",
-          "scroll": "false"
-      },
-      {
-        "text": "About Us",
-        "link": "#about-us",
-        "scroll": "true"
-      }
-    ]
+  navs: require('./sections/nav')
 };

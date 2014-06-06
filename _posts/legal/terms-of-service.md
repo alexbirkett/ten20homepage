@@ -5,8 +5,6 @@
     "date"     : "05-29-2014"
 }}}
 
-#Terms of Service
-
 Last modified: May 2014
 
 Thanks for using the ten20live.com website (“Services”). The Services are provided by Birkett Enterprise Ltd. (“Birkett Enterprise”), located at 67a Branston Road, Burton-on-Trent, Staffordshire, DE14 3BY, United Kingdom.
