@@ -21,7 +21,7 @@ $(function(){
   if ($(id).length) {
     var offset = $(id).offset().top;
     setTimeout(function() {
-      $('a[href="' + id + '"]').click();
+      $('a[href="/' + id + '"]').click();
     }, 0);
   }
 
