@@ -79,9 +79,6 @@ Not much! It can take some time to open an account on a bitcoin exchange so if y
 #How much does a bitcoin cost?
 The price is volatile. [Prices from Bitcoin average](https://bitcoinaverage.com/).
 
-#I have a question
-[Ask on reddit](http://www.reddit.com/r/ten20/)
-
 #Do I have to buy a whole bitcoin?
 No, bitcoins are divisible down to 8 decimal places (0.00000001 BTC).
 
@@ -96,3 +93,6 @@ The private key for the address [1NkfQE8cigQzsmrCsiExH1aH2S88mWzSXc](https://blo
 
 #Can you issue and invoice / receipt?
 Yes, if you provide an electronic signature that states it was you / your organisation that sent the money.
+
+#I have a question
+[Ask on reddit](http://www.reddit.com/r/ten20/)
