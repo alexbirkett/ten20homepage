@@ -21,7 +21,11 @@ $(function(){
   if ($(id).length) {
     var offset = $(id).offset().top;
     setTimeout(function() {
-      $('a[href="' + id + '"]').click();
+      var anchor = $('a[href="/' + id + '"]');
+      if (!anchor.length) {
+        anchor = $('a[href="' + id + '"]');
+      }
+      anchor.click();
     }, 0);
   }
 
