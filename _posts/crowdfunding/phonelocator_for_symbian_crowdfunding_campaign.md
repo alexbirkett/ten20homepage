@@ -86,7 +86,7 @@ No, bitcoins are divisible down to 8 decimal places (0.00000001 BTC).
 All transactions in the Bitcoin network are recorded in a distributed a public ledger. Current balance is available [here](https://blockchain.info/address/1NkfQE8cigQzsmrCsiExH1aH2S88mWzSXc)
 
 #Why Bitcoins?
-Using Bitcoins means that everybody can can participate irrespective of geography. We excited about Bitcoin because it has the potential to give people control over their money.
+Using Bitcoins means that everybody can participate irrespective of geography. We're excited about Bitcoin because it has the potential to give people control over their money.
 
 #Where do you store you private key?
 The private key for the address [1NkfQE8cigQzsmrCsiExH1aH2S88mWzSXc](https://blockchain.info/address/1NkfQE8cigQzsmrCsiExH1aH2S88mWzSXc) was generated offline by a computer not connected to the Internet
