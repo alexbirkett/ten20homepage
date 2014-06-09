@@ -88,7 +88,7 @@ All transactions in the Bitcoin network are recorded in a distributed a public l
 #Why Bitcoins?
 Using Bitcoins means that everybody can participate irrespective of geography. We're excited about Bitcoin because it has the potential to give people control over their money.
 
-#Where do you store you private key?
+#Where do you store your private key?
 The private key for the address [1NkfQE8cigQzsmrCsiExH1aH2S88mWzSXc](https://blockchain.info/address/1NkfQE8cigQzsmrCsiExH1aH2S88mWzSXc) was generated offline by a computer not connected to the Internet
 
 #Can you issue and invoice / receipt?
