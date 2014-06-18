@@ -1,8 +1,8 @@
 module.exports = [
     {
-        "text": "Supported hardware",
-        "link": "/#supported",
-        "scroll": "true"
+        "text": "Getting started",
+        "link": "/docs/getting-started-with-ten20live",
+        "scroll": "false"
     },
     {
         "modal": true,
