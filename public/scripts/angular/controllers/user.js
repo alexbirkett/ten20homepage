@@ -139,7 +139,7 @@ angular.module('ten20Angular').
 
   // get user account info
   var init = function() {
-    $http.get('/user/info').success(function(userinfo) {
+    $http.get('/user').success(function(userinfo) {
       $scope.user = userinfo;
       _getFeature();
       initTrackers();

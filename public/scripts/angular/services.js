@@ -109,7 +109,7 @@ angular.module('ten20Angular.services', []).factory('formService', ['$modal', '$
       return response || $q.when(response);
     },
     responseError: function(rejection) {
-      if (rejection.status === 401 && rejection.config.url == "/user/info") {
+      if (rejection.status === 401 && rejection.config.url == "/user") {
         console.log('need signin');
         $rootScope.$broadcast('UNAUTHORIZED');
       }
