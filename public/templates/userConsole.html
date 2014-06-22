@@ -116,7 +116,7 @@
   <!-- bottom nav -->
   <ul class="bottom-nav nav">
     <li><span><a ng-click="signout()">signout</a></span></li>
-    <li><span><a model-form src-model="user" tpl-url="/templates/userSetting.html" method="PATCH" path="/users/{{user._id}}" dialog-class="small">my account</a></span></li>
+    <li><span><a model-form src-model="user" tpl-url="/templates/userSetting.html" method="PATCH" path="/user" dialog-class="small">my account</a></span></li>
     <li><span><a model-form src-model="newTracker" tpl-url="/templates/newTracker.html" method="POST" path="/trackers" dialog-class="small" callback="addTracker()">add tracker</a></span></li>
     <!--<li><span><a href="/#help">help</a></span></li>-->
   </ul>
