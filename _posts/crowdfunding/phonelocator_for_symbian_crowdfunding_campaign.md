@@ -5,6 +5,10 @@
     "date"     : "06-07-2014"
 }}}
 
+#Update 1 July
+The [campaign has now closed](/docs/phonelocatormobi-to-close). Thanks to everybody that participated.
+
+
 #Background
 As was announced in March, [ten20live](https://ten20live.com) will replace http://phonelocator.mobi. ten20live supports the Phonelocator for Android tracking app and hardware tracking devices.
 
