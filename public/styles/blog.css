@@ -83,7 +83,7 @@
 }
 
 .post h1 a {
-  font: 400 35px/45px 'open_sansregular', sans-serif;
+  font: 26px 'open_sansregular', sans-serif;
   text-decoration: none;
   text-transform:uppercase;
   color: #333
@@ -100,20 +100,20 @@
 }
 
 .post .content h1 {
-  font: 400 30px/40px 'open_sansregular', sans-serif;
+  font: 24px 'open_sansregular', sans-serif;
 }
 
 .post .content h2 {
-  font: 400 25px/35px 'open_sansregular', sans-serif;
+  font: 22px 'open_sansregular', sans-serif;
 }
 
 .post .content h3 {
-  font: 400 20px/30px 'open_sansregular', sans-serif;
+  font: 20px 'open_sansregular', sans-serif;
 }
 
 .post .content h4,
 .post .content h5 {
-  font: 400 18px/25px 'open_sansregular', sans-serif;
+  font: 18px 'open_sansregular', sans-serif;
 }
 
 .post .content ul {
