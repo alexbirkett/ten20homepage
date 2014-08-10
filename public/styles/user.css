@@ -50,7 +50,7 @@ body { margin:0; padding:0; }
 .user-page h5,
 .user-page h6,
 .user-page span {
-  font-family: 'AvenirNextLTW01-Regular', 'Avenir Next LT W01 Demi', Arial;
+  font-family: 'open_sansregular', 'open_sanssemibold', Arial;
 
 }
 
@@ -430,7 +430,7 @@ tr td,
 }
 
 .current-info h6 {
-  font-family: 'AvenirNextLTW01-Regular';
+  font-family: 'open_sansregular';
   font-size: 12px;
 }
 
