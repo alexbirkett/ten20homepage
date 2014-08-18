@@ -9,9 +9,9 @@
 ten20live is a platform for tracking the location of people and things using GPS tracking devices and mobile apps.
 
 #How do I use ten20 to track my Android mobile phone?
-Join our [Google+ community and install the Phonelocator for ten20 beta](https://plus.google.com/u/0/communities/108779431073194538267)
+[Install Phonelocator for ten20](https://play.google.com/store/apps/details?id=com.birkettenterprise.phonelocator).
 
-After installing the app and signing up, you can [sign in to the ten20 webapp](/console) to see the location of your phone.
+After installing the app, signing up and enabling updates, you can [sign in to the ten20 webapp](/console) to see the location of your phone.
 
 #How do I use ten20 to track my GPS tracking device?
 If your tracking device uses a [supported protocol](/docs/category/protocols), you can point it to our server 176.58.124.210 port 1337.
