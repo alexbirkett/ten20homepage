@@ -82,11 +82,18 @@
   margin-bottom: 50px;
 }
 
+@media (min-width: 992px) {
+    .col-md-8 > .post {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
 .post h1 a {
   font: 26px 'open_sansregular', sans-serif;
   text-decoration: none;
   text-transform:uppercase;
-  color: #333
+  color: #333;
 }
 
 .post .date {
@@ -130,6 +137,9 @@
   font-weight: bold;
 }
 
+.post .content p {
+    line-height: 1.5;
+}
 .content p a[href^="/blogs/"] {
   display: inline-block;
   margin-bottom: 0;
