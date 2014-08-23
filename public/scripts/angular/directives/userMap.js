@@ -116,7 +116,7 @@ angular.module('ten20Angular').
 
                 {
                     "label":"Map",
-                    "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
+                    "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkettno.jaabb93l/{z}/{x}/{y}.png"
                 },
                 {
                     "label":"Satellite",
