@@ -101,7 +101,7 @@ poet(app);
 app.get('/console', routes.console);
 
 app.get('/features', function(req, res) {
-    res.json({"adFree": true});
+    res.json({"adFree": false});
 });
 
 app.get(/\/\w?/, routes.index);
