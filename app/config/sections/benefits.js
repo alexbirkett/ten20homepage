@@ -19,7 +19,7 @@ module.exports = {
     {
       "icon": "trusted.png",
       "title": "Trusted",
-      "text": "ten20 (Birkett Enterprise Ltd) has 6 years experience running GPS tracking service with 400,000 registered users."
+      "text": "ten20 (ten20 tracking limited) has 7 years experience running GPS tracking services"
     }
   ]
 }

@@ -7,7 +7,7 @@
 
 #Our Commitment
 
-Birkett Enterprise Ltd is committed to protecting your privacy.  We do not sell, trade, or rent your personal information to others.
+ten20 tracking limited is committed to protecting your privacy.  We do not sell, trade, or rent your personal information to others.
 
 #Information stored by ten20live service
 
@@ -39,7 +39,7 @@ Ten20live users can delete handsets from the [console](/console). Users can requ
 
 #Disclosure to Outside Parties
 
-Birkett Enterprise Ltd does not sell, trade, or rent your personal information to others.  Birkett Enterprise Ltd may provide aggregate statistics about our customers, sales, traffic patterns, and related site information to reputable third-parties, but these statistics will include no personally identifying information.  Birkett Enterprise Ltd may release account information to (a) comply with law, (b) enforce or apply the terms of any of our user agreements or (c) protect the rights, property or safety of Birkett Enterprise Ltd, our users, or others.
+ten20 tracking limited does not sell, trade, or rent your personal information to others.  ten20 tracking limited may provide aggregate statistics about our customers, sales, traffic patterns, and related site information to reputable third-parties, but these statistics will include no personally identifying information.  ten20 tracking limited may release account information to (a) comply with law, (b) enforce or apply the terms of any of our user agreements or (c) protect the rights, property or safety of ten20 tracking limited, our users, or others.
 
 #Location of data
 
@@ -51,10 +51,10 @@ By default, a phone's or tracking device's location is only visible by logging i
 
 #Your Consent
 
-By using the ten20live website and/or Phonelocator for ten20 app, you consent to the collection and use of this information by Birkett Enterprise Ltd.
+By using the ten20live website and/or Phonelocator for ten20 app, you consent to the collection and use of this information by ten20 tracking limited.
 
 #Notification of changes
-We may occasionally email registered users to notify them about changes to Birkett Enterprise's services.
+We may occasionally email registered users to notify them about changes to ten20 tracking's services.
 
 #Our use of cookies
 
@@ -87,7 +87,7 @@ Cookies set by ten20 website
 #Third party cookies
 These are cookies found in other companies’ internet tools which we are using to enhance our site, for example Facebook or Twitter have their own cookies, which are controlled by them.
 
-We use a number of suppliers who may also set cookies on their websites’ on its behalf. Birkett Enterprise Ltd does not control the dissemination of these cookies. You should check the third party websites for more information about these.
+We use a number of suppliers who may also set cookies on their websites’ on its behalf. ten20 tracking limited does not control the dissemination of these cookies. You should check the third party websites for more information about these.
 
 
 | Provider | Name  | More info |
