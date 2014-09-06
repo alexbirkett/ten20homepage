@@ -18,8 +18,8 @@ module.exports = [
         "text": "Documentation"
     },
     {
-        "text": "Subreddit forum",
-        "link": "http://www.reddit.com/r/ten20/",
+        "text": "Blog",
+        "link": "/docs/category/blog",
         "scroll": "false"
     },
     {
