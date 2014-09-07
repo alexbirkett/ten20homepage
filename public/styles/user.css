@@ -72,6 +72,20 @@ body { margin:0; padding:0; }
   z-index: 100;
 }
 
+.floating-ad {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    background-color: #333;
+    z-index: 100;
+}
+
+.floating-ad-header {
+    height: 35px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
 .time-weather {
   text-transform: capitalize;
   color: #aaa;
@@ -799,6 +813,9 @@ tr td,
   .leaflet-popup-content p span {
     font-size: 8px;
   }
+    .floating-ad {
+        display: none;
+    }
 }
 
 

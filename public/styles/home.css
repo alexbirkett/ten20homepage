@@ -886,7 +886,7 @@ footer p {
   color: #f60;
 }
 
-.modal-header .cancel {
+.cancel {
   position: absolute;
   top: 5px;
   right: 5px;
