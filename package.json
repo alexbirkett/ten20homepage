@@ -1,7 +1,7 @@
 {
   "name": "ten20homepage",
   "version": "0.0.1",
-  "private": true,
+  "license": "MIT",
   "src": {
     "script": "public/scripts",
     "lib": "public/components",
