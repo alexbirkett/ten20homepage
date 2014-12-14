@@ -1,16 +1,17 @@
-//require('ten20location.io'); // start ten20 LocationIO adapter
+var express = require('express');
+var http = require('http');
+var https = require('https');
+var connect = require('connect');
+var routes = require('./app/routes');
+var poet = require('./app/routes/poet');
+var options = require('./app/http-options');
+var httpProxy = require('http-proxy');
+var logger = require('morgan');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var favicon = require('serve-favicon');
 
-var express = require('express'),
-    http = require('http'),
-    https = require('https'),
-    connect = require('connect')
-    routes = require('./app/routes'),
-    poet = require('./app/routes/poet'),
-    options = require('./app/http-options'),
-    configureDryRoutes = require('express-dry-router'),
-    httpProxy = require('http-proxy');
-
-var app = module.exports = express();
+var app = express();
 
 // Configuration
 function removeWWW(req, res, next) {
@@ -76,23 +77,35 @@ app.use(removeWWW);
 if (options.https) {
   app.use(requireHTTPS);
 }
+app.use(logger('dev'));
 app.use(forwardApiRequest);
-app.use(connect.compress());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
-app.use(express.favicon(__dirname + '/public/favicon.ico'));
-app.use(app.router);
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
-if ('development' == app.get('env')) {
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
 }
 
-if ('production' == app.get('env')) {
-    app.use(express.errorHandler());
-}
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
 
 // init poet routes and configs
 poet(app);
@@ -106,4 +119,5 @@ app.get('/features', function(req, res) {
 
 app.get(/\/\w?/, routes.index);
 
+module.exports = app;
 
