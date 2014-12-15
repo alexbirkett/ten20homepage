@@ -2,7 +2,7 @@
 
 /* admin console page controller */
 angular.module('ten20Angular').
-  controller('HomeCtrl', function ($scope) {
+  controller('HomeCtrl', ['$scope', 'MAP_URL', function ($scope, MAP_URL) {
 
     $scope.masterMap = {
       "lat": 51.74,
@@ -12,8 +12,8 @@ angular.module('ten20Angular').
       "zoomControl": true,
       "showTail": true,
       "layers": [
-      {"label": "Satellite",  "tileLayer": "https://api.tiles.mapbox.com/v3/alexbirkett.map-t0fodlre/{z}/{x}/{y}.png"},
-      { "label": "Map", "tileLayer": "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"}
+        {"label": "Satellite",  "tileLayer": MAP_URL.satellite},
+        { "label": "Map", "tileLayer": MAP_URL.map}
       ]
     };
 
@@ -42,5 +42,5 @@ angular.module('ten20Angular').
       }
     ];
 
-});
+}]);
 

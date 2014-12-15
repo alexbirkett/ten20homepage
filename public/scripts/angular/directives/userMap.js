@@ -71,7 +71,7 @@ angular.module('ten20Angular').
       }
     };
   }]).
-  directive('userMap', function($timeout) {
+  directive('userMap', ['$timeout', 'MAP_URL', function($timeout, MAP_URL) {
     return {
 			restrict: 'A',
       scope: true,
@@ -113,15 +113,8 @@ angular.module('ten20Angular').
             "zoomControl":true,
             "scrollWheelZoom": true,
             "layers":[
-
-                {
-                    "label":"Map",
-                    "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
-                },
-                {
-                    "label":"Satellite",
-                    "tileLayer":"https://api.tiles.mapbox.com/v3/alexbirkett.map-t0fodlre/{z}/{x}/{y}.png"
-                },
+              {"label": "Satellite",  "tileLayer": MAP_URL.satellite},
+              { "label": "Map", "tileLayer": MAP_URL.map}
             ]
           };
 
@@ -171,4 +164,4 @@ angular.module('ten20Angular').
         // bind accordion click, set active tracker
       }
     };
-  });
+  }]);
