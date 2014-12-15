@@ -14,7 +14,7 @@ angular.module('ten20Angular', [
   $httpProvider.defaults.headers.patch = {
     'Content-Type': 'application/json;charset=utf-8'
   }
-}]).contant('MAP_URL', {
+}]).constant('MAP_URL', {
   'satellite': "https://api.tiles.mapbox.com/v3/alexbirkett.map-t0fodlre/{z}/{x}/{y}.png",
   'map': "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
 }).run(function () {
