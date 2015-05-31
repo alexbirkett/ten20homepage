@@ -27,7 +27,6 @@
     "hammerjs": "1.1.2"
   },
   "resolutions": {
-    "angular": "1.2.x",
     "jquery": "~2.1"
   }
 }

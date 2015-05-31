@@ -14,7 +14,10 @@ angular.module('ten20Angular', [
   $httpProvider.defaults.headers.patch = {
     'Content-Type': 'application/json;charset=utf-8'
   }
-}]).run(function () {
+}]).constant('MAP_URL', {
+  'satellite': "https://api.tiles.mapbox.com/v3/alexbirkett.map-t0fodlre/{z}/{x}/{y}.png",
+  'map': "https://api.tiles.mapbox.com/v3/alexbirkett.map-bugector/{z}/{x}/{y}.png"
+}).run(function () {
   // config moment calendar
   moment.lang('en', {
     calendar: {
